@@ -1,5 +1,7 @@
 # Final-Project-DCI
 
+**Team members:** Christian (rest can be added by merge requests)
+
 ## Git/GitHub tasks
 
 - [ ] Talk to each about your final project and see how github and git can help you for project management
