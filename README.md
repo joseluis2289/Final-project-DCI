@@ -14,3 +14,5 @@
 - [ ] Create a project and define the kanban for it
 - [ ] Define some issues and assign it to collaborators
 - [ ] Add cards into kanban columns depends on status of the issue.
+  jose test here!
+  hello christian jose here remove this 
