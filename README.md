@@ -1,18 +1,10 @@
 # Final-Project-DCI
 
-**Team members:** Christian (rest can be added by merge requests)
+**Team members:** Christian, Jose and Bel
 
-## Git/GitHub tasks
+Time Table
 
-- [ ] Talk to each about your final project and see how github and git can help you for project management
-- [x] Create repository for your project (repository name could be updated in future)
-- [ ] Assign team-mates as collaborator into repository (consider the permission of moderator and developers properly)
-- [x] Make a Readme.md file inside your repository
-- [x] Ask all team members to make a clone of. repository locally and make a branch for each member
-- [ ] Try to update the Readme.md file from different branches and send pull request
-- [ ] Moderator should try to merge all pull request if they are acceptable
-- [ ] Create a project and define the kanban for it
-- [ ] Define some issues and assign it to collaborators
-- [ ] Add cards into kanban columns depends on status of the issue.
-  jose test here!
-  hello christian jose here remove this 
+9:15 - 10:45 (1h 30min work, 15min break) -- ??? mainly reserved for Learning / Recap ???
+11:00 - 12:30 (1h 30min work, 1h lunch break)
+13:30 - 15:00 (1h 30min work, 15min break)
+15:15 - 16:25 (1h 10min work, Feierabend!) -- ??? mainly reserved for Research ???
