@@ -117,4 +117,11 @@ app.get("/logout", (req, res) => {
 
 connectDB();
 //connect Router
+<<<<<<< HEAD
 app.use("/api/references", require("./routes/references"));
+=======
+app.use("/references", require("./routes/references"));
+
+//listen to a port
+app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
+>>>>>>> 892a8357a9063fe456c801fefac33406cf657f2b
