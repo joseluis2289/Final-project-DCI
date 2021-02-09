@@ -8,3 +8,5 @@ const UserSChema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minLength: 8 },
 });
+
+module.exports = User = mongoose.model("user", UserSChema);
