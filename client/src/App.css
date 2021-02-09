@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,700;1,700&display=swap");
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: #181818;
+}
+
+label,
+input {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 1rem;
+}
+
+/***** HEADER / NAVIGATION *****/
+
+.app-header {
+  background-color: #c5cae9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+.app-header .icon {
+  height: 1.67rem;
+  margin: 0.5rem 0.5rem -0.5rem 1rem;
+}
+.app-header a {
+  text-decoration: none;
+  font-weight: bold;
+}
+h1 {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 0.33rem 0 0.67rem 0;
+}
+h1 a {
+  color: #222;
+}
+h2 {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 1.67rem;
+}
+
+/***** SEARCHBAR / FILTER *****/
+
+.searchbar-container {
+  background-color: hsl(243, 100%, 80%);
+  display: flex;
+  align-items: center;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+/***** MAIN CONTENT *****/
+
+main {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+article {
+  /* padding: 2rem; */
+}
+
+/*** FORMS ***/
+
+form:not(.searchbar-form) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+label {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+input {
+  padding: 0.5rem;
+  border: 1px solid #999;
+  border-radius: 0.5rem;
+}
+button {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #999;
+  border-radius: 0.5rem;
+}
+/*** RESOURCES ***/
+.resource-container {
+  padding: 1.5rem;
+  background-color: #fff;
+}
+.resource-title {
+  display: flex;
+  align-items: center;
+}
+.illustration {
+  width: 50%;
+  /* height: 20rem; */
+}
