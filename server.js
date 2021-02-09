@@ -27,7 +27,7 @@ const connectDB = async () => {
 connectDB();
 
 //connect Router
-app.use("/api/references", require("./routes/references"));
+app.use("/references", require("./routes/references"));
 
 //listen to a port
 app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
