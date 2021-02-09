@@ -107,9 +107,8 @@ app.post("/login", (req, res, next) => {
     });
 });
 
-//force the ssion to expire
+//force the session to expire
 app.get("/logout", (req, res) => {
-
   //to logout just force the session to be expired (just set the 'maxAge' to 0 or set 'expires' to a date from the past)
   var logOut = req.cookie;
   console.log(logOut);
