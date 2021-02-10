@@ -9,6 +9,7 @@ const UserModel = require("./userModel");
 let expValidator = require("express-validator");
 const Logger = require("morgan");
 var cookieParser = require("cookie-parser");
+const bcrypt = require("bcrypt");
 //1- include the express-session here ( dont forget to install it first)
 
 //Define PORT
@@ -64,20 +65,33 @@ app.post("/register", (req, res, next) => {
   if (errors) {
     res.send({ validation: errors });
   } else {
-    console.log({ success: "validated successfully" });
-    let instance = new UserModel({
-      name: newUser.name,
-      userName: newUser.userName,
-      email: newUser.email,
-      password: newUser.password,
-    });
-    instance.save((err, result) => {
-      if (err) {
-        res.send({ msg: false, err });
-      } else {
-        res.send(result);
-        console.log(result);
-      }
+    // let checkEmail = await UserModel.findOne({
+    //
+    // });
+    // if(checkEmail)
+    // return res.status(400).send('this email is already taken!');
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(newUser.password, salt, function (err, hash) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log({ success: "validated successfully" });
+          let instance = new UserModel({
+            name: newUser.name,
+            userName: newUser.userName,
+            email: newUser.email,
+            password: hash,
+          });
+          instance.save((err, result) => {
+            if (err) {
+              res.send({ msg: false, err });
+            } else {
+              res.send(result);
+              console.log(result);
+            }
+          });
+        }
+      });
     });
   }
 });
@@ -92,18 +106,19 @@ app.post("/login", (req, res, next) => {
     email: newUser.email,
 
     //to compare password use bcrypt
-    password: newUser.password,
+    //password: newUser.password,
   })
     .then((result) => {
       //remove this if
-      if (newUser.email === result.email && newUser.password) {
-        res.send({ login: true, result });
-        loggedUser = result.email;
-        //use req.session.loggedIn = true
-        console.log(loggedUser);
-      } else {
-        res.send({ login: false });
-      }
+      bcrypt.compare(newUser.password, result.password, function (err, output) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send({
+            logIn: output,
+          });
+        }
+      });
     })
     .catch((err) => {
       res.send(err);

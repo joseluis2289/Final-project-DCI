@@ -7,7 +7,7 @@ Content-Type: application/json
     "name":"Jose Luis",
     "userName":"Joseluis",
     "email":"info@gmail.com",
-    "password":123444
+    "password":"123444"
 }
 
 ###
@@ -17,7 +17,7 @@ Content-Type: application/json
 
 {
 "email":"info@gmail.com",
-"password":123444
+"password":"123444"
 }
 
 
