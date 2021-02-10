@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { /* useSelector,*/ useDispatch } from "react-redux";
 import { loginUser } from "../redux/actions";
 
 export default function Login() {
-  const login = useSelector((state) => state);
+  // const login = useSelector((state) => state.username);
   const dispatch = useDispatch();
   const [loginData, setLoginData] = useState();
   function handleChange(e) {
