@@ -1,6 +1,7 @@
 const { Router } = require("express");
 var express = require("express");
 const mongoose = require("mongoose");
+
 const router = require("./routes/references");
 require("dotenv").config();
 const app = express();
@@ -19,11 +20,14 @@ app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
 const url =
   "mongodb+srv://admin:123joseluis@cluster0.cbvco.mongodb.net/sample_training?retryWrites=true&w=majority";
 
+
 //connect to DataBase
 const connectDB = async () => {
   try {
     //connect return Promise → async/await needed
+
     await mongoose.connect(url, {
+
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
@@ -36,6 +40,7 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+
 
 //MiddleWares
 app.use(Logger("dev"));
@@ -117,3 +122,4 @@ app.get("/logout", (req, res, next) => {
 connectDB();
 //connect Router
 app.use("/api/references", require("./routes/references"));
+
