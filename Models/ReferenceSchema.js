@@ -13,10 +13,11 @@ const ReferenceSchema = new mongoose.Schema({
   title: { type: String, required: true },
   link: { type: String, required: true, unique: true },
   previewImage: { type: String },
+  date: { type: Date, default: Date.now },
   userID: { type: String },
   category: {
-    type: String,
-    enum: ["Frontend", "Backend", "Database"],
+    type: [String],
+    enum: ["frontend", "backend", "database", "general"],
     required: true,
   },
   rating: { type: Number, min: 0, max: 5 },
@@ -26,7 +27,6 @@ const ReferenceSchema = new mongoose.Schema({
   format: {
     type: String,
     enum: ["documentation", "course"],
-    // required: true,
   }, // VIRTUAL → EMPTY AT BEGIN
   description: { type: String, required: true },
   edited: { type: Boolean, default: false }, //update the date
