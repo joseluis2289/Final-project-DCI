@@ -1,8 +1,8 @@
 const { Router } = require("express");
 var express = require("express");
 const mongoose = require("mongoose");
+var cors = require("cors");
 
-const router = require("./routes/references");
 require("dotenv").config();
 const app = express();
 const UserModel = require("./userModel");
@@ -45,6 +45,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
 app.use("/references", require("./routes/references"));
+app.use(cors());
 //2- add express-session as a middleware (take a look to the documentation on npm)
 //3- Note: if you want to store sessions inside mongoAtlas db use connect-mongo
 //4- configure the connect-mongo take a look connect-mongo on npm
