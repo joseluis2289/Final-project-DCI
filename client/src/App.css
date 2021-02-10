@@ -62,7 +62,7 @@ h2 {
 
 /***** MAIN CONTENT *****/
 
-main {
+.references-container {
   background-color: #f0f0f0;
   padding: 1rem;
   display: grid;
