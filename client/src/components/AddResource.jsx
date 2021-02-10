@@ -20,7 +20,7 @@ export default function AddResource() {
     e.preventDefault();
     axios({
       method: "POST",
-      url: "references/add",
+      url: "http://localhost:5000/references/add",
       data: resource,
     })
       .then(function (response) {
