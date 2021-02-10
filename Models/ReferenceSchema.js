@@ -27,7 +27,6 @@ const ReferenceSchema = new mongoose.Schema({
   format: {
     type: String,
     enum: ["documentation", "course"],
-    // required: true,
   }, // VIRTUAL → EMPTY AT BEGIN
   description: { type: String, required: true },
   edited: { type: Boolean, default: false }, //update the date
