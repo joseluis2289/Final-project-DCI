@@ -9,7 +9,7 @@ const Comment = new mongoose.Schema({
   deleted: { type: Boolean, default: false },
 });
 
-const ReferenceSchema = new mongoose.Schema({
+const ResourceSchema = new mongoose.Schema({
   title: { type: String, required: true },
   link: { type: String, required: true, unique: true },
   previewImage: { type: String },
@@ -34,4 +34,4 @@ const ReferenceSchema = new mongoose.Schema({
   comments: [Comment],
 });
 
-module.exports = Reference = mongoose.model("reference", ReferenceSchema);
+module.exports = Resource = mongoose.model("resource", ResourceSchema);

@@ -1,10 +1,10 @@
 var router = require("express").Router();
-const Reference = require("../Models/ReferenceSchema");
+const Resource = require("../Models/ResourceSchema");
 
 router.get("/", async (req, res, next) => {
   try {
-    const reference = await Reference.find();
-    res.json(reference);
+    const resource = await Resource.find();
+    res.json(resource);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -31,7 +31,7 @@ router.post("/add", (req, res, next) => {
     comments,
   } = req.body;
 
-  let resource = new Reference({
+  let resource = new Resource({
     title,
     link,
     previewImg,

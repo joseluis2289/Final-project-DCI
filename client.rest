@@ -1,5 +1,5 @@
-GET http:localhost:5000/references
+GET http:localhost:5000/resources
 
 ### → this "###" separate 2 requests, otherwise it will be considered as one and just one link will appear
-POST http://localhost:5000/references/add 
+POST http://localhost:5000/resources/add 
 Content-type:application/json
