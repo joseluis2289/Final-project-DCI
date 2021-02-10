@@ -30,4 +30,4 @@ connectDB();
 app.use("/references", require("./routes/references"));
 
 //listen to a port
-app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
+app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));

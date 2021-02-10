@@ -1,7 +1,18 @@
 var router = require("express").Router();
 const Reference = require("../Models/ReferenceSchema");
 
+router.get("/", async (req, res, next) => {
+  try {
+    const reference = await Reference.find();
+    res.json(reference);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 router.post("/add", async (req, res, next) => {
+  console.log(req.body);
   const {
     title,
     link,
