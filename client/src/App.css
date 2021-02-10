@@ -76,14 +76,30 @@ article {
 
 /*** FORMS ***/
 
-form:not(.searchbar-form) {
+form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+.searchbar-form {
+  flex-direction: row;
+  align-items: center;
+}
+.searchbar-form select,
+.searchbar-form input {
+}
 label {
-  margin-top: 1rem;
   font-weight: bold;
+}
+.searchbar-form label {
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+}
+.searchbar-form input[type="checkbox"] + label {
+  margin-left: 0.25rem;
+}
+main label {
+  margin-top: 1rem;
 }
 input {
   padding: 0.5rem;
@@ -108,4 +124,22 @@ button {
 .illustration {
   width: 50%;
   /* height: 20rem; */
+}
+.star-icon {
+  width: 1.67rem;
+  height: 1.67rem;
+}
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+.rating-number {
+  font-weight: bold;
+  margin-left: 0.25rem;
+}
+.rating-users {
+  margin-left: 0.5rem;
+}
+.star-container {
+  cursor: pointer;
 }

@@ -10,18 +10,19 @@ export default function Content() {
 
   useEffect(
     () => {
-      console.log("useEffect triggered!");
+      console.log("First pageload!");
       //   effect
       return () => {
         //   cleanup
       };
     },
     [
-      /*input*/
+      /* page re-renders if these variables change */
     ]
   );
 
-  // once a Search or a Filter is applied, change the display accordingly
+  // TODO: once a Search or a Filter is applied, change the display accordingly
+
   return (
     <div className="references-container">
       {login ? (

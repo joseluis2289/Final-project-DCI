@@ -17,6 +17,14 @@ export default function Searchbar() {
           e.preventDefault();
         }}
       >
+        <label htmlFor="topic">choose a topic:</label>
+        <select name="topic" id="topic">
+          <option value="HTML">HTML</option>
+          <option value="CSS">CSS</option>
+          <option value="Vanilla JavaScript">Vanilla JavaScript</option>
+        </select>
+
+        <label htmlFor="search">or search something:</label>
         <input
           type="search"
           name="search"
