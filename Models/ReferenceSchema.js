@@ -17,7 +17,7 @@ const ReferenceSchema = new mongoose.Schema({
   userID: { type: String },
   category: {
     type: [String],
-    enum: ["Frontend", "Backend", "Database", "General"],
+    enum: ["frontend", "backend", "database", "general"],
     required: true,
   },
   rating: { type: Number, min: 0, max: 5 },

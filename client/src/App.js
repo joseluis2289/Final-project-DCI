@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Content from "./components/Content";
+import AddResource from "./components/AddResource";
 import NotFound from "./components/NotFound";
 import "./App.css";
 
@@ -16,11 +17,12 @@ export default function App() {
       <Searchbar />
       <main>
         <Switch>
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/" exact={true} component={Content} />
-          <Route path="*" component={NotFound} />
+          <Route path='/register' component={Register} />
+          <Route path='/login' component={Login} />
+          <Route path='/profile' component={Profile} />
+          <Route path='/' exact={true} component={Content} />
+          <Route path='/add_resource' component={AddResource} />
+          <Route path='*' component={NotFound} />
         </Switch>
       </main>
       <footer></footer>
