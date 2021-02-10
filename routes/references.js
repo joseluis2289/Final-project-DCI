@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/add", async (req, res, next) => {
+router.post("/add", (req, res, next) => {
   console.log(req.body);
   const {
     title,
@@ -23,7 +23,7 @@ router.post("/add", async (req, res, next) => {
     rating,
     num_ratings,
     num_views,
-    payed,
+    paid,
     format,
     description,
     edited,
@@ -31,31 +31,32 @@ router.post("/add", async (req, res, next) => {
     comments,
   } = req.body;
 
-  try {
-    let reference = new Reference({
-      title,
-      link,
-      previewImg,
-      date,
-      userID,
-      category,
-      rating,
-      num_ratings,
-      num_views,
-      payed,
-      format,
-      description,
-      edited,
-      deleted,
-      comments,
-    });
+  let resource = new Reference({
+    title,
+    link,
+    previewImg,
+    date,
+    userID,
+    category,
+    rating,
+    num_ratings,
+    num_views,
+    paid,
+    format,
+    description,
+    edited,
+    deleted,
+    comments,
+  });
 
-    await reference.save();
-    res.send("reference added");
-  } catch (error) {
-    console.error("ao deu certuuuu");
-    res.status(500).send("Server error");
-  }
+  resource
+    .save()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 });
 
 module.exports = router;
