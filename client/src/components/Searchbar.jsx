@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
 export default function Searchbar() {
+  // Hook for storing SEARCH TERM and FILTER SETTINGS
   const [searchData, setSearchData] = useState();
+
+  // Function for handling input in the search bar.
   function handleChange(e) {
     setSearchData({ ...searchData, [e.target.name]: e.target.value });
   }
+
   return (
     <section className="searchbar-container">
       <form

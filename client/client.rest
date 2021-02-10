@@ -1,0 +1,16 @@
+GET http://localhost:5000/users/all
+Content-Type: application/json
+
+{
+}
+
+###
+
+POST http://localhost:5000/users/add
+Content-Type: application/json
+
+{
+        "name": "Christian Heinrich",
+        "username": "coffeepyros",
+        "email": "coffeepyros@gmail.com"
+}
