@@ -13,10 +13,11 @@ const ReferenceSchema = new mongoose.Schema({
   title: { type: String, required: true },
   link: { type: String, required: true, unique: true },
   previewImage: { type: String },
+  date: { type: Date, default: Date.now },
   userID: { type: String },
   category: {
-    type: String,
-    enum: ["Frontend", "Backend", "Database"],
+    type: [String],
+    enum: ["Frontend", "Backend", "Database", "General"],
     required: true,
   },
   rating: { type: Number, min: 0, max: 5 },
