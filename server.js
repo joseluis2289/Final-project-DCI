@@ -18,9 +18,8 @@ const PORT = process.env.PORT || 5000;
 //listen to a port
 app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
 
-// const url =
-// "mongodb+srv://admin:123joseluis@cluster0.cbvco.mongodb.net/sample_training?retryWrites=true&w=majority";
-const url = process.env.MONGO_URI;
+// const url = process.env.MONGO_URIJose;
+const url = process.env.MONGO_URIBel;
 //connect to DataBase
 const connectDB = async () => {
   try {
