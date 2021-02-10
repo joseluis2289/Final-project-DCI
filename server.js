@@ -17,17 +17,15 @@ const PORT = process.env.PORT || 5000;
 //listen to a port
 app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
 
-const url =
-  "mongodb+srv://admin:123joseluis@cluster0.cbvco.mongodb.net/sample_training?retryWrites=true&w=majority";
-
-
+// const url =
+// "mongodb+srv://admin:123joseluis@cluster0.cbvco.mongodb.net/sample_training?retryWrites=true&w=majority";
+const url = process.env.MONGO_URI;
 //connect to DataBase
 const connectDB = async () => {
   try {
     //connect return Promise → async/await needed
 
     await mongoose.connect(url, {
-
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
@@ -41,12 +39,12 @@ const connectDB = async () => {
   }
 };
 
-
 //MiddleWares
 app.use(Logger("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
+app.use("/references", require("./routes/references"));
 //2- add express-session as a middleware (take a look to the documentation on npm)
 //3- Note: if you want to store sessions inside mongoAtlas db use connect-mongo
 //4- configure the connect-mongo take a look connect-mongo on npm
@@ -120,6 +118,3 @@ app.get("/logout", (req, res, next) => {
 });
 
 connectDB();
-//connect Router
-app.use("/api/references", require("./routes/references"));
-

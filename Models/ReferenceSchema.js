@@ -16,17 +16,17 @@ const ReferenceSchema = new mongoose.Schema({
   userID: { type: String },
   category: {
     type: String,
-    enum: ["", "Frontend", "Backend", "Database"],
+    enum: ["Frontend", "Backend", "Database"],
     required: true,
   },
   rating: { type: Number, min: 0, max: 5 },
   num_ratings: { type: Number },
   num_views: { type: Number },
-  payed: { type: String, enum: ["paid", "free"], required: true },
+  paid: { type: String, enum: ["paid", "free"], required: true },
   format: {
     type: String,
-    enum: ["", "documentation", "course"],
-    required: true,
+    enum: ["documentation", "course"],
+    // required: true,
   }, // VIRTUAL → EMPTY AT BEGIN
   description: { type: String, required: true },
   edited: { type: Boolean, default: false }, //update the date
