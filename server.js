@@ -6,11 +6,11 @@ var cors = require("cors");
 require("dotenv").config();
 const app = express();
 const UserModel = require("./userModel");
-let expValidator = require("express-validator");
+const expValidator = require("express-validator");
 const Logger = require("morgan");
-var cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
-//1- include the express-session here ( dont forget to install it first)
+const jwt = require("jsonwebtoken");
 
 //Define PORT
 const PORT = process.env.PORT || 5000;
@@ -45,11 +45,15 @@ app.use(Logger("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
+
+app.use(authenticateToken());
+=======
 app.use("/references", require("./routes/references"));
 app.use(cors());
 //2- add express-session as a middleware (take a look to the documentation on npm)
 //3- Note: if you want to store sessions inside mongoAtlas db use connect-mongo
 //4- configure the connect-mongo take a look connect-mongo on npm
+
 
 ///All routes
 //register user
@@ -66,11 +70,6 @@ app.post("/register", (req, res, next) => {
   if (errors) {
     res.send({ validation: errors });
   } else {
-    // let checkEmail = await UserModel.findOne({
-    //
-    // });
-    // if(checkEmail)
-    // return res.status(400).send('this email is already taken!');
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(newUser.password, salt, function (err, hash) {
         if (err) {
@@ -98,26 +97,24 @@ app.post("/register", (req, res, next) => {
 });
 
 //login user
-let loggedUser = "";
+let refreshTokens = [];
 
 app.post("/login", (req, res, next) => {
   let newUser = req.body;
+  const userName = newUser.userName;
+  const user = { name: userName };
 
   UserModel.findOne({
-    email: newUser.email,
-
-    //to compare password use bcrypt
-    //password: newUser.password,
+    userName: newUser.userName,
   })
     .then((result) => {
-      //remove this if
       bcrypt.compare(newUser.password, result.password, function (err, output) {
         if (err) {
           console.log(err);
         } else {
-          res.send({
-            logIn: output,
-          });
+          const accessToken = generateAccessToken(user);
+          const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+          res.send({ accessToken: accessToken, logIn: output });
         }
       });
     })
@@ -125,6 +122,26 @@ app.post("/login", (req, res, next) => {
       res.send(err);
     });
 });
+
+function generateAccessToken(user) {
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30s" });
+}
+
+function authenticateToken(req, res, next) {
+  // bearer token
+  //authenticate the token that is comming from the header
+  const authHeader = req.headers["Authorization"];
+  //if we have authHeader then return authHeader
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    // (403) Access denied
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
 
 //force the session to expire
 app.get("/logout", (req, res, next) => {
