@@ -110,7 +110,7 @@ app.post("/login", (req, res, next) => {
           console.log(err);
         } else {
           const accessToken = generateAccessToken(user);
-          // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET); → uncomment
+          const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
           res.send({ accessToken: accessToken, logIn: output });
         }
       });
@@ -124,21 +124,21 @@ function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30s" });
 }
 
-// function authenticateToken(req, res, next) {                →uncomment entire function
-//   // bearer token
-//   //authenticate the token that is comming from the header
-//   const authHeader = req.headers["Authorization"];
-//   //if we have authHeader then return authHeader
-//   const token = authHeader && authHeader.split(" ")[1];
-//   if (token == null) return res.sendStatus(401);
+function authenticateToken(req, res, next) {
+  // bearer token
+  //authenticate the token that is comming from the header
+  const authHeader = req.headers["Authorization"];
+  //if we have authHeader then return authHeader
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null) return res.sendStatus(401);
 
-//   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-//     // (403) Access denied
-//     if (err) return res.sendStatus(403);
-//     req.user = user;
-//     next();
-//   });
-// }
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    // (403) Access denied
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
 
 //force the session to expire
 app.get("/logout", (req, res, next) => {
