@@ -13,9 +13,13 @@ const Comment = new mongoose.Schema({
 const ResourceSchema = new mongoose.Schema({
   title: { type: String, required: true },
   link: { type: String, required: true, unique: true },
-  previewImage: { type: String },
+  previewImage: {
+    type: String,
+    default:
+      "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fforbestechcouncil%2Ffiles%2F2019%2F01%2Fcanva-photo-editor-8-7.jpg",
+  },
   date: { type: Date, default: Date.now },
-  userID: { type: String },
+  userID: { type: String, default: "usermodel" },
   category: {
     type: [String],
     enum: ["frontend", "backend", "database", "general"],
@@ -35,4 +39,4 @@ const ResourceSchema = new mongoose.Schema({
   comments: [Comment],
 });
 
-module.exports = Resource = mongoose.model("resource", ResourceSchema);
+module.exports = mongoose.model("resource", ResourceSchema);

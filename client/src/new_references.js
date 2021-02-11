@@ -5,7 +5,7 @@ const fakeData = [
     previewImg:
       "https://media-exp1.licdn.com/dms/image/C4D12AQFhVVUXMCFfRg/article-cover_image-shrink_720_1280/0/1537600218280?e=1616025600&v=beta&t=GL38Ceosn9xGv9e_dFykDr2jEFvjtU1oSwnzuDexf-g",
     userID: "usermodel",
-    category: ["frontend"],
+    category: ["Frontend"],
     rating: "4.6",
     num_rating: 102.797,
     num_views: 349.813,
@@ -23,7 +23,7 @@ const fakeData = [
     previewImg:
       "https://humao.gallerycdn.vsassets.io/extensions/humao/rest-client/0.24.4/1604923740596/Microsoft.VisualStudio.Services.Icons.Default",
     userID: "usermodel",
-    category: ["backend"],
+    category: ["Backend"],
     rating: 5,
     num_rating: 250,
     num_views: 1374.56,
@@ -39,7 +39,7 @@ const fakeData = [
     link: "https://mongoosejs.com/",
     previewImg: "https://niralar.com/wp-content/uploads/2018/07/mongoose.jpg",
     userID: "usermodel",
-    category: ["database"],
+    category: ["Database"],
     rating: 5,
     num_rating: 3500,
     num_views: 1384.745,
@@ -55,7 +55,7 @@ const fakeData = [
     link: "https://lodash.com/",
     previewImg: "http://blog.avarteq.com/wp-content/uploads/2016/02/Lodash.jpg",
     userID: "usermodel",
-    category: ["backend"],
+    category: ["Backend"],
     rating: 4.5,
     num_rating: 137,
     num_views: 0,
@@ -66,14 +66,13 @@ const fakeData = [
     deleted: "false",
     comments: [],
   },
-
   {
     title: "Faker.js",
     link: "https://github.com/Marak/Faker.js#readme",
     previewImg:
       "https://raw.githubusercontent.com/Marak/faker.js/master/logo.png",
     userID: "usermodel",
-    category: ["backend"],
+    category: ["Backend"],
     rating: 4,
     num_rating: 437,
     num_views: 112.394,
@@ -89,7 +88,7 @@ const fakeData = [
     link: "https://www.thinkful.com/learn/a-guide-to-using-github-pages/",
     previewImg: "https://i.ytimg.com/vi/2MsN8gpT6jY/maxresdefault.jpg",
     userID: "usermodel",
-    category: ["general"],
+    category: ["General"],
     rating: 4.5,
     num_rating: 782,
     num_views: 10.523,
@@ -105,7 +104,7 @@ const fakeData = [
     link: "https://git-scm.com/about",
     previewImg: "https://git-scm.com/images/logo@2x.png",
     userID: "usermodel",
-    category: ["general"],
+    category: ["General"],
     rating: 4,
     num_rating: 852,
     num_views: 11.529,
@@ -122,7 +121,7 @@ const fakeData = [
       "https://www.youtube.com/watch?v=mbsmsi7l3r4&ab_channel=WebDevSimplified",
     previewImg: "https://git-scm.com/images/logo@2x.png",
     userID: "usermodel",
-    category: ["backend", "frontend"],
+    category: ["Backend", "Frontend"],
     rating: 4.5,
     num_rating: 15985,
     num_views: 1589.253,
@@ -139,7 +138,7 @@ const fakeData = [
     previewImg:
       "https://res.cloudinary.com/practicaldev/image/fetch/s--qWK2FkdC--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/dr6e3at3dlznretj460y.jpeg",
     userID: "usermodel",
-    category: ["backend", "frontend", "database"],
+    category: ["Backend", "Frontend", "Database"],
     rating: 4,
     num_rating: 8951,
     num_views: 0,
@@ -157,7 +156,7 @@ const fakeData = [
     previewImg:
       "https://res.cloudinary.com/practicaldev/image/fetch/s--qWK2FkdC--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/dr6e3at3dlznretj460y.jpeg",
     userID: "usermodel",
-    category: ["backend", "frontend", "database"],
+    category: ["Backend", "Frontend", "Database"],
     rating: 4.5,
     num_rating: 11.152,
     num_views: 0,
@@ -174,7 +173,7 @@ const fakeData = [
     previewImg:
       "hhttps://appdesign.dev/wp-content/uploads/2020/08/Agencia-desarrollo-Angular-JS.jpg",
     userID: "usermodel",
-    category: ["frontend"],
+    category: ["Frontend"],
     rating: 4.6,
     num_rating: 138.647,
     num_views: 459.039,
@@ -191,7 +190,7 @@ const fakeData = [
     previewImg:
       "https://cdn-images-1.medium.com/max/285/1*QR2SBNwG75LyY5uwqWpN3A.png",
     userID: "usermodel",
-    category: ["frontend", "backend"],
+    category: ["Frontend", "Backend"],
     rating: 4.6,
     num_rating: 623,
     num_views: 72.447,
@@ -202,23 +201,5 @@ const fakeData = [
     deleted: "false",
     comments: [],
   },
-  {
-    title: "Introduction to MongoDB",
-    link: "https://www.coursera.org/learn/introduction-mongodb?",
-    previewImg:
-      "https://i.pcmag.com/imagery/reviews/02Q6yxveinggAu3PomearaV-7..1569481734.jpg",
-    userID: "usermodel",
-    category: ["database"],
-    rating: 4.3,
-    num_rating: 524,
-    num_views: 41.946,
-    paid: "free",
-    description:
-      "This course will get you up and running with MongoDB quickly, and teach you how to leverage its power for data analytics. We'll start by mastering the fundamentals of MongoDB, including MongoDB’s Document data model, importing data into a cluster, working with our CRUD API and Aggregation Framework. These topics will be taught through a demo application which will give you a great first encounter of how simple and practical it can be to build applications with MongoDB.In addition to these essential topics, you will also learn and work with useful MongoDB tools and services. You will work with Atlas, MongoDB's database as a service, MongoDB Compass, a schema visualization tool, as well as many other useful command-line utilities.",
-    edited: "false",
-    deleted: "false",
-    comments: [],
-  },
 ];
-
 export default fakeData;

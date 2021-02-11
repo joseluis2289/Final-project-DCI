@@ -1,12 +1,34 @@
-export function loginUser(data) {
+// USER ACTIONS
+
+export function userLogin(data) {
   return {
-    type: "LOGIN_USER",
+    type: "USER_LOGIN",
     payload: data,
   };
 }
-
-export function logoutUser() {
+export function userLogout() {
   return {
-    type: "LOGOUT_USER",
+    type: "USER_LOGOUT",
+  };
+}
+
+// FILTER ACTIONS
+
+export function filterFree(status) {
+  return {
+    type: "FILTER_FREE",
+    payload: status,
+  };
+}
+export function filterPaid(status) {
+  return {
+    type: "FILTER_PAID",
+    payload: status,
+  };
+}
+export function filterRating(rating) {
+  return {
+    type: "FILTER_RATING",
+    payload: rating,
   };
 }

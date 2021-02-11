@@ -31,10 +31,17 @@ export default function Rating(props) {
             />
           );
         })}
-        <figcaption className="rating-details">
-          <span className="rating-number">{rating}</span>
-          <span className="rating-users">(12)</span>
-        </figcaption>
+
+        {/* This Component is also used in the Filter bar, but there
+        we don't need the details. */}
+        {props.usedInFilter ? (
+          ""
+        ) : (
+          <figcaption className="rating-details">
+            <span className="rating-number">{rating}</span>
+            <span className="rating-users">({props.num_rating})</span>
+          </figcaption>
+        )}
       </figure>
     </section>
   );

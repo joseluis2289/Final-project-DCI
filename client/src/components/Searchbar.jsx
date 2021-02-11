@@ -10,35 +10,36 @@ export default function Searchbar() {
   }
 
   return (
-    <section className="searchbar-container">
-      <form
-        className="searchbar-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <label htmlFor="topic">choose a topic:</label>
-        <select name="topic" id="topic">
-          <option value="HTML">HTML</option>
-          <option value="CSS">CSS</option>
-          <option value="Vanilla JavaScript">Vanilla JavaScript</option>
-        </select>
+    <form
+      className="searchbar-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
+      <legend>
+        <strong>Search:</strong>I'm looking for...
+      </legend>
+      <label htmlFor="topic">choose a topic:</label>
+      <select name="topic" id="topic">
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="Vanilla JavaScript">Vanilla JavaScript</option>
+      </select>
 
-        <label htmlFor="search">or search something:</label>
-        <input
-          type="search"
-          name="search"
-          id="search"
-          placeholder="Search..."
-          onChange={handleChange}
-        />
-        <input type="checkbox" name="free" id="free" onChange={handleChange} />
-        <label htmlFor="free">Free</label>
-        <input type="checkbox" name="paid" id="paid" onChange={handleChange} />
-        <label htmlFor="paid">Paid</label>
+      <label htmlFor="search">or search something:</label>
+      <input
+        type="search"
+        name="search"
+        id="search"
+        placeholder="Search..."
+        onChange={handleChange}
+      />
+      <input type="checkbox" name="free" id="free" onChange={handleChange} />
+      <label htmlFor="free">Free</label>
+      <input type="checkbox" name="paid" id="paid" onChange={handleChange} />
+      <label htmlFor="paid">Paid</label>
 
-        <button type="submit">Search</button>
-      </form>
-    </section>
+      <button type="submit">Search</button>
+    </form>
   );
 }
