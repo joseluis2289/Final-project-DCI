@@ -14,8 +14,8 @@ export default function UpdateResource() {
   let updateResource1 = (e) => {
     e.preventDefault();
     axios({
-      method: "POST",
-      url: "http://localhost:5000/resource1s/update",
+      method: "PUT",
+      url: `http://localhost:5000/resources/${_id}`,
       ContentType: "application-json",
       data: example,
     })
@@ -27,11 +27,11 @@ export default function UpdateResource() {
       });
   };
 
-  let delResource1 = (e) => {
+  let delResource = (e) => {
     e.preventDefault();
     axios({
       method: "DEL",
-      url: "http://localhost:5000/resource1s/remove",
+      url: `http://localhost:5000/resources/${_id}`,
     })
       .then(function (response) {
         console.log("resource1 deleted");
@@ -43,7 +43,7 @@ export default function UpdateResource() {
   return (
     <div>
       <form onSubmit={updateResource1}>
-        <button type={delResource1}>X</button>
+        <button type={delResource}>X</button>
         <div>
           <label htmlFor='title'>Title</label>
           <input
