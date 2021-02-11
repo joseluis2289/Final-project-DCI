@@ -80,10 +80,10 @@ router.post("/add", (req, res, next) => {
   resource
     .save()
     .then((result) => {
-      res.send(result);
+      res.status(200).send(result);
     })
     .catch((err) => {
-      res.send("deu ruim", err);
+      res.send(err);
     });
 });
 
