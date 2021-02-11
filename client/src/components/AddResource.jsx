@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function AddResource() {
-  const [category, setCategory] = useState([]);
-  const [resource, setResource] = useState({});
+  const [resource, setResource] = useState({ category: [] });
 
   let defineCategory = (e) => {
-    e.preventDefault();
-    setCategory([...category, e.target.value]);
-    setResource({ ...resource, [e.target.id]: category });
+    let categories = resource.category;
+    let cat = categories.indexOf(e.target.value);
+    if (cat === -1) {
+      categories.push(e.target.value);
+    } else if (cat !== -1) {
+      categories.splice(cat, 1);
+    }
+    setResource({ ...resource, [e.target.name]: categories });
   };
 
   let formHandler = (e) => {
-    e.preventDefault();
-    setResource({ ...resource, [e.target.id]: e.target.value });
+    setResource({ ...resource, [e.target.name]: e.target.value });
   };
 
   let addResource = (e) => {
@@ -21,6 +24,7 @@ export default function AddResource() {
     axios({
       method: "POST",
       url: "http://localhost:5000/resources/add",
+      ContentType: "application-json",
       data: resource,
     })
       .then(function (response) {
@@ -37,7 +41,7 @@ export default function AddResource() {
           <label htmlFor='title'>Title</label>
           <input
             type='text'
-            id='title'
+            name='title'
             placeholder='Enter the title...'
             onChange={formHandler}
           />
@@ -46,49 +50,51 @@ export default function AddResource() {
           <label htmlFor='link'>Link</label>
           <input
             type='text'
-            id='link'
+            name='link'
             placeholder='Enter the Link..'
             onChange={formHandler}
           />
         </div>
-        <fieldset id='category' onChange={defineCategory}>
-          <label htmlFor='link'>Category</label>
+        <div name='category' onChange={defineCategory}>
+          <label>Category</label>
           <label htmlFor='frontend'>
-            <input type='checkbox' id='category' value='frontend' />
+            <input type='checkbox' name='category' value='frontend' />
             Frontend
           </label>
 
           <label htmlFor='backend'>
-            <input type='checkbox' id='category' value='backend' />
+            <input type='checkbox' name='category' value='backend' />
             Backend
           </label>
 
           <label htmlFor='database'>
-            <input type='checkbox' id='category' value='database' />
+            <input type='checkbox' name='category' value='database' />
             Database
           </label>
 
           <label htmlFor='general'>
-            <input type='checkbox' id='category' value='general' />
+            <input type='checkbox' name='category' value='general' />
             General
           </label>
-        </fieldset>
-        <fieldset onChange={formHandler}>
-          <label htmlFor='link'>Paid</label>
-          <label htmlFor='paid'>
-            <input type='checkbox' id='paid' value='paid' />
-            Yes
-          </label>
+        </div>
 
-          <label htmlFor='free'>
-            <input type='checkbox' id='paid' value='free' />
-            No
-          </label>
-        </fieldset>
+        <div name='paid' onChange={formHandler}>
+          <label htmlFor='link'>Paid</label>
+          <div>
+            <label htmlFor='access_paid'>
+              <input type='radio' name='paid' id='access_paid' value='paid' />
+              Yes
+            </label>
+
+            <label htmlFor='access_free'>
+              <input type='radio' name='paid' id='access_free' value='free' />
+              No
+            </label>
+          </div>
+        </div>
         <div>
           <label htmlFor='title'>description</label>
           <textarea
-            id='description'
             name='description'
             rows='5'
             cols='33'

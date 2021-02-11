@@ -16,7 +16,7 @@ const jwt = require("jsonwebtoken");
 const PORT = process.env.PORT || 5000;
 
 //listen to a port
-app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
+app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
 
 // const url = process.env.MONGO_URIJose;
 const url = process.env.MONGO_URIBel;
@@ -40,14 +40,14 @@ const connectDB = async () => {
 };
 
 //MiddleWares
+app.use(cors());
 app.use(Logger("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
 
-app.use(authenticateToken());
+// app.use(authenticateToken());
 app.use("/resources", require("./routes/resources"));
-app.use(cors());
 //2- add express-session as a middleware (take a look to the documentation on npm)
 //3- Note: if you want to store sessions inside mongoAtlas db use connect-mongo
 //4- configure the connect-mongo take a look connect-mongo on npm
