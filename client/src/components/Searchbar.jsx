@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
 export default function Searchbar() {
+  // Hook for storing SEARCH TERM and FILTER SETTINGS
   const [searchData, setSearchData] = useState();
+
+  // Function for handling input in the search bar.
   function handleChange(e) {
     setSearchData({ ...searchData, [e.target.name]: e.target.value });
   }
+
   return (
     <section className="searchbar-container">
       <form
@@ -13,6 +17,14 @@ export default function Searchbar() {
           e.preventDefault();
         }}
       >
+        <label htmlFor="topic">choose a topic:</label>
+        <select name="topic" id="topic">
+          <option value="HTML">HTML</option>
+          <option value="CSS">CSS</option>
+          <option value="Vanilla JavaScript">Vanilla JavaScript</option>
+        </select>
+
+        <label htmlFor="search">or search something:</label>
         <input
           type="search"
           name="search"

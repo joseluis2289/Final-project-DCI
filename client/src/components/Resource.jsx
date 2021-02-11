@@ -1,14 +1,15 @@
 import React from "react";
 import Rating from "./Rating";
 
-export default function Resource() {
+// Gets reference ID as props.id
+export default function Resource(props) {
   return (
     <section className="resource-container">
       <header>
         <hgroup>
           <div className="resource-title">
             <h2>(TITLE)</h2>
-            <Rating />
+            <Rating rating={3.5} />
           </div>
           <h3>(TOPIC) / (MEDIA TYPE)</h3>
           <h3>added by (USER)</h3>
