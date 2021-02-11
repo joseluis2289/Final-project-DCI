@@ -16,7 +16,7 @@ const jwt = require("jsonwebtoken");
 const PORT = process.env.PORT || 5000;
 
 //listen to a port
-app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
+app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
 
 // const url = process.env.MONGO_URIJose;
 const url = process.env.MONGO_URIBel;
@@ -45,7 +45,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
 
-app.use(authenticateToken());
+// app.use(authenticateToken());
 app.use("/resources", require("./routes/resources"));
 app.use(cors());
 //2- add express-session as a middleware (take a look to the documentation on npm)
@@ -110,7 +110,7 @@ app.post("/login", (req, res, next) => {
           console.log(err);
         } else {
           const accessToken = generateAccessToken(user);
-          const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+          // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET); → uncomment
           res.send({ accessToken: accessToken, logIn: output });
         }
       });
@@ -124,21 +124,21 @@ function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30s" });
 }
 
-function authenticateToken(req, res, next) {
-  // bearer token
-  //authenticate the token that is comming from the header
-  const authHeader = req.headers["Authorization"];
-  //if we have authHeader then return authHeader
-  const token = authHeader && authHeader.split(" ")[1];
-  if (token == null) return res.sendStatus(401);
+// function authenticateToken(req, res, next) {                →uncomment entire function
+//   // bearer token
+//   //authenticate the token that is comming from the header
+//   const authHeader = req.headers["Authorization"];
+//   //if we have authHeader then return authHeader
+//   const token = authHeader && authHeader.split(" ")[1];
+//   if (token == null) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    // (403) Access denied
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
-}
+//   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+//     // (403) Access denied
+//     if (err) return res.sendStatus(403);
+//     req.user = user;
+//     next();
+//   });
+// }
 
 //force the session to expire
 app.get("/logout", (req, res, next) => {
