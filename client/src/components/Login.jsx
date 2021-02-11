@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { /* useSelector,*/ useDispatch } from "react-redux";
-import { loginUser } from "../redux/actions";
+import { userLogin } from "../redux/actions";
 
 export default function Login() {
   // const login = useSelector((state) => state.username);
@@ -21,7 +21,7 @@ export default function Login() {
           fetch("./data.txt")
             .then((response) => {
               console.log(response);
-              dispatch(loginUser(loginData));
+              dispatch(userLogin(loginData));
             })
             .catch((err) => console.log(err));
         }}

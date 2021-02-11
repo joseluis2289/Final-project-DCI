@@ -1,17 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import Welcome from "./Welcome";
 import Resource from "./Resource";
 
 export default function Content() {
   const login = useSelector((state) => state.username);
+  const resourceData = useSelector((state) => state.resources);
+  const filter = useSelector((state) => state.filter);
+  let resourceIndex = [0, 1, 2, 3, 4, 5, 6, 7];
   // useEffect: on first Component load get top X number of references
   // into the Redux store and display them with React
 
   useEffect(
     () => {
       console.log("First pageload!");
-      //   effect
+      // fetch("")
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch((error) => console.log(error));
       return () => {
         //   cleanup
       };
@@ -25,14 +31,27 @@ export default function Content() {
 
   return (
     <div className="references-container">
-      {login ? (
-        <React.Fragment>
-          <Resource id={0} />
-          <Resource id={1} />
-        </React.Fragment>
-      ) : (
-        <Welcome />
-      )}
+      <React.Fragment>
+        {resourceIndex.map((index) => {
+          let showResource = false;
+          if (filter.free === true && resourceData[index].paid === "free") {
+            console.log(filter.free, resourceData[index].paid);
+            showResource = true;
+          }
+          if (filter.paid === true && resourceData[index].paid === "paid") {
+            console.log(filter.paid, resourceData[index].paid);
+            showResource = true;
+          }
+          if (resourceData[index].rating < filter.rating) {
+            showResource = false;
+          }
+          if (showResource)
+            return (
+              <Resource id={index} key={index} data={resourceData[index]} />
+            );
+          return "";
+        })}
+      </React.Fragment>
     </div>
   );
 }
