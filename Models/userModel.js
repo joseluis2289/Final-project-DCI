@@ -7,6 +7,7 @@ const UserSchema = new Schema({
   // gitHubAccount: {type: }
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minLength: 3 },
+  resources: { type: [String] },
 });
 
 module.exports = mongoose.model("User", UserSchema);

@@ -7,6 +7,7 @@ const Comment = new mongoose.Schema({
   reaction: { type: { any: [String] } }, //string = username,
   edited: { type: Boolean, default: false }, ////update the date
   deleted: { type: Boolean, default: false },
+  
 });
 
 const ResourceSchema = new mongoose.Schema({
