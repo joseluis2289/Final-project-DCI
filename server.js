@@ -18,11 +18,13 @@ const protectedRoutes = require("./routes/protectedRoutes");
 const PORT = process.env.PORT || 5000;
 
 //listen to a port
+
+const url = process.env.MONGO_URIJose;
 app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
 
 // const url = process.env.MONGO_URIJose;
-// const url = process.env.MONGO_URIBel;
-const url = process.env.MONGO_URIJose;
+const url = process.env.MONGO_URIBel;
+
 //connect to DataBase
 const connectDB = async () => {
   try {
@@ -42,7 +44,7 @@ const connectDB = async () => {
 };
 
 //MiddleWares
-app.use(cors());
+
 app.use(
   session({
     secret: "keyboard cat",
@@ -51,19 +53,24 @@ app.use(
     cookie: { secure: true, maxAge: 60000 },
   })
 );
+
+app.use(cors());
+
 app.use(Logger("dev"));
 //app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
 
-// app.use(authenticateToken());
-//2- add express-session as a middleware (take a look to the documentation on npm)
-//3- Note: if you want to store sessions inside mongoAtlas db use connect-mongo
-//4- configure the connect-mongo take a look connect-mongo on npm
 //app.use(authenticateToken());
 app.use("/resources", require("./routes/resources"));
 app.use("/posts", protectedRoutes);
+
+// app.use(authenticateToken());
+app.use("/resources", require("./routes/resources"));
+//2- add express-session as a middleware (take a look to the documentation on npm)
+//3- Note: if you want to store sessions inside mongoAtlas db use connect-mongo
+//4- configure the connect-mongo take a look connect-mongo on np
 
 ///All routes
 //register user
