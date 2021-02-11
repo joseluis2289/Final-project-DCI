@@ -23,7 +23,7 @@ export default function App() {
           <Route path='/profile' component={Profile} />
           <Route path='/' exact={true} component={Content} />
           <Route path='/add_resource' component={AddResource} />
-          <Route path='/edit_resource' component={UpdateResource} />
+          <Route path='/update_resource' component={UpdateResource} />
           <Route path='*' component={NotFound} />
         </Switch>
       </main>
