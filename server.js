@@ -102,7 +102,7 @@ app.post("/login", (req, res, next) => {
         if (err) {
           console.log(err);
         } else {
-          const accessToken = generateAccessToken(user);
+          //const accessToken = generateAccessToken(user);
           const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
           res.send({ accessToken: accessToken, logIn: output });
         }
