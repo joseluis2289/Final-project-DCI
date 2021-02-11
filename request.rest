@@ -12,6 +12,22 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:5000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSm9zZWx1aXMiLCJpYXQiOjE2MTMwNTEzODcsImV4cCI6MTYxMzA1MTQxN30.iFoPQPY38h27dTKvzoxWw5KbCP6osha7CaQXzyM_o5o
+
+
+###
+
+POST http://localhost:5000/token 
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSm9zZWx1aXMiLCJpYXQiOjE2MTMwNTEyODF9.6c1ceug5IoqQh4k_My0XHoCPQIXFk1rlqLlWjFg_1yc"
+     
+}
+
+
+###
 POST http://localhost:5000/login
 Content-Type: application/json
 
@@ -22,3 +38,9 @@ Content-Type: application/json
 
 
 ###
+DELETE http://localhost:5000/logout 
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSm9zZWx1aXMiLCJpYXQiOjE2MTMwNTEyODF9.6c1ceug5IoqQh4k_My0XHoCPQIXFk1rlqLlWjFg_1yc"
+}

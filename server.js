@@ -1,30 +1,34 @@
 const { Router } = require("express");
+const session = require("express-session");
 var express = require("express");
 const mongoose = require("mongoose");
-var cors = require("cors");
-
+//var cors = require("cors");
 require("dotenv").config();
 const app = express();
-const UserModel = require("./Models/userModel");
+const UserModel = require("../Final-Project-DCI/Models/userModel");
 const expValidator = require("express-validator");
 const Logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const protectedRoutes = require("./routes/protectedRoutes");
+
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
 //listen to a port
+
+const url = process.env.MONGO_URIJose;
 app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
 
 // const url = process.env.MONGO_URIJose;
 const url = process.env.MONGO_URIBel;
+
 //connect to DataBase
 const connectDB = async () => {
   try {
     //connect return Promise → async/await needed
-
     await mongoose.connect(url, {
       useNewUrlParser: true,
       useCreateIndex: true,
@@ -40,17 +44,34 @@ const connectDB = async () => {
 };
 
 //MiddleWares
+
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true, maxAge: 60000 },
+  })
+);
+
 app.use(cors());
+
 app.use(Logger("dev"));
+//app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
+
+//app.use(authenticateToken());
+app.use("/resources", require("./routes/resources"));
+app.use("/posts", protectedRoutes);
+
 
 // app.use(authenticateToken());
 app.use("/resources", require("./routes/resources"));
 //2- add express-session as a middleware (take a look to the documentation on npm)
 //3- Note: if you want to store sessions inside mongoAtlas db use connect-mongo
-//4- configure the connect-mongo take a look connect-mongo on npm
+//4- configure the connect-mongo take a look connect-mongo on np
 
 ///All routes
 //register user
@@ -94,13 +115,11 @@ app.post("/register", (req, res, next) => {
 });
 
 //login user
-let refreshTokens = [];
-
 app.post("/login", (req, res, next) => {
   let newUser = req.body;
   const userName = newUser.userName;
   const user = { name: userName };
-
+  console.log(userName);
   UserModel.findOne({
     userName: newUser.userName,
   })
@@ -109,9 +128,15 @@ app.post("/login", (req, res, next) => {
         if (err) {
           console.log(err);
         } else {
+          const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+          refreshTokens.push(refreshToken);
           const accessToken = generateAccessToken(user);
-          const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-          res.send({ accessToken: accessToken, logIn: output });
+          req.session.user = result;
+          res.send({
+            accessToken: accessToken,
+            logIn: output,
+            refreshToken: refreshToken,
+          });
         }
       });
     })
@@ -120,31 +145,63 @@ app.post("/login", (req, res, next) => {
     });
 });
 
+//create a new token
+let refreshTokens = [];
+app.post("/token", (req, res) => {
+  const refreshToken = req.body.token;
+  if (refreshToken == null) return res.sendStatus(401);
+  if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    const accessToken = generateAccessToken({ name: user.name });
+    res.json({ accessToken: accessToken });
+  });
+});
+
+//expire time to the token
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30s" });
 }
 
+//add to db
+const posts = [
+  {
+    userName: "Joseluis",
+    title: "post 1",
+  },
+];
+//this route auth {authenticateToken middleware auth!}
+app.get("/posts", authenticateToken, (req, res) => {
+  console.log(req.user);
+  res.json(posts.filter((post) => post.userName === req.user.name));
+});
+
 function authenticateToken(req, res, next) {
-  // bearer token
-  //authenticate the token that is comming from the header
-  const authHeader = req.headers["Authorization"];
-  //if we have authHeader then return authHeader
+  const authHeader = req.headers["authorization"];
+  //if we have authHeard return authHeader
   const token = authHeader && authHeader.split(" ")[1];
+
+  //if it didnt send the token return error
   if (token == null) return res.sendStatus(401);
 
+  //verify token
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    // (403) Access denied
+    // we see you have a token but is not longer valid NO ACCESS
     if (err) return res.sendStatus(403);
+    // user payload
     req.user = user;
+
     next();
   });
 }
 
-//force the session to expire
-app.get("/logout", (req, res, next) => {
-  //to logout just force the session to be expired (just set the 'maxAge' to 0 or set 'expires' to a date from the past)
-  var logOut = req.cookie;
-  console.log(logOut);
+app.delete("/logout", (req, res, next) => {
+  refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
+  //successfully delete this token(204)
+  req.session.destroy();
+  res.sendStatus(204);
 });
 
 connectDB();
+
+app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
