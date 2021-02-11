@@ -5,7 +5,7 @@ const fakeData = [
     previewImg:
       "https://media-exp1.licdn.com/dms/image/C4D12AQFhVVUXMCFfRg/article-cover_image-shrink_720_1280/0/1537600218280?e=1616025600&v=beta&t=GL38Ceosn9xGv9e_dFykDr2jEFvjtU1oSwnzuDexf-g",
     userID: "usermodel",
-    category: "Frontend",
+    category: ["Frontend"],
     rating: "4.6",
     num_rating: 102.797,
     num_views: 349.813,
@@ -23,7 +23,7 @@ const fakeData = [
     previewImg:
       "https://humao.gallerycdn.vsassets.io/extensions/humao/rest-client/0.24.4/1604923740596/Microsoft.VisualStudio.Services.Icons.Default",
     userID: "usermodel",
-    category: "Backend",
+    category: ["Backend"],
     rating: 5,
     num_rating: 250,
     num_views: 1374.56,
@@ -39,7 +39,7 @@ const fakeData = [
     link: "https://mongoosejs.com/",
     previewImg: "https://niralar.com/wp-content/uploads/2018/07/mongoose.jpg",
     userID: "usermodel",
-    category: "Database",
+    category: ["Database"],
     rating: 5,
     num_rating: 3500,
     num_views: 1384.745,
@@ -55,7 +55,7 @@ const fakeData = [
     link: "https://lodash.com/",
     previewImg: "http://blog.avarteq.com/wp-content/uploads/2016/02/Lodash.jpg",
     userID: "usermodel",
-    category: "Backend",
+    category: ["Backend"],
     rating: 4.5,
     num_rating: 137,
     num_views: 0,
@@ -72,7 +72,7 @@ const fakeData = [
     previewImg:
       "https://raw.githubusercontent.com/Marak/faker.js/master/logo.png",
     userID: "usermodel",
-    category: "Backend",
+    category: ["Backend"],
     rating: 4,
     num_rating: 437,
     num_views: 112.394,
@@ -88,7 +88,7 @@ const fakeData = [
     link: "https://www.thinkful.com/learn/a-guide-to-using-github-pages/",
     previewImg: "https://i.ytimg.com/vi/2MsN8gpT6jY/maxresdefault.jpg",
     userID: "usermodel",
-    category: "General",
+    category: ["General"],
     rating: 4.5,
     num_rating: 782,
     num_views: 10.523,
@@ -104,7 +104,7 @@ const fakeData = [
     link: "https://git-scm.com/about",
     previewImg: "https://git-scm.com/images/logo@2x.png",
     userID: "usermodel",
-    category: "General",
+    category: ["General"],
     rating: 4,
     num_rating: 852,
     num_views: 11.529,
@@ -202,5 +202,4 @@ const fakeData = [
     comments: [],
   },
 ];
-
 export default fakeData;

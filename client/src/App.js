@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Searchbar from "./components/Searchbar";
+import Filter from "./components/Filter";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
@@ -15,16 +16,17 @@ export default function App() {
     <Router>
       <Header />
       <Searchbar />
-      <main>
-        <Switch>
-          <Route path='/register' component={Register} />
-          <Route path='/login' component={Login} />
-          <Route path='/profile' component={Profile} />
-          <Route path='/' exact={true} component={Content} />
-          <Route path='/add_resource' component={AddResource} />
-          <Route path='*' component={NotFound} />
-        </Switch>
-      </main>
+      <Filter />
+      <Switch>
+        <main>
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/" exact={true} component={Content} />
+          <Route path="/add_resource" component={AddResource} />
+          <Route path="*" component={NotFound} />
+        </main>
+      </Switch>
       <footer></footer>
     </Router>
   );

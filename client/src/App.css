@@ -49,7 +49,7 @@ h2 {
 
 /***** SEARCHBAR / FILTER *****/
 
-.searchbar-container {
+.searchbar-form {
   background-color: hsl(243, 100%, 80%);
   display: flex;
   align-items: center;
@@ -57,6 +57,13 @@ h2 {
 
 .rating {
   display: flex;
+  align-items: center;
+}
+
+.filter-form {
+  background-color: hsl(243, 100%, 90%);
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -120,6 +127,9 @@ button {
 .resource-title {
   display: flex;
   align-items: center;
+}
+.resource-preview {
+  max-height: 16rem;
 }
 .illustration {
   width: 50%;
