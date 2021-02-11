@@ -66,7 +66,6 @@ app.use(expValidator());
 app.use("/resources", require("./routes/resources"));
 app.use("/posts", protectedRoutes);
 
-
 // app.use(authenticateToken());
 app.use("/resources", require("./routes/resources"));
 //2- add express-session as a middleware (take a look to the documentation on npm)

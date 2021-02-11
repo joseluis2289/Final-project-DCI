@@ -15,8 +15,6 @@ const ResourceSchema = new mongoose.Schema({
   link: { type: String, required: true, unique: true },
   previewImage: {
     type: String,
-    default:
-      "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fforbestechcouncil%2Ffiles%2F2019%2F01%2Fcanva-photo-editor-8-7.jpg",
   },
   date: { type: Date, default: Date.now },
   userID: { type: String, default: "usermodel" },
