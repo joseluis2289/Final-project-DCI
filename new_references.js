@@ -191,7 +191,6 @@
     "comments": []
    
 },
-// try adding throught Browser
 {
     "title":"Introduction to MongoDB", 
     "link": "https://www.coursera.org/learn/introduction-mongodb?", 

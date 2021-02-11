@@ -82,7 +82,7 @@ export default function AddResource() {
             General
           </label>
         </fieldset>
-        id
+
         <fieldset name='paid' onChange={formHandler}>
           <label htmlFor='link'>Paid</label>
           <div>

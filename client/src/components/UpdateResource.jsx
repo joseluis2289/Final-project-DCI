@@ -71,7 +71,7 @@ export default function UpdateResource() {
           />
         </div>
         <img
-          src={resource.previewImg}
+          src={resource.previewImage}
           alt='preview'
           style={{ width: "100px", height: "100px" }}
         ></img>
@@ -80,8 +80,7 @@ export default function UpdateResource() {
           <input
             type='text'
             name='link'
-            placeholder='Enter the Link..'
-            value={resource.link}
+            placeholder={resource.link}
             onChange={formHandler}
           />
         </div>
@@ -107,7 +106,7 @@ export default function UpdateResource() {
             General
           </label>
         </fieldset>
-        id
+
         <fieldset name='paid' onChange={formHandler}>
           <label htmlFor='link'>Paid</label>
           <div>
@@ -126,15 +125,14 @@ export default function UpdateResource() {
           <label htmlFor='title'>description</label>
           <textarea
             name='description'
-            rows='5'
-            cols='33'
+            rows='15'
+            cols='70'
             style={{ border: "solid black 2px" }}
-            value={resource.description}
-            placeholder='Enter your description...'
+            placeholder={resource.description}
             onChange={formHandler}
           ></textarea>
         </div>
-        <button type='submit'>Update resource1</button>
+        <button type='submit'>Update resource</button>
       </form>
     </div>
   );
