@@ -43,7 +43,7 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true },
+    cookie: { secure: true, maxAge: 60000 },
   })
 );
 app.use(Logger("dev"));
@@ -180,6 +180,7 @@ function authenticateToken(req, res, next) {
 app.delete("/logout", (req, res, next) => {
   refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
   //successfully delete this token(204)
+  req.session.destroy();
   res.sendStatus(204);
 });
 
