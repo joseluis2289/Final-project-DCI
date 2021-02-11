@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logoutUser } from "../redux/actions";
+import { userLogout } from "../redux/actions";
 
 export default function Header() {
   const login = useSelector((state) => state.username);
@@ -29,7 +29,7 @@ export default function Header() {
               onClick={(e) => {
                 e.preventDefault();
                 console.log("LOGOUT!");
-                dispatch(logoutUser());
+                dispatch(userLogout());
               }}
             >
               <img
