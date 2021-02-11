@@ -55,7 +55,6 @@ export default function AddResource() {
             onChange={formHandler}
           />
         </div>
-        <input type='checkbox' name='category' value='backend' />
         <div name='category' onChange={defineCategory}>
           <label>Category</label>
           <label htmlFor='frontend'>
