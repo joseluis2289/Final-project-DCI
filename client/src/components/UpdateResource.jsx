@@ -66,7 +66,7 @@ export default function UpdateResource() {
           <input
             type='text'
             name='title'
-            placeholder='Enter the title...'
+            placeholder={resource.title}
             onChange={formHandler}
           />
         </div>

@@ -6,21 +6,16 @@ export default function AddResource() {
 
   let defineCategory = (e) => {
     let categories = resource.category;
-    e.preventDefault();
-    console.log(categories);
-    if (categories.indexOf(e.target.value) === -1) {
+    let cat = categories.indexOf(e.target.value);
+    if (cat === -1) {
       categories.push(e.target.value);
-    } else if (categories.indexOf(e.target.value) !== -1) {
-      categories = resource.category.filter(function (item) {
-        console.log("item", item);
-        return item !== e.target.value;
-      });
+    } else if (cat !== -1) {
+      categories.splice(cat, 1);
     }
     setResource({ ...resource, [e.target.name]: categories });
   };
 
   let formHandler = (e) => {
-    e.preventDefault();
     setResource({ ...resource, [e.target.name]: e.target.value });
   };
 
@@ -60,8 +55,9 @@ export default function AddResource() {
             onChange={formHandler}
           />
         </div>
-        <fieldset name='category' onChange={defineCategory}>
-          <label htmlFor='link'>Category</label>
+        <input type='checkbox' name='category' value='backend' />
+        <div name='category' onChange={defineCategory}>
+          <label>Category</label>
           <label htmlFor='frontend'>
             <input type='checkbox' name='category' value='frontend' />
             Frontend
@@ -81,9 +77,9 @@ export default function AddResource() {
             <input type='checkbox' name='category' value='general' />
             General
           </label>
-        </fieldset>
+        </div>
 
-        <fieldset name='paid' onChange={formHandler}>
+        <div name='paid' onChange={formHandler}>
           <label htmlFor='link'>Paid</label>
           <div>
             <label htmlFor='access_paid'>
@@ -96,7 +92,7 @@ export default function AddResource() {
               No
             </label>
           </div>
-        </fieldset>
+        </div>
         <div>
           <label htmlFor='title'>description</label>
           <textarea

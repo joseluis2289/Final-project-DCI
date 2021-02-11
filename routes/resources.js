@@ -83,7 +83,7 @@ router.post("/add", (req, res, next) => {
       res.send(result);
     })
     .catch((err) => {
-      res.send(err);
+      res.send("deu ruim", err);
     });
 });
 
