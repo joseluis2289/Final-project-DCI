@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 5000;
 // const url = process.env.MONGO_URIJose;
 app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
 
-// const url = process.env.MONGO_URIJose;
+
 const url = process.env.MONGO_URIBel;
 
 //connect to DataBase
