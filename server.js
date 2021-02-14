@@ -19,11 +19,12 @@ const PORT = process.env.PORT || 5000;
 
 //listen to a port
 
-// const url = process.env.MONGO_URIJose;
 app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
 
 
-const url = process.env.MONGO_URIBel;
+// const url = process.env.MONGO_URIBel;
+const url = process.env.MONGO_URIJose;
+app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
 
 //connect to DataBase
 const connectDB = async () => {
@@ -202,5 +203,3 @@ app.delete("/logout", (req, res, next) => {
 });
 
 connectDB();
-
-app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
