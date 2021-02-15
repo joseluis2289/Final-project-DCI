@@ -141,7 +141,7 @@ export default function UpdateResource() {
                 name='paid'
                 id='access_paid'
                 value='paid'
-                checked={resource.paid === "paid"}
+                checked={resource.paid.includes("paid")}
               />
               Yes
             </label>
