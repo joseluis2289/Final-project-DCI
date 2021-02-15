@@ -3,17 +3,17 @@ import axios from "axios";
 
 export default function UpdateResource() {
   const [resource, setResource] = useState({
-    previewImage:
-      "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fforbestechcouncil%2Ffiles%2F2019%2F01%2Fcanva-photo-editor-8-7.jpg",
     userID: "usermodel",
     category: ["database"],
-    edited: false,
+    edited: true,
     deleted: false,
     _id: "60251a5d1cd6cb4e195f81b7",
+    previewImage:
+      "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fforbestechcouncil%2Ffiles%2F2019%2F01%2Fcanva-photo-editor-8-7.jpg",
     title: "Introduction to MongoDB",
     link: "https://www.coursera.org/learn/introduction-mongodb?",
     date: "2021-02-11T11:51:57.699Z",
-    rating: 4.3,
+    rating: 4,
     num_views: 41.946,
     paid: "free",
     description:
@@ -22,18 +22,28 @@ export default function UpdateResource() {
     __v: 0,
   });
 
+  let defineCategory = (e) => {
+    let categories = resource.category;
+    let cat = categories.indexOf(e.target.value);
+    if (cat === -1) {
+      categories.push(e.target.value);
+    } else if (cat !== -1) {
+      categories.splice(cat, 1);
+    }
+    setResource({ ...resource, [e.target.name]: categories });
+  };
+
   let formHandler = (e) => {
-    e.preventDefault();
-    setResource({ ...resource, [e.target.name]: e.target.value });
+    setResource({ ...resource, edited: true, [e.target.name]: e.target.value });
   };
 
   let updateResource = (e) => {
     e.preventDefault();
-    setResource({ ...resource, date: Date.now, edited: true });
+    setResource({ ...resource, date: Date.now });
     axios({
       method: "PUT",
-      url: `http://localhost:5000/resources/${resource.id}`,
-      ContentType: "application-json",
+      url: `http://localhost:5000/resources/${resource._id}`,
+      ContentType: "application/json",
       data: resource,
     })
       .then(function (response) {
@@ -77,50 +87,77 @@ export default function UpdateResource() {
         ></img>
         <div>
           <label htmlFor='link'>Link</label>
-          <input
-            type='text'
-            name='link'
-            placeholder={resource.link}
-            onChange={formHandler}
-          />
+          <p>{resource.link}</p>
         </div>
-        <fieldset name='category'>
+        <div name='category' onChange={defineCategory}>
           <label htmlFor='link'>Category</label>
           <label htmlFor='frontend'>
-            <input type='checkbox' name='category' value='frontend' />
+            <input
+              type='checkbox'
+              name='category'
+              value='frontend'
+              checked={resource.category.indexOf("frontend") > -1}
+            />
             Frontend
           </label>
 
           <label htmlFor='backend'>
-            <input type='checkbox' name='category' value='backend' />
+            <input
+              type='checkbox'
+              name='category'
+              value='backend'
+              checked={resource.category.indexOf("backend") > -1}
+            />
             Backend
           </label>
 
           <label htmlFor='database'>
-            <input type='checkbox' name='category' value='database' />
+            <input
+              type='checkbox'
+              name='category'
+              value='database'
+              checked={resource.category.indexOf("database") > -1}
+            />
             Database
           </label>
 
           <label htmlFor='general'>
-            <input type='checkbox' name='category' value='general' />
+            <input
+              type='checkbox'
+              name='category'
+              value='general'
+              checked={resource.category.indexOf("general") > -1}
+            />
             General
           </label>
-        </fieldset>
+        </div>
 
-        <fieldset name='paid' onChange={formHandler}>
+        <div name='paid' onChange={formHandler}>
           <label htmlFor='link'>Paid</label>
           <div>
             <label htmlFor='access_paid'>
-              <input type='radio' name='paid' id='access_paid' value='paid' />
+              <input
+                type='radio'
+                name='paid'
+                id='access_paid'
+                value='paid'
+                checked={resource.paid === "paid"}
+              />
               Yes
             </label>
 
             <label htmlFor='access_free'>
-              <input type='radio' name='paid' id='access_free' value='free' />
+              <input
+                type='radio'
+                name='paid'
+                id='access_free'
+                value='free'
+                checked={resource.paid.includes("free")}
+              />
               No
             </label>
           </div>
-        </fieldset>
+        </div>
         <div>
           <label htmlFor='title'>description</label>
           <textarea
