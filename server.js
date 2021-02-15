@@ -2,7 +2,7 @@ const { Router } = require("express");
 const session = require("express-session");
 var express = require("express");
 const mongoose = require("mongoose");
-//var cors = require("cors");
+var cors = require("cors");
 require("dotenv").config();
 const app = express();
 const UserModel = require("../Final-Project-DCI/Models/userModel");
@@ -17,13 +17,12 @@ const protectedRoutes = require("./routes/protectedRoutes");
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
-//listen to a port
 
+// const url = process.env.MONGO_URIBel;
 const url = process.env.MONGO_URIJose;
-app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
 
-// const url = process.env.MONGO_URIJose;
-const url = process.env.MONGO_URIBel;
+//listen to a port
+app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
 
 //connect to DataBase
 const connectDB = async () => {
@@ -202,5 +201,3 @@ app.delete("/logout", (req, res, next) => {
 });
 
 connectDB();
-
-app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
