@@ -26,7 +26,7 @@ export default function App() {
           <Route path='/' exact={true} component={Content} />
           <Route path='/add_resource' component={AddResource} />
           <Route path='/update_resource' component={UpdateResource} />
-          <Route path='*' component={NotFound} />
+          <Route path='#!' component={NotFound} />
         </main>
       </Switch>
       <footer></footer>
