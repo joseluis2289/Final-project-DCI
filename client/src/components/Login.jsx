@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { /* useSelector,*/ useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions";
+//import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  //let history = useHistory();
   // const login = useSelector((state) => state.username);
   const dispatch = useDispatch();
   const [loginData, setLoginData] = useState();
@@ -18,10 +20,26 @@ export default function Login() {
         onSubmit={(e) => {
           e.preventDefault();
           console.log("Login Request!");
-          fetch("./data.txt")
+          fetch("http://localhost:5000/login", {
+            method: "POST",
+            body: JSON.stringify(loginData),
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+          })
             .then((response) => {
-              console.log(response);
-              dispatch(userLogin(loginData));
+              if (response.status === 200) {
+                response.json().then((data) => {
+                  console.log(data);
+                  //history.push("/profile");
+                  data.logIn === true
+                    ? alert(`Welcome`)
+                    : alert("Your password is wrong! please try again!");
+                  dispatch(userLogin(loginData));
+                });
+              } else {
+                // connection is lost
+              }
             })
             .catch((err) => console.log(err));
         }}
@@ -31,7 +49,9 @@ export default function Login() {
           type="text"
           name="username"
           id="username"
-          onChange={handleChange}
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
 
         <label htmlFor="password">Password</label>
@@ -39,7 +59,9 @@ export default function Login() {
           type="password"
           name="password"
           id="password"
-          onChange={handleChange}
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
 
         <button type="submit">Login</button>
