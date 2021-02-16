@@ -2,13 +2,36 @@ import React, { useState } from "react";
 import { /* useSelector,*/ useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions";
 //import axios from "axios";
-//import { useHistory } from "react-router-dom";
+//import { useForm } from "react-hook-form";
 
 export default function Login() {
-  //let history = useHistory();
   // const login = useSelector((state) => state.username);
   const dispatch = useDispatch();
-  const [loginData, setLoginData] = useState();
+  const [loginData, setLoginData] = useState({});
+  // const { register, handleSubmit, errors } = useForm();
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  // };
+
+  // const axiosHandler = (e) => {
+  //   e.preventDefault();
+  //   axios({
+  //     method: "POST",
+  //     url: "http://localhost:5000/login",
+  //     data: loginData,
+  //   })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       dispatch(userLogin(loginData));
+  //       // response.data.logIn === true
+  //       //   ? alert(`Welcome`)
+  //       //   : alert("Your password is wrong! please try again!");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
   function handleChange(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   }
@@ -16,8 +39,6 @@ export default function Login() {
     <article>
       <h2>Login</h2>
       <form
-        action=""
-        method="post"
         onSubmit={(e) => {
           e.preventDefault();
           console.log("Login Request!");
@@ -33,7 +54,6 @@ export default function Login() {
                 response.json().then((data) => {
                   console.log(data);
                   dispatch(userLogin(loginData));
-                  //history.push("/profile");
                   data.logIn === true
                     ? alert(`Welcome`)
                     : alert("Your password is wrong! please try again!");
@@ -64,7 +84,6 @@ export default function Login() {
             handleChange(e);
           }}
         />
-
         <button type="submit">Login</button>
       </form>
     </article>
