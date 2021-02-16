@@ -15,6 +15,4 @@ protectedRoutes.post("/addResource", (req, res) => {});
 protectedRoutes.post("/addComment", (req, res) => {});
 protectedRoutes.post("/rateResource", (req, res) => {});
 
-// protectedRoutes.post("/getResources", (req, res) => {});
-
 module.exports = protectedRoutes;

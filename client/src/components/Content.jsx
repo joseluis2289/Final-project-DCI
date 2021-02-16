@@ -13,6 +13,7 @@ export default function Content() {
 
   useEffect(() => {
     getResources();
+    console.log("data", resourceData);
   }, []);
 
   // TODO: once a Search or a Filter is applied, change the display accordingly
@@ -20,6 +21,9 @@ export default function Content() {
   return (
     <div className='references-container'>
       <React.Fragment>
+        {resourceData.map((item) => (
+          <p>{item.title}</p>
+        ))}
         {/* {resourceIndex.map((index) => {
           let showResource = false;
           if (filter.free === true && resourceData[index].paid === "free") {
