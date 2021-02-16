@@ -4,7 +4,7 @@
     "link": "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
     "previewImage":
       "https://media-exp1.licdn.com/dms/image/C4D12AQFhVVUXMCFfRg/article-cover_image-shrink_720_1280/0/1537600218280?e=1616025600&v=beta&t=GL38Ceosn9xGv9e_dFykDr2jEFvjtU1oSwnzuDexf-g",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["frontend"],
     "rating": "4.6",
     "num_ratings": 102.797,
@@ -22,7 +22,7 @@
       "https://marketplace.visualstudio.com/items?itemName=humao.rest-client",
     "previewImage":
       "https://humao.gallerycdn.vsassets.io/extensions/humao/rest-client/0.24.4/1604923740596/Microsoft.VisualStudio.Services.Icons.Default",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["backend"],
     "rating": 5,
     "num_ratings": 250,
@@ -38,7 +38,7 @@
     "title": "Mongoose",
     "link": "https://mongoosejs.com/",
     "previewImage": "https://niralar.com/wp-content/uploads/2018/07/mongoose.jpg",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["database"],
     "rating": 5,
     "num_ratings": 3500,
@@ -54,7 +54,7 @@
     "title": "Lodash",
     "link": "https://lodash.com/",
     "previewImage": "http://blog.avarteq.com/wp-content/uploads/2016/02/Lodash.jpg",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["backend"],
     "rating": 4.5,
     "num_ratings": 137,
@@ -72,7 +72,7 @@
     "link": "https://github.com/Marak/Faker.js#readme",
     "previewImage":
       "https://raw.githubusercontent.com/Marak/faker.js/master/logo.png",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["backend"],
     "rating": 4,
     "num_ratings": 437,
@@ -88,7 +88,7 @@
     "title": "Guide to use GitHub Pages",
     "link": "https://www.thinkful.com/learn/a-guide-to-using-github-pages/",
     "previewImage": "https://i.ytimg.com/vi/2MsN8gpT6jY/maxresdefault.jpg",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["general"],
     "rating": 4.5,
     "num_ratings": 782,
@@ -104,7 +104,7 @@
     "title": "Git--fast-version-control",
     "link": "https://git-scm.com/about",
     "previewImage": "https://git-scm.com/images/logo@2x.png",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["general"],
     "rating": 4,
     "num_ratings": 852,
@@ -121,7 +121,7 @@
     "link":
       "https://www.youtube.com/watch?v=mbsmsi7l3r4&ab_channel=WebDevSimplified",
     "previewImage": "https://git-scm.com/images/logo@2x.png",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["backend", "frontend"],
     "rating": 4.5,
     "num_ratings": 15985,
@@ -138,7 +138,7 @@
     "link": "https://www.geeksforgeeks.org/how-to-access-http-cookie-in-node-js/",
     "previewImage":
       "https://res.cloudinary.com/practicaldev/image/fetch/s--qWK2FkdC--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/dr6e3at3dlznretj460y.jpeg",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["backend", "frontend", "database"],
     "rating": 4,
     "num_ratings": 8951,
@@ -156,7 +156,7 @@
       "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/cookies",
     "previewImage":
       "https://res.cloudinary.com/practicaldev/image/fetch/s--qWK2FkdC--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/dr6e3at3dlznretj460y.jpeg",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["backend", "frontend", "database"],
     "rating": 4.5,
     "num_ratings": 11.152,
@@ -173,7 +173,7 @@
     "link": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
     "previewImage":
       "hhttps://appdesign.dev/wp-content/uploads/2020/08/Agencia-desarrollo-Angular-JS.jpg",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["frontend"],
     "rating": 4.6,
     "num_ratings": 138.647,
@@ -190,7 +190,7 @@
     "link": "https://www.coursera.org/learn/javascript-jquery-json?",
     "previewImage":
       "https://cdn-images-1.medium.com/max/285/1*QR2SBNwG75LyY5uwqWpN3A.png",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["frontend", "backend"],
     "rating": 4.6,
     "num_ratings": 623,
@@ -207,7 +207,7 @@
     "link": "https://www.coursera.org/learn/introduction-mongodb?",
     "previewImage":
       "https://i.pcmag.com/imagery/reviews/02Q6yxveinggAu3PomearaV-7..1569481734.jpg",
-    "userID": "usermodel",
+     "user": "602bd8c81327d319c384e267",
     "category": ["database"],
     "rating": 4.3,
     "num_ratings": 524,
@@ -218,7 +218,7 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  },
+  }
 ];
 
 export default fakeData;
