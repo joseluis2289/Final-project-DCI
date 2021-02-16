@@ -3,3 +3,9 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+.icon {
+  width: 1.2rem;
+}
+.reaction-icon {
+  width: 2rem;
+}

@@ -7,7 +7,12 @@ router.get("/", (req, res, next) => {
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
 });
-
+//delete all references
+router.delete("/", (req, res, next) => {
+  Resource.deleteMany()
+    .then((res) => res.json("all resources were deleted"))
+    .catch((err) => res.send(err));
+});
 // get one specific Resource
 router.get("/:resource_id", (req, res, next) => {
   const resource = Resource.findById(req.params.resource_id)
@@ -51,7 +56,7 @@ router.post("/add", (req, res, next) => {
   const {
     title,
     link,
-    previewImg,
+    previewImage,
     date,
     userID,
     category,
@@ -69,7 +74,7 @@ router.post("/add", (req, res, next) => {
   let resource = new Resource({
     title,
     link,
-    previewImg,
+    previewImage,
     date,
     userID,
     category,
@@ -92,6 +97,37 @@ router.post("/add", (req, res, next) => {
     .catch((err) => {
       res.send(err);
     });
+});
+
+router.post("/addmany", (req, res, next) => {
+  let newResources = [];
+  req.body.map((item) => {
+    let newResource = new Resource({
+      title: item.title,
+      link: item.link,
+      previewImage: item.previewImage,
+      date: item.date,
+      userID: item.userID,
+      category: item.category,
+      rating: item.rating,
+      num_ratings: item.num_ratings,
+      num_views: item.num_views,
+      paid: item.paid,
+      format: item.format,
+      description: item.description,
+      edited: item.edited,
+      deleted: item.deleted,
+      comments: item.comments,
+    });
+    newResource
+      .save()
+      .then((result) => {
+        res.status(200).send(result);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  });
 });
 
 module.exports = router;

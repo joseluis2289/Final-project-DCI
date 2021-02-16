@@ -28,7 +28,7 @@ export default function Register() {
               console.log(response);
               history.push("/login");
               setRegisterData({ success: response.data.success });
-              if (response.formData.msg === false) {
+              if (response.msg === false) {
                 alert("this email is already taken");
               } else {
                 response.data

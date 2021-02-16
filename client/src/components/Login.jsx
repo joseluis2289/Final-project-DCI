@@ -15,8 +15,8 @@ export default function Login() {
     <article>
       <h2>Login</h2>
       <form
-        action=""
-        method="post"
+        action=''
+        method='post'
         onSubmit={(e) => {
           e.preventDefault();
           console.log("Login Request!");
@@ -31,11 +31,11 @@ export default function Login() {
               if (response.status === 200) {
                 response.json().then((data) => {
                   console.log(data);
+                  dispatch(userLogin(loginData));
                   //history.push("/profile");
                   data.logIn === true
                     ? alert(`Welcome`)
                     : alert("Your password is wrong! please try again!");
-                  dispatch(userLogin(loginData));
                 });
               } else {
                 // connection is lost
@@ -44,27 +44,27 @@ export default function Login() {
             .catch((err) => console.log(err));
         }}
       >
-        <label htmlFor="username">Username</label>
+        <label htmlFor='username'>Username</label>
         <input
-          type="text"
-          name="username"
-          id="username"
+          type='text'
+          name='username'
+          id='username'
           onChange={(e) => {
             handleChange(e);
           }}
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor='password'>Password</label>
         <input
-          type="password"
-          name="password"
-          id="password"
+          type='password'
+          name='password'
+          id='password'
           onChange={(e) => {
             handleChange(e);
           }}
         />
 
-        <button type="submit">Login</button>
+        <button type='submit'>Login</button>
       </form>
     </article>
   );

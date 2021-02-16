@@ -2,12 +2,12 @@
   {
     "title": "React - The Complete Guide (incl Hooks, React Router, Redux)",
     "link": "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
-    "previewImg":
+    "previewImage":
       "https://media-exp1.licdn.com/dms/image/C4D12AQFhVVUXMCFfRg/article-cover_image-shrink_720_1280/0/1537600218280?e=1616025600&v=beta&t=GL38Ceosn9xGv9e_dFykDr2jEFvjtU1oSwnzuDexf-g",
     "userID": "usermodel",
     "category": ["frontend"],
     "rating": "4.6",
-    "num_rating": 102.797,
+    "num_ratings": 102.797,
     "num_views": 349.813,
     "paid": "paid",
     "description":
@@ -15,17 +15,17 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "REST Client Extension",
     "link":
       "https://marketplace.visualstudio.com/items?itemName=humao.rest-client",
-    "previewImg":
+    "previewImage":
       "https://humao.gallerycdn.vsassets.io/extensions/humao/rest-client/0.24.4/1604923740596/Microsoft.VisualStudio.Services.Icons.Default",
     "userID": "usermodel",
     "category": ["backend"],
     "rating": 5,
-    "num_rating": 250,
+    "num_ratings": 250,
     "num_views": 1374.56,
     "paid": "free",
     "description":
@@ -33,15 +33,15 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "Mongoose",
     "link": "https://mongoosejs.com/",
-    "previewImg": "https://niralar.com/wp-content/uploads/2018/07/mongoose.jpg",
+    "previewImage": "https://niralar.com/wp-content/uploads/2018/07/mongoose.jpg",
     "userID": "usermodel",
     "category": ["database"],
     "rating": 5,
-    "num_rating": 3500,
+    "num_ratings": 3500,
     "num_views": 1384.745,
     "paid": "free",
     "description":
@@ -49,15 +49,15 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "Lodash",
     "link": "https://lodash.com/",
-    "previewImg": "http://blog.avarteq.com/wp-content/uploads/2016/02/Lodash.jpg",
+    "previewImage": "http://blog.avarteq.com/wp-content/uploads/2016/02/Lodash.jpg",
     "userID": "usermodel",
     "category": ["backend"],
     "rating": 4.5,
-    "num_rating": 137,
+    "num_ratings": 137,
     "num_views": 0,
     "paid": "free",
     "description":
@@ -65,17 +65,17 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
 
   {
     "title": "Faker.js",
     "link": "https://github.com/Marak/Faker.js#readme",
-    "previewImg":
+    "previewImage":
       "https://raw.githubusercontent.com/Marak/faker.js/master/logo.png",
     "userID": "usermodel",
     "category": ["backend"],
     "rating": 4,
-    "num_rating": 437,
+    "num_ratings": 437,
     "num_views": 112.394,
     "paid": "free",
     "description":
@@ -83,15 +83,15 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "Guide to use GitHub Pages",
     "link": "https://www.thinkful.com/learn/a-guide-to-using-github-pages/",
-    "previewImg": "https://i.ytimg.com/vi/2MsN8gpT6jY/maxresdefault.jpg",
+    "previewImage": "https://i.ytimg.com/vi/2MsN8gpT6jY/maxresdefault.jpg",
     "userID": "usermodel",
     "category": ["general"],
     "rating": 4.5,
-    "num_rating": 782,
+    "num_ratings": 782,
     "num_views": 10.523,
     "paid": "free",
     "description":
@@ -99,15 +99,15 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "Git--fast-version-control",
     "link": "https://git-scm.com/about",
-    "previewImg": "https://git-scm.com/images/logo@2x.png",
+    "previewImage": "https://git-scm.com/images/logo@2x.png",
     "userID": "usermodel",
     "category": ["general"],
     "rating": 4,
-    "num_rating": 852,
+    "num_ratings": 852,
     "num_views": 11.529,
     "paid": "free",
     "description":
@@ -115,16 +115,16 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "JWT Authentication Tutorial - Node.js",
     "link":
       "https://www.youtube.com/watch?v=mbsmsi7l3r4&ab_channel=WebDevSimplified",
-    "previewImg": "https://git-scm.com/images/logo@2x.png",
+    "previewImage": "https://git-scm.com/images/logo@2x.png",
     "userID": "usermodel",
     "category": ["backend", "frontend"],
     "rating": 4.5,
-    "num_rating": 15985,
+    "num_ratings": 15985,
     "num_views": 1589.253,
     "paid": "free",
     "description":
@@ -132,16 +132,16 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "How to access HTTP Cookie in Node.js ?",
     "link": "https://www.geeksforgeeks.org/how-to-access-http-cookie-in-node-js/",
-    "previewImg":
+    "previewImage":
       "https://res.cloudinary.com/practicaldev/image/fetch/s--qWK2FkdC--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/dr6e3at3dlznretj460y.jpeg",
     "userID": "usermodel",
     "category": ["backend", "frontend", "database"],
     "rating": 4,
-    "num_rating": 8951,
+    "num_ratings": 8951,
     "num_views": 0,
     "paid": "free",
     "description":
@@ -149,17 +149,17 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "Cookies",
     "link":
       "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/cookies",
-    "previewImg":
+    "previewImage":
       "https://res.cloudinary.com/practicaldev/image/fetch/s--qWK2FkdC--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/dr6e3at3dlznretj460y.jpeg",
     "userID": "usermodel",
     "category": ["backend", "frontend", "database"],
     "rating": 4.5,
-    "num_rating": 11.152,
+    "num_ratings": 11.152,
     "num_views": 0,
     "paid": "free",
     "description":
@@ -167,16 +167,16 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "Angular - The Complete Guide (2021 Edition)",
     "link": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
-    "previewImg":
+    "previewImage":
       "hhttps://appdesign.dev/wp-content/uploads/2020/08/Agencia-desarrollo-Angular-JS.jpg",
     "userID": "usermodel",
     "category": ["frontend"],
     "rating": 4.6,
-    "num_rating": 138.647,
+    "num_ratings": 138.647,
     "num_views": 459.039,
     "paid": "paid",
     "description":
@@ -184,16 +184,16 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "JavaScript, jQuery, and JSON",
     "link": "https://www.coursera.org/learn/javascript-jquery-json?",
-    "previewImg":
+    "previewImage":
       "https://cdn-images-1.medium.com/max/285/1*QR2SBNwG75LyY5uwqWpN3A.png",
     "userID": "usermodel",
     "category": ["frontend", "backend"],
     "rating": 4.6,
-    "num_rating": 623,
+    "num_ratings": 623,
     "num_views": 72.447,
     "paid": "paid",
     "description":
@@ -201,16 +201,16 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
   {
     "title": "Introduction to MongoDB",
     "link": "https://www.coursera.org/learn/introduction-mongodb?",
-    "previewImg":
+    "previewImage":
       "https://i.pcmag.com/imagery/reviews/02Q6yxveinggAu3PomearaV-7..1569481734.jpg",
     "userID": "usermodel",
     "category": ["database"],
     "rating": 4.3,
-    "num_rating": 524,
+    "num_ratings": 524,
     "num_views": 41.946,
     "paid": "free",
     "description":
@@ -218,7 +218,7 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }
+  },
 ];
 
 export default fakeData;

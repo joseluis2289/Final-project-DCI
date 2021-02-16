@@ -17,7 +17,7 @@ export default function Rating(props) {
   };
   return (
     <section>
-      <figure className="rating-container" role="group">
+      <figure className='rating-container' role='group'>
         {[1, 2, 3, 4, 5].map((index) => {
           return (
             <Star
@@ -37,9 +37,9 @@ export default function Rating(props) {
         {props.usedInFilter ? (
           ""
         ) : (
-          <figcaption className="rating-details">
-            <span className="rating-number">{rating}</span>
-            <span className="rating-users">({props.num_rating})</span>
+          <figcaption className='rating-details'>
+            <span className='rating-number'>{rating}</span>
+            <span className='rating-users'>({props.num_ratings})</span>
           </figcaption>
         )}
       </figure>
