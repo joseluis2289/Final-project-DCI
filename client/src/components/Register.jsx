@@ -27,7 +27,6 @@ export default function Register() {
             .then((result) => result.json())
             .then((response) => {
               console.log(response);
-              history.push("/login");
               if (response.msg === false) {
                 console.log("if");
                 alert("this email is already taken");
@@ -36,6 +35,7 @@ export default function Register() {
                 setRegisterData({ success: response.success });
                 alert("Name and password need 3+ characters");
               } else {
+                history.push("/login");
                 console.log("else");
                 response
                   ? alert(`SUCCESSFULLY REGISTER ${response.name}`)
