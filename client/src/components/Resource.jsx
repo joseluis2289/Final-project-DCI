@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import Rating from "./Rating";
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
@@ -9,6 +9,7 @@ const Resource = (props) => {
   // an external API doesnt work, use a generic illustration instead.
   const [displayCom, setDisplayComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(props.data.previewImg);
+
   useEffect(() => {
     console.log("that is props", props);
     let imageCheck = document.createElement("img");
@@ -64,13 +65,27 @@ const Resource = (props) => {
       <button>Add Reaction</button>
       <h3>Description</h3>
       <p>{props.data.description}</p>
-      <h3>Comments</h3>
-      {props.data.comments ? (
-        props.data.comments.map((comment, index) => (
-          <p key={index}>{comment}</p>
-        ))
-      ) : (
-        <p>There is no comment for the moment</p>
+      <h3>
+        Comments{" "}
+        <img
+          className='icon'
+          src='https://img.icons8.com/material-rounded/72/give-way.png'
+          alt='arrow'
+          onClick={() => {
+            setDisplayComm(!displayCom);
+          }}
+        ></img>
+      </h3>
+      {displayCom && (
+        <Fragment>
+          {props.data.comments ? (
+            props.data.comments.map((comment, index) => (
+              <p key={index}>{comment}</p>
+            ))
+          ) : (
+            <p>There is no comment for the moment</p>
+          )}
+        </Fragment>
       )}
     </section>
   );
