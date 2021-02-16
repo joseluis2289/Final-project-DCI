@@ -68,12 +68,13 @@ app.post("/register", (req, res, next) => {
   let newUser = req.body;
   console.log(newUser);
 
-  req.check("name", "invalid name").isLength({ min: 3 });
-  req.check("userName", "invalid userName"),
-    req.check("email").isEmail().normalizeEmail(),
-    req.check("password", "Password").isLength({ min: 3 });
+  req.check("name", "invalid name").isAlpha().isLength({ min: 3 });
+  req.check("userName", "invalid userName").isAlphanumeric();
+  req.check("email").isEmail().normalizeEmail();
+  req.check("password", "Password").isLength({ min: 3 });
 
   let errors = req.validationErrors();
+  console.log(errors);
   if (errors) {
     res.send({ validation: errors });
   } else {
@@ -89,14 +90,15 @@ app.post("/register", (req, res, next) => {
             email: newUser.email,
             password: hash,
           });
-          instance.save((err, result) => {
-            if (err) {
-              res.send({ msg: false, err });
-            } else {
-              res.send(result);
+          instance
+            .save()
+            .then((result) => {
               console.log(result);
-            }
-          });
+              res.send({ result });
+            })
+            .catch((err) => {
+              res.json({ msg: false, err });
+            });
         }
       });
     });
