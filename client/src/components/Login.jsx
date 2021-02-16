@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { /* useSelector,*/ useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions";
+//import axios from "axios";
 //import { useHistory } from "react-router-dom";
 
 export default function Login() {
@@ -30,7 +31,7 @@ export default function Login() {
             .then((response) => {
               if (response.status === 200) {
                 response.json().then((data) => {
-                  console.log(data);
+                  console.log(data.user);
                   dispatch(userLogin(loginData));
                   //history.push("/profile");
                   data.logIn === true

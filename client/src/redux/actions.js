@@ -1,12 +1,14 @@
 import axios from "axios";
 
 // USER ACTIONS
+// CREATE FUNCTION TO MAKE REQUESTO T LOGIN
 export function userLogin(data) {
   return {
     type: "USER_LOGIN",
     payload: data,
   };
 }
+
 export function userLogout() {
   return {
     type: "USER_LOGOUT",
@@ -52,18 +54,3 @@ export const getResources = () => async (dispatch) => {
       });
     });
 };
-
-// export const getResources = () => async (dispatch) => {
-//   try {
-//     const res = await axios.get("http://localhost:5000/resources/");
-//     dispatch({
-//       type: "GET_RESOURCES",
-//       payload: res.data,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: "RESOURCES_ERROR",
-//       payload: error,
-//     });
-//   }
-// };
