@@ -31,11 +31,11 @@ export default function Login() {
               if (response.status === 200) {
                 response.json().then((data) => {
                   console.log(data);
+                  dispatch(userLogin(loginData));
                   //history.push("/profile");
                   data.logIn === true
                     ? alert(`Welcome`)
                     : alert("Your password is wrong! please try again!");
-                  dispatch(userLogin(loginData));
                 });
               } else {
                 // connection is lost
