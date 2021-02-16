@@ -124,6 +124,7 @@ app.post("/login", (req, res, next) => {
           const accessToken = generateAccessToken(user);
           req.session.user = result;
           res.json({
+            user: result, //Bel added this information here
             accessToken: accessToken,
             logIn: output,
             refreshToken: refreshToken,
