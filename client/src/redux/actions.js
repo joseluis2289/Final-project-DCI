@@ -52,18 +52,3 @@ export const getResources = () => async (dispatch) => {
       });
     });
 };
-
-// export const getResources = () => async (dispatch) => {
-//   try {
-//     const res = await axios.get("http://localhost:5000/resources/");
-//     dispatch({
-//       type: "GET_RESOURCES",
-//       payload: res.data,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: "RESOURCES_ERROR",
-//       payload: error,
-//     });
-//   }
-// };
