@@ -1,12 +1,14 @@
 import axios from "axios";
 
 // USER ACTIONS
+// CREATE FUNCTION TO MAKE REQUESTO T LOGIN
 export function userLogin(data) {
   return {
     type: "USER_LOGIN",
     payload: data,
   };
 }
+
 export function userLogout() {
   return {
     type: "USER_LOGOUT",
