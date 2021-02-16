@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { /* useSelector,*/ useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions";
 //import axios from "axios";
-//import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
   // const login = useSelector((state) => state.username);
   const dispatch = useDispatch();
   const [loginData, setLoginData] = useState({});
-  // const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   // const onSubmit = (data) => {
   //   console.log(data);
   // };
@@ -39,7 +39,7 @@ export default function Login() {
     <article>
       <h2>Login</h2>
       <form
-        onSubmit={(e) => {
+        onSubmit={handleSubmit((e) => {
           e.preventDefault();
           console.log("Login Request!");
           fetch("http://localhost:5000/login", {
@@ -63,7 +63,7 @@ export default function Login() {
               }
             })
             .catch((err) => console.log(err));
-        }}
+        })}
       >
         <label htmlFor="username">Username</label>
         <input
@@ -73,7 +73,9 @@ export default function Login() {
           onChange={(e) => {
             handleChange(e);
           }}
+          ref={register({ required: true })}
         />
+        {errors.username && "Your Username is required"}
 
         <label htmlFor="password">Password</label>
         <input
@@ -83,7 +85,9 @@ export default function Login() {
           onChange={(e) => {
             handleChange(e);
           }}
+          ref={register({ required: true })}
         />
+        {errors.password && "Your password is require"}
         <button type="submit">Login</button>
       </form>
     </article>
