@@ -8,19 +8,22 @@ const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
   const [displayCom, setDisplayComm] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState(props.data.previewImg);
+  const [previewUrl, setPreviewUrl] = useState(
+    "illustrations/road_to_knowledge.svg"
+  );
 
   useEffect(() => {
-    console.log("that is props", props);
-    let imageCheck = document.createElement("img");
-    imageCheck.src = props.data.previewImg;
-    imageCheck.onerror = () => {
-      // the static illustration to use instead
-      setPreviewUrl("illustrations/road_to_knowledge.svg");
-    };
-    return () => {
-      imageCheck.remove();
-    };
+    props.data.previewImage && setPreviewUrl(props.data.previewImage);
+
+    // let imageCheck = document.createElement("img");
+    // imageCheck.src = props.data.previewImg;
+    // imageCheck.onerror = () => {
+    //   // the static illustration to use instead
+    //   setPreviewUrl("illustrations/road_to_knowledge.svg");
+    // };
+    // return () => {
+    //   imageCheck.remove();
+    // };
   }, [props.data.previewImg]);
 
   return (
