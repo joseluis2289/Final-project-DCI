@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
 import Header from "./components/Header";
 import Searchbar from "./components/Searchbar";
 import Filter from "./components/Filter";
@@ -13,6 +14,16 @@ import NotFound from "./components/NotFound";
 import "./App.css";
 
 export default function App() {
+  // const [resources, setResources] = useState([]);
+  // useEffect(() => {
+  //   axios({
+  //     method: "GET",
+  //     url: "http://localhost:5000/resources/",
+  //   }).then((result) => {
+  //     setResources(result);
+  //   });
+  //   return () => {};
+  // }, []);
   return (
     <Router>
       <Header />

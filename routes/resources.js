@@ -15,12 +15,19 @@ router.get("/:resource_id", (req, res, next) => {
     .catch((err) => res.send(err));
 });
 
-//update one resource → not done
-// router.put("/:resource_id", (req, res, next) => {
-//   const resource = Resource.findById(req.params.resource_id)
-//     .then((resource) => res.json(resource))
-//     .catch((err) => res.send(err));
-// });
+// update one resource → not done
+router.put("/:resource_id", (req, res, next) => {
+  resourceUpdated = Resource.updateOne(
+    { _id: req.params.resource_id },
+    req.body
+  )
+    .then((resourceUpdated) => {
+      res.send(resourceUpdated);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
 
 // delete one resource → not done
 router.delete("/:resource_id", (req, res, next) => {

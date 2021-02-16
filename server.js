@@ -17,7 +17,6 @@ const protectedRoutes = require("./routes/protectedRoutes");
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
-// const url = process.env.MONGO_URIBel;
 const url = process.env.MONGO_URIJose;
 //listen to a port
 
@@ -58,6 +57,8 @@ app.use(cookieParser());
 app.use(expValidator());
 app.use("/resources", require("./routes/resources"));
 app.use("/posts", protectedRoutes);
+
+// app.use(authenticateToken());
 app.use("/resources", require("./routes/resources"));
 
 ///All routes
