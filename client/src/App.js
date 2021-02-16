@@ -14,16 +14,6 @@ import NotFound from "./components/NotFound";
 import "./App.css";
 
 export default function App() {
-  // const [resources, setResources] = useState([]);
-  // useEffect(() => {
-  //   axios({
-  //     method: "GET",
-  //     url: "http://localhost:5000/resources/",
-  //   }).then((result) => {
-  //     setResources(result);
-  //   });
-  //   return () => {};
-  // }, []);
   return (
     <Router>
       <Header />
