@@ -36,16 +36,34 @@ export function filterRating(rating) {
 
 //RESOURCES ACTIONS
 export const getResources = () => async (dispatch) => {
-  try {
-    const res = await axios.get("http://localhost:5000/resources/");
-    dispatch({
-      type: "GET_RESOURCES",
-      payload: res.data,
+  axios
+    .get("http://localhost:5000/resources/")
+    .then((res) => {
+      dispatch({
+        type: "GET_RESOURCES",
+        payload: res.data,
+      });
+      console.log("data from action", res.data);
+    })
+    .catch((error) => {
+      dispatch({
+        type: "RESOURCES_ERROR",
+        payload: error,
+      });
     });
-  } catch (error) {
-    dispatch({
-      type: "RESOURCES_ERROR",
-      payload: error,
-    });
-  }
 };
+
+// export const getResources = () => async (dispatch) => {
+//   try {
+//     const res = await axios.get("http://localhost:5000/resources/");
+//     dispatch({
+//       type: "GET_RESOURCES",
+//       payload: res.data,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: "RESOURCES_ERROR",
+//       payload: error,
+//     });
+//   }
+// };

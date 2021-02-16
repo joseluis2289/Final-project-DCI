@@ -44,26 +44,26 @@ export default function Filter() {
 
   return (
     <React.Fragment>
-      <form className="filter-form">
+      <form className='filter-form'>
         <legend>
           <strong>Filter:</strong> I only want to see...
         </legend>
         <input
-          type="checkbox"
-          name="free"
-          id="filter-free"
+          type='checkbox'
+          name='free'
+          id='filter-free'
           onChange={handleChange}
           checked={filterData.free}
         />
-        <label htmlFor="filter-free">Free</label>
+        <label htmlFor='filter-free'>Free</label>
         <input
-          type="checkbox"
-          name="paid"
-          id="filter-paid"
+          type='checkbox'
+          name='paid'
+          id='filter-paid'
           onChange={handleChange}
           checked={filterData.paid}
         />
-        <label htmlFor="filter-paid">Paid</label>
+        <label htmlFor='filter-paid'>Paid</label>
         <legend>... content!</legend>
         <legend>
           <strong>Rating:</strong>
@@ -72,21 +72,21 @@ export default function Filter() {
         <Rating usedInFilter={true} />
         (Redux Test)
         <input
-          type="radio"
-          name="rating"
-          id="rating-4"
-          value="4"
+          type='radio'
+          name='rating'
+          id='rating-4'
+          value='4'
           onChange={handleRatingChange}
         />
-        <label htmlFor="rating-4">4</label>
+        <label htmlFor='rating-4'>4</label>
         <input
-          type="radio"
-          name="rating"
-          id="rating-5"
-          value="5"
+          type='radio'
+          name='rating'
+          id='rating-5'
+          value='5'
           onChange={handleRatingChange}
         />
-        <label htmlFor="rating-5">5</label>
+        <label htmlFor='rating-5'>5</label>
       </form>
     </React.Fragment>
   );
