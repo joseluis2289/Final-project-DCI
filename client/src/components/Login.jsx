@@ -9,32 +9,11 @@ export default function Login() {
   const dispatch = useDispatch();
   const [loginData, setLoginData] = useState({});
   const { register, handleSubmit, errors } = useForm();
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  // };
-
-  // const axiosHandler = (e) => {
-  //   e.preventDefault();
-  //   axios({
-  //     method: "POST",
-  //     url: "http://localhost:5000/login",
-  //     data: loginData,
-  //   })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       dispatch(userLogin(loginData));
-  //       // response.data.logIn === true
-  //       //   ? alert(`Welcome`)
-  //       //   : alert("Your password is wrong! please try again!");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   function handleChange(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   }
+
   return (
     <article>
       <h2>Login</h2>
@@ -73,9 +52,15 @@ export default function Login() {
           onChange={(e) => {
             handleChange(e);
           }}
-          ref={register({ required: true })}
+          ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
         {errors.username && "Your Username is required"}
+        {errors.username && errors.username.type === "maxLength" && (
+          <span>Max length exceeded</span>
+        )}
+        {errors.username && errors.username.type === "minLength" && (
+          <span>Must be more than 3 character</span>
+        )}
 
         <label htmlFor="password">Password</label>
         <input
@@ -85,9 +70,15 @@ export default function Login() {
           onChange={(e) => {
             handleChange(e);
           }}
-          ref={register({ required: true })}
+          ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
         {errors.password && "Your password is require"}
+        {errors.password && errors.password.type === "maxLength" && (
+          <span>Max length exceeded</span>
+        )}
+        {errors.password && errors.password.type === "minLength" && (
+          <span>Must be more than 3 character</span>
+        )}
         <button type="submit">Login</button>
       </form>
     </article>
