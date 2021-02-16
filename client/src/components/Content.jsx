@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
 
 const Content = ({ getResources, resources, filter }) => {
-  let resourceIndex = [0, 1, 2, 3, 4, 5, 6, 7];
   // useEffect: on first Component load get top X number of references
   // into the Redux store and display them with React
 
@@ -22,22 +21,22 @@ const Content = ({ getResources, resources, filter }) => {
         {/* {resources.map((item) => (
           <p>{item.title}</p>
         ))} */}
-        {resourceIndex.map((index) => {
-          let showResource = false;
-          if (filter.free === true && resources[index].paid === "free") {
-            console.log(filter.free, resources[index].paid);
-            showResource = true;
-          }
-          if (filter.paid === true && resources[index].paid === "paid") {
-            console.log(filter.paid, resources[index].paid);
-            showResource = true;
-          }
-          if (resources[index].rating < filter.rating) {
-            showResource = false;
-          }
-          if (showResource)
-            return <Resource id={index} key={index} data={resources[index]} />;
-          return "";
+        {resources.map((item, index) => {
+          // let showResource = false;
+          // if (filter.free === true && item.paid === "free") {
+          //   console.log(filter.free, item.paid);
+          //   showResource = true;
+          // }
+          // if (filter.paid === true && item.paid === "paid") {
+          //   console.log(filter.paid, item.paid);
+          //   showResource = true;
+          // }
+          // if (item.rating < filter.rating) {
+          //   showResource = false;
+          // }
+          // if (showResource)
+          return <Resource id={index} key={index} data={item} />;
+          // return "";
         })}
       </React.Fragment>
     </div>

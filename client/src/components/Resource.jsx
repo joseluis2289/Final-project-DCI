@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Rating from "./Rating";
+// import { connect } from "react-redux";
+// import PropTypes from "prop-types";
 
-// Gets reference ID as props.id
-export default function Resource(props) {
+// Gets reference ID as props.data.id
+const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
   const [previewUrl, setPreviewUrl] = useState(props.data.previewImg);
   useEffect(() => {
+    console.log("that is props", props);
     let imageCheck = document.createElement("img");
     imageCheck.src = props.data.previewImg;
     imageCheck.onerror = () => {
@@ -19,10 +22,10 @@ export default function Resource(props) {
   }, [props.data.previewImg]);
 
   return (
-    <section className="resource-container">
+    <section className='resource-container'>
       <header>
         <hgroup>
-          <div className="resource-title">
+          <div className='resource-title'>
             <h2>{props.data.title}</h2>
             <Rating
               rating={props.data.rating}
@@ -31,9 +34,10 @@ export default function Resource(props) {
           </div>
           <h3>
             {/* props.data.category is an array of categories */}
-            {props.data.category.reduce(
+            {/* {props.data.category.reduce(
               (fullString, category) => fullString + ", " + category
-            )}
+            )} */}{" "}
+            Category
           </h3>
           <h3>(MEDIA TYPE)</h3>
           <h3>added by (USER)</h3>
@@ -41,16 +45,16 @@ export default function Resource(props) {
         <button>Edit</button>
         <button>Delete</button>
       </header>
-      <figure role="group">
+      <figure role='group'>
         <img
-          className="resource-preview"
+          className='resource-preview'
           src={previewUrl}
-          alt="Illustration for Online Learning"
+          alt='Illustration for Online Learning'
         />
         <figcaption>{props.data.paid}</figcaption>
       </figure>
       <p>
-        <a target="_blank" rel="noreferrer" href={props.data.link}>
+        <a target='_blank' rel='noreferrer' href={props.data.link}>
           {props.data.link}
         </a>
       </p>
@@ -61,22 +65,23 @@ export default function Resource(props) {
       <h3>Description</h3>
       <p>{props.data.description}</p>
       <h3>Comments</h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-        minus distinctio, earum cumque tenetur quidem eos tempora modi quos
-        atque iusto esse. Excepturi sint nulla saepe ipsa aliquam sit corporis.
-      </p>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio eos
-        modi, culpa dolores beatae ullam aspernatur odio deserunt corrupti
-        blanditiis veritatis vel adipisci tempora, amet vitae soluta repudiandae
-        molestias ea?
-      </p>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi vel
-        nostrum sit atque nisi illo officia minus ipsam fugit animi, quaerat
-        suscipit eos tempore inventore. Possimus commodi enim earum atque.
-      </p>
+      {props.data.comments ? (
+        props.data.comments.map((comment, index) => (
+          <p key={index}>{comment}</p>
+        ))
+      ) : (
+        <p>There is no comment for the moment</p>
+      )}
     </section>
   );
-}
+};
+
+// Resource.propTypes = {
+//   resources: PropTypes.array.isRequired,
+// };
+// const mapStateToProps = (state) => ({
+//   resources: state.resources,
+// });
+// export default connect(mapStateToProps)(Resource);
+
+export default Resource;
