@@ -1,57 +1,52 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, connect } from "react-redux";
 import Resource from "./Resource";
+import PropTypes from "prop-types";
+import { getResources } from "../redux/actions";
 
-export default function Content() {
-  const login = useSelector((state) => state.username);
-  const resourceData = useSelector((state) => state.resources);
-  const filter = useSelector((state) => state.filter);
-  let resourceIndex = [0, 1, 2, 3, 4, 5, 6, 7];
+const Content = ({ getResources, resources, filter }) => {
   // useEffect: on first Component load get top X number of references
   // into the Redux store and display them with React
 
-  useEffect(
-    () => {
-      console.log("First pageload!");
-      // fetch("")
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch((error) => console.log(error));
-      return () => {
-        //   cleanup
-      };
-    },
-    [
-      /* page re-renders if these variables change */
-    ]
-  );
+  useEffect(() => {
+    getResources();
+    console.log(resources);
+  }, []);
 
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
   return (
-    <div className="references-container">
+    <div className='references-container'>
       <React.Fragment>
-        {resourceIndex.map((index) => {
+        {resources.map((item, index) => {
           let showResource = false;
-          if (filter.free === true && resourceData[index].paid === "free") {
-            console.log(filter.free, resourceData[index].paid);
+          if (filter.free === true && item.paid === "free") {
+            console.log(filter.free, item.paid);
             showResource = true;
           }
-          if (filter.paid === true && resourceData[index].paid === "paid") {
-            console.log(filter.paid, resourceData[index].paid);
+          if (filter.paid === true && item.paid === "paid") {
+            console.log(filter.paid, item.paid);
             showResource = true;
           }
-          if (resourceData[index].rating < filter.rating) {
+          if (item.rating < filter.rating) {
             showResource = false;
           }
           if (showResource)
-            return (
-              <Resource id={index} key={index} data={resourceData[index]} />
-            );
+            return <Resource id={index} key={index} data={item} />;
           return "";
         })}
       </React.Fragment>
     </div>
   );
-}
+};
+
+Content.propTypes = {
+  getResources: PropTypes.func.isRequired,
+  resources: PropTypes.array.isRequired,
+  filter: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  resources: state.resources,
+  filter: state.filter,
+});
+export default connect(mapStateToProps, { getResources })(Content);

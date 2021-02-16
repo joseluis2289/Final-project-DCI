@@ -2,7 +2,7 @@ const { Router } = require("express");
 const session = require("express-session");
 var express = require("express");
 const mongoose = require("mongoose");
-//var cors = require("cors");
+var cors = require("cors");
 require("dotenv").config();
 const app = express();
 const UserModel = require("../Final-Project-DCI/Models/userModel");
@@ -17,13 +17,9 @@ const protectedRoutes = require("./routes/protectedRoutes");
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
-//listen to a port
-
+// const url = process.env.MONGO_URIBel;
 const url = process.env.MONGO_URIJose;
-app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
-
-// const url = process.env.MONGO_URIJose;
-const url = process.env.MONGO_URIBel;
+//listen to a port
 
 //connect to DataBase
 const connectDB = async () => {
@@ -47,7 +43,7 @@ const connectDB = async () => {
 
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true, maxAge: 60000 },
@@ -55,35 +51,30 @@ app.use(
 );
 
 app.use(cors());
-
 app.use(Logger("dev"));
-//app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
-
-//app.use(authenticateToken());
 app.use("/resources", require("./routes/resources"));
 app.use("/posts", protectedRoutes);
 
 // app.use(authenticateToken());
 app.use("/resources", require("./routes/resources"));
-//2- add express-session as a middleware (take a look to the documentation on npm)
-//3- Note: if you want to store sessions inside mongoAtlas db use connect-mongo
-//4- configure the connect-mongo take a look connect-mongo on np
 
 ///All routes
+
 //register user
 app.post("/register", (req, res, next) => {
   let newUser = req.body;
   console.log(newUser);
 
   req.check("name", "invalid name").isLength({ min: 3 });
-  req.check("userName", "invalid userName"),
-    req.check("email").isEmail().normalizeEmail(),
-    req.check("password", "Password").isLength({ min: 3 });
+  req.check("userName", "invalid userName").isLength({ min: 3 });
+  req.check("email").isEmail().normalizeEmail();
+  req.check("password", "invalid Password").isLength({ min: 3 });
 
   let errors = req.validationErrors();
+  //console.log(errors);
   if (errors) {
     res.send({ validation: errors });
   } else {
@@ -99,14 +90,15 @@ app.post("/register", (req, res, next) => {
             email: newUser.email,
             password: hash,
           });
-          instance.save((err, result) => {
-            if (err) {
-              res.send({ msg: false, err });
-            } else {
-              res.send(result);
+          instance
+            .save()
+            .then((result) => {
               console.log(result);
-            }
-          });
+              res.send(result);
+            })
+            .catch((err) => {
+              res.send({ msg: false, err });
+            });
         }
       });
     });
@@ -116,11 +108,11 @@ app.post("/register", (req, res, next) => {
 //login user
 app.post("/login", (req, res, next) => {
   let newUser = req.body;
-  const userName = newUser.userName;
+  const userName = newUser.username;
   const user = { name: userName };
   console.log(userName);
   UserModel.findOne({
-    userName: newUser.userName,
+    userName: newUser.username,
   })
     .then((result) => {
       bcrypt.compare(newUser.password, result.password, function (err, output) {
@@ -131,7 +123,8 @@ app.post("/login", (req, res, next) => {
           refreshTokens.push(refreshToken);
           const accessToken = generateAccessToken(user);
           req.session.user = result;
-          res.send({
+          res.json({
+            user: result, //Bel added this information here
             accessToken: accessToken,
             logIn: output,
             refreshToken: refreshToken,
@@ -194,13 +187,39 @@ function authenticateToken(req, res, next) {
   });
 }
 
+//profile route GET to display the user data
+app.get("/profile", (req, res, next) => {
+  UserModel.find({ email: req.body.email })
+    .select("name userName email password")
+    .then((result) => res.send(result))
+    .catch((err) => res.sed(err));
+});
+
+//profile route GET to update the user data
+
+app.put("/update", (req, res, next) => {
+  let newUser = req.body;
+  console.log(newUser);
+});
+
 app.delete("/logout", (req, res, next) => {
   refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
   //successfully delete this token(204)
   req.session.destroy();
   res.sendStatus(204);
+  UserModel.findByIdAndUpdate(
+    { email: newUser.email },
+    {
+      name: newUser.name,
+      userName: newUser.userName,
+      email: newUser.email,
+      password: newUser.password,
+    }
+  )
+    .then((result) => res.sed(result))
+    .catch((err) => res.send(err));
 });
 
 connectDB();
 
-app.listen(PORT, () => console.log(`Server started on Port${PORT}`));
+app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));

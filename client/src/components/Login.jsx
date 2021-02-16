@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { /* useSelector,*/ useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions";
+//import axios from "axios";
+//import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  //let history = useHistory();
   // const login = useSelector((state) => state.username);
   const dispatch = useDispatch();
   const [loginData, setLoginData] = useState();
@@ -13,36 +16,56 @@ export default function Login() {
     <article>
       <h2>Login</h2>
       <form
-        action=""
-        method="post"
+        action=''
+        method='post'
         onSubmit={(e) => {
           e.preventDefault();
           console.log("Login Request!");
-          fetch("./data.txt")
+          fetch("http://localhost:5000/login", {
+            method: "POST",
+            body: JSON.stringify(loginData),
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+          })
             .then((response) => {
-              console.log(response);
-              dispatch(userLogin(loginData));
+              if (response.status === 200) {
+                response.json().then((data) => {
+                  console.log(data.user);
+                  dispatch(userLogin(loginData));
+                  //history.push("/profile");
+                  data.logIn === true
+                    ? alert(`Welcome`)
+                    : alert("Your password is wrong! please try again!");
+                });
+              } else {
+                // connection is lost
+              }
             })
             .catch((err) => console.log(err));
         }}
       >
-        <label htmlFor="username">Username</label>
+        <label htmlFor='username'>Username</label>
         <input
-          type="text"
-          name="username"
-          id="username"
-          onChange={handleChange}
+          type='text'
+          name='username'
+          id='username'
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor='password'>Password</label>
         <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={handleChange}
+          type='password'
+          name='password'
+          id='password'
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
 
-        <button type="submit">Login</button>
+        <button type='submit'>Login</button>
       </form>
     </article>
   );

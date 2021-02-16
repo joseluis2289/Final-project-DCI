@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
 import Header from "./components/Header";
 import Searchbar from "./components/Searchbar";
 import Filter from "./components/Filter";
@@ -26,7 +27,7 @@ export default function App() {
           <Route path='/' exact={true} component={Content} />
           <Route path='/add_resource' component={AddResource} />
           <Route path='/update_resource' component={UpdateResource} />
-          <Route path='*' component={NotFound} />
+          <Route path='#!' component={NotFound} />
         </main>
       </Switch>
       <footer></footer>

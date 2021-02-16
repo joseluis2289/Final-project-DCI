@@ -1,8 +1,6 @@
-import fakeData from "../new_references";
-
 const initialState = {
-  username: false,
-  resources: fakeData,
+  user: {},
+  resources: [],
   filter: {
     rating: 0, // show all
   },
@@ -11,22 +9,35 @@ const initialState = {
 // TODO: add multireducer -- one for user, one for filter
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case "USER_LOGIN":
-      return { ...state, username: action.payload.username };
+      return { ...state, user: payload.user };
+    case "LOGIN_FAIL":
+      return { ...state, user: payload.user };
 
     case "USER_LOGOUT":
-      return { ...state, username: false };
+      return { ...state, user: {} };
 
     case "FILTER_FREE":
-      return { ...state, filter: { ...state.filter, free: action.payload } };
+      return { ...state, filter: { ...state.filter, free: payload } };
 
     case "FILTER_PAID":
-      return { ...state, filter: { ...state.filter, paid: action.payload } };
+      return { ...state, filter: { ...state.filter, paid: payload } };
 
     case "FILTER_RATING":
-      return { ...state, filter: { ...state.filter, rating: action.payload } };
+      return { ...state, filter: { ...state.filter, rating: payload } };
 
+    case "GET_RESOURCES":
+      return {
+        ...state,
+        resources: payload,
+      };
+    case "RESOURCES_ERROR":
+      return {
+        ...state,
+        error: payload,
+      };
     default:
       return state;
   }
