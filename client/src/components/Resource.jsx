@@ -14,17 +14,7 @@ const Resource = (props) => {
 
   useEffect(() => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
-
-    // let imageCheck = document.createElement("img");
-    // imageCheck.src = props.data.previewImg;
-    // imageCheck.onerror = () => {
-    //   // the static illustration to use instead
-    //   setPreviewUrl("illustrations/road_to_knowledge.svg");
-    // };
-    // return () => {
-    //   imageCheck.remove();
-    // };
-  }, [props.data.previewImg]);
+  }, []);
 
   return (
     <section className='resource-container'>
