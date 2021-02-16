@@ -1,7 +1,6 @@
+import axios from "axios";
+
 // USER ACTIONS
-
-import { reset } from "nodemon";
-
 export function userLogin(data) {
   return {
     type: "USER_LOGIN",
@@ -35,6 +34,7 @@ export function filterRating(rating) {
   };
 }
 
+//RESOURCES ACTIONS
 export const getResources = () => async (dispatch) => {
   try {
     const res = await axios.get("http://localhost:5000/resources/");

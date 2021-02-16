@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Resource from "./Resource";
+import { getResources } from "../redux/actions";
 
 export default function Content() {
   const login = useSelector((state) => state.username);
@@ -10,27 +11,14 @@ export default function Content() {
   // useEffect: on first Component load get top X number of references
   // into the Redux store and display them with React
 
-  useEffect(
-    () => {
-      console.log("First pageload!");
-      // fetch("")
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch((error) => console.log(error));
-      return () => {
-        //   cleanup
-      };
-    },
-    [
-      /* page re-renders if these variables change */
-    ]
-  );
+  useEffect(() => {
+    getResources();
+  }, []);
 
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
   return (
-    <div className="references-container">
+    <div className='references-container'>
       <React.Fragment>
         {resourceIndex.map((index) => {
           let showResource = false;
