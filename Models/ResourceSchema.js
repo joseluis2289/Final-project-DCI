@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const ResourceSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -7,7 +8,10 @@ const ResourceSchema = new mongoose.Schema({
     type: String,
   },
   date: { type: Date, default: Date.now },
-  userID: { type: String, default: "usermodel" },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "Users",
+  },
   category: {
     type: [String],
     enum: ["frontend", "backend", "database", "general"],
