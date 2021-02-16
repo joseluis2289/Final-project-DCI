@@ -20,7 +20,7 @@ export default function Content() {
   return (
     <div className='references-container'>
       <React.Fragment>
-        {resourceIndex.map((index) => {
+        {/* {resourceIndex.map((index) => {
           let showResource = false;
           if (filter.free === true && resourceData[index].paid === "free") {
             console.log(filter.free, resourceData[index].paid);
@@ -38,7 +38,7 @@ export default function Content() {
               <Resource id={index} key={index} data={resourceData[index]} />
             );
           return "";
-        })}
+        })} */}
       </React.Fragment>
     </div>
   );

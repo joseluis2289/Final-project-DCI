@@ -12,7 +12,7 @@ export default function Login() {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   }
   return (
-    <article className='vbla'>
+    <article>
       <h2>Login</h2>
       <form
         action=''
