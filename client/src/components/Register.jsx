@@ -24,15 +24,18 @@ export default function Register() {
               "Content-Type": "application/json;charset=utf-8",
             },
           })
+            .then((result) => result.json())
             .then((response) => {
               console.log(response);
               history.push("/login");
               setRegisterData({ success: response.data.success });
-              if (response.msg === false) {
+              if (response.data.msg === false) {
                 alert("this email is already taken");
+              } else if (response.data.validation) {
+                alert("Name and password need 3+ characters");
               } else {
                 response.data
-                  ? alert("SUCCESSFULLY REGISTER")
+                  ? alert(`SUCCESSFULLY REGISTER ${response.data.name}`)
                   : alert("error to register");
                 console.log(response.data);
               }
