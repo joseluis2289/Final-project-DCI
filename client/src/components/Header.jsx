@@ -7,7 +7,7 @@ export default function Header() {
   const login = useSelector((state) => state.username);
   const dispatch = useDispatch();
   return (
-    <header className='app-header'>
+    <header className='app-header extra'>
       <Link to='/'>(LOGO)</Link>
       <h1>
         <Link to='/'>Student Companion</Link>
