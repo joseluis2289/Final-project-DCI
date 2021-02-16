@@ -8,7 +8,7 @@ protectedRoutes.use("/", (req, res, next) => {
     res.sendStatus(401);
   }
 });
-//remember middleWare /posts/addResource
+//posts/addResource
 
 protectedRoutes.post("/addResource", (req, res) => {});
 
