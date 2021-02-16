@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import Rating from "./Rating";
+import Reaction from "./Reaction";
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 
@@ -24,20 +25,17 @@ const Resource = (props) => {
             <h2>{props.data.title}</h2>
             <Rating
               rating={props.data.rating}
-              num_rating={props.data.num_rating}
+              num_ratings={props.data.num_ratings}
             />
           </div>
           <h3>
-            {props.data.category.map((item) => {
+            {props.data.category.map((item, index) => {
               let name = item[0].toUpperCase() + item.substring(1);
-              return <span>{name}</span>;
+              return <span key={index}>{name}</span>;
             })}
           </h3>
-          <h3>(MEDIA TYPE)</h3>
           <h3>added by (USER)</h3>
         </hgroup>
-        <button>Edit</button>
-        <button>Delete</button>
       </header>
       <figure role='group'>
         <img
@@ -55,6 +53,7 @@ const Resource = (props) => {
       <p>(Reactions... 🦝)</p>
       <p>{props.data.num_views} views</p>
       <button>Add Comment</button>
+      <Reaction love={10} like={5} dislike={1} />
       <button>Add Reaction</button>
       <h3>Description</h3>
       <p>{props.data.description}</p>

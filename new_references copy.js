@@ -7,7 +7,7 @@
     "userID": "usermodel",
     "category": ["frontend"],
     "rating": "4.6",
-    "num_rating": 102.797,
+    "num_ratings": 102.797,
     "num_views": 349.813,
     "paid": "paid",
     "description":
@@ -25,7 +25,7 @@
     "userID": "usermodel",
     "category": ["backend"],
     "rating": 5,
-    "num_rating": 250,
+    "num_ratings": 250,
     "num_views": 1374.56,
     "paid": "free",
     "description":
@@ -41,7 +41,7 @@
     "userID": "usermodel",
     "category": ["database"],
     "rating": 5,
-    "num_rating": 3500,
+    "num_ratings": 3500,
     "num_views": 1384.745,
     "paid": "free",
     "description":
@@ -57,7 +57,7 @@
     "userID": "usermodel",
     "category": ["backend"],
     "rating": 4.5,
-    "num_rating": 137,
+    "num_ratings": 137,
     "num_views": 0,
     "paid": "free",
     "description":
@@ -75,7 +75,7 @@
     "userID": "usermodel",
     "category": ["backend"],
     "rating": 4,
-    "num_rating": 437,
+    "num_ratings": 437,
     "num_views": 112.394,
     "paid": "free",
     "description":
@@ -91,7 +91,7 @@
     "userID": "usermodel",
     "category": ["general"],
     "rating": 4.5,
-    "num_rating": 782,
+    "num_ratings": 782,
     "num_views": 10.523,
     "paid": "free",
     "description":
@@ -107,7 +107,7 @@
     "userID": "usermodel",
     "category": ["general"],
     "rating": 4,
-    "num_rating": 852,
+    "num_ratings": 852,
     "num_views": 11.529,
     "paid": "free",
     "description":
@@ -124,7 +124,7 @@
     "userID": "usermodel",
     "category": ["backend", "frontend"],
     "rating": 4.5,
-    "num_rating": 15985,
+    "num_ratings": 15985,
     "num_views": 1589.253,
     "paid": "free",
     "description":
@@ -141,7 +141,7 @@
     "userID": "usermodel",
     "category": ["backend", "frontend", "database"],
     "rating": 4,
-    "num_rating": 8951,
+    "num_ratings": 8951,
     "num_views": 0,
     "paid": "free",
     "description":
@@ -159,7 +159,7 @@
     "userID": "usermodel",
     "category": ["backend", "frontend", "database"],
     "rating": 4.5,
-    "num_rating": 11.152,
+    "num_ratings": 11.152,
     "num_views": 0,
     "paid": "free",
     "description":
@@ -176,7 +176,7 @@
     "userID": "usermodel",
     "category": ["frontend"],
     "rating": 4.6,
-    "num_rating": 138.647,
+    "num_ratings": 138.647,
     "num_views": 459.039,
     "paid": "paid",
     "description":
@@ -193,7 +193,7 @@
     "userID": "usermodel",
     "category": ["frontend", "backend"],
     "rating": 4.6,
-    "num_rating": 623,
+    "num_ratings": 623,
     "num_views": 72.447,
     "paid": "paid",
     "description":
@@ -210,7 +210,7 @@
     "userID": "usermodel",
     "category": ["database"],
     "rating": 4.3,
-    "num_rating": 524,
+    "num_ratings": 524,
     "num_views": 41.946,
     "paid": "free",
     "description":

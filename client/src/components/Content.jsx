@@ -18,25 +18,22 @@ const Content = ({ getResources, resources, filter }) => {
   return (
     <div className='references-container'>
       <React.Fragment>
-        {/* {resources.map((item) => (
-          <p>{item.title}</p>
-        ))} */}
         {resources.map((item, index) => {
-          // let showResource = false;
-          // if (filter.free === true && item.paid === "free") {
-          //   console.log(filter.free, item.paid);
-          //   showResource = true;
-          // }
-          // if (filter.paid === true && item.paid === "paid") {
-          //   console.log(filter.paid, item.paid);
-          //   showResource = true;
-          // }
-          // if (item.rating < filter.rating) {
-          //   showResource = false;
-          // }
-          // if (showResource)
-          return <Resource id={index} key={index} data={item} />;
-          // return "";
+          let showResource = false;
+          if (filter.free === true && item.paid === "free") {
+            console.log(filter.free, item.paid);
+            showResource = true;
+          }
+          if (filter.paid === true && item.paid === "paid") {
+            console.log(filter.paid, item.paid);
+            showResource = true;
+          }
+          if (item.rating < filter.rating) {
+            showResource = false;
+          }
+          if (showResource)
+            return <Resource id={index} key={index} data={item} />;
+          return "";
         })}
       </React.Fragment>
     </div>
