@@ -12,7 +12,7 @@ export default function Reaction({ love, like, dislike }) {
       <span>{love}</span>{" "}
       <img
         className='reaction-icon'
-        src='https://img.icons8.com/doodle/2x/comedy.png'
+        src='https://img.icons8.com/color/2x/happy.png'
         alt='like'
         srcset=''
       />{" "}
