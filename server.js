@@ -68,13 +68,13 @@ app.post("/register", (req, res, next) => {
   let newUser = req.body;
   console.log(newUser);
 
-  req.check("name", "invalid name").isAlpha().isLength({ min: 3 });
-  req.check("userName", "invalid userName").isAlphanumeric();
+  req.check("name", "invalid name").isLength({ min: 3 });
+  req.check("userName", "invalid userName").isLength({ min: 3 });
   req.check("email").isEmail().normalizeEmail();
-  req.check("password", "Password").isLength({ min: 3 });
+  req.check("password", "invalid Password").isLength({ min: 3 });
 
   let errors = req.validationErrors();
-  console.log(errors);
+  //console.log(errors);
   if (errors) {
     res.send({ validation: errors });
   } else {
@@ -94,10 +94,10 @@ app.post("/register", (req, res, next) => {
             .save()
             .then((result) => {
               console.log(result);
-              res.send({ result });
+              res.send(result);
             })
             .catch((err) => {
-              res.json({ msg: false, err });
+              res.send({ msg: false, err });
             });
         }
       });
