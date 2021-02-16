@@ -7,6 +7,7 @@ import Rating from "./Rating";
 const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
+  const [displayCom, setDisplayComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(props.data.previewImg);
   useEffect(() => {
     console.log("that is props", props);
@@ -33,11 +34,10 @@ const Resource = (props) => {
             />
           </div>
           <h3>
-            {/* props.data.category is an array of categories */}
-            {/* {props.data.category.reduce(
-              (fullString, category) => fullString + ", " + category
-            )} */}{" "}
-            Category
+            {props.data.category.map((item) => {
+              let name = item[0].toUpperCase() + item.substring(1);
+              return <span>{name}</span>;
+            })}
           </h3>
           <h3>(MEDIA TYPE)</h3>
           <h3>added by (USER)</h3>
