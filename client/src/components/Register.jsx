@@ -28,16 +28,18 @@ export default function Register() {
             .then((response) => {
               console.log(response);
               history.push("/login");
-              setRegisterData({ success: response.data.success });
-              if (response.data.msg === false) {
+              if (response.msg === false) {
+                console.log("if");
                 alert("this email is already taken");
-              } else if (response.data.validation) {
+              } else if (response.validation) {
+                console.log("esle if");
+                setRegisterData({ success: response.success });
                 alert("Name and password need 3+ characters");
               } else {
-                response.data
-                  ? alert(`SUCCESSFULLY REGISTER ${response.data.name}`)
+                console.log("else");
+                response
+                  ? alert(`SUCCESSFULLY REGISTER ${response.name}`)
                   : alert("error to register");
-                console.log(response.data);
               }
             })
             .catch((err) => console.log(err));
