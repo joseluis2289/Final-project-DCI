@@ -6,6 +6,7 @@ import { isValidObjectId } from "mongoose";
 export default function AddResource() {
   const user = useSelector((state) => state.loginData.user._id);
   const [resource, setResource] = useState({
+    user: user,
     category: [],
   });
 
@@ -26,7 +27,7 @@ export default function AddResource() {
 
   let addResource = (e) => {
     e.preventDefault();
-    setResource({ ...resource, user: user });
+    // setResource({ ...resource, user: user });
     console.log("resource from AddResourcee", resource);
     axios({
       method: "POST",

@@ -74,13 +74,14 @@ router.post("/add", (req, res, next) => {
 
   const userDB = UserSchema.findById(user)
     .select("-password")
-    .then(() => {
+    .then((userDB) => {
+      console.log("that is userDB", userDB);
       let resource = new Resource({
         title,
         link,
         previewImage,
         date,
-        userDB,
+        user: userDB,
         category,
         rating,
         num_ratings,
