@@ -18,8 +18,8 @@ export default function Login() {
     <article>
       <h2>Login</h2>
       <form
-        onSubmit={handleSubmit((e) => {
-          e.preventDefault();
+        onSubmit={handleSubmit(() => {
+          //e.preventDefault();
           console.log("Login Request!");
           fetch("http://localhost:5000/login", {
             method: "POST",
