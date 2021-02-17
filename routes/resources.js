@@ -1,5 +1,7 @@
 var router = require("express").Router();
 const Resource = require("../Models/ResourceSchema");
+const UserSchema = require("../Models/userModel");
+const Comment = require("../Models/Comment");
 
 //get all Resources
 router.get("/", (req, res, next) => {
@@ -52,13 +54,12 @@ router.delete("/:resource_id", (req, res, next) => {
 });
 
 router.post("/add", (req, res, next) => {
-  console.log(req.body);
   const {
     title,
     link,
     previewImage,
     date,
-    userID,
+    user,
     category,
     rating,
     num_ratings,
@@ -71,31 +72,36 @@ router.post("/add", (req, res, next) => {
     comments,
   } = req.body;
 
-  let resource = new Resource({
-    title,
-    link,
-    previewImage,
-    date,
-    userID,
-    category,
-    rating,
-    num_ratings,
-    num_views,
-    paid,
-    format,
-    description,
-    edited,
-    deleted,
-    comments,
-  });
+  UserSchema.findById(user)
+    .select("-password")
+    .then((userDB) => {
+      let resource = new Resource({
+        title,
+        link,
+        previewImage,
+        date,
+        user: userDB,
+        category,
+        rating,
+        num_ratings,
+        num_views,
+        paid,
+        format,
+        description,
+        edited,
+        deleted,
+        comments,
+      });
 
-  resource
-    .save()
-    .then((result) => {
-      res.status(200).send(result);
-    })
-    .catch((err) => {
-      res.send(err);
+      resource
+        .save()
+        .then((resourceAdded) => {
+          console.log("tem id", resourceAdded);
+          res.status(200).send(result);
+        })
+        .catch((err) => {
+          res.send(err);
+        });
     });
 });
 

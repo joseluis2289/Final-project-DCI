@@ -1,25 +1,25 @@
 import React, { useState } from "react";
-import { /* useSelector,*/ useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions";
-//import axios from "axios";
 //import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
-  //let history = useHistory();
   // const login = useSelector((state) => state.username);
   const dispatch = useDispatch();
-  const [loginData, setLoginData] = useState();
+  const [loginData, setLoginData] = useState({});
+  const { register, handleSubmit, errors } = useForm();
+
   function handleChange(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   }
+
   return (
     <article>
       <h2>Login</h2>
       <form
-        action=''
-        method='post'
-        onSubmit={(e) => {
-          e.preventDefault();
+        onSubmit={handleSubmit(() => {
+          //e.preventDefault();
           console.log("Login Request!");
           fetch("http://localhost:5000/login", {
             method: "POST",
@@ -32,7 +32,7 @@ export default function Login() {
               if (response.status === 200) {
                 response.json().then((data) => {
                   console.log(data.user);
-                  dispatch(userLogin(loginData));
+                  dispatch(userLogin(data));
                   //history.push("/profile");
                   data.logIn === true
                     ? alert(`Welcome`)
@@ -43,7 +43,7 @@ export default function Login() {
               }
             })
             .catch((err) => console.log(err));
-        }}
+        })}
       >
         <label htmlFor='username'>Username</label>
         <input
@@ -53,7 +53,15 @@ export default function Login() {
           onChange={(e) => {
             handleChange(e);
           }}
+          ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
+        {errors.username && "Your Username is required"}
+        {errors.username && errors.username.type === "maxLength" && (
+          <span>Max length exceeded</span>
+        )}
+        {errors.username && errors.username.type === "minLength" && (
+          <span>Must be more than 3 character</span>
+        )}
 
         <label htmlFor='password'>Password</label>
         <input
@@ -63,8 +71,15 @@ export default function Login() {
           onChange={(e) => {
             handleChange(e);
           }}
+          ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
-
+        {errors.password && "Your password is require"}
+        {errors.password && errors.password.type === "maxLength" && (
+          <span>Max length exceeded</span>
+        )}
+        {errors.password && errors.password.type === "minLength" && (
+          <span>Must be more than 3 character</span>
+        )}
         <button type='submit'>Login</button>
       </form>
     </article>

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../redux/actions";
 
 export default function Header() {
-  const login = useSelector((state) => state.username);
+  const logIn = useSelector((state) => state.loginData.logIn);
   const dispatch = useDispatch();
   return (
     <header className='app-header'>
@@ -14,7 +14,7 @@ export default function Header() {
       </h1>
       <nav>
         {/* Icons from https://material.io/resources/icons/ */}
-        {login ? (
+        {logIn ? (
           <React.Fragment>
             <Link to='/profile'>
               <img
@@ -22,7 +22,7 @@ export default function Header() {
                 src='icons/icon_profile.svg'
                 alt='Profile Icon'
               />
-              {login}
+              {logIn}
             </Link>
             <Link to='/add_resource'>
               <img

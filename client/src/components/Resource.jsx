@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import Rating from "./Rating";
 import Reaction from "./Reaction";
+import Comment from "./Comment";
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 
@@ -34,7 +35,7 @@ const Resource = (props) => {
               return <span key={index}>{name}</span>;
             })}
           </h3>
-          <h3>added by (USER)</h3>
+          <h3>added by {props.data.user}</h3>
         </hgroup>
       </header>
       <figure role='group'>
@@ -80,16 +81,9 @@ const Resource = (props) => {
           )}
         </Fragment>
       )}
+      <Comment resourceId={props.data._id} />
     </section>
   );
 };
-
-// Resource.propTypes = {
-//   resources: PropTypes.array.isRequired,
-// };
-// const mapStateToProps = (state) => ({
-//   resources: state.resources,
-// });
-// export default connect(mapStateToProps)(Resource);
 
 export default Resource;

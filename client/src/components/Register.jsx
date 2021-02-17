@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function Register() {
   const [registerData, setRegisterData] = useState({});
+  const { register, handleSubmit, errors } = useForm();
 
   function handleChange(e) {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
@@ -12,10 +14,8 @@ export default function Register() {
     <article>
       <h2>Register</h2>
       <form
-        action=""
-        method="POST"
-        onSubmit={(e) => {
-          e.preventDefault();
+        onSubmit={handleSubmit(() => {
+          // e.preventDefault();
           console.log("Login Request!");
           fetch("http://localhost:5000/register", {
             method: "POST",
@@ -27,7 +27,6 @@ export default function Register() {
             .then((result) => result.json())
             .then((response) => {
               console.log(response);
-              history.push("/login");
               if (response.msg === false) {
                 console.log("if");
                 alert("this email is already taken");
@@ -36,14 +35,15 @@ export default function Register() {
                 setRegisterData({ success: response.success });
                 alert("Name and password need 3+ characters");
               } else {
+                history.push("/login");
                 console.log("else");
                 response
-                  ? alert(`SUCCESSFULLY REGISTER ${response.name}`)
+                  ? alert(`SUCCESSFULLY REGISTER ${response.userName}`)
                   : alert("error to register");
               }
             })
             .catch((err) => console.log(err));
-        }}
+        })}
       >
         <label htmlFor="username">Name</label>
         <input
@@ -53,6 +53,7 @@ export default function Register() {
           onChange={(e) => {
             handleChange(e);
           }}
+          ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
 
         <label htmlFor="username">Username</label>
@@ -63,7 +64,17 @@ export default function Register() {
           onChange={(e) => {
             handleChange(e);
           }}
+          ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
+        {errors.userName && "Your Username is required"}
+        {errors.userName && errors.userName.type === "maxLength" && (
+          <span className="errorsMsg">Max length exceeded</span>
+        )}
+        {errors.userName && errors.userName.type === "minLength" && (
+          <span className="errorsMsg">
+            Your Username Must be more than 3 character
+          </span>
+        )}
 
         <label htmlFor="email">Email</label>
         <input
@@ -73,7 +84,9 @@ export default function Register() {
           onChange={(e) => {
             handleChange(e);
           }}
+          ref={register({ required: true })}
         />
+        {errors.email && "Your Email is required"}
 
         <label htmlFor="password">Password</label>
         <input
@@ -83,7 +96,15 @@ export default function Register() {
           onChange={(e) => {
             handleChange(e);
           }}
+          ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
+        {errors.password && "Your password is require"}
+        {errors.password && errors.password.type === "maxLength" && (
+          <span>Max length exceeded</span>
+        )}
+        {errors.password && errors.password.type === "minLength" && (
+          <span>Must be more than 3 character</span>
+        )}
 
         <label htmlFor="confirm-password">Confirm Password</label>
         <input
@@ -93,7 +114,9 @@ export default function Register() {
           onChange={(e) => {
             handleChange(e);
           }}
+          ref={register({ required: true })}
         />
+        {errors.confirmPassword && "Please confirm your password"}
 
         <button type="submit">Register</button>
       </form>
