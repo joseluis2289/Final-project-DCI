@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { isValidObjectId } from "mongoose";
 
 export default function AddResource() {
-  const [resource, setResource] = useState({ category: [] });
+  const user = useSelector((state) => state.loginData.user._id);
+  const [resource, setResource] = useState({
+    category: [],
+  });
 
   let defineCategory = (e) => {
     let categories = resource.category;
@@ -21,6 +26,8 @@ export default function AddResource() {
 
   let addResource = (e) => {
     e.preventDefault();
+    setResource({ ...resource, user: user });
+    console.log("resource from AddResourcee", resource);
     axios({
       method: "POST",
       url: "http://localhost:5000/resources/add",
@@ -34,7 +41,7 @@ export default function AddResource() {
         console.log(err);
       });
   };
-  return (
+  return user ? (
     <div>
       <form onSubmit={addResource}>
         <div>
@@ -106,5 +113,7 @@ export default function AddResource() {
         <button type='submit'>Add Resource</button>
       </form>
     </div>
+  ) : (
+    <p>fo to Login page</p>
   );
 }

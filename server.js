@@ -17,8 +17,8 @@ const protectedRoutes = require("./routes/protectedRoutes");
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
-// const url = process.env.MONGO_URIBel;
-const url = process.env.MONGO_URIJose;
+const url = process.env.MONGO_URIBel;
+// const url = process.env.MONGO_URIJose;
 //listen to a port
 
 //connect to DataBase
@@ -123,8 +123,8 @@ app.post("/login", (req, res, next) => {
           refreshTokens.push(refreshToken);
           const accessToken = generateAccessToken(user);
           req.session.user = result;
-          res.json({
-            user: result, //Bel added this information here
+          res.send({
+            user: result,
             accessToken: accessToken,
             logIn: output,
             refreshToken: refreshToken,

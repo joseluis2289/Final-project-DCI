@@ -34,7 +34,7 @@ const Resource = (props) => {
               return <span key={index}>{name}</span>;
             })}
           </h3>
-          <h3>added by (USER)</h3>
+          <h3>added by {props.data.user}</h3>
         </hgroup>
       </header>
       <figure role='group'>

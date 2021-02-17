@@ -1,5 +1,6 @@
 var router = require("express").Router();
 const Resource = require("../Models/ResourceSchema");
+const UserSchema = require("../Models/userModel");
 
 //get all Resources
 router.get("/", (req, res, next) => {
@@ -58,7 +59,7 @@ router.post("/add", (req, res, next) => {
     link,
     previewImage,
     date,
-    userID,
+    user,
     category,
     rating,
     num_ratings,
@@ -71,31 +72,35 @@ router.post("/add", (req, res, next) => {
     comments,
   } = req.body;
 
-  let resource = new Resource({
-    title,
-    link,
-    previewImage,
-    date,
-    userID,
-    category,
-    rating,
-    num_ratings,
-    num_views,
-    paid,
-    format,
-    description,
-    edited,
-    deleted,
-    comments,
-  });
+  const userDB = UserSchema.findById(user)
+    .select("-password")
+    .then(() => {
+      let resource = new Resource({
+        title,
+        link,
+        previewImage,
+        date,
+        userDB,
+        category,
+        rating,
+        num_ratings,
+        num_views,
+        paid,
+        format,
+        description,
+        edited,
+        deleted,
+        comments,
+      });
 
-  resource
-    .save()
-    .then((result) => {
-      res.status(200).send(result);
-    })
-    .catch((err) => {
-      res.send(err);
+      resource
+        .save()
+        .then((result) => {
+          res.status(200).send(result);
+        })
+        .catch((err) => {
+          res.send(err);
+        });
     });
 });
 

@@ -4,6 +4,12 @@ const initialState = {
   filter: {
     rating: 0, // show all
   },
+  loginData: {
+    user: "",
+    logIn: false,
+    accessToken: "",
+    refreshToken: "",
+  },
 };
 
 // TODO: add multireducer -- one for user, one for filter
@@ -12,7 +18,9 @@ const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case "USER_LOGIN":
-      return { ...state, user: payload.user };
+      console.log("comes from reducer", payload);
+      return { ...state, loginData: payload };
+
     case "LOGIN_FAIL":
       return { ...state, user: payload.user };
 
