@@ -53,7 +53,6 @@ router.delete("/:resource_id", (req, res, next) => {
 });
 
 router.post("/add", (req, res, next) => {
-  console.log(req.body);
   const {
     title,
     link,
@@ -72,10 +71,9 @@ router.post("/add", (req, res, next) => {
     comments,
   } = req.body;
 
-  const userDB = UserSchema.findById(user)
+  UserSchema.findById(user)
     .select("-password")
     .then((userDB) => {
-      console.log("that is userDB", userDB);
       let resource = new Resource({
         title,
         link,
@@ -96,7 +94,8 @@ router.post("/add", (req, res, next) => {
 
       resource
         .save()
-        .then((result) => {
+        .then((resourceAdded) => {
+          console.log("tem id", resourceAdded);
           res.status(200).send(result);
         })
         .catch((err) => {

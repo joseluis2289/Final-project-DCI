@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ResourceSchema = new mongoose.Schema({
+const Resource = new Schema({
   title: { type: String, required: true },
   link: { type: String, required: true, unique: true },
   previewImage: {
@@ -29,34 +29,15 @@ const ResourceSchema = new mongoose.Schema({
   description: { type: String, required: true },
   edited: { type: Boolean, default: false }, //update the date
   deleted: { type: Boolean, default: false },
-  // comments: [
-  //   {
-  //     user: {
-  //       type: Schema.Types.ObjectId,
-  //       ref: "users",
-  //     },
-  //     text: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     edited: {
-  //       type: Boolean,
-  //       default: false,
-  //     }, ////update the date
-  //     deleted: { type: Boolean, default: false },
-  //     likes: [
-  //       {
-  //         user: {
-  //           type: Schema.Types.ObjectId,
-  //           ref: "users",
-  //         },
-  //       },
-  //     ],
-  //     date: {
-  //       type: Date,
-  //       default: Date.now,
-  //     },
-  //   },
-  // ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "comments",
+    },
+  ],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+  },
 });
-module.exports = mongoose.model("resource", ResourceSchema);
+module.exports = mongoose.model("resource", Resource);
