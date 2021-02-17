@@ -47,19 +47,21 @@ export default function Login() {
         <label htmlFor="username">Username</label>
         <input
           type="text"
-          name="username"
+          name="userName"
           id="username"
           onChange={(e) => {
             handleChange(e);
           }}
           ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
-        {errors.username && "Your Username is required"}
-        {errors.username && errors.username.type === "maxLength" && (
+        {errors.userName && errors.userName.type === "required" && (
+          <span className="errorsMsg">Your Username is required</span>
+        )}
+        {errors.userName && errors.userName.type === "maxLength" && (
           <span>Max length exceeded</span>
         )}
-        {errors.username && errors.username.type === "minLength" && (
-          <span>Must be more than 3 character</span>
+        {errors.userName && errors.userName.type === "minLength" && (
+          <span className="errorsMsg">Must be more than 3 character</span>
         )}
 
         <label htmlFor="password">Password</label>
@@ -72,12 +74,14 @@ export default function Login() {
           }}
           ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
-        {errors.password && "Your password is require"}
+        {errors.password && errors.password.type === "required" && (
+          <span className="errorsMsg">Your Password is required</span>
+        )}
         {errors.password && errors.password.type === "maxLength" && (
-          <span>Max length exceeded</span>
+          <span className="errorsMsg">Max length exceeded</span>
         )}
         {errors.password && errors.password.type === "minLength" && (
-          <span>Must be more than 3 character</span>
+          <span className="errorsMsg">Must be more than 3 character</span>
         )}
         <button type="submit">Login</button>
       </form>
