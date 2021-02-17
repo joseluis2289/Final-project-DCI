@@ -56,6 +56,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
 app.use("/resources", require("./routes/resources"));
+app.use("/comments", require("./routes/comments"));
 app.use("/posts", protectedRoutes);
 
 // app.use(authenticateToken());

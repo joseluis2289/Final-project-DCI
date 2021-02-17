@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function Comment(props) {
   const user = useSelector((state) => state.loginData.user._id);
@@ -9,6 +10,16 @@ export default function Comment(props) {
   });
   const addComment = (e) => {
     e.preventDefault();
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/comments",
+      ContentType: "application-json",
+      data: comment,
+    })
+      .then((res) => {
+        console.log(res.msg);
+      })
+      .catch((err) => console.log(err));
   };
   const formHandler = (e) => {
     setComment({ ...comment, [e.target.name]: e.target.value });
@@ -28,6 +39,7 @@ export default function Comment(props) {
             onChange={formHandler}
           ></textarea>
         </div>
+        <button type='submit'>Send</button>
       </form>
     </div>
   );
