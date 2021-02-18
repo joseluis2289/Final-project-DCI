@@ -17,7 +17,12 @@ const Resource = new Schema({
     enum: ["frontend", "backend", "database", "general"],
     required: true,
   },
-
+  usersThatRated: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
   rating: { type: Number, min: 0, max: 5 },
   num_ratings: { type: Number },
   num_views: { type: Number },
