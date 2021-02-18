@@ -7,33 +7,33 @@ export default function Navbar() {
   const logIn = useSelector((state) => state.loginData.logIn);
   const dispatch = useDispatch();
   return (
-    <header className='app-header'>
-      <Link to='/'>(LOGO)</Link>
+    <header className="app-header">
+      <Link to="/">(LOGO)</Link>
       <h1>
-        <Link to='/'>Student Companion</Link>
+        <Link to="/">Student Companion</Link>
       </h1>
       <nav>
         {/* Icons from https://material.io/resources/icons/ */}
-        <Link to='/home'>
-          <img className='icon' src='icons/home.svg' alt='Home Icon' />
+        <Link to="/home">
+          <img className="icon" src="icons/home.svg" alt="Home Icon" />
           Home
         </Link>
         {logIn ? (
           <React.Fragment>
-            <Link to='/profile'>
+            <Link to="/profile">
               <img
-                className='icon'
-                src='icons/icon_profile.svg'
-                alt='Profile Icon'
+                className="icon"
+                src="icons/icon_profile.svg"
+                alt="Profile Icon"
               />
             </Link>
-            <Link to='/settings'>
-              <img className='icon' src='icons/settings.svg' alt='Login Icon' />
+            <Link to="/settings">
+              <img className="icon" src="icons/settings.svg" alt="Login Icon" />
               Settings
             </Link>
 
             <a
-              href='/logout'
+              href="/logout"
               onClick={(e) => {
                 e.preventDefault();
                 console.log("LOGOUT!");
@@ -41,28 +41,28 @@ export default function Navbar() {
               }}
             >
               <img
-                className='icon'
-                src='icons/icon_logout.svg'
-                alt='Logout Icon'
+                className="icon"
+                src="icons/icon_logout.svg"
+                alt="Logout Icon"
               />
               Logout
             </a>
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Link to='/register'>
+            <Link to="/register">
               <img
-                className='icon'
-                src='icons/icon_register.svg'
-                alt='Register Icon'
+                className="icon"
+                src="icons/icon_register.svg"
+                alt="Register Icon"
               />
               Register
             </Link>
-            <Link to='/login'>
+            <Link to="/login">
               <img
-                className='icon'
-                src='icons/icon_login.svg'
-                alt='Login Icon'
+                className="icon"
+                src="icons/icon_login.svg"
+                alt="Login Icon"
               />
               Login
             </Link>
