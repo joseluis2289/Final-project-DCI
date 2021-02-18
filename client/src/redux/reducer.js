@@ -13,7 +13,8 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "USER_LOGIN":
-      return { ...state, username: action.payload.username };
+      //change the property name
+      return { ...state, loginData: action.payload };
 
     case "USER_LOGOUT":
       return { ...state, username: false };
