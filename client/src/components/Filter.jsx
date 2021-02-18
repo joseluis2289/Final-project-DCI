@@ -45,48 +45,68 @@ export default function Filter() {
   return (
     <React.Fragment>
       <form className='filter-form'>
-        <legend>
-          <strong>Filter:</strong> I only want to see...
-        </legend>
-        <input
-          type='checkbox'
-          name='free'
-          id='filter-free'
-          onChange={handleChange}
-          checked={filterData.free}
-        />
-        <label htmlFor='filter-free'>Free</label>
-        <input
-          type='checkbox'
-          name='paid'
-          id='filter-paid'
-          onChange={handleChange}
-          checked={filterData.paid}
-        />
-        <label htmlFor='filter-paid'>Paid</label>
-        <legend>... content!</legend>
-        <legend>
-          <strong>Rating:</strong>
-        </legend>
-        (Component Test)
-        <Rating usedInFilter={true} />
-        (Redux Test)
-        <input
-          type='radio'
-          name='rating'
-          id='rating-4'
-          value='4'
-          onChange={handleRatingChange}
-        />
-        <label htmlFor='rating-4'>4</label>
-        <input
-          type='radio'
-          name='rating'
-          id='rating-5'
-          value='5'
-          onChange={handleRatingChange}
-        />
-        <label htmlFor='rating-5'>5</label>
+        <div name='category'>
+          <label>Category</label>
+          <label htmlFor='frontend'>
+            <input type='checkbox' name='category' value='frontend' />
+            Frontend
+          </label>
+          <label htmlFor='backend'>
+            <input type='checkbox' name='category' value='backend' />
+            Backend
+          </label>
+          <label htmlFor='database'>
+            <input type='checkbox' name='category' value='database' />
+            Database
+          </label>
+          <label htmlFor='general'>
+            <input type='checkbox' name='category' value='general' />
+            General
+          </label>
+        </div>
+        <div>
+          <label>Is paid?</label>
+          <input
+            type='checkbox'
+            name='free'
+            id='filter-free'
+            onChange={handleChange}
+            checked={filterData.free}
+          />
+          <label htmlFor='filter-free'>Free</label>
+          <input
+            type='checkbox'
+            name='paid'
+            id='filter-paid'
+            onChange={handleChange}
+            checked={filterData.paid}
+          />
+          <label htmlFor='filter-paid'>Paid</label>
+        </div>
+        <div>
+          <legend>
+            <strong>Rating:</strong>
+          </legend>
+          (Component Test)
+          <Rating usedInFilter={true} />
+          (Redux Test)
+          <input
+            type='radio'
+            name='rating'
+            id='rating-4'
+            value='4'
+            onChange={handleRatingChange}
+          />
+          <label htmlFor='rating-4'>4</label>
+          <input
+            type='radio'
+            name='rating'
+            id='rating-5'
+            value='5'
+            onChange={handleRatingChange}
+          />
+          <label htmlFor='rating-5'>5</label>
+        </div>
       </form>
     </React.Fragment>
   );

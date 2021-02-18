@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../redux/actions";
 
-export default function Header() {
+export default function Navbar() {
   const logIn = useSelector((state) => state.loginData.logIn);
   const dispatch = useDispatch();
   return (

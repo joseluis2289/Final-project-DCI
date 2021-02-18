@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Filter from "./components/Filter";
 import Register from "./components/Register";
@@ -17,7 +17,7 @@ import "./App.css";
 export default function App() {
   return (
     <Router>
-      <Header />
+      <Navbar />
       <Searchbar />
       <Filter />
       <Switch>
