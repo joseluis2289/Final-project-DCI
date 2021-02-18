@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
-import Searchbar from "./components/Searchbar";
 import Filter from "./components/Filter";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -18,7 +17,6 @@ export default function App() {
   return (
     <Router>
       <Navbar />
-      <Searchbar />
       <Filter />
       <Switch>
         <main>

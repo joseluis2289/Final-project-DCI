@@ -107,6 +107,15 @@ export default function Filter() {
           />
           <label htmlFor='rating-5'>5</label>
         </div>
+        <input
+          type='search'
+          name='search'
+          id='search'
+          placeholder='Search...'
+          onChange={handleChange}
+        />
+
+        <button type='submit'>Search</button>
       </form>
     </React.Fragment>
   );
