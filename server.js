@@ -57,6 +57,7 @@ app.use(cookieParser());
 app.use(expValidator());
 app.use("/resources", require("./routes/resources"));
 app.use("/comments", require("./routes/comments"));
+app.use("/users", require("./routes/users"));
 app.use("/posts", protectedRoutes);
 
 // app.use(authenticateToken());
@@ -115,6 +116,7 @@ app.post("/login", (req, res, next) => {
   UserModel.findOne({
     userName: newUser.username,
   })
+
     .then((result) => {
       bcrypt.compare(newUser.password, result.password, function (err, output) {
         if (err) {

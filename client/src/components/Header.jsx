@@ -14,6 +14,10 @@ export default function Header() {
       </h1>
       <nav>
         {/* Icons from https://material.io/resources/icons/ */}
+        <Link to='/home'>
+          <img className='icon' src='icons/home.svg' alt='Home Icon' />
+          Home
+        </Link>
         {logIn ? (
           <React.Fragment>
             <Link to='/profile'>
@@ -22,24 +26,12 @@ export default function Header() {
                 src='icons/icon_profile.svg'
                 alt='Profile Icon'
               />
-              {logIn}
             </Link>
-            <Link to='/add_resource'>
-              <img
-                className='icon'
-                src='icons/icon_add_resource.svg'
-                alt='Login Icon'
-              />
-              AddResource
+            <Link to='/settings'>
+              <img className='icon' src='icons/settings.svg' alt='Login Icon' />
+              Settings
             </Link>
-            <Link to='/update_resource'>
-              <img
-                className='icon'
-                src='icons/icon_update_resource.svg'
-                alt='Login Icon'
-              />
-              UpdateResource
-            </Link>
+
             <a
               href='/logout'
               onClick={(e) => {
