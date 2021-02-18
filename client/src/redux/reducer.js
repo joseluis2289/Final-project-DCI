@@ -18,11 +18,7 @@ const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case "USER_LOGIN":
-      console.log("comes from reducer", payload);
-      return { ...state, loginData: payload };
-
-    case "LOGIN_FAIL":
-      return { ...state, user: payload.user };
+      return { ...state, loginData: action.payload };
 
     case "USER_LOGOUT":
       return { ...state, user: {} };

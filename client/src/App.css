@@ -148,3 +148,8 @@ button {
 .star-container {
   cursor: pointer;
 }
+
+/***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
+.errorsMsg {
+  color: red;
+}
