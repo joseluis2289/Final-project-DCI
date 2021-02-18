@@ -21,7 +21,7 @@ const Resource = new Schema({
   rating: { type: Number, min: 0, max: 5 },
   num_ratings: { type: Number },
   num_views: { type: Number },
-  paid: { type: String, enum: ["paid", "free"], required: true },
+  paid: { type: Boolean, required: true },
   format: {
     type: String,
     enum: ["documentation", "course"],

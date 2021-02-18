@@ -9,7 +9,7 @@
     "rating": "4.6",
     "num_ratings": 102.797,
     "num_views": 349.813,
-    "paid": "paid",
+    "paid": "false",
     "description":
       "Dive in and learn React.js from scratch! Learn Reactjs, Hooks, Redux, React Routing, Animations, Next.js and way more!",
     "edited": "false",
@@ -27,7 +27,7 @@
     "rating": 5,
     "num_ratings": 250,
     "num_views": 1374.56,
-    "paid": "free",
+    "paid": "false",
     "description":
       "REST Client allows you to send HTTP request and view the response in Visual Studio Code directly.",
     "edited": "false",
@@ -43,7 +43,7 @@
     "rating": 5,
     "num_ratings": 3500,
     "num_views": 1384.745,
-    "paid": "free",
+    "paid": "false",
     "description":
       "Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.",
     "edited": "false",
@@ -59,7 +59,7 @@
     "rating": 4.5,
     "num_ratings": 137,
     "num_views": 0,
-    "paid": "free",
+    "paid": "false",
     "description":
       "Lodash makes JavaScript easier by taking the hassle out of working with arrays, numbers, objects, strings, etc. Lodash s modular methods are great for: - Iterating arrays, objects, & strings,Manipulating & testing values, Creating composite functions",
     "edited": "false",
@@ -77,7 +77,7 @@
     "rating": 4,
     "num_ratings": 437,
     "num_views": 112.394,
-    "paid": "free",
+    "paid": "false",
     "description":
       "Generates massive amounts of realistic fake data in Node.js and the browser",
     "edited": "false",
@@ -93,7 +93,7 @@
     "rating": 4.5,
     "num_ratings": 782,
     "num_views": 10.523,
-    "paid": "free",
+    "paid": "false",
     "description":
       "Are you learning to code and need an easy, free way to host your projects? GitHub pages is your answer. Not only is it an easy hosting solution for websites with HTML, CSS, and JavaScript files, but it also gives you practice using Git, an important but tricky tool. This step-by-step guide gets you up to speed in minutes.",
     "edited": "false",
@@ -109,7 +109,7 @@
     "rating": 4,
     "num_ratings": 852,
     "num_views": 11.529,
-    "paid": "free",
+    "paid": "false",
     "description":
       "This site teaches you how to use Git. It is open source and maintained by members of the Git community. We welcome patches, suggestions, and corrections.",
     "edited": "false",
@@ -126,7 +126,7 @@
     "rating": 4.5,
     "num_ratings": 15985,
     "num_views": 1589.253,
-    "paid": "free",
+    "paid": "false",
     "description":
       "How to generate 64bit secret key in the terminal and other useful things in this video",
     "edited": "false",
@@ -143,7 +143,7 @@
     "rating": 4,
     "num_ratings": 8951,
     "num_views": 0,
-    "paid": "free",
+    "paid": "false",
     "description":
       "Cookies are small data that are stored on a client-side and sent to the client along with server requests. With the help of the cookie-parser module, we can do set the cookies as well as get the cookies",
     "edited": "false",
@@ -161,7 +161,7 @@
     "rating": 4.5,
     "num_ratings": 11.152,
     "num_views": 0,
-    "paid": "free",
+    "paid": "false",
     "description":
       "Enables extensions to get and set cookies, and be notified when they change. To use this API, you need to include the cookies API permission in your manifest.json file, as well as host permissions for the sites whose cookies you need to access. See cookie Permissions. ",
     "edited": "false",
@@ -178,7 +178,7 @@
     "rating": 4.6,
     "num_ratings": 138.647,
     "num_views": 459.039,
-    "paid": "paid",
+    "paid": "true",
     "description":
       " With this course you are going to Develop modern, complex, responsive and scalable web applications with Angular 11 Fully understand the architecture behind an Angular application and how to use it ",
     "edited": "false",
@@ -195,7 +195,7 @@
     "rating": 4.6,
     "num_ratings": 623,
     "num_views": 72.447,
-    "paid": "paid",
+    "paid": "true",
     "description":
       " n this course, we'll look at the JavaScript language, and how it supports the Object-Oriented pattern, with a focus on the unique aspect of how JavaScript approaches OO. We'll explore a brief introduction to the jQuery library, which is widely used to do in-browser manipulation of the Document Object Model (DOM) and event handling. You'll also learn more about JavaScript Object Notation (JSON), which is commonly used as a syntax to exchange data between code running on the server (i.e. in PHP) and code running in the browser (JavaScript/jQuery).",
     "edited": "false",
@@ -212,7 +212,7 @@
     "rating": 4.3,
     "num_ratings": 524,
     "num_views": 41.946,
-    "paid": "free",
+    "paid": "false",
     "description":
       "This course will get you up and running with MongoDB quickly, and teach you how to leverage its power for data analytics. We'll start by mastering the fundamentals of MongoDB, including MongoDB’s Document data model, importing data into a cluster, working with our CRUD API and Aggregation Framework. These topics will be taught through a demo application which will give you a great first encounter of how simple and practical it can be to build applications with MongoDB.In addition to these essential topics, you will also learn and work with useful MongoDB tools and services. You will work with Atlas, MongoDB's database as a service, MongoDB Compass, a schema visualization tool, as well as many other useful command-line utilities.",
     "edited": "false",
