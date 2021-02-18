@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { isValidObjectId } from "mongoose";
 
 export default function AddResource() {
   const user = useSelector((state) => state.loginData.user._id);

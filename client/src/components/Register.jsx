@@ -66,7 +66,9 @@ export default function Register() {
           }}
           ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
-        {errors.userName && "Your Username is required"}
+        {errors.userName && errors.userName.type === "required" && (
+          <span className="errorsMsg">Your Username is required</span>
+        )}
         {errors.userName && errors.userName.type === "maxLength" && (
           <span className="errorsMsg">Max length exceeded</span>
         )}
@@ -86,7 +88,9 @@ export default function Register() {
           }}
           ref={register({ required: true })}
         />
-        {errors.email && "Your Email is required"}
+        {errors.email && errors.email.type === "required" && (
+          <span className="errorsMsg">Your Email is required</span>
+        )}
 
         <label htmlFor="password">Password</label>
         <input
@@ -98,12 +102,14 @@ export default function Register() {
           }}
           ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
-        {errors.password && "Your password is require"}
+        {errors.password && errors.password.type === "required" && (
+          <span className="errorsMsg">Your Password is required</span>
+        )}
         {errors.password && errors.password.type === "maxLength" && (
-          <span>Max length exceeded</span>
+          <span className="errorsMsg">Max length exceeded</span>
         )}
         {errors.password && errors.password.type === "minLength" && (
-          <span>Must be more than 3 character</span>
+          <span className="errorsMsg">Must be more than 3 character</span>
         )}
 
         <label htmlFor="confirm-password">Confirm Password</label>

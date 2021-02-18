@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions";
-//import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
   // const login = useSelector((state) => state.username);
   const dispatch = useDispatch();
   const [loginData, setLoginData] = useState({});
   const { register, handleSubmit, errors } = useForm();
+  let history = useHistory();
 
   function handleChange(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -21,7 +22,7 @@ export default function Login() {
         onSubmit={handleSubmit(() => {
           //e.preventDefault();
           console.log("Login Request!");
-          fetch("http://localhost:5000/login", {
+          fetch("/login", {
             method: "POST",
             body: JSON.stringify(loginData),
             headers: {
@@ -29,11 +30,11 @@ export default function Login() {
             },
           })
             .then((response) => {
+              history.push("/profile");
               if (response.status === 200) {
                 response.json().then((data) => {
-                  console.log(data.user);
+                  console.log(data);
                   dispatch(userLogin(data));
-                  //history.push("/profile");
                   data.logIn === true
                     ? alert(`Welcome`)
                     : alert("Your password is wrong! please try again!");
@@ -55,12 +56,14 @@ export default function Login() {
           }}
           ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
-        {errors.username && "Your Username is required"}
-        {errors.username && errors.username.type === "maxLength" && (
+        {errors.username && errors.username.type === "required" && (
+          <span className="errorsMsg">Your Username is required</span>
+        )}
+        {errors.userName && errors.userName.type === "maxLength" && (
           <span>Max length exceeded</span>
         )}
-        {errors.username && errors.username.type === "minLength" && (
-          <span>Must be more than 3 character</span>
+        {errors.userName && errors.userName.type === "minLength" && (
+          <span className="errorsMsg">Must be more than 3 character</span>
         )}
 
         <label htmlFor='password'>Password</label>
@@ -73,12 +76,14 @@ export default function Login() {
           }}
           ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
-        {errors.password && "Your password is require"}
+        {errors.password && errors.password.type === "required" && (
+          <span className="errorsMsg">Your Password is required</span>
+        )}
         {errors.password && errors.password.type === "maxLength" && (
-          <span>Max length exceeded</span>
+          <span className="errorsMsg">Max length exceeded</span>
         )}
         {errors.password && errors.password.type === "minLength" && (
-          <span>Must be more than 3 character</span>
+          <span className="errorsMsg">Must be more than 3 character</span>
         )}
         <button type='submit'>Login</button>
       </form>

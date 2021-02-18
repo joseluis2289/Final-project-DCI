@@ -44,7 +44,7 @@ const Resource = (props) => {
           src={previewUrl}
           alt='Illustration for Online Learning'
         />
-        <figcaption>{props.data.paid}</figcaption>
+        <figcaption>{props.data.paid ? "paid" : "free"}</figcaption>
       </figure>
       <p>
         <a target='_blank' rel='noreferrer' href={props.data.link}>

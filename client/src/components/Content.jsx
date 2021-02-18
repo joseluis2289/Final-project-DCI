@@ -20,11 +20,11 @@ const Content = ({ getResources, resources, filter }) => {
       <React.Fragment>
         {resources.map((item, index) => {
           let showResource = false;
-          if (filter.free === true && item.paid === "free") {
+          if (filter.free === true && item.paid === false) {
             console.log(filter.free, item.paid);
             showResource = true;
           }
-          if (filter.paid === true && item.paid === "paid") {
+          if (filter.paid === true && item.paid === true) {
             console.log(filter.paid, item.paid);
             showResource = true;
           }
