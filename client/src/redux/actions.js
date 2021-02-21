@@ -1,10 +1,10 @@
 import axios from "axios";
 
 //USER ACTIONS
-export function userLogin(data) {
+export function userLogin({ logIn, user }) {
   return {
     type: "USER_LOGIN",
-    payload: data,
+    payload: { logIn, user },
   };
 }
 

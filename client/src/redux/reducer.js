@@ -1,11 +1,11 @@
 const initialState = {
   user: {},
+  logIn: false,
   resources: [],
   filter: {
     rating: 0, // show all
   },
   loginData: {
-    user: "",
     logIn: false,
     accessToken: "",
     refreshToken: "",
@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case "USER_LOGIN":
-      return { ...state, loginData: action.payload };
+      return { ...state, logIn: payload.logIn, user: payload.user };
 
     case "USER_LOGOUT":
       return { ...state, user: {} };

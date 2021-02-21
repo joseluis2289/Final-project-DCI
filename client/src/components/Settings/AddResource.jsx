@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 export default function AddResource() {
-  const user = useSelector((state) => state.loginData.user._id);
+  const user = useSelector((state) => state.user._id);
   const [resource, setResource] = useState({
     user: user,
     category: [],

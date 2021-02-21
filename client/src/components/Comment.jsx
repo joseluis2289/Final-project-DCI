@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 export default function Comment(props) {
-  const user = useSelector((state) => state.loginData.user._id);
+  const user = useSelector((state) => state.user._id);
   const [comment, setComment] = useState({
     user: user,
     resource: props.resourceId,
