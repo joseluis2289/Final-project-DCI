@@ -17,7 +17,7 @@ const protectedRoutes = require("./routes/protectedRoutes");
 const PORT = process.env.PORT || 5000;
 
 // const url = process.env.MONGO_URIBel;
-const url = process.env.MONGO_URIJose;
+const url = process.env.URL;
 //listen to a port
 
 //connect to DataBase
