@@ -16,7 +16,7 @@ const Resource = (props) => {
 
   useEffect(() => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
-  }, []);
+  }, [props.data.previewImage]);
 
   return (
     <section className='resource-container'>

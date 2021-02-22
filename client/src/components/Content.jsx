@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, connect } from "react-redux";
+import { connect } from "react-redux";
 import Resource from "./Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
@@ -10,8 +10,7 @@ const Content = ({ getResources, resources, filter }) => {
 
   useEffect(() => {
     getResources();
-    console.log(resources);
-  }, []);
+  }, [getResources]);
 
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
