@@ -1,4 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,700;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700&family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap");
+/* Lots of Google Fonts were imported for testing, the ones not used
+have to be removed later... */
+
+/* Color Palette: https://flatuicolors.com/palette/es */
+:root {
+  --green-light: #33d9b2;
+  --green-dark: #218c74;
+  --red-light: #ff5252;
+  --red-dark: #b33939;
+  --blue-light: #34ace0;
+  --blue-dark: #227093;
+  --off-white: #f7f1e3;
+  --off-white-dark: #aaa69d;
+  --violett-light: #706fd3;
+  --violett-dark: #474787;
+  --yellow-light: #ffda79;
+  --yellow-dark: #ccae62;
+}
+
 * {
   border: 0;
   margin: 0;
@@ -6,20 +25,35 @@
   box-sizing: border-box;
 }
 body {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--off-white);
   color: #181818;
 }
 
+h1,
+h2,
+h3 {
+  font-family: "Epilogue", sans-serif;
+  font-weight: 600;
+}
+
 label,
-input {
-  font-family: "IBM Plex Sans", sans-serif;
+input,
+select,
+option {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+button {
+  font-family: "Epilogue", sans-serif;
   font-size: 1rem;
 }
 
 /***** HEADER / NAVIGATION *****/
 
 .app-header {
-  background-color: #c5cae9;
+  background-color: var(--violett-light);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,28 +63,30 @@ input {
   height: 1.67rem;
   margin: 0.5rem 0.5rem -0.5rem 1rem;
 }
-.app-header a {
+.app-header h1 {
+  padding: 1rem 0;
+  font-size: 2.67rem;
+}
+.app-header h1 a {
+  color: var(--off-white);
+  text-shadow: 0.2rem 0.2rem 0 var(--violett-dark);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
 }
-h1 {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 700;
-  font-size: 2rem;
-  margin: 0.33rem 0 0.67rem 0;
-}
-h1 a {
-  color: #222;
+.app-header nav a {
+  color: var(--off-white);
+  text-shadow: 0.1rem 0.1rem 0 var(--violett-dark);
+  text-decoration: none;
+  padding: 1rem 0;
 }
 h2 {
-  font-family: "IBM Plex Serif", serif;
   font-size: 1.67rem;
 }
 
 /***** SEARCHBAR / FILTER *****/
 
 .searchbar-form {
-  background-color: hsl(243, 100%, 80%);
+  background-color: #ffda79;
   display: flex;
   align-items: center;
 }
@@ -61,7 +97,7 @@ h2 {
 }
 
 .filter-form {
-  background-color: hsl(243, 100%, 90%);
+  background-color: #ffda79;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -87,13 +123,12 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 0.67rem 1.33rem;
 }
 .searchbar-form {
   flex-direction: row;
   align-items: center;
-}
-.searchbar-form select,
-.searchbar-form input {
+  border-bottom: 1px solid var(--yellow-dark);
 }
 label {
   font-weight: bold;
@@ -105,8 +140,25 @@ label {
 .searchbar-form input[type="checkbox"] + label {
   margin-left: 0.25rem;
 }
+
+main h2 {
+  margin: 1rem 0 0 1rem;
+}
+
+main input {
+  min-width: 33ch;
+  box-shadow: 0.2rem 0.2rem 0 var(--yellow-dark);
+  border: 1px solid var(--yellow-dark);
+}
+main input:focus {
+  border: 1px solid var(--violett-light);
+}
 main label {
-  margin-top: 1rem;
+  margin-top: 1.33rem;
+  margin-bottom: 0.33rem;
+}
+main button {
+  margin-top: 1.33rem;
 }
 input {
   padding: 0.5rem;
@@ -114,10 +166,19 @@ input {
   border-radius: 0.5rem;
 }
 button {
-  margin-top: 1rem;
-  padding: 0.5rem;
-  border: 1px solid #999;
+  background-color: var(--violett-dark);
+  box-shadow: 2px 2px 0 var(--yellow-dark);
+  color: #fff;
+  font-weight: 500;
+  min-width: 10ch;
+  padding: 0.75rem 2rem 0.67rem 2rem;
   border-radius: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+button:hover {
+  background-color: var(--violett-light);
+  cursor: pointer;
 }
 /*** RESOURCES ***/
 .resource-container {
