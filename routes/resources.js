@@ -9,6 +9,38 @@ router.get("/", (req, res, next) => {
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
 });
+// get one specific Resource
+router.get("/:resource_id", (req, res, next) => {
+  const resource = Resource.findById(req.params.resource_id)
+    .then((resource) => res.json(resource))
+    .catch((err) => res.send(err));
+});
+
+//this MiddleWare is protecting all the routes down Below
+router.use("/", (req, res, next) => {
+  if (req.session.user) {
+    next();
+  } else {
+    res.sendStatus(401);
+  }
+});
+router.post("/rating", (req, res, next) => {
+  const rate = req.body.rate;
+  const resourceId = req.body.resourceId;
+  Resource.findById(resourceId).then((result) => {
+    const oldAverage = result.rating;
+    const oldNumberRating = result.num_ratings;
+    const newAverage =
+      (oldAverage * oldNumberRating + rate) / (oldNumberRating + 1);
+    result.rating = newAverage;
+    result.num_ratings = oldNumberRating + 1;
+    result.save().then(() => {
+      res.json({
+        average: Math.round(newAverage),
+      });
+    });
+  });
+});
 
 // add one resource
 router.post("/add", (req, res, next) => {
@@ -99,13 +131,6 @@ router.post("/addmany", (req, res, next) => {
 router.delete("/", (req, res, next) => {
   Resource.deleteMany()
     .then((res) => res.json("all resources were deleted"))
-    .catch((err) => res.send(err));
-});
-
-// get one specific Resource
-router.get("/:resource_id", (req, res, next) => {
-  const resource = Resource.findById(req.params.resource_id)
-    .then((resource) => res.json(resource))
     .catch((err) => res.send(err));
 });
 
