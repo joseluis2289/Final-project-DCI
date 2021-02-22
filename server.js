@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 var cors = require("cors");
 require("dotenv").config();
 const app = express();
-const UserModel = require("../Final-Project-DCI/Models/userModel");
+const UserModel = require("./Models/userModel");
 const expValidator = require("express-validator");
 const Logger = require("morgan");
 const cookieParser = require("cookie-parser");
@@ -16,8 +16,8 @@ const protectedRoutes = require("./routes/protectedRoutes");
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
-// const url = process.env.MONGO_URIBel;
-const url = process.env.MONGO_URIJose;
+const url = process.env.MONGO_URIBel;
+// const url = process.env.MONGO_URIJose;
 //listen to a port
 
 //connect to DataBase

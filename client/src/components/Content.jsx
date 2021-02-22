@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, connect } from "react-redux";
 import Resource from "./Resource";
 import PropTypes from "prop-types";
@@ -15,27 +15,64 @@ const Content = ({ getResources, resources, filter }) => {
 
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
+  // const resourcesPerPage = 8;
+  // const [pageNr, setPageNr] = useState(1);
+  // const nrOfPages = Math.ceil(resources.length / resourcesPerPage);
+  // let pagination = [];
+
   return (
-    <div className='references-container'>
-      <React.Fragment>
-        {resources.map((item, index) => {
-          let showResource = false;
-          if (filter.free === true && item.paid === false) {
-            console.log(filter.free, item.paid);
-            showResource = true;
+    <div className="references-container">
+      {/* <section className="pagination">
+        {pageNr} of {nrOfPages} /
+        {[1, 2].map((i) => (
+          <button
+            key={i}
+            href="#"
+            onClick={() => {
+              setPageNr(i);
+            }}
+          >
+            {i}
+          </button>
+        ))}
+      </section> */}
+      {/* THIS SHOULD HAPPEN AFTER FILTER, NOT BEFORE! */}
+      {resources.map((item, index) => {
+        // if (
+        //   index > (pageNr - 1) * resourcesPerPage &&
+        //   index < pageNr * resourcesPerPage
+        // ) {
+        let showByCategory = false;
+        let showByRating = false;
+        let showByCost = false;
+
+        // FILTER FOR CATEGORIES
+        let categories = ["frontend", "backend", "database", "general"];
+        categories.forEach((cat) => {
+          if (filter[cat] === true && item.category.includes(cat)) {
+            showByCategory = true;
           }
-          if (filter.paid === true && item.paid === true) {
-            console.log(filter.paid, item.paid);
-            showResource = true;
-          }
-          if (item.rating < filter.rating) {
-            showResource = false;
-          }
-          if (showResource)
-            return <Resource id={index} key={index} data={item} />;
-          return "";
-        })}
-      </React.Fragment>
+        });
+
+        // FILTER FOR FREE/PAID RESOURCES
+
+        if (filter.free === true && item.paid === false) {
+          showByCost = true;
+        }
+        if (filter.paid === true && item.paid === true) {
+          showByCost = true;
+        }
+
+        // FILTER FOR RATING
+        if (Math.floor(item.rating) >= filter.rating) {
+          showByRating = true;
+        }
+        // If resource matches all filter criteria, it is displayed
+        if (showByCost && showByRating && showByCategory)
+          return <Resource id={index} key={index} data={item} />;
+        return "";
+        // } else return "";
+      })}
     </div>
   );
 };

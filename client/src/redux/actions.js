@@ -35,6 +35,15 @@ export function filterRating(rating) {
   };
 }
 
+// topic = "frontend", "backend", "database", "general"
+// status = checkbox status = true / false
+export function filterCategory(topic, status) {
+  return {
+    type: "FILTER_CATEGORY",
+    payload: { category: topic, display: status },
+  };
+}
+
 //RESOURCES ACTIONS
 export const getResources = () => async (dispatch) => {
   axios
