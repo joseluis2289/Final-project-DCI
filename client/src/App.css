@@ -83,8 +83,6 @@ h2 {
   font-size: 1.67rem;
 }
 
-/***** SEARCHBAR / FILTER *****/
-
 .searchbar-form {
   background-color: #ffda79;
   display: flex;
@@ -101,6 +99,7 @@ h2 {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
 }
 
 /***** MAIN CONTENT *****/
@@ -125,7 +124,7 @@ form {
   align-items: flex-start;
   padding: 0.67rem 1.33rem;
 }
-.searchbar-form {
+.filter-form {
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid var(--yellow-dark);
@@ -133,11 +132,11 @@ form {
 label {
   font-weight: bold;
 }
-.searchbar-form label {
+.filter-form label {
   margin-left: 1rem;
   margin-right: 0.5rem;
 }
-.searchbar-form input[type="checkbox"] + label {
+.filter-form input[type="checkbox"] + label {
   margin-left: 0.25rem;
 }
 
@@ -213,4 +212,9 @@ button:hover {
 }
 .star-container {
   cursor: pointer;
+}
+
+/***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
+.errorsMsg {
+  color: red;
 }
