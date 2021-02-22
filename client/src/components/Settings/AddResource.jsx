@@ -31,10 +31,13 @@ export default function AddResource() {
     axios({
       method: "POST",
       url: "http://localhost:5000/resources/add",
-      ContentType: "application-json",
+      headers: {
+        'Content-Type': 'application/json'
+    },
       data: resource,
     })
-      .then(function (response) {
+      .then((response) => {
+        console.log("resource added");
         console.log(response);
       })
       .catch((err) => {
@@ -89,12 +92,12 @@ export default function AddResource() {
           <label htmlFor='link'>Paid</label>
           <div>
             <label htmlFor='access_paid'>
-              <input type='radio' name='paid' id='access_paid' value='paid' />
+              <input type='radio' name='paid' id='access_paid' value={true} />
               Yes
             </label>
 
             <label htmlFor='access_free'>
-              <input type='radio' name='paid' id='access_free' value='free' />
+              <input type='radio' name='paid' id='access_free' value={false} />
               No
             </label>
           </div>

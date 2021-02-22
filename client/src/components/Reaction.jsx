@@ -7,21 +7,21 @@ export default function Reaction({ love, like, dislike }) {
         className='reaction-icon'
         src='https://img.icons8.com/flat-round/2x/filled-like.png'
         alt='loved'
-        srcset=''
+        srcSet=''
       />{" "}
       <span>{love}</span>{" "}
       <img
         className='reaction-icon'
         src='https://img.icons8.com/color/2x/happy.png'
         alt='like'
-        srcset=''
+        srcSet=''
       />{" "}
       <span>{like}</span>{" "}
       <img
         className='reaction-icon'
         src='https://img.icons8.com/fluent/2x/disappointed.png'
         alt='dislike'
-        srcset=''
+        srcSet=''
       />{" "}
       <span>{dislike}</span>{" "}
     </div>

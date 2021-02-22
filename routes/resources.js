@@ -60,7 +60,8 @@ router.post("/add", (req, res, next) => {
         .catch((err) => {
           res.send(err);
         });
-    });
+    })
+    .catch((err)=>res.send(err))
 });
 
 // add many resources

@@ -13,7 +13,7 @@ export default function Comment(props) {
     axios({
       method: "POST",
       url: "http://localhost:5000/comments",
-      ContentType: "application-json",
+      ContentType: "application/json",
       data: comment,
     })
       .then((res) => {

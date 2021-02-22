@@ -10,7 +10,7 @@ const Resource = new Schema({
   date: { type: Date, default: Date.now },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "Users",
+    ref: "users",
   },
   category: {
     type: [String],
