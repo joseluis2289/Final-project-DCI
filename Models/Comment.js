@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Comment = new mongoose.Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "user",
   },
   resource: {
     type: Schema.Types.ObjectId,
@@ -13,4 +13,4 @@ const Comment = new mongoose.Schema({
   text: { type: String, required: true },
 });
 
-module.exports = mongoose.model("comment", Comment);
+module.exports = mongoose.model("comments", Comment);
