@@ -55,8 +55,11 @@ router.post("/add", (req, res, next) => {
       resource
         .save()
         .then((resourceAdded) => {
-          UserSchema.findOneAndUpdate({_id: resourceAdded.user._id}, {$push:{resources: "resourceAdded._id"}})
-          console.log("tem id", resourceAdded);
+          UserSchema.findByIdAndUpdate(resourceAdded.user._id, {$push:{resources: resourceAdded._id}})
+          .then((userUpdated)=>{
+            res.send(userUpdated)
+          })
+          .catch(err=>console.log(err))
           res.status(200).send(result);
         })
         .catch((err) => {
