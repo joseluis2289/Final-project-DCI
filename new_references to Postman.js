@@ -242,7 +242,7 @@
     "previewImage":
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png",
      "user": "6033aa680435059a34b77d43",
-    "category": ["machine learning"],
+    "category": ["machineLearning"],
     "rating": 4.5,
     "num_ratings": 41.838,
     "num_views": 272.307,
@@ -259,7 +259,7 @@
     "previewImage":
       "https://www.ionos.de/digitalguide/fileadmin/DigitalGuide/Teaser/deep-learning-vs-machine-learning-t.jpg",
      "user": "6033aa680435059a34b77d43",
-    "category": ["machine learning"],
+    "category": ["machineLearning"],
     "rating": 4.7,
     "num_ratings": 23.157,
     "num_views": 165.313,
