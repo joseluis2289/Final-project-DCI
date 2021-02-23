@@ -24,6 +24,9 @@ have to be removed later... */
   padding: 0;
   box-sizing: border-box;
 }
+
+/* TYPOGRAPHY */
+
 body {
   font-family: "Roboto", sans-serif;
   background-color: var(--off-white);
@@ -37,6 +40,7 @@ h3 {
   font-weight: 600;
 }
 
+legend,
 label,
 input,
 select,
@@ -79,21 +83,26 @@ button {
   text-decoration: none;
   padding: 1rem 0;
 }
-h2 {
-  font-size: 1.67rem;
-}
-
-
-.searchbar-form {
+/* .searchbar-form {
+>>>>>>> 2d60b92ef5ce5bf29a0badefa3c4502b8364093b
   background-color: #ffda79;
   display: flex;
   align-items: center;
+} */
+
+/* FORMS -- GENERAL */
+
+legend,
+label {
+  font-weight: bold;
 }
 
-.rating {
-  display: flex;
-  align-items: center;
+fieldset {
+  border: 1px solid var(--yellow-dark);
+  padding: 0.5rem;
 }
+
+/* FILTER BAR */
 
 .filter-form {
   background-color: #ffda79;
@@ -101,48 +110,48 @@ h2 {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  border-bottom: 1px solid var(--yellow-dark);
 }
 
+.search-container {
+  border: 0;
+}
 /***** MAIN CONTENT *****/
 
 .references-container {
-  background-color: #f0f0f0;
+  background-color: var(--off-white);
   padding: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-article {
-  /* padding: 2rem; */
+.pagination {
+  grid-column: 1 / span 2;
 }
 
 /*** FORMS ***/
 
-form {
+main form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0.67rem 1.33rem;
 }
-.filter-form {
-  flex-direction: row;
-  align-items: center;
-}
-.filter-form select,
-.filter-form input {
-  border-bottom: 1px solid var(--yellow-dark);
-}
-label {
-  font-weight: bold;
-}
-.filter-form label {
+
+.filter-form label,
+.filter-form legend {
   margin-left: 1rem;
   margin-right: 0.5rem;
+}
+.filter-form legend {
+  display: inline;
 }
 .filter-form input[type="checkbox"] + label {
   margin-left: 0.25rem;
 }
+
+/* MAIN CONTENT */
 
 main h2 {
   margin: 1rem 0 0 1rem;
@@ -184,6 +193,10 @@ button:hover {
   cursor: pointer;
 }
 /*** RESOURCES ***/
+.rating {
+  display: flex;
+  align-items: center;
+}
 .resource-container {
   padding: 1.5rem;
   background-color: #fff;

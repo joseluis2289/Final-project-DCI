@@ -4,6 +4,10 @@ const initialState = {
   resources: [],
   filter: {
     rating: 0, // show all
+    frontend: true,
+    backend: true,
+    database: true,
+    general: true,
   },
   loginData: {
     logIn: false,
@@ -22,6 +26,12 @@ const reducer = (state = initialState, action) => {
 
     case "USER_LOGOUT":
       return { ...state, user: {} };
+
+    case "FILTER_CATEGORY":
+      return {
+        ...state,
+        filter: { ...state.filter, [payload.category]: payload.display },
+      };
 
     case "FILTER_FREE":
       return { ...state, filter: { ...state.filter, free: payload } };

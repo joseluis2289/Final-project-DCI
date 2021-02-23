@@ -1,17 +1,59 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { filterFree, filterPaid, filterRating } from "../redux/actions";
-import Rating from "../components/Rating";
+import { filterCategory, filterFree, filterPaid } from "../redux/actions";
+import FilterRating from "../components/FilterRating";
 
 export default function Filter() {
+  // In the beginning all resources are shown: free, paid and all ratings.
   let initialState = {
     free: true,
     paid: true,
     rating: 0,
+    frontend: true,
+    backend: true,
+    database: true,
+    general: true,
   };
   const [filterData, setFilterData] = useState(initialState);
   const dispatch = useDispatch();
 
+  // FILTER -- CATEGORY -- "frontend"
+  useEffect(() => {
+    if (filterData.frontend) dispatch(filterCategory("frontend", true));
+    else dispatch(filterCategory("frontend", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.frontend, dispatch]);
+
+  // FILTER -- CATEGORY -- "backend"
+  useEffect(() => {
+    if (filterData.backend) dispatch(filterCategory("backend", true));
+    else dispatch(filterCategory("backend", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.backend, dispatch]);
+
+  // FILTER -- CATEGORY -- "database"
+  useEffect(() => {
+    if (filterData.database) dispatch(filterCategory("database", true));
+    else dispatch(filterCategory("database", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.database, dispatch]);
+
+  // FILTER -- CATEGORY -- "general"
+  useEffect(() => {
+    if (filterData.general) dispatch(filterCategory("general", true));
+    else dispatch(filterCategory("general", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.general, dispatch]);
+
+  // FILTER -- FREE RESOURCES
   useEffect(() => {
     if (filterData.free) dispatch(filterFree(true));
     else dispatch(filterFree(false));
@@ -20,6 +62,7 @@ export default function Filter() {
     };
   }, [filterData.free, dispatch]);
 
+  // FILTER -- PAID RESOURCES
   useEffect(() => {
     if (filterData.paid) dispatch(filterPaid(true));
     else dispatch(filterPaid(false));
@@ -28,94 +71,95 @@ export default function Filter() {
     };
   }, [filterData.paid, dispatch]);
 
-  useEffect(() => {
-    if (filterData.rating) dispatch(filterRating(filterData.rating));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.rating, dispatch]);
-
   function handleChange(e) {
     setFilterData({ ...filterData, [e.target.name]: e.target.checked });
-  }
-  function handleRatingChange(e) {
-    setFilterData({ ...filterData, [e.target.name]: e.target.value });
   }
 
   return (
     <React.Fragment>
-      <form className='filter-form'>
-        <div name='category'>
-          <label>Category</label>
-          <label htmlFor='frontend'>
-            <input type='checkbox' name='category' value='frontend' />
-            Frontend
-          </label>
-          <label htmlFor='backend'>
-            <input type='checkbox' name='category' value='backend' />
-            Backend
-          </label>
-          <label htmlFor='database'>
-            <input type='checkbox' name='category' value='database' />
-            Database
-          </label>
-          <label htmlFor='general'>
-            <input type='checkbox' name='category' value='general' />
-            General
-          </label>
-        </div>
-        <div>
-          <label>Is paid?</label>
+      <form className="filter-form">
+        {/* Category Filter */}
+        <fieldset>
+          <legend>Category</legend>
           <input
-            type='checkbox'
-            name='free'
-            id='filter-free'
+            type="checkbox"
+            id="frontend"
+            name="frontend"
+            onChange={handleChange}
+            checked={filterData.frontend}
+          />
+          <label htmlFor="frontend">Frontend</label>
+
+          <input
+            type="checkbox"
+            id="backend"
+            name="backend"
+            onChange={handleChange}
+            checked={filterData.backend}
+          />
+          <label htmlFor="backend">Backend</label>
+
+          <input
+            type="checkbox"
+            id="database"
+            name="database"
+            onChange={handleChange}
+            checked={filterData.database}
+          />
+          <label htmlFor="database">Database</label>
+
+          <input
+            type="checkbox"
+            id="general"
+            name="general"
+            onChange={handleChange}
+            checked={filterData.general}
+          />
+          <label htmlFor="general">General</label>
+        </fieldset>
+
+        {/* Paid/Free Filter */}
+        <fieldset>
+          <legend>Is paid?</legend>
+          <input
+            type="checkbox"
+            name="free"
+            id="filter-free"
             onChange={handleChange}
             checked={filterData.free}
           />
-          <label htmlFor='filter-free'>Free</label>
+          <label htmlFor="filter-free">Free</label>
+
           <input
-            type='checkbox'
-            name='paid'
-            id='filter-paid'
+            type="checkbox"
+            name="paid"
+            id="filter-paid"
             onChange={handleChange}
             checked={filterData.paid}
           />
-          <label htmlFor='filter-paid'>Paid</label>
-        </div>
-        <div>
+          <label htmlFor="filter-paid">Paid</label>
+        </fieldset>
+
+        {/* Rating Filter */}
+        <fieldset>
           <legend>
             <strong>Rating:</strong>
           </legend>
-          (Component Test)
-          <Rating usedInFilter={true} />
-          (Redux Test)
-          <input
-            type='radio'
-            name='rating'
-            id='rating-4'
-            value='4'
-            onChange={handleRatingChange}
-          />
-          <label htmlFor='rating-4'>4</label>
-          <input
-            type='radio'
-            name='rating'
-            id='rating-5'
-            value='5'
-            onChange={handleRatingChange}
-          />
-          <label htmlFor='rating-5'>5</label>
-        </div>
-        <input
-          type='search'
-          name='search'
-          id='search'
-          placeholder='Search...'
-          onChange={handleChange}
-        />
+          <FilterRating />
+        </fieldset>
 
-        <button type='submit'>Search</button>
+        {/* Search Field */}
+        <fieldset className="search-container">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search..."
+            onChange={handleChange}
+          />
+
+          <button type="submit">Search</button>
+        </fieldset>
       </form>
     </React.Fragment>
   );
