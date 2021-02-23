@@ -10,17 +10,17 @@ const Resource = new Schema({
   date: { type: Date, default: Date.now },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
   },
   category: {
     type: [String],
-    enum: ["frontend", "backend", "database", "general"],
+    enum: ["frontend", "backend", "database", "machine learning", "general" ],
     required: true,
   },
   usersThatRated: [
     {
       type: Schema.Types.ObjectId,
-      ref: "users",
+      ref: "User",
     },
   ],
   rating: { type: Number, min: 0, max: 5 },
@@ -37,12 +37,12 @@ const Resource = new Schema({
   comments: [
     {
       type: Schema.Types.ObjectId,
-      ref: "comments",
+      ref: "Comment",
     },
   ],
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
   },
 });
-module.exports = mongoose.model("resource", Resource);
+module.exports = mongoose.model("Resource", Resource);

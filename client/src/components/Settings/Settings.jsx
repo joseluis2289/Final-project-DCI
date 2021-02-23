@@ -12,19 +12,20 @@ export default function Settings() {
   }, []);
   return (
     <div>
-      <Link to='/add_resource'>
+      <Link to="/add_resource">
         <img
-          className='icon'
-          src='icons/icon_add_resource.svg'
-          alt='Login Icon'
+          className="icon"
+          src="icons/icon_add_resource.svg"
+          alt="Login Icon"
         />
         AddResource
-      </Link>
-      <Link to='/update_resource'>
+      </Link>{" "}
+      <Link to="/my_resources">MyResources</Link>{" "}
+      <Link to="/update_resource">
         <img
-          className='icon'
-          src='icons/icon_update_resource.svg'
-          alt='Login Icon'
+          className="icon"
+          src="icons/icon_update_resource.svg"
+          alt="Login Icon"
         />
         UpdateResource
       </Link>{" "}

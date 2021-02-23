@@ -6,6 +6,7 @@ const Comment = require("../Models/Comment");
 //get all Resources
 router.get("/", (req, res, next) => {
   const resources = Resource.find()
+  .populate("user", "name")
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
 });
@@ -54,6 +55,7 @@ router.post("/add", (req, res, next) => {
       resource
         .save()
         .then((resourceAdded) => {
+          UserSchema.findOneAndUpdate({_id: resourceAdded.user._id}, {$push:{resources: "resourceAdded._id"}})
           console.log("tem id", resourceAdded);
           res.status(200).send(result);
         })
@@ -106,6 +108,7 @@ router.delete("/", (req, res, next) => {
 // get one specific Resource
 router.get("/:resource_id", (req, res, next) => {
   const resource = Resource.findById(req.params.resource_id)
+    .populate("user", "name")
     .then((resource) => res.json(resource))
     .catch((err) => res.send(err));
 });

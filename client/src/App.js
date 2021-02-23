@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Content from "./components/Content";
 import AddResource from "./components/Settings/AddResource";
+import MyResources from "./components/Settings/MyResources"
 import Settings from "./components/Settings/Settings";
 import UpdateResource from "./components/Settings/UpdateResource";
 import NotFound from "./components/NotFound";
@@ -27,6 +28,7 @@ export default function App() {
           <Route path='/' exact={true} component={Content} />
           <Route path='/settings' component={Settings} />
           <Route path='/add_resource' component={AddResource} />
+          <Route path='/my_resources' component={MyResources} />
           <Route path='/update_resource' component={UpdateResource} />
           <Route path='#!' component={NotFound} />
         </main>

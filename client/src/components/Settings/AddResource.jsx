@@ -27,13 +27,13 @@ export default function AddResource() {
   let addResource = (e) => {
     e.preventDefault();
     // setResource({ ...resource, user: user });
-    console.log("resource from AddResourcee", resource);
+    console.log("resource from AddResource", resource);
     axios({
       method: "POST",
       url: "http://localhost:5000/resources/add",
       headers: {
-        'Content-Type': 'application/json'
-    },
+        "Content-Type": "application/json",
+      },
       data: resource,
     })
       .then((response) => {
@@ -48,72 +48,72 @@ export default function AddResource() {
     <div>
       <form onSubmit={addResource}>
         <div>
-          <label htmlFor='title'>Title</label>
+          <label htmlFor="title">Title</label>
           <input
-            type='text'
-            name='title'
-            placeholder='Enter the title...'
+            type="text"
+            name="title"
+            placeholder="Enter the title..."
             onChange={formHandler}
           />
         </div>
         <div>
-          <label htmlFor='link'>Link</label>
+          <label htmlFor="link">Link</label>
           <input
-            type='text'
-            name='link'
-            placeholder='Enter the Link..'
+            type="text"
+            name="link"
+            placeholder="Enter the Link.."
             onChange={formHandler}
           />
         </div>
-        <div name='category' onChange={defineCategory}>
+        <div name="category" onChange={defineCategory}>
           <label>Category</label>
-          <label htmlFor='frontend'>
-            <input type='checkbox' name='category' value='frontend' />
+          <label htmlFor="frontend">
+            <input type="checkbox" name="category" value="frontend" />
             Frontend
           </label>
 
-          <label htmlFor='backend'>
-            <input type='checkbox' name='category' value='backend' />
+          <label htmlFor="backend">
+            <input type="checkbox" name="category" value="backend" />
             Backend
           </label>
 
-          <label htmlFor='database'>
-            <input type='checkbox' name='category' value='database' />
+          <label htmlFor="database">
+            <input type="checkbox" name="category" value="database" />
             Database
           </label>
 
-          <label htmlFor='general'>
-            <input type='checkbox' name='category' value='general' />
+          <label htmlFor="general">
+            <input type="checkbox" name="category" value="general" />
             General
           </label>
         </div>
 
-        <div name='paid' onChange={formHandler}>
-          <label htmlFor='link'>Paid</label>
+        <div name="paid" onChange={formHandler}>
+          <label htmlFor="link">Paid</label>
           <div>
-            <label htmlFor='access_paid'>
-              <input type='radio' name='paid' id='access_paid' value={true} />
+            <label htmlFor="access_paid">
+              <input type="radio" name="paid" id="access_paid" value={true} />
               Yes
             </label>
 
-            <label htmlFor='access_free'>
-              <input type='radio' name='paid' id='access_free' value={false} />
+            <label htmlFor="access_free">
+              <input type="radio" name="paid" id="access_free" value={false} />
               No
             </label>
           </div>
         </div>
         <div>
-          <label htmlFor='title'>description</label>
+          <label htmlFor="title">description</label>
           <textarea
-            name='description'
-            rows='5'
-            cols='33'
+            name="description"
+            rows="5"
+            cols="33"
             style={{ border: "solid black 2px" }}
-            placeholder='Enter your description...'
+            placeholder="Enter your description..."
             onChange={formHandler}
           ></textarea>
         </div>
-        <button type='submit'>Add Resource</button>
+        <button type="submit">Add Resource</button>
       </form>
     </div>
   ) : (

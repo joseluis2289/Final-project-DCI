@@ -42,7 +42,7 @@ export const getResources = () => async (dispatch) => {
     .then((res) => {
       dispatch({
         type: "GET_RESOURCES",
-        payload: res.data,
+        payload: [res.data[0]],
       });
       console.log("data from action", res.data);
     })
