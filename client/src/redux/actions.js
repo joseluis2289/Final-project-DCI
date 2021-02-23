@@ -11,6 +11,7 @@ export function userLogin({ logIn, user }) {
 export function userLogout() {
   return {
     type: "USER_LOGOUT",
+    payload: false
   };
 }
 

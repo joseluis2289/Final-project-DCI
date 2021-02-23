@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, logIn: payload.logIn, user: payload.user };
 
     case "USER_LOGOUT":
-      return { ...state, user: {} };
+      return { ...state, user: {}, logIn: payload };
 
     case "FILTER_CATEGORY":
       return {

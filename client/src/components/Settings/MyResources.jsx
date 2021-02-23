@@ -15,7 +15,7 @@ export default function MyResources() {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div>
+    <div className="references-container ">
       {userResources.map(
         (resource) =>
           !resource.deleted && (
