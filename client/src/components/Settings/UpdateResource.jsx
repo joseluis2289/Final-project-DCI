@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import "../Styles/Settings.css";
 export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
 
@@ -17,7 +17,6 @@ export default function UpdateResource(props) {
     "general",
   ]);
   useEffect(() => {
-    console.log("check ig deleted pro is here", resource);
     resource.previewImage && setPreviewUrl(resource.previewImage);
   }, [resource.previewImage]);
 
@@ -74,13 +73,15 @@ export default function UpdateResource(props) {
   return (
     <div className="update-resource">
       <form onSubmit={updateResource}>
-        <button onClick={delResource}>X</button>
-        {deleted && (
-          <span>
-            Resource deleted{" "}
-            <img className="icon" src="icons/x.png" alt="checked Icon" />
-          </span>
-        )}
+        <div className="delete-button">
+          <button onClick={delResource}>X</button>
+          {deleted && (
+            <span>
+              Resource deleted{" "}
+              <img className="icon" src="icons/x.png" alt="checked Icon" />
+            </span>
+          )}
+        </div>
         <div>
           <label htmlFor="title">Title</label>
           <input
@@ -99,8 +100,12 @@ export default function UpdateResource(props) {
           <label htmlFor="link">Link</label>
           <p>{resource.link}</p>
         </div>
-        <div name="category" onChange={defineCategory}>
-          <h2 htmlFor="link">Category</h2>
+        <fieldset
+          className="category"
+          name="category"
+          onChange={defineCategory}
+        >
+          <legend>Category</legend>
 
           {categories.map((item, index) => {
             let name = item[0].toUpperCase() + item.substring(1);
@@ -118,7 +123,7 @@ export default function UpdateResource(props) {
               </div>
             );
           })}
-        </div>
+        </fieldset>
 
         <div name="paid" onChange={formHandler}>
           <label htmlFor="link">Paid</label>
@@ -128,8 +133,8 @@ export default function UpdateResource(props) {
                 type="radio"
                 name="paid"
                 id="access_paid"
-                value="paid"
-                checked={resource.paid}
+                value="true"
+                checked={resource.paid ? "true" : "false"}
               />
               Yes
             </label>
@@ -139,8 +144,8 @@ export default function UpdateResource(props) {
                 type="radio"
                 name="paid"
                 id="access_free"
-                value="free"
-                checked={resource.paid}
+                value="false"
+                checked={resource.paid ? "false" : "true"}
               />
               No
             </label>

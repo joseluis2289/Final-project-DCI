@@ -29,12 +29,14 @@ const Resource = (props) => {
               num_ratings={props.data.num_ratings}
             />
           </div>
-          <h3>
-            {props.data.category.map((item, index) => {
-              let name = item[0].toUpperCase() + item.substring(1);
-              return <span key={index}>{name}</span>;
-            })}
-          </h3>
+          <div className="category">
+            <h3>
+              {props.data.category.map((item, index) => {
+                let name = item[0].toUpperCase() + item.substring(1);
+                return <span key={index}>{name}</span>;
+              })}
+            </h3>
+          </div>
           <h3>added by {props.data.user.name}</h3>
         </hgroup>
       </header>
