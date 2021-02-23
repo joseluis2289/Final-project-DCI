@@ -9,17 +9,47 @@ import AddResources from "./AddResource";
 const Content = ({ getResources, resources, filter }) => {
   // useEffect: on first Component load get top X number of references
   // into the Redux store and display them with React
-
+  const [firstPageLoad, setFirstPageLoad] = useState(true);
   useEffect(() => {
-    getResources();
-  }, [getResources]);
+    if (firstPageLoad) {
+      getResources();
+      console.log(resources);
+      setFirstPageLoad(false);
+    }
+  }, []);
 
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
-  // const resourcesPerPage = 8;
-  // const [pageNr, setPageNr] = useState(1);
-  // const nrOfPages = Math.ceil(resources.length / resourcesPerPage);
-  // let pagination = [];
+  // PAGINATION
+  const [pagination, setPagination] = useState({
+    perPage: 8,
+    current: 1,
+    max: 1,
+    display: [1],
+  });
+
+  // Whenever the resources change (for example by searching)
+  // the nr of max pages is calculated again. Also the display array
+  // needed to render the buttons is created again, based on the new
+  // number of pages.
+  useEffect(() => {
+    const maxPages = Math.ceil(resources.length / pagination.perPage);
+    let pageDisplay = [];
+    for (let i = 1; i <= maxPages; i++) {
+      pageDisplay.push(i);
+    }
+    setPagination({ ...pagination, max: maxPages, display: pageDisplay });
+    return () => {
+      // cleanup
+    };
+  }, [resources]);
+
+  function handlePageChange(e) {
+    setPagination({
+      ...pagination,
+      current: parseInt(e.target.id.replace("page-", "")),
+    });
+  }
 
   return (
     <Fragment>
@@ -32,32 +62,37 @@ const Content = ({ getResources, resources, filter }) => {
         AddResource
       </Link>
       <div className="references-container">
-        {/* <section className="pagination">
-        {pageNr} of {nrOfPages} /
-        {[1, 2].map((i) => (
-          <button
-            key={i}
-            href="#"
-            onClick={() => {
-              setPageNr(i);
-            }}
-          >
-            {i}
-          </button>
-        ))}
-      </section> */}
-        {/* THIS SHOULD HAPPEN AFTER FILTER, NOT BEFORE! */}
+        <section className="pagination">
+          Found <strong>{resources.length}</strong> Entries / Page:{" "}
+          {pagination.current} of {pagination.max} /
+          {pagination.display.map((index) => {
+            return (
+              <button
+                key={index}
+                id={"page-" + index}
+                onClick={handlePageChange}
+                className={index === pagination.current ? "active" : null}
+              >
+                {index}
+              </button>
+            );
+          })}
+        </section>
+
         {resources.map((item, index) => {
-          // if (
-          //   index > (pageNr - 1) * resourcesPerPage &&
-          //   index < pageNr * resourcesPerPage
-          // ) {
-          /* let showByCategory = false;
+          let showByCategory = false;
           let showByRating = false;
           let showByCost = false;
+          let showByCurrentPage = false;
 
           // FILTER FOR CATEGORIES
-          let categories = ["frontend", "backend", "database", "general"];
+          let categories = [
+            "general",
+            "frontend",
+            "backend",
+            "database",
+            "machineLearning",
+          ];
           categories.forEach((cat) => {
             if (filter[cat] === true && item.category.includes(cat)) {
               showByCategory = true;
@@ -77,15 +112,24 @@ const Content = ({ getResources, resources, filter }) => {
           if (Math.floor(item.rating) >= filter.rating) {
             showByRating = true;
           }
+
+          // FILTER BY CURRENT PAGE
+          // page 1 -- index: 0-7
+          // page 2 -- index: 8-15
+          let start = (pagination.current - 1) * pagination.perPage;
+          let end = pagination.current * pagination.perPage - 1;
+          console.log(start, end);
+          if (index >= start && index <= end) {
+            showByCurrentPage = true;
+          }
+
           // If resource matches all filter criteria, it is displayed
-          if (showByCost && showByRating && showByCategory)
+          if (showByCost && showByRating && showByCategory && showByCurrentPage)
             return (
-              <Resource id={index} key={index} data={item} author="false" />
+              <Resource id={item._id} key={index} data={item} author="false" />
             );
           return "";
           // } else return "";
- */
-          <Resource id={item._id} key={index} data={item} author="false" />;
         })}
       </div>
     </Fragment>
