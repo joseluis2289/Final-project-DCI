@@ -1,26 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function UpdateResource() {
-  const [resource, setResource] = useState({
-    userID: "usermodel",
-    category: ["database"],
-    edited: true,
-    deleted: false,
-    _id: "60251a5d1cd6cb4e195f81b7",
-    previewImage:
-      "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fforbestechcouncil%2Ffiles%2F2019%2F01%2Fcanva-photo-editor-8-7.jpg",
-    title: "Introduction to MongoDB",
-    link: "https://www.coursera.org/learn/introduction-mongodb?",
-    date: "2021-02-11T11:51:57.699Z",
-    rating: 4,
-    num_views: 41.946,
-    paid: "free",
-    description:
-      "This course will get you up and running with MongoDB quickly, and teach you how to leverage its power for data analytics. We'll start by mastering the fundamentals of MongoDB, including MongoDB’s Document data model, importing data into a cluster, working with our CRUD API and Aggregation Framework. These topics will be taught through a demo application which will give you a great first encounter of how simple and practical it can be to build applications with MongoDB.In addition to these essential topics, you will also learn and work with useful MongoDB tools and services. You will work with Atlas, MongoDB's database as a service, MongoDB Compass, a schema visualization tool, as well as many other useful command-line utilities.",
-    comments: [],
-    __v: 0,
-  });
+export default function UpdateResource(props) {
+  const [resource, setResource] = useState(props.data);
+  const [alert, setAlert] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState(
+    "illustrations/road_to_knowledge.svg"
+  );
+
+  useEffect(() => {
+    console.log("check ig deleted pro is here", resource);
+    resource.previewImage && setPreviewUrl(resource.previewImage);
+  }, [resource.previewImage]);
 
   let defineCategory = (e) => {
     let categories = resource.category;
@@ -47,6 +39,7 @@ export default function UpdateResource() {
       data: resource,
     })
       .then(function (response) {
+        setAlert(true);
         console.log(response);
       })
       .catch((err) => {
@@ -55,121 +48,137 @@ export default function UpdateResource() {
   };
 
   let delResource = (e) => {
+    setDeleted(true);
+    setResource({ ...resource, deleted: true, date: Date.now });
     e.preventDefault();
     axios({
-      method: "DEL",
+      method: "PUT",
       url: `http://localhost:5000/resources/${resource.id}`,
+      ContentType: "application/json",
+      data: resource,
     })
-      .then(function (response) {
-        console.log("resource1 deleted");
+      .then((response) => {
+        console.log("deleted", response.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
   return (
-    <div>
+    <div className="update-resource">
       <form onSubmit={updateResource}>
         <button onClick={delResource}>X</button>
+        {deleted && (
+          <span>
+            Resource deleted{" "}
+            <img className="icon" src="icons/x.png" alt="checked Icon" />
+          </span>
+        )}
         <div>
-          <label htmlFor='title'>Title</label>
+          <label htmlFor="title">Title</label>
           <input
-            type='text'
-            name='title'
+            type="text"
+            name="title"
             placeholder={resource.title}
             onChange={formHandler}
           />
         </div>
         <img
-          src={resource.previewImage}
-          alt='preview'
+          src={previewUrl}
+          alt="preview"
           style={{ width: "100px", height: "100px" }}
         ></img>
         <div>
-          <label htmlFor='link'>Link</label>
+          <label htmlFor="link">Link</label>
           <p>{resource.link}</p>
         </div>
-        <div name='category' onChange={defineCategory}>
-          <label htmlFor='link'>Category</label>
-          <label htmlFor='frontend'>
+        <div name="category" onChange={defineCategory}>
+          <label htmlFor="link">Category</label>
+          <label htmlFor="frontend">
             <input
-              type='checkbox'
-              name='category'
-              value='frontend'
+              type="checkbox"
+              name="category"
+              value="frontend"
               checked={resource.category.indexOf("frontend") > -1}
             />
             Frontend
           </label>
 
-          <label htmlFor='backend'>
+          <label htmlFor="backend">
             <input
-              type='checkbox'
-              name='category'
-              value='backend'
+              type="checkbox"
+              name="category"
+              value="backend"
               checked={resource.category.indexOf("backend") > -1}
             />
             Backend
           </label>
 
-          <label htmlFor='database'>
+          <label htmlFor="database">
             <input
-              type='checkbox'
-              name='category'
-              value='database'
+              type="checkbox"
+              name="category"
+              value="database"
               checked={resource.category.indexOf("database") > -1}
             />
             Database
           </label>
 
-          <label htmlFor='general'>
+          <label htmlFor="general">
             <input
-              type='checkbox'
-              name='category'
-              value='general'
+              type="checkbox"
+              name="category"
+              value="general"
               checked={resource.category.indexOf("general") > -1}
             />
             General
           </label>
         </div>
 
-        <div name='paid' onChange={formHandler}>
-          <label htmlFor='link'>Paid</label>
+        <div name="paid" onChange={formHandler}>
+          <label htmlFor="link">Paid</label>
           <div>
-            <label htmlFor='access_paid'>
+            <label htmlFor="access_paid">
               <input
-                type='radio'
-                name='paid'
-                id='access_paid'
-                value='paid'
-                checked={resource.paid.includes("paid")}
+                type="radio"
+                name="paid"
+                id="access_paid"
+                value="paid"
+                checked={resource.paid}
               />
               Yes
             </label>
 
-            <label htmlFor='access_free'>
+            <label htmlFor="access_free">
               <input
-                type='radio'
-                name='paid'
-                id='access_free'
-                value='free'
-                checked={resource.paid.includes("free")}
+                type="radio"
+                name="paid"
+                id="access_free"
+                value="free"
+                checked={resource.paid}
               />
               No
             </label>
           </div>
         </div>
         <div>
-          <label htmlFor='title'>description</label>
+          <label htmlFor="title">description</label>
           <textarea
-            name='description'
-            rows='15'
-            cols='70'
+            name="description"
+            rows="15"
+            cols="70"
             style={{ border: "solid black 2px" }}
             placeholder={resource.description}
             onChange={formHandler}
           ></textarea>
         </div>
-        <button type='submit'>Update resource</button>
+        <button type="submit">Update resource</button>
+        {alert && (
+          <span>
+            Data updated{" "}
+            <img className="icon" src="icons/checked.svg" alt="checked Icon" />
+          </span>
+        )}
       </form>
     </div>
   );

@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Resource from "../Resource";
+import UpdateResource from "../Settings/UpdateResource";
 
 export default function MyResources() {
-  const userId = "6033aa680435059a34b77d43";
+  const userId = "6034cd5f0e819f6cb3c11915";
   const [userResources, setUserResources] = useState([]);
   useEffect(() => {
     axios
       .get(`http://localhost:5000/users/resources/${userId}`)
       .then((res) => {
-        /* setUserResources([...res]); */
-        console.log("that is the res:", res);
+        setUserResources(res.data.resources);
+        console.log(res.data.resources);
       })
       .catch((err) => console.log(err));
   }, []);
-  return <div>My resources {userResources}</div>;
+  return (
+    <div>
+      {userResources.map(
+        (resource) =>
+          !resource.deleted && (
+            <UpdateResource id={resource._id} data={resource} author={true} />
+          )
+      )}
+    </div>
+  );
 }
