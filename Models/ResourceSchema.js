@@ -14,7 +14,7 @@ const Resource = new Schema({
   },
   category: {
     type: [String],
-    enum: ["frontend", "backend", "database", "machine learning", "general" ],
+    enum: ["frontend", "backend", "database", "machineLearning", "general" ],
     required: true,
   },
   usersThatRated: [
