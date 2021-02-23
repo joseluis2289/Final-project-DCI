@@ -5,7 +5,7 @@ const Comment = require("../Models/Comment");
 
 //get all Resources
 router.get("/", (req, res, next) => {
-  const resources = Resource.find()
+  Resource.find({deleted: false})
   .populate("user", "name")
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
@@ -62,6 +62,7 @@ router.post("/add", (req, res, next) => {
       resource
         .save()
         .then((resourceAdded) => {
+          res.send(resourceAdded)
           UserSchema.findByIdAndUpdate(resourceAdded.user._id, {$push:{resources: resourceAdded._id}})
           .then((userUpdated)=>{
             res.send(userUpdated)
@@ -78,42 +79,70 @@ router.post("/add", (req, res, next) => {
 
 // add many resources
 router.post("/addmany", (req, res, next) => {
-  let newResources = [];
   req.body.map((item) => {
+    const {
+      title,
+      link,
+      previewImage,
+      date,
+      user,
+      category,
+      rating,
+      num_ratings,
+      num_views,
+      paid,
+      format,
+      description,
+      edited,
+      deleted,
+      comments,
+    } = item;
+
+    UserSchema.findById(user)
+    .select("-password")
+    .then((userDB) => {
     let newResource = new Resource({
-      title: item.title,
-      link: item.link,
-      previewImage: item.previewImage,
-      date: item.date,
-      userID: item.userID,
-      category: item.category,
-      rating: item.rating,
-      num_ratings: item.num_ratings,
-      num_views: item.num_views,
-      paid: item.paid,
-      format: item.format,
-      description: item.description,
-      edited: item.edited,
-      deleted: item.deleted,
-      comments: item.comments,
+      title,
+        link,
+        previewImage,
+        date,
+        user: userDB,
+        category,
+        rating,
+        num_ratings,
+        num_views,
+        paid,
+        format,
+        description,
+        edited,
+        deleted,
+        comments,
     });
     newResource
       .save()
-      .then((result) => {
+      .then((resourceAdded) => {
+        res.send(resourceAdded)
+        UserSchema.findByIdAndUpdate(resourceAdded.user._id, {$push:{resources: resourceAdded._id}})
+        .then((userUpdated)=>{
+          res.send(userUpdated)
+        })
+        .catch(err=>console.log(err))
         res.status(200).send(result);
       })
       .catch((err) => {
         res.send(err);
       });
-  });
+  })
+  .catch((err)=>res.send(err))
 });
 
 //delete all resources
 router.delete("/", (req, res, next) => {
   Resource.deleteMany()
     .then((res) => res.json("all resources were deleted"))
-    .catch((err) => res.send(err));
+    .catch((err) => res.send({msg: err}));
 });
+})
 
 // get one specific Resource
 router.get("/:resource_id", (req, res, next) => {
