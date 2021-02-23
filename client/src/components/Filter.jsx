@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { filterCategory, filterFree, filterPaid } from "../redux/actions";
+import {
+  filterCategory,
+  filterFree,
+  filterPaid,
+  searchResources,
+} from "../redux/actions";
 import FilterRating from "../components/FilterRating";
 
 export default function Filter() {
@@ -13,6 +18,7 @@ export default function Filter() {
     backend: true,
     database: true,
     general: true,
+    search: "",
   };
   const [filterData, setFilterData] = useState(initialState);
   const dispatch = useDispatch();
@@ -71,12 +77,25 @@ export default function Filter() {
     };
   }, [filterData.paid, dispatch]);
 
-  function handleChange(e) {
+  function handleCheckboxChange(e) {
     setFilterData({ ...filterData, [e.target.name]: e.target.checked });
   }
 
+  function handleSearchChange(e) {
+    setFilterData({ ...filterData, [e.target.name]: e.target.value });
+    // e.preventDefault();
+    // console.log(e.target.value);
+    // dispatch(searchResources(e.target.value));
+  }
+
+  function search(e) {
+    e.preventDefault();
+    console.log("Searching for...", filterData.search);
+    dispatch(searchResources(filterData.search));
+  }
+
   return (
-    <React.Fragment>
+    <section className="filter-container">
       <form className="filter-form">
         {/* Category Filter */}
         <fieldset>
@@ -85,7 +104,7 @@ export default function Filter() {
             type="checkbox"
             id="frontend"
             name="frontend"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.frontend}
           />
           <label htmlFor="frontend">Frontend</label>
@@ -94,7 +113,7 @@ export default function Filter() {
             type="checkbox"
             id="backend"
             name="backend"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.backend}
           />
           <label htmlFor="backend">Backend</label>
@@ -103,7 +122,7 @@ export default function Filter() {
             type="checkbox"
             id="database"
             name="database"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.database}
           />
           <label htmlFor="database">Database</label>
@@ -112,7 +131,7 @@ export default function Filter() {
             type="checkbox"
             id="general"
             name="general"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.general}
           />
           <label htmlFor="general">General</label>
@@ -125,7 +144,7 @@ export default function Filter() {
             type="checkbox"
             name="free"
             id="filter-free"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.free}
           />
           <label htmlFor="filter-free">Free</label>
@@ -134,7 +153,7 @@ export default function Filter() {
             type="checkbox"
             name="paid"
             id="filter-paid"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.paid}
           />
           <label htmlFor="filter-paid">Paid</label>
@@ -147,7 +166,9 @@ export default function Filter() {
           </legend>
           <FilterRating />
         </fieldset>
+      </form>
 
+      <form className="search-form" action="" method="post" onSubmit={search}>
         {/* Search Field */}
         <fieldset className="search-container">
           <input
@@ -155,12 +176,12 @@ export default function Filter() {
             name="search"
             id="search"
             placeholder="Search..."
-            onChange={handleChange}
+            onChange={handleSearchChange}
           />
 
           <button type="submit">Search</button>
         </fieldset>
       </form>
-    </React.Fragment>
+    </section>
   );
 }

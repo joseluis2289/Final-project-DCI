@@ -20,15 +20,15 @@ export default function App() {
       <Filter />
       <Switch>
         <main>
-          <Route path='/home' component={Home} />
-          <Route path='/register' component={Register} />
-          <Route path='/login' component={Login} />
-          <Route path='/profile' component={Profile} />
-          <Route path='/' exact={true} component={Content} />
-          <Route path='/settings' component={Settings} />
-          <Route path='/add_resource' component={AddResource} />
-          <Route path='/update_resource' component={UpdateResource} />
-          <Route path='#!' component={NotFound} />
+          <Route path="/home" component={Home} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/" exact={true} component={Content} />
+          <Route path="/settings" component={Settings} />
+          <Route path="/add_resource" component={AddResource} />
+          <Route path="/update_resource" component={UpdateResource} />
+          <Route path="#!" component={NotFound} />
         </main>
       </Switch>
       <footer></footer>

@@ -62,3 +62,22 @@ export const getResources = () => async (dispatch) => {
       });
     });
 };
+
+//RESOURCES ACTIONS
+export const searchResources = (term) => async (dispatch) => {
+  axios
+    .get("http://localhost:5000/resources/search/" + term)
+    .then((res) => {
+      dispatch({
+        type: "SEARCH_RESOURCES",
+        payload: res.data,
+      });
+      console.log("data from action", res.data);
+    })
+    .catch((error) => {
+      dispatch({
+        type: "RESOURCES_ERROR",
+        payload: error,
+      });
+    });
+};

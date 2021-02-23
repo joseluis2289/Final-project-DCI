@@ -47,6 +47,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         resources: payload,
       };
+    case "SEARCH_RESOURCES":
+      return {
+        ...state,
+        resources: payload,
+      };
     case "RESOURCES_ERROR":
       return {
         ...state,
