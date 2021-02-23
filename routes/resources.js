@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
 
 //search for specific term in Resources
 router.get("/search/:term", (req, res, next) => {
-  const resources = Resource.find()
+  const resources = Resource.find({ $text: { $search: req.params.term } })
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
 });

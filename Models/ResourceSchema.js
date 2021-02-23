@@ -40,4 +40,8 @@ const Resource = new Schema({
     ref: "users",
   },
 });
+
+// Indexing is needed for full-text search
+Resource.index({ title: "text", description: "text" });
+
 module.exports = mongoose.model("resource", Resource);

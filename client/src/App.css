@@ -104,13 +104,19 @@ fieldset {
 
 /* FILTER BAR */
 
-.filter-form {
+.filter-container {
   background-color: #ffda79;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   border-bottom: 1px solid var(--yellow-dark);
+}
+.filter-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .search-container {
