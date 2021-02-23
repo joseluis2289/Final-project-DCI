@@ -35,7 +35,7 @@ export function filterRating(rating) {
   };
 }
 
-// topic = "frontend", "backend", "database", "general"
+// topic = "general", "frontend", "backend", "database", "machinelearning"
 // status = checkbox status = true / false
 export function filterCategory(topic, status) {
   return {

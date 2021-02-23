@@ -14,14 +14,24 @@ export default function Filter() {
     free: true,
     paid: true,
     rating: 0,
+    general: true,
     frontend: true,
     backend: true,
     database: true,
-    general: true,
+    machineLearning: true,
     search: "",
   };
   const [filterData, setFilterData] = useState(initialState);
   const dispatch = useDispatch();
+
+  // FILTER -- CATEGORY -- "general"
+  useEffect(() => {
+    if (filterData.general) dispatch(filterCategory("general", true));
+    else dispatch(filterCategory("general", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.general, dispatch]);
 
   // FILTER -- CATEGORY -- "frontend"
   useEffect(() => {
@@ -50,14 +60,15 @@ export default function Filter() {
     };
   }, [filterData.database, dispatch]);
 
-  // FILTER -- CATEGORY -- "general"
+  // FILTER -- CATEGORY -- "machineLearning"
   useEffect(() => {
-    if (filterData.general) dispatch(filterCategory("general", true));
-    else dispatch(filterCategory("general", false));
+    if (filterData.machineLearning)
+      dispatch(filterCategory("machineLearning", true));
+    else dispatch(filterCategory("machineLearning", false));
     return () => {
       // cleanup
     };
-  }, [filterData.general, dispatch]);
+  }, [filterData.machineLearning, dispatch]);
 
   // FILTER -- FREE RESOURCES
   useEffect(() => {
@@ -90,7 +101,7 @@ export default function Filter() {
 
   function search(e) {
     e.preventDefault();
-    console.log("Searching for...", filterData.search);
+    // console.log("Searching for...", filterData.search);
     dispatch(searchResources(filterData.search));
   }
 
@@ -100,6 +111,16 @@ export default function Filter() {
         {/* Category Filter */}
         <fieldset>
           <legend>Category</legend>
+
+          <input
+            type="checkbox"
+            id="general"
+            name="general"
+            onChange={handleCheckboxChange}
+            checked={filterData.general}
+          />
+          <label htmlFor="general">General</label>
+
           <input
             type="checkbox"
             id="frontend"
@@ -126,15 +147,14 @@ export default function Filter() {
             checked={filterData.database}
           />
           <label htmlFor="database">Database</label>
-
           <input
             type="checkbox"
-            id="general"
-            name="general"
+            id="machineLearning"
+            name="machineLearning"
             onChange={handleCheckboxChange}
-            checked={filterData.general}
+            checked={filterData.machineLearning}
           />
-          <label htmlFor="general">General</label>
+          <label htmlFor="machineLearning">Machine Learning</label>
         </fieldset>
 
         {/* Paid/Free Filter */}

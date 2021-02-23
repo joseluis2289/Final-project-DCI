@@ -134,6 +134,19 @@ fieldset {
 
 .pagination {
   grid-column: 1 / span 2;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.pagination strong {
+  margin: 0 0.25rem;
+}
+.pagination button {
+  margin-top: 0;
+}
+.pagination button.active {
+  margin-top: 0;
+  background-color: var(--blue-light);
 }
 
 /*** FORMS ***/
