@@ -4,7 +4,7 @@
     "link": "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
     "previewImage":
       "https://media-exp1.licdn.com/dms/image/C4D12AQFhVVUXMCFfRg/article-cover_image-shrink_720_1280/0/1537600218280?e=1616025600&v=beta&t=GL38Ceosn9xGv9e_dFykDr2jEFvjtU1oSwnzuDexf-g",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["frontend"],
     "rating": 1,
     "num_ratings": 102.797,
@@ -22,7 +22,7 @@
       "https://marketplace.visualstudio.com/items?itemName=humao.rest-client",
     "previewImage":
       "https://humao.gallerycdn.vsassets.io/extensions/humao/rest-client/0.24.4/1604923740596/Microsoft.VisualStudio.Services.Icons.Default",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["backend"],
     "rating": 1,
     "num_ratings": 250,
@@ -38,7 +38,7 @@
     "title": "Mongoose",
     "link": "https://mongoosejs.com/",
     "previewImage": "https://niralar.com/wp-content/uploads/2018/07/mongoose.jpg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["database"],
     "rating": 2,
     "num_ratings": 3500,
@@ -54,7 +54,7 @@
     "title": "Lodash",
     "link": "https://lodash.com/",
     "previewImage": "http://blog.avarteq.com/wp-content/uploads/2016/02/Lodash.jpg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["backend"],
     "rating": 2,
     "num_ratings": 137,
@@ -72,7 +72,7 @@
     "link": "https://github.com/Marak/Faker.js#readme",
     "previewImage":
       "https://raw.githubusercontent.com/Marak/faker.js/master/logo.png",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["backend"],
     "rating": 3,
     "num_ratings": 437,
@@ -88,7 +88,7 @@
     "title": "Guide to use GitHub Pages",
     "link": "https://www.thinkful.com/learn/a-guide-to-using-github-pages/",
     "previewImage": "https://i.ytimg.com/vi/2MsN8gpT6jY/maxresdefault.jpg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["general"],
     "rating": 3,
     "num_ratings": 782,
@@ -104,7 +104,7 @@
     "title": "Git--fast-version-control",
     "link": "https://git-scm.com/about",
     "previewImage": "https://git-scm.com/images/logo@2x.png",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["general"],
     "rating": 4,
     "num_ratings": 852,
@@ -121,7 +121,7 @@
     "link":
       "https://www.youtube.com/watch?v=mbsmsi7l3r4&ab_channel=WebDevSimplified",
     "previewImage": "https://git-scm.com/images/logo@2x.png",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["backend", "frontend"],
     "rating": 4.5,
     "num_ratings": 15985,
@@ -138,7 +138,7 @@
     "link": "https://www.geeksforgeeks.org/how-to-access-http-cookie-in-node-js/",
     "previewImage":
       "https://res.cloudinary.com/practicaldev/image/fetch/s--qWK2FkdC--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/dr6e3at3dlznretj460y.jpeg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["backend", "frontend", "database"],
     "rating": 5,
     "num_ratings": 8951,
@@ -156,7 +156,7 @@
       "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/cookies",
     "previewImage":
       "https://res.cloudinary.com/practicaldev/image/fetch/s--qWK2FkdC--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/dr6e3at3dlznretj460y.jpeg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["backend", "frontend", "database"],
     "rating": 5,
     "num_ratings": 11.152,
@@ -173,7 +173,7 @@
     "link": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
     "previewImage":
       "hhttps://appdesign.dev/wp-content/uploads/2020/08/Agencia-desarrollo-Angular-JS.jpg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["frontend"],
     "rating": 4.6,
     "num_ratings": 138.647,
@@ -190,7 +190,7 @@
     "link": "https://www.coursera.org/learn/javascript-jquery-json?",
     "previewImage":
       "https://cdn-images-1.medium.com/max/285/1*QR2SBNwG75LyY5uwqWpN3A.png",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["frontend", "backend"],
     "rating": 4.6,
     "num_ratings": 623,
@@ -207,7 +207,7 @@
     "link": "https://www.coursera.org/learn/introduction-mongodb?",
     "previewImage":
       "https://i.pcmag.com/imagery/reviews/02Q6yxveinggAu3PomearaV-7..1569481734.jpg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["database"],
     "rating": 4.3,
     "num_ratings": 524,
@@ -224,7 +224,7 @@
     "link": "https://www.coursera.org/specializations/python",
     "previewImage":
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["database"],
     "rating": 4.8,
     "num_ratings": 322.448,
@@ -241,7 +241,7 @@
     "link": "https://www.coursera.org/specializations/python",
     "previewImage":
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["machineLearning"],
     "rating": 4.5,
     "num_ratings": 41.838,
@@ -258,7 +258,7 @@
     "link": "https://www.coursera.org/specializations/python",
     "previewImage":
       "https://www.ionos.de/digitalguide/fileadmin/DigitalGuide/Teaser/deep-learning-vs-machine-learning-t.jpg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["machineLearning"],
     "rating": 4.7,
     "num_ratings": 23.157,
@@ -274,7 +274,7 @@
     "link": "https://www.coursera.org/specializations/learn-sql-basics-data-science",
     "previewImage":
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTurEq9SK3CCsMF43Qk2HFhcSQsxT-BlvL-Ow&usqp=CAU",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["database"],
     "rating": 4.1,
     "num_ratings": 9.395,
@@ -291,7 +291,7 @@
     "link": "https://www.coursera.org/learn/intro-sql",
     "previewImage":
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTurEq9SK3CCsMF43Qk2HFhcSQsxT-BlvL-Ow&usqp=CAU",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["database"],
     "rating": 4.8,
     "num_ratings": 3.698,
@@ -308,7 +308,7 @@
     "link": "https://www.coursera.org/specializations/full-stack-react",
     "previewImage":
       "https://miro.medium.com/max/3840/1*yjH3SiDaVWtpBX0g_2q68g.png",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["frontend", "backend", "database"],
     "rating": 4.7,
     "num_ratings": 11.413,
@@ -324,7 +324,7 @@
     "link": "https://www.coursera.org/specializations/website-development",
     "previewImage":
       "http://www.websize.info/wp-content/uploads/responsive-design-websize.jpg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["frontend", "backend", "database"],
     "rating": 4.5,
     "num_ratings": 9.421,
@@ -340,7 +340,7 @@
     "link": "https://www.coursera.org/learn/html",
     "previewImage":
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/220px-HTML5_logo_and_wordmark.svg.png",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["frontend"],
     "rating": 4.7,
     "num_ratings": 6.421,
@@ -357,7 +357,7 @@
     "link": "https://www.coursera.org/learn/html-css-javascript-for-web-developers",
     "previewImage":
       "https://journocode.com/wp-content/uploads/2016/06/htmlCssJS-1140x515.jpg",
-     "user": "6033aa680435059a34b77d43",
+     "user": "6034cd5f0e819f6cb3c11915",
     "category": ["frontend"],
     "rating": 4.8,
     "num_ratings": 10.421,
@@ -378,7 +378,7 @@ export default fakeData;
   "link": "https://www.coursera.org/learn/html-css-javascript-for-web-developers",
   "previewImage":
     "https://journocode.com/wp-content/uploads/2016/06/htmlCssJS-1140x515.jpg",
-   "user": "6033aa680435059a34b77d43",
+   "user": "6034cd5f0e819f6cb3c11915",
   "category": ["frontend"],
   "rating": 4.8,
   "num_ratings": 10.421,

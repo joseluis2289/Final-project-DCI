@@ -37,7 +37,7 @@ const Resource = (props) => {
               })}
             </h3>
           </div>
-          <h3>added by {props.data.user.name}</h3>
+          {/* <h3>added by {props.data.user.name}</h3> */}
         </hgroup>
       </header>
       <figure role="group">

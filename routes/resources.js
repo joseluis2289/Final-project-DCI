@@ -46,7 +46,7 @@ router.post("/add", (req, res, next) => {
         link,
         previewImage,
         date,
-        user: userDB,
+        user: userDB._id,
         category,
         rating,
         num_ratings,
@@ -63,7 +63,7 @@ router.post("/add", (req, res, next) => {
         .save()
         .then((resourceAdded) => {
           res.send(resourceAdded)
-          UserSchema.findByIdAndUpdate(resourceAdded.user._id, {$push:{resources: resourceAdded._id}})
+          UserSchema.findByIdAndUpdate(resourceAdded.user, {$push:{resources: resourceAdded._id}})
           .then((userUpdated)=>{
             res.send(userUpdated)
           })
@@ -98,15 +98,15 @@ router.post("/addmany", (req, res, next) => {
       comments,
     } = item;
 
-    UserSchema.findById(user)
+    /* UserSchema.findById(user)
     .select("-password")
-    .then((userDB) => {
+    .then((userDB) => { */
     let newResource = new Resource({
       title,
         link,
         previewImage,
         date,
-        user: userDB,
+        user,
         category,
         rating,
         num_ratings,
@@ -122,7 +122,7 @@ router.post("/addmany", (req, res, next) => {
       .save()
       .then((resourceAdded) => {
         res.send(resourceAdded)
-        UserSchema.findByIdAndUpdate(resourceAdded.user._id, {$push:{resources: resourceAdded._id}})
+        UserSchema.findByIdAndUpdate(resourceAdded.user, {$push:{resources: resourceAdded._id}})
         .then((userUpdated)=>{
           res.send(userUpdated)
         })
@@ -132,8 +132,8 @@ router.post("/addmany", (req, res, next) => {
       .catch((err) => {
         res.send(err);
       });
-  })
-  .catch((err)=>res.send(err))
+  /* })
+  .catch((err)=>res.send(err)) */
 });
 
 //delete all resources
