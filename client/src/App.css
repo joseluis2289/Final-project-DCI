@@ -231,6 +231,12 @@ button:hover {
   cursor: pointer;
 }
 
+/****UPDATE RESOURCE****/
+.update-resource{
+  border: 1px solid var(--yellow-dark);
+  margin: 2rem;
+}
+
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
 .errorsMsg {
   color: red;
