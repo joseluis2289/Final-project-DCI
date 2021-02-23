@@ -3,12 +3,19 @@ import axios from "axios";
 
 export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
+
   const [alert, setAlert] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
-
+  const [categories, setCategories] = useState([
+    "frontend",
+    "backend",
+    "database",
+    "machineLearning",
+    "general",
+  ]);
   useEffect(() => {
     console.log("check ig deleted pro is here", resource);
     resource.previewImage && setPreviewUrl(resource.previewImage);
@@ -93,46 +100,24 @@ export default function UpdateResource(props) {
           <p>{resource.link}</p>
         </div>
         <div name="category" onChange={defineCategory}>
-          <label htmlFor="link">Category</label>
-          <label htmlFor="frontend">
-            <input
-              type="checkbox"
-              name="category"
-              value="frontend"
-              checked={resource.category.indexOf("frontend") > -1}
-            />
-            Frontend
-          </label>
+          <h2 htmlFor="link">Category</h2>
 
-          <label htmlFor="backend">
-            <input
-              type="checkbox"
-              name="category"
-              value="backend"
-              checked={resource.category.indexOf("backend") > -1}
-            />
-            Backend
-          </label>
-
-          <label htmlFor="database">
-            <input
-              type="checkbox"
-              name="category"
-              value="database"
-              checked={resource.category.indexOf("database") > -1}
-            />
-            Database
-          </label>
-
-          <label htmlFor="general">
-            <input
-              type="checkbox"
-              name="category"
-              value="general"
-              checked={resource.category.indexOf("general") > -1}
-            />
-            General
-          </label>
+          {categories.map((item, index) => {
+            let name = item[0].toUpperCase() + item.substring(1);
+            return (
+              <div key={index}>
+                <label htmlFor={item}>
+                  <input
+                    type="checkbox"
+                    name="category"
+                    value={item}
+                    checked={resource.category.indexOf(item) > -1}
+                  />
+                  {name}
+                </label>
+              </div>
+            );
+          })}
         </div>
 
         <div name="paid" onChange={formHandler}>
