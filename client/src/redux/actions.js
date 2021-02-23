@@ -51,7 +51,7 @@ export const getResources = () => async (dispatch) => {
     .then((res) => {
       dispatch({
         type: "GET_RESOURCES",
-        payload: [res.data[0]],
+        payload: res.data,
       });
       console.log("data from action", res.data);
     })
