@@ -68,7 +68,7 @@ const Content = ({ getResources, resources, filter }) => {
         }
         // If resource matches all filter criteria, it is displayed
         if (showByCost && showByRating && showByCategory)
-          return <Resource id={index} key={index} data={item} />;
+          return <Resource id={index} key={index} data={item} author="false" />;
         return "";
         // } else return "";
       })}
