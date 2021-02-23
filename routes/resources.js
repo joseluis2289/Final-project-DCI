@@ -11,6 +11,13 @@ router.get("/", (req, res, next) => {
     .catch((err) => res.send(err));
 });
 
+//search for specific term in Resources
+router.get("/search/:term", (req, res, next) => {
+  const resources = Resource.find({ $text: { $search: req.params.term } })
+    .then((resources) => res.json(resources))
+    .catch((err) => res.send(err));
+});
+
 // add one resource
 router.post("/add", (req, res, next) => {
   const {

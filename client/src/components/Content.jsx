@@ -1,14 +1,14 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { useSelector, connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Resource from "./Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
 import AddResources from "./AddResource";
 
 const Content = ({ getResources, resources, filter }) => {
-  // useEffect: on first Component load get top X number of references
-  // into the Redux store and display them with React
+  // When page loads for the first time, load resources from the database
+  // into the Redux store. From there they are displayed with React.
   const [firstPageLoad, setFirstPageLoad] = useState(true);
   useEffect(() => {
     if (firstPageLoad) {
@@ -122,7 +122,6 @@ const Content = ({ getResources, resources, filter }) => {
           if (index >= start && index <= end) {
             showByCurrentPage = true;
           }
-
           // If resource matches all filter criteria, it is displayed
           if (showByCost && showByRating && showByCategory && showByCurrentPage)
             return (

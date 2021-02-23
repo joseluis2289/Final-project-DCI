@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { filterCategory, filterFree, filterPaid } from "../redux/actions";
+import {
+  filterCategory,
+  filterFree,
+  filterPaid,
+  searchResources,
+} from "../redux/actions";
 import FilterRating from "../components/FilterRating";
 
 export default function Filter() {
@@ -9,13 +14,24 @@ export default function Filter() {
     free: true,
     paid: true,
     rating: 0,
+    general: true,
     frontend: true,
     backend: true,
     database: true,
-    general: true,
+    machineLearning: true,
+    search: "",
   };
   const [filterData, setFilterData] = useState(initialState);
   const dispatch = useDispatch();
+
+  // FILTER -- CATEGORY -- "general"
+  useEffect(() => {
+    if (filterData.general) dispatch(filterCategory("general", true));
+    else dispatch(filterCategory("general", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.general, dispatch]);
 
   // FILTER -- CATEGORY -- "frontend"
   useEffect(() => {
@@ -44,14 +60,15 @@ export default function Filter() {
     };
   }, [filterData.database, dispatch]);
 
-  // FILTER -- CATEGORY -- "general"
+  // FILTER -- CATEGORY -- "machineLearning"
   useEffect(() => {
-    if (filterData.general) dispatch(filterCategory("general", true));
-    else dispatch(filterCategory("general", false));
+    if (filterData.machineLearning)
+      dispatch(filterCategory("machineLearning", true));
+    else dispatch(filterCategory("machineLearning", false));
     return () => {
       // cleanup
     };
-  }, [filterData.general, dispatch]);
+  }, [filterData.machineLearning, dispatch]);
 
   // FILTER -- FREE RESOURCES
   useEffect(() => {
@@ -71,21 +88,44 @@ export default function Filter() {
     };
   }, [filterData.paid, dispatch]);
 
-  function handleChange(e) {
+  function handleCheckboxChange(e) {
     setFilterData({ ...filterData, [e.target.name]: e.target.checked });
   }
 
+  function handleSearchChange(e) {
+    setFilterData({ ...filterData, [e.target.name]: e.target.value });
+    // e.preventDefault();
+    // console.log(e.target.value);
+    // dispatch(searchResources(e.target.value));
+  }
+
+  function search(e) {
+    e.preventDefault();
+    // console.log("Searching for...", filterData.search);
+    dispatch(searchResources(filterData.search));
+  }
+
   return (
-    <React.Fragment>
+    <section className="filter-container">
       <form className="filter-form">
         {/* Category Filter */}
         <fieldset>
           <legend>Category</legend>
+
+          <input
+            type="checkbox"
+            id="general"
+            name="general"
+            onChange={handleCheckboxChange}
+            checked={filterData.general}
+          />
+          <label htmlFor="general">General</label>
+
           <input
             type="checkbox"
             id="frontend"
             name="frontend"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.frontend}
           />
           <label htmlFor="frontend">Frontend</label>
@@ -94,7 +134,7 @@ export default function Filter() {
             type="checkbox"
             id="backend"
             name="backend"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.backend}
           />
           <label htmlFor="backend">Backend</label>
@@ -103,19 +143,18 @@ export default function Filter() {
             type="checkbox"
             id="database"
             name="database"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.database}
           />
           <label htmlFor="database">Database</label>
-
           <input
             type="checkbox"
-            id="general"
-            name="general"
-            onChange={handleChange}
-            checked={filterData.general}
+            id="machineLearning"
+            name="machineLearning"
+            onChange={handleCheckboxChange}
+            checked={filterData.machineLearning}
           />
-          <label htmlFor="general">General</label>
+          <label htmlFor="machineLearning">Machine Learning</label>
         </fieldset>
 
         {/* Paid/Free Filter */}
@@ -125,7 +164,7 @@ export default function Filter() {
             type="checkbox"
             name="free"
             id="filter-free"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.free}
           />
           <label htmlFor="filter-free">Free</label>
@@ -134,7 +173,7 @@ export default function Filter() {
             type="checkbox"
             name="paid"
             id="filter-paid"
-            onChange={handleChange}
+            onChange={handleCheckboxChange}
             checked={filterData.paid}
           />
           <label htmlFor="filter-paid">Paid</label>
@@ -147,7 +186,9 @@ export default function Filter() {
           </legend>
           <FilterRating />
         </fieldset>
+      </form>
 
+      <form className="search-form" action="" method="post" onSubmit={search}>
         {/* Search Field */}
         <fieldset className="search-container">
           <input
@@ -155,12 +196,12 @@ export default function Filter() {
             name="search"
             id="search"
             placeholder="Search..."
-            onChange={handleChange}
+            onChange={handleSearchChange}
           />
 
           <button type="submit">Search</button>
         </fieldset>
       </form>
-    </React.Fragment>
+    </section>
   );
 }

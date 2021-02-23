@@ -36,7 +36,7 @@ export function filterRating(rating) {
   };
 }
 
-// topic = "frontend", "backend", "database", "general"
+// topic = "general", "frontend", "backend", "database", "machinelearning"
 // status = checkbox status = true / false
 export function filterCategory(topic, status) {
   return {
@@ -62,4 +62,25 @@ export const getResources = () => async (dispatch) => {
         payload: error,
       });
     });
+};
+
+//RESOURCES ACTIONS
+export const searchResources = (term) => async (dispatch) => {
+  if (term) {
+    axios
+      .get("http://localhost:5000/resources/search/" + term)
+      .then((res) => {
+        dispatch({
+          type: "SEARCH_RESOURCES",
+          payload: res.data,
+        });
+        console.log("data from action", res.data);
+      })
+      .catch((error) => {
+        dispatch({
+          type: "RESOURCES_ERROR",
+          payload: error,
+        });
+      });
+  }
 };
