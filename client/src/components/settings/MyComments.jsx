@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import UpdateComment from "../UpdateComment";
 import Resource from "../Resource";
-/* import UpdateResource from "./UpdateResource"; */
+import Settings from "./Settings";
 
 export default function MyComments() {
   const user = useSelector((state) => state.user);
@@ -19,18 +19,21 @@ export default function MyComments() {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="references-container ">
-      {userComments.map(
-        (comment) =>
-          !comment.deleted && (
-            <div className="comment">
-              <UpdateComment id={comment._id} data={comment} author={true} />
-              <Link to="/resource">
-                <button>Go to Resource</button>
-              </Link>
-            </div>
-          )
-      )}
-    </div>
+    <Fragment>
+      <Settings />
+      <div className="references-container ">
+        {userComments.map(
+          (comment) =>
+            !comment.deleted && (
+              <div className="comment">
+                <UpdateComment id={comment._id} data={comment} author={true} />
+                <Link to="/resource">
+                  <button>Go to Resource</button>
+                </Link>
+              </div>
+            )
+        )}
+      </div>
+    </Fragment>
   );
 }

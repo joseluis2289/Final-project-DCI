@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import UpdateResource from "./UpdateResource";
+import Settings from "./Settings";
 
 export default function MyResources() {
   const user = useSelector((state) => state.user);
@@ -16,13 +17,16 @@ export default function MyResources() {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="references-container ">
-      {userResources.map(
-        (resource) =>
-          !resource.deleted && (
-            <UpdateResource id={resource._id} data={resource} author={true} />
-          )
-      )}
-    </div>
+    <Fragment>
+      <Settings />
+      <div className="references-container ">
+        {userResources.map(
+          (resource) =>
+            !resource.deleted && (
+              <UpdateResource id={resource._id} data={resource} author={true} />
+            )
+        )}
+      </div>
+    </Fragment>
   );
 }

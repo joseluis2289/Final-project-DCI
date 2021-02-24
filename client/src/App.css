@@ -250,12 +250,35 @@ button:hover {
   cursor: pointer;
 }
 
+/****SETTINGS****/
+
+.settings-navbar{
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: var(--violett-light);
+}
+.settings-navbar a {
+  text-decoration: none;
+  color: var(--yellow-light);
+  font-weight: 500;
+  margin: 0.5rem;
+}
+
+.settings-navbar img {
+  margin: 0 0.5rem;
+}
+
 /****UPDATE RESOURCE****/
+
 .update-resource{
   border: 1px solid var(--yellow-dark);
   margin: 2rem;
 }
-
+.delete-button{
+  align-self: flex-end;
+  display: block;
+}
 /****COMMENT****/
 .comment{
   border: 1px solid var(--yellow-dark);
