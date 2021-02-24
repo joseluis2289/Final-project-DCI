@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function UpdateComment(props) {
+export default function Comment(props) {
   return (
     <div>
       <h3>{props.data.user.username}</h3>

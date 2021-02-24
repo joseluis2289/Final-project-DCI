@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import UpdateComment from "../UpdateComment";
+import UpdateComment from "./UpdateComment";
 import Resource from "../Resource";
 import Settings from "./Settings";
 

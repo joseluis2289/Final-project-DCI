@@ -74,7 +74,7 @@ router.post("/addmany", (req, res, next) => {
 
 
 //this MiddleWare is protecting all the routes down Below
-router.use((req, res, next) => {
+/* router.use((req, res, next) => {
   if (req.session.user) {
     console.log(req.session.user)
     next();
@@ -82,7 +82,7 @@ router.use((req, res, next) => {
     console.log("error on middleware")
     res.sendStatus(401);
   }  
-}); 
+});  */
 
 
 router.post("/rating", (req, res, next) => {

@@ -13,6 +13,7 @@ const Comment = new mongoose.Schema({
   text: { type: String, required: true },
   edited: { type: Boolean, default: false }, 
   deleted: { type: Boolean, default: false },
+  date: { type: Date, default: Date.now },
   
 });
 

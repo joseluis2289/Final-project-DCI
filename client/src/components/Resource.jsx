@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import Rating from "./Rating";
 import Reaction from "./Reaction";
 import CreateComment from "./CreateComment.jsx";
+import Comment from "./Comment";
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 
@@ -75,7 +76,7 @@ const Resource = (props) => {
         <Fragment>
           {props.data.comments ? (
             props.data.comments.map((comment, index) => (
-              <p key={index}>{comment}</p>
+              <Comment data={comment}></Comment>
             ))
           ) : (
             <p>There is no comment for the moment</p>
