@@ -23,7 +23,7 @@ function SvgStar(props) {
 }
 
 export default function Star(props) {
-  const starColor = "#6c63ff"; // #6c63ff - probably best to move to a config file
+  const starColor = "#706fd3";
   const {
     index,
     rating,

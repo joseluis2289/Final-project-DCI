@@ -16,38 +16,41 @@ const Resource = (props) => {
 
   useEffect(() => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
-  }, []);
+  }, [props.data.previewImage]);
 
   return (
-    <section className='resource-container'>
+    <section className="resource-container">
       <header>
         <hgroup>
-          <div className='resource-title'>
+          <div className="resource-title">
             <h2>{props.data.title}</h2>
             <Rating
               rating={props.data.rating}
               num_ratings={props.data.num_ratings}
+              resourceId={props.data._id}
             />
           </div>
-          <h3>
-            {props.data.category.map((item, index) => {
-              let name = item[0].toUpperCase() + item.substring(1);
-              return <span key={index}>{name}</span>;
-            })}
-          </h3>
-          <h3>added by {props.data.user}</h3>
+          <div className="category">
+            <h3>
+              {props.data.category.map((item, index) => {
+                let name = item[0].toUpperCase() + item.substring(1);
+                return <span key={index}>{name}</span>;
+              })}
+            </h3>
+          </div>
+          {/* <h3>added by {props.data.user.name}</h3> */}
         </hgroup>
       </header>
-      <figure role='group'>
+      <figure role="group">
         <img
-          className='resource-preview'
+          className="resource-preview"
           src={previewUrl}
-          alt='Illustration for Online Learning'
+          alt="Illustration for Online Learning"
         />
         <figcaption>{props.data.paid ? "paid" : "free"}</figcaption>
       </figure>
       <p>
-        <a target='_blank' rel='noreferrer' href={props.data.link}>
+        <a target="_blank" rel="noreferrer" href={props.data.link}>
           {props.data.link}
         </a>
       </p>
@@ -55,20 +58,18 @@ const Resource = (props) => {
       <p>{props.data.num_views} views</p>
 
       <Reaction love={10} like={5} dislike={1} />
-      <button>Add Reaction</button>
       <h3>Description</h3>
       <p>{props.data.description}</p>
       <h3>
         Comments{" "}
         <img
-          className='icon'
-          src='https://img.icons8.com/material-rounded/72/give-way.png'
-          alt='arrow'
+          className="icon"
+          src="https://img.icons8.com/material-rounded/72/give-way.png"
+          alt="arrow"
           onClick={() => {
             setDisplayComm(!displayCom);
           }}
         ></img>{" "}
-        <button>Add Comment</button>
       </h3>
       {displayCom && (
         <Fragment>

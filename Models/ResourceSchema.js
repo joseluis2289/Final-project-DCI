@@ -10,14 +10,19 @@ const Resource = new Schema({
   date: { type: Date, default: Date.now },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "Users",
+    ref: "User",
   },
   category: {
     type: [String],
-    enum: ["frontend", "backend", "database", "general"],
+    enum: ["frontend", "backend", "database", "machineLearning", "general" ],
     required: true,
   },
-
+  usersThatRated: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   rating: { type: Number, min: 0, max: 5 },
   num_ratings: { type: Number },
   num_views: { type: Number },
@@ -32,12 +37,22 @@ const Resource = new Schema({
   comments: [
     {
       type: Schema.Types.ObjectId,
-      ref: "comments",
+      ref: "Comment",
     },
   ],
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
   },
+  rankingUser: [
+    {
+      type: String,
+      ref: "User",
+    },
+  ],
 });
-module.exports = mongoose.model("resource", Resource);
+
+// Indexing is needed for full-text search
+Resource.index({ title: "text", description: "text" });
+
+module.exports = mongoose.model("Resource", Resource);

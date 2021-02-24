@@ -1,17 +1,76 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { filterFree, filterPaid, filterRating } from "../redux/actions";
-import Rating from "../components/Rating";
+import {
+  filterCategory,
+  filterFree,
+  filterPaid,
+  searchResources,
+} from "../redux/actions";
+import FilterRating from "../components/FilterRating";
 
 export default function Filter() {
+  // In the beginning all resources are shown: free, paid and all ratings.
   let initialState = {
     free: true,
     paid: true,
     rating: 0,
+    general: true,
+    frontend: true,
+    backend: true,
+    database: true,
+    machineLearning: true,
+    search: "",
   };
   const [filterData, setFilterData] = useState(initialState);
   const dispatch = useDispatch();
 
+  // FILTER -- CATEGORY -- "general"
+  useEffect(() => {
+    if (filterData.general) dispatch(filterCategory("general", true));
+    else dispatch(filterCategory("general", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.general, dispatch]);
+
+  // FILTER -- CATEGORY -- "frontend"
+  useEffect(() => {
+    if (filterData.frontend) dispatch(filterCategory("frontend", true));
+    else dispatch(filterCategory("frontend", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.frontend, dispatch]);
+
+  // FILTER -- CATEGORY -- "backend"
+  useEffect(() => {
+    if (filterData.backend) dispatch(filterCategory("backend", true));
+    else dispatch(filterCategory("backend", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.backend, dispatch]);
+
+  // FILTER -- CATEGORY -- "database"
+  useEffect(() => {
+    if (filterData.database) dispatch(filterCategory("database", true));
+    else dispatch(filterCategory("database", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.database, dispatch]);
+
+  // FILTER -- CATEGORY -- "machineLearning"
+  useEffect(() => {
+    if (filterData.machineLearning)
+      dispatch(filterCategory("machineLearning", true));
+    else dispatch(filterCategory("machineLearning", false));
+    return () => {
+      // cleanup
+    };
+  }, [filterData.machineLearning, dispatch]);
+
+  // FILTER -- FREE RESOURCES
   useEffect(() => {
     if (filterData.free) dispatch(filterFree(true));
     else dispatch(filterFree(false));
@@ -20,6 +79,7 @@ export default function Filter() {
     };
   }, [filterData.free, dispatch]);
 
+  // FILTER -- PAID RESOURCES
   useEffect(() => {
     if (filterData.paid) dispatch(filterPaid(true));
     else dispatch(filterPaid(false));
@@ -28,95 +88,120 @@ export default function Filter() {
     };
   }, [filterData.paid, dispatch]);
 
-  useEffect(() => {
-    if (filterData.rating) dispatch(filterRating(filterData.rating));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.rating, dispatch]);
-
-  function handleChange(e) {
+  function handleCheckboxChange(e) {
     setFilterData({ ...filterData, [e.target.name]: e.target.checked });
   }
-  function handleRatingChange(e) {
+
+  function handleSearchChange(e) {
     setFilterData({ ...filterData, [e.target.name]: e.target.value });
+    // e.preventDefault();
+    // console.log(e.target.value);
+    // dispatch(searchResources(e.target.value));
+  }
+
+  function search(e) {
+    e.preventDefault();
+    // console.log("Searching for...", filterData.search);
+    dispatch(searchResources(filterData.search));
   }
 
   return (
-    <React.Fragment>
-      <form className='filter-form'>
-        <div name='category'>
-          <label>Category</label>
-          <label htmlFor='frontend'>
-            <input type='checkbox' name='category' value='frontend' />
-            Frontend
-          </label>
-          <label htmlFor='backend'>
-            <input type='checkbox' name='category' value='backend' />
-            Backend
-          </label>
-          <label htmlFor='database'>
-            <input type='checkbox' name='category' value='database' />
-            Database
-          </label>
-          <label htmlFor='general'>
-            <input type='checkbox' name='category' value='general' />
-            General
-          </label>
-        </div>
-        <div>
-          <label>Is paid?</label>
+    <section className="filter-container">
+      <form className="filter-form">
+        {/* Category Filter */}
+        <fieldset>
+          <legend>Category</legend>
+
           <input
-            type='checkbox'
-            name='free'
-            id='filter-free'
-            onChange={handleChange}
+            type="checkbox"
+            id="general"
+            name="general"
+            onChange={handleCheckboxChange}
+            checked={filterData.general}
+          />
+          <label htmlFor="general">General</label>
+
+          <input
+            type="checkbox"
+            id="frontend"
+            name="frontend"
+            onChange={handleCheckboxChange}
+            checked={filterData.frontend}
+          />
+          <label htmlFor="frontend">Frontend</label>
+
+          <input
+            type="checkbox"
+            id="backend"
+            name="backend"
+            onChange={handleCheckboxChange}
+            checked={filterData.backend}
+          />
+          <label htmlFor="backend">Backend</label>
+
+          <input
+            type="checkbox"
+            id="database"
+            name="database"
+            onChange={handleCheckboxChange}
+            checked={filterData.database}
+          />
+          <label htmlFor="database">Database</label>
+          <input
+            type="checkbox"
+            id="machineLearning"
+            name="machineLearning"
+            onChange={handleCheckboxChange}
+            checked={filterData.machineLearning}
+          />
+          <label htmlFor="machineLearning">Machine Learning</label>
+        </fieldset>
+
+        {/* Paid/Free Filter */}
+        <fieldset>
+          <legend>Is paid?</legend>
+          <input
+            type="checkbox"
+            name="free"
+            id="filter-free"
+            onChange={handleCheckboxChange}
             checked={filterData.free}
           />
-          <label htmlFor='filter-free'>Free</label>
+          <label htmlFor="filter-free">Free</label>
+
           <input
-            type='checkbox'
-            name='paid'
-            id='filter-paid'
-            onChange={handleChange}
+            type="checkbox"
+            name="paid"
+            id="filter-paid"
+            onChange={handleCheckboxChange}
             checked={filterData.paid}
           />
-          <label htmlFor='filter-paid'>Paid</label>
-        </div>
-        <div>
+          <label htmlFor="filter-paid">Paid</label>
+        </fieldset>
+
+        {/* Rating Filter */}
+        <fieldset>
           <legend>
             <strong>Rating:</strong>
           </legend>
-          (Component Test)
-          <Rating usedInFilter={true} />
-          (Redux Test)
-          <input
-            type='radio'
-            name='rating'
-            id='rating-4'
-            value='4'
-            onChange={handleRatingChange}
-          />
-          <label htmlFor='rating-4'>4</label>
-          <input
-            type='radio'
-            name='rating'
-            id='rating-5'
-            value='5'
-            onChange={handleRatingChange}
-          />
-          <label htmlFor='rating-5'>5</label>
-        </div>
-        <input
-          type='search'
-          name='search'
-          id='search'
-          placeholder='Search...'
-          onChange={handleChange}
-        />
-
-        <button type='submit'>Search</button>
+          <FilterRating />
+        </fieldset>
       </form>
-    </React.Fragment>
+
+      <form className="search-form" action="" method="post" onSubmit={search}>
+        {/* Search Field */}
+        <fieldset className="search-container">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search..."
+            onChange={handleSearchChange}
+          />
+
+          <button type="submit">Search</button>
+        </fieldset>
+      </form>
+    </section>
   );
 }

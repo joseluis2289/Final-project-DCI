@@ -3,21 +3,20 @@ const mongoose = require("mongoose");
 var cors = require("cors");
 require("dotenv").config();
 const app = express();
-const UserModel = require("../Final-Project-DCI/Models/userModel");
+const UserModel = require("./Models/userModel");
 const expValidator = require("express-validator");
 const Logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
-//const MongoStore = require("connect-mongo")(session);
 
-const protectedRoutes = require("./routes/protectedRoutes");
+//const protectedRoutes = require("./routes/protectedRoutes");
 
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
-// const url = process.env.MONGO_URIBel;
-const url = process.env.MONGO_URIJose;
+ const url = process.env.MONGO_URIBel;
+// const url = process.env.MONGO_URIJose;
 //listen to a port
 
 //connect to DataBase
@@ -39,7 +38,6 @@ const connectDB = async () => {
 };
 
 //MiddleWares
-
 app.use(cors());
 app.use(Logger("dev"));
 app.use(
@@ -57,11 +55,10 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      maxAge: 36000,
+      maxAge: 5 * 60 * 1000,
       httpOnly: false,
       secure: false, // for normal http connection if https is there we have to set it to true
     },
-    // store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 app.use(cors());
@@ -69,25 +66,10 @@ app.use(Logger("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(expValidator());
-//profile route GET to display the user data
-app.get("/profile", (req, res, next) => {
-  console.log(req.session.user);
-  let displayUser = req.body;
-  console.log(displayUser);
-  UserModel.findOne({ email: req.session.user.email })
-    .select("name userName email password")
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => res.send(err));
-});
 app.use("/resources", require("./routes/resources"));
 app.use("/comments", require("./routes/comments"));
 app.use("/users", require("./routes/users"));
-app.use("/posts", protectedRoutes);
-
-// app.use(authenticateToken());
-app.use("/resources", require("./routes/resources"));
+//app.use("/posts", protectedRoutes);
 
 ///All routes
 
@@ -148,6 +130,7 @@ app.post("/login", (req, res) => {
           req.session.user = result;
           res.json({
             logIn: output,
+            user: result
           });
         }
       });
@@ -155,6 +138,19 @@ app.post("/login", (req, res) => {
     .catch((err) => {
       res.send(err);
     });
+});
+
+//profile route GET to display the user data
+app.get("/profile", (req, res, next) => {
+  console.log(req.session.user);
+  let displayUser = req.body;
+  console.log(displayUser);
+  UserModel.findOne({ email: req.session.user.email })
+    .select("name userName email password")
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => res.send(err));
 });
 
 //profile update the user data

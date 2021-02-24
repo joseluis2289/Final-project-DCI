@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 export default function Comment(props) {
-  const user = useSelector((state) => state.loginData.user._id);
+  const user = useSelector((state) => state.user._id);
   const [comment, setComment] = useState({
     user: user,
     resource: props.resourceId,
@@ -13,7 +13,7 @@ export default function Comment(props) {
     axios({
       method: "POST",
       url: "http://localhost:5000/comments",
-      ContentType: "application-json",
+      ContentType: "application/json",
       data: comment,
     })
       .then((res) => {
@@ -29,17 +29,17 @@ export default function Comment(props) {
       <form onSubmit={(e) => addComment(e)}>
         {" "}
         <div>
-          <label htmlFor='title'>Comment:</label>
+          <label htmlFor="title">Comment:</label>
           <textarea
-            name='text'
-            rows='5'
-            cols='33'
+            name="text"
+            rows="5"
+            cols="33"
             style={{ border: "solid black 2px" }}
-            placeholder='Please comment here...'
+            placeholder="Please comment here..."
             onChange={formHandler}
           ></textarea>
         </div>
-        <button type='submit'>Send</button>
+        <button type="submit">Add Comment</button>
       </form>
     </div>
   );
