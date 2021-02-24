@@ -39,5 +39,11 @@ const Resource = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
   },
+  rankingUser: [
+    {
+      type: String,
+      ref: "User",
+    },
+  ],
 });
 module.exports = mongoose.model("resource", Resource);
