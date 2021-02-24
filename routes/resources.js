@@ -183,7 +183,7 @@ router.get("/:resource_id", (req, res, next) => {
     .catch((err) => res.send(err));
 });
 
- // update one resource → not done
+ // update one resource (and change "deleted" to "true")
 router.put("/:resource_id", (req, res, next) => {
   console.log("is it working?", req.session.user);
   console.log("inside put router")
@@ -201,7 +201,7 @@ router.put("/:resource_id", (req, res, next) => {
  
 
 
-// delete one resource → not done
+// delete one resource → not used on our application, once we are storing data and just updating the property "deleted" to true
 router.delete("/:resource_id", (req, res, next) => {
   const resource = Resource.findById(req.params.resource_id)
     .then((resource) => {
