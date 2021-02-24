@@ -64,7 +64,13 @@ export const getResources = () => async (dispatch) => {
     });
 };
 
-//RESOURCES ACTIONS
+export function updateData(boolean) {
+  return {
+    type: "UPDATE_DATA",
+    payload: boolean
+  };
+}
+
 export const searchResources = (term) => async (dispatch) => {
   if (term) {
     axios

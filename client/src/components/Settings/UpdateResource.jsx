@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Styles/Settings.css";
+import {} from "../R";
 export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
-
+  const dispatch = useDispatch();
   const [alert, setAlert] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
@@ -56,7 +57,6 @@ export default function UpdateResource(props) {
   let delResource = (e) => {
     setDeleted(true);
     setResource({ ...resource, deleted: true, date: Date.now });
-    e.preventDefault();
     axios({
       method: "PUT",
       url: `http://localhost:5000/resources/${resource.id}`,

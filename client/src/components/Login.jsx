@@ -46,11 +46,11 @@ export default function Login() {
             .catch((err) => console.log(err));
         })}
       >
-        <label htmlFor='username'>Username</label>
+        <label htmlFor="username">Username</label>
         <input
-          type='text'
-          name='username'
-          id='username'
+          type="text"
+          name="username"
+          id="username"
           onChange={(e) => {
             handleChange(e);
           }}
@@ -66,11 +66,11 @@ export default function Login() {
           <span className="errorsMsg">Must be more than 3 character</span>
         )}
 
-        <label htmlFor='password'>Password</label>
+        <label htmlFor="password">Password</label>
         <input
-          type='password'
-          name='password'
-          id='password'
+          type="password"
+          name="password"
+          id="password"
           onChange={(e) => {
             handleChange(e);
           }}
@@ -85,7 +85,7 @@ export default function Login() {
         {errors.password && errors.password.type === "minLength" && (
           <span className="errorsMsg">Must be more than 3 character</span>
         )}
-        <button type='submit'>Login</button>
+        <button type="submit">Login</button>
       </form>
     </article>
   );

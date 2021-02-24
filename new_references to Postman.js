@@ -368,7 +368,7 @@
     "edited": "false",
     "deleted": "false",
     "comments": []
-  }, 
+  }
 ];
 
 export default fakeData;

@@ -1,6 +1,7 @@
 const initialState = {
   user: {},
   logIn: false,
+  update: false,
   resources: [],
   filter: {
     rating: 0, // show all
@@ -46,6 +47,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         resources: payload,
+      };
+
+      case "UPDATE_DATA":
+      return {
+        ...state,
+        update: !payload,
       };
     case "SEARCH_RESOURCES":
       return {
