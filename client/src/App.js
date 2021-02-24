@@ -8,9 +8,9 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Content from "./components/Content";
 import AddResource from "./components/AddResource";
-import MyResources from "./components/Settings/MyResources"
-import Settings from "./components/Settings/Settings";
-import UpdateResource from "./components/Settings/UpdateResource";
+import MyResources from "./components/settings/MyResources"
+import Settings from "./components/settings/Settings";
+import UpdateResource from "./components/settings/UpdateResource";
 import NotFound from "./components/NotFound";
 import "./App.css";
 
