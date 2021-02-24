@@ -256,6 +256,15 @@ button:hover {
   margin: 2rem;
 }
 
+/****COMMENT****/
+.comment{
+  border: 1px solid var(--yellow-dark);
+  padding: 1rem;
+}
+
+.comment button{
+  float: right;
+}
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
 .errorsMsg {
   color: red;
