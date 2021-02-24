@@ -57,7 +57,6 @@ const Resource = (props) => {
       <p>{props.data.num_views} views</p>
 
       <Reaction love={10} like={5} dislike={1} />
-      <button>Add Reaction</button>
       <h3>Description</h3>
       <p>{props.data.description}</p>
       <h3>
@@ -70,7 +69,6 @@ const Resource = (props) => {
             setDisplayComm(!displayCom);
           }}
         ></img>{" "}
-        <button>Add Comment</button>
       </h3>
       {displayCom && (
         <Fragment>

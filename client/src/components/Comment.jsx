@@ -29,17 +29,17 @@ export default function Comment(props) {
       <form onSubmit={(e) => addComment(e)}>
         {" "}
         <div>
-          <label htmlFor='title'>Comment:</label>
+          <label htmlFor="title">Comment:</label>
           <textarea
-            name='text'
-            rows='5'
-            cols='33'
+            name="text"
+            rows="5"
+            cols="33"
             style={{ border: "solid black 2px" }}
-            placeholder='Please comment here...'
+            placeholder="Please comment here..."
             onChange={formHandler}
           ></textarea>
         </div>
-        <button type='submit'>Send</button>
+        <button type="submit">Add Comment</button>
       </form>
     </div>
   );
