@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import "../styles/settings.css";
-import {} from "../R";
 
 export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
