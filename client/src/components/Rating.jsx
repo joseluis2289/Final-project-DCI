@@ -21,6 +21,7 @@ export default function Rating(props) {
       body: JSON.stringify({
         rate: index,
         resourceId,
+        email: sessionStorage.getItem("email"),
       }),
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -30,6 +31,9 @@ export default function Rating(props) {
         if (response.status === 200) {
           response.json().then((data) => {
             console.log(data.average);
+            if (data.isUserRateAccepted === false) {
+              alert("You can only rate once!");
+            }
           });
         } else {
           if (response.status === 401) {
