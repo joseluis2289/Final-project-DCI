@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import UpdateResource from "./UpdateResource";
 
 export default function MyResources() {
-  const userId = "6034cd5f0e819f6cb3c11915";
+  const user = useSelector((state) => state.user);
   const [userResources, setUserResources] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users/resources/${userId}`)
+      .get(`http://localhost:5000/users/resources/${user._id}`)
       .then((res) => {
         setUserResources(res.data.resources);
         console.log(res.data.resources);

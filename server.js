@@ -15,7 +15,7 @@ const bcrypt = require("bcrypt");
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
- const url = process.env.MONGO_URIBel;
+const url = process.env.MONGO_URIBel;
 // const url = process.env.MONGO_URIJose;
 //listen to a port
 
@@ -129,8 +129,9 @@ app.post("/login", (req, res) => {
         } else {
           req.session.user = result;
           res.json({
+            userSession: req.session.user,
             logIn: output,
-            user: result
+            user: result, 
           });
         }
       });
@@ -142,7 +143,7 @@ app.post("/login", (req, res) => {
 
 //profile route GET to display the user data
 app.get("/profile", (req, res, next) => {
-  console.log(req.session.user);
+  console.log("is it working?", req.session.user);
   let displayUser = req.body;
   console.log(displayUser);
   UserModel.findOne({ email: req.session.user.email })
