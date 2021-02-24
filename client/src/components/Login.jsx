@@ -37,7 +37,7 @@ export default function Login() {
                   // dispatch(userLogin(data));
                   if (data.logIn === true) {
                     sessionStorage.setItem("email", data.email);
-                    //sessionStorage.clear();
+                    //ADD this to the logout => sessionStorage.clear();
                     alert(`Welcome`);
                   } else {
                     alert("Your password is wrong! please try again!");
