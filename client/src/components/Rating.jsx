@@ -1,10 +1,12 @@
 import React from "react";
 import Star from "./Star";
+import { useHistory } from "react-router-dom";
 
 // Gets Rating (between 0 and 5) as decimal number in props.rating
 export default function Rating(props) {
   const [rating, setRating] = React.useState(props.rating);
   const [hoverRating, setHoverRating] = React.useState(0);
+  let history = useHistory();
   const onMouseEnter = (index) => {
     setHoverRating(index);
   };
@@ -13,11 +15,41 @@ export default function Rating(props) {
   };
   const onSaveRating = (index) => {
     setRating(index);
-    // post RATING by USER to backend
+    const resourceId = props.resourceId;
+    fetch("/resources/rating", {
+      method: "POST",
+      body: JSON.stringify({
+        rate: index,
+        resourceId,
+        email: sessionStorage.getItem("email"),
+      }),
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          response.json().then((data) => {
+            console.log(data.average);
+            if (data.isUserRateAccepted === false) {
+              alert("You can only rate once!");
+            }
+          });
+        } else {
+          if (response.status === 401) {
+            history.push("/login");
+            alert("you need to login if you want to rate");
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
   return (
     <section>
-      <figure className='rating-container' role='group'>
+      <figure className="rating-container" role="group">
         {[1, 2, 3, 4, 5].map((index) => {
           return (
             <Star
@@ -37,9 +69,9 @@ export default function Rating(props) {
         {props.usedInFilter ? (
           ""
         ) : (
-          <figcaption className='rating-details'>
-            <span className='rating-number'>{rating}</span>
-            <span className='rating-users'>({props.num_ratings})</span>
+          <figcaption className="rating-details">
+            <span className="rating-number">{rating}</span>
+            <span className="rating-users">({props.num_ratings})</span>
           </figcaption>
         )}
       </figure>

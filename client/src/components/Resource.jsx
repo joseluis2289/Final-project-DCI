@@ -27,6 +27,7 @@ const Resource = (props) => {
             <Rating
               rating={props.data.rating}
               num_ratings={props.data.num_ratings}
+              resourceId={props.data._id}
             />
           </div>
           <div className="category">

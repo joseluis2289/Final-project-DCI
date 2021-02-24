@@ -11,6 +11,42 @@ router.get("/", (req, res, next) => {
     .catch((err) => res.send(err));
 });
 
+//this MiddleWare is protecting all the routes down Below
+router.use("/", (req, res, next) => {
+  if (req.session.user) {
+    next();
+  } else {
+    res.sendStatus(401);
+  }
+});
+router.post("/rating", (req, res, next) => {
+  const rate = req.body.rate;
+  const resourceId = req.body.resourceId;
+  const email = req.body.email;
+  Resource.findById(resourceId).then((result) => {
+    if (result.rankingUser.includes(email)) {
+      //if user already gave a rating
+      res.json({ average: result.rating, isUserRateAccepted: false });
+    } else {
+      //if user didn't give a rating
+      const oldAverage = result.rating;
+      const oldNumberRating = result.num_ratings;
+      const newAverage = Math.round(
+        (oldAverage * oldNumberRating + rate) / (oldNumberRating + 1)
+      );
+      result.rating = newAverage;
+      result.num_ratings = oldNumberRating + 1;
+      result.rankingUser = [...result.rankingUser, email];
+      result.save().then(() => {
+        res.json({
+          average: newAverage,
+          isUserRateAccepted: true,
+        });
+      });
+    }
+  });
+});
+
 //search for specific term in Resources
 router.get("/search/:term", (req, res, next) => {
   const resources = Resource.find({ $text: { $search: req.params.term } })

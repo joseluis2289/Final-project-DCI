@@ -44,6 +44,12 @@ const Resource = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  rankingUser: [
+    {
+      type: String,
+      ref: "User",
+    },
+  ],
 });
 
 // Indexing is needed for full-text search
