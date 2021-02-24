@@ -55,7 +55,7 @@ export default function UpdateResource(props) {
       });
   };
 
-  let delResource = (e) => {
+  let delResource = () => {
     setDeleted(true);
     setResource({ ...resource, deleted: true, date: Date.now });
     axios({
