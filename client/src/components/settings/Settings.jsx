@@ -13,6 +13,7 @@ export default function Settings() {
         AddResource
       </Link>{" "}
       <Link to="/my_resources">MyResources</Link>{" "}
+      <Link to="/my_comments">My Comments</Link>{" "}
       <Link to="/update_resource">
         <img
           className="icon"

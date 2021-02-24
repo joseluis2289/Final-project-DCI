@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import Rating from "./Rating";
 import Reaction from "./Reaction";
-import Comment from "./Comment";
+import CreateComment from "./CreateComment.jsx";
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 
@@ -82,7 +82,7 @@ const Resource = (props) => {
           )}
         </Fragment>
       )}
-      <Comment resourceId={props.data._id} />
+      <CreateComment resourceId={props.data._id} />
     </section>
   );
 };
