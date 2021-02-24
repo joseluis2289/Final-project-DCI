@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import "../Styles/Settings.css";
 import {} from "../R";
+
 export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
   const dispatch = useDispatch();

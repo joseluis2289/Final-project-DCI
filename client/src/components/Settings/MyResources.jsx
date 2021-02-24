@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import UpdateResource from "../Settings/UpdateResource";
+import UpdateResource from "./UpdateResource";
 
 export default function MyResources() {
   const userId = "6034cd5f0e819f6cb3c11915";
