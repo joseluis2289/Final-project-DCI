@@ -14,4 +14,17 @@ router.get("/resources/:user_id", (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
+// get comments added by specific user
+router.get("/comments/:user_id", (req, res, next) => {
+  let userId = req.params.user_id;
+  UserSchema.findOne({ _id: userId })
+    .populate("comments", {match: { deleted: false}})
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => res.json(err));
+});
+
+
+
 module.exports = router;
