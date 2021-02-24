@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import Resource from "./Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
-import AddResources from "./AddResource";
 
 const Content = ({ getResources, resources, filter }) => {
   // When page loads for the first time, load resources from the database
@@ -16,7 +15,7 @@ const Content = ({ getResources, resources, filter }) => {
       console.log(resources);
       setFirstPageLoad(false);
     }
-  }, []);
+  }, [firstPageLoad]);
 
   // TODO: once a Search or a Filter is applied, change the display accordingly
 

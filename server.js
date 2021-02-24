@@ -130,7 +130,7 @@ app.post("/login", (req, res) => {
           req.session.user = result;
           res.json({
             logIn: output,
-            email: result.email,
+            user: result
           });
         }
       });

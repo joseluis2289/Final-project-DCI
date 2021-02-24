@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-//import { useDispatch } from "react-redux";
-//import { userLogin } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../redux/actions";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 export default function Login() {
   // const login = useSelector((state) => state.username);
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [loginData, setLoginData] = useState({});
   const { register, handleSubmit, errors } = useForm();
   let history = useHistory();
@@ -34,9 +34,9 @@ export default function Login() {
               if (response.status === 200) {
                 response.json().then((data) => {
                   console.log(data);
-                  // dispatch(userLogin(data));
+                  dispatch(userLogin(data));
                   if (data.logIn === true) {
-                    sessionStorage.setItem("email", data.email);
+                    sessionStorage.setItem("email", data.user.email);
                     //sessionStorage.clear();
                     alert(`Welcome`);
                   } else {

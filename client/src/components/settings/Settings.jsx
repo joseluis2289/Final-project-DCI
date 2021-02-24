@@ -1,15 +1,7 @@
-import React, { useSelector, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 export default function Settings() {
-  useEffect(() => {
-    //   create request of resources added by logged used
-    // axios.get("/:user")
-    // return () => {
-    //   cleanup;
-    // };
-  }, []);
   return (
     <div>
       <Link to="/add_resource">
