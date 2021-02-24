@@ -15,8 +15,8 @@ const bcrypt = require("bcrypt");
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
- const url = process.env.MONGO_URIBel;
-// const url = process.env.MONGO_URIJose;
+//const url = process.env.MONGO_URIBel;
+const url = process.env.MONGO_URIJose;
 //listen to a port
 
 //connect to DataBase
@@ -130,7 +130,7 @@ app.post("/login", (req, res) => {
           req.session.user = result;
           res.json({
             logIn: output,
-            user: result
+            user: result,
           });
         }
       });
