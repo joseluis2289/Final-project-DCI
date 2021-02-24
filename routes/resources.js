@@ -27,18 +27,28 @@ router.use("/", (req, res, next) => {
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
   const resourceId = req.body.resourceId;
+  const email = req.body.email;
   Resource.findById(resourceId).then((result) => {
-    const oldAverage = result.rating;
-    const oldNumberRating = result.num_ratings;
-    const newAverage =
-      (oldAverage * oldNumberRating + rate) / (oldNumberRating + 1);
-    result.rating = newAverage;
-    result.num_ratings = oldNumberRating + 1;
-    result.save().then(() => {
-      res.json({
-        average: Math.round(newAverage),
+    if (result.rankingUser.includes(email)) {
+      //if user already gave a rating
+      res.json({ average: result.rating, isUserRateAccepted: false });
+    } else {
+      //if user didn't give a rating
+      const oldAverage = result.rating;
+      const oldNumberRating = result.num_ratings;
+      const newAverage = Math.round(
+        (oldAverage * oldNumberRating + rate) / (oldNumberRating + 1)
+      );
+      result.rating = newAverage;
+      result.num_ratings = oldNumberRating + 1;
+      result.rankingUser = [...result.rankingUser, email];
+      result.save().then(() => {
+        res.json({
+          average: newAverage,
+          isUserRateAccepted: true,
+        });
       });
-    });
+    }
   });
 });
 
