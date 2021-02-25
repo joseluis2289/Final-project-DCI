@@ -58,7 +58,6 @@ const Resource = (props) => {
       <p>(Reactions... 🦝)</p>
       <p>{props.data.num_views} views</p>
 
-      <Reaction love={10} like={5} dislike={1} />
       <h3>Description</h3>
       <p>{props.data.description}</p>
       <h3>
