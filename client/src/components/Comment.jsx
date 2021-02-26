@@ -3,7 +3,7 @@ import React from "react";
 export default function Comment(props) {
   return (
     <div className='comment'>
-      <h3>{props.data.user.username}</h3>
+      <h3>{props.data.user.userName}</h3>
       {props.data.edited && <span>Edited</span>}
       <p>{props.data.text}</p>
       <span>

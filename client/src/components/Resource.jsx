@@ -33,11 +33,11 @@ const Resource = (props) => {
             <h3>
               {props.data.category.map((item, index) => {
                 let name = item[0].toUpperCase() + item.substring(1);
-                return <span key={index}>{name}</span>;
+                return <span key={index}>{name} </span>;
               })}
             </h3>
           </div>
-          {/* <h3>added by {props.data.user.name}</h3> */}
+          <h3>added by {props.data.user.name}</h3>
         </hgroup>
       </header>
       <figure role='group'>
@@ -53,7 +53,6 @@ const Resource = (props) => {
           {props.data.link}
         </a>
       </p>
-      <p>(Reactions... 🦝)</p>
       <p>{props.data.num_views} views</p>
 
       <h3>Description</h3>
