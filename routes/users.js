@@ -7,7 +7,7 @@ const Comment = require("../Models/Comment");
 router.get("/resources/:user_id", (req, res, next) => {
   let userId = req.params.user_id;
   UserSchema.findOne({ _id: userId })
-    .populate("resources", {match: { deleted: false}})
+    .populate("resources", { match: { deleted: false } })
     .then((user) => {
       res.json(user);
     })
@@ -18,13 +18,28 @@ router.get("/resources/:user_id", (req, res, next) => {
 router.get("/comments/:user_id", (req, res, next) => {
   let userId = req.params.user_id;
   UserSchema.findOne({ _id: userId })
-    .populate("comments", {match: { deleted: false}})
+    .populate({
+      path: "comments",
+      populate: { path: "resource" },
+      match: { deleted: false },
+    })
     .then((user) => {
-      res.json(user);
+      res.send(user);
     })
     .catch((err) => res.json(err));
 });
 
-
+//get all data from specific comment
+router.get("/comments/:comment_id", (req, res, next) => {
+  let userId = req.params.user_id;
+  UserSchema.findOne({ _id: userId })
+    .populate("comments", { match: { deleted: false } })
+    .populate("resources")
+    .then((user) => {
+      res.json(user);
+      console.log("that comes from my comments", user);
+    })
+    .catch((err) => res.json(err));
+});
 
 module.exports = router;

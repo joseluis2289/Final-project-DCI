@@ -20,7 +20,8 @@ export default function MyComments() {
   }, []);
   return (
     <Fragment>
-      <Settings />
+      testing
+      {/*  <Settings />
       <div className="references-container ">
         {userComments.map(
           (comment) =>
@@ -33,7 +34,7 @@ export default function MyComments() {
               </div>
             )
         )}
-      </div>
+      </div> */}
     </Fragment>
   );
 }
