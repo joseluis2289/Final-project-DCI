@@ -63,8 +63,6 @@ app.use(
 );
 app.use(cors());
 app.use(Logger("dev"));
-app.use(express.json());
-app.use(cookieParser());
 app.use(expValidator());
 app.use("/resources", require("./routes/resources"));
 app.use("/comments", require("./routes/comments"));

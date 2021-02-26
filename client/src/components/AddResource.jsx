@@ -48,7 +48,7 @@ export default function AddResource() {
   return user ? (
     <Fragment>
       <Settings />
-      <div>
+      <div className="add-resource">
         <form onSubmit={addResource}>
           <div>
             <label htmlFor="title">Title</label>
