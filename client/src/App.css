@@ -212,6 +212,7 @@ button:hover {
   cursor: pointer;
 }
 /*** RESOURCES ***/
+
 .rating {
   display: flex;
   align-items: center;
@@ -251,7 +252,9 @@ button:hover {
 }
 
 /****SETTINGS****/
-
+.add-resource{
+  width: 30vw;
+}
 .settings-navbar{
   display: flex;
   justify-content: space-around;
