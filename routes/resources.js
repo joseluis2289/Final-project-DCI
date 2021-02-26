@@ -6,7 +6,7 @@ const Comment = require("../Models/Comment");
 //get all Resources
 router.get("/", (req, res, next) => {
   Resource.find({ deleted: false })
-    .populate("user")
+    .populate(["user", "comments"])
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
 });
