@@ -188,7 +188,6 @@ router.get("/:resource_id", (req, res, next) => {
 
 // update one resource (and change "deleted" to "true")
 router.put("/:resource_id", (req, res, next) => {
-  console.log("is it working?", req.session.user);
   console.log("inside put router");
   resourceUpdated = Resource.updateOne(
     { _id: req.params.resource_id },

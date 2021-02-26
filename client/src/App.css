@@ -252,10 +252,10 @@ button:hover {
 }
 
 /****SETTINGS****/
-.add-resource{
+.add-resource {
   width: 30vw;
 }
-.settings-navbar{
+.settings-navbar {
   display: flex;
   justify-content: space-around;
   padding: 1rem;
@@ -274,21 +274,25 @@ button:hover {
 
 /****UPDATE RESOURCE****/
 
-.update-resource{
+.update-resource {
   border: 1px solid var(--yellow-dark);
   margin: 2rem;
 }
-.delete-button{
+.delete-button {
   align-self: flex-end;
   display: block;
 }
 /****COMMENT****/
-.comment{
+.comment {
   border: 1px solid var(--yellow-dark);
   padding: 1rem;
 }
 
-.comment button{
+.comment-image {
+  width: 150px;
+  height: 150px;
+}
+.comment button {
   float: right;
 }
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/

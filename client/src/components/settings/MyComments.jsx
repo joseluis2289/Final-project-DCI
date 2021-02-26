@@ -14,27 +14,27 @@ export default function MyComments() {
       .get(`http://localhost:5000/users/comments/${user._id}`)
       .then((res) => {
         setUserComments(res.data.comments);
-        console.log(res.data.comments);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
   return (
     <Fragment>
-      testing
-      {/*  <Settings />
-      <div className="references-container ">
-        {userComments.map(
-          (comment) =>
-            !comment.deleted && (
-              <div className="comment">
-                <UpdateComment id={comment._id} data={comment} author={true} />
-                <Link to="/resource">
-                  <button>Go to Resource</button>
-                </Link>
-              </div>
-            )
-        )}
-      </div> */}
+      <Settings />
+      {userComments.map((comment) => {
+        return (
+          <div className='references-container '>
+            <h3>{comment.text}</h3>
+            <h2>{comment.resource.title}</h2>
+            <img
+              className='comment-image'
+              src={comment.resource.previewImage}
+              alt='preview'
+            ></img>
+            {comment.date}
+          </div>
+        );
+      })}
     </Fragment>
   );
 }
