@@ -1,6 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
 import Rating from "./Rating";
-import Reaction from "./Reaction";
 import CreateComment from "./CreateComment.jsx";
 import Comment from "./Comment";
 
@@ -9,6 +8,7 @@ const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
   const [displayCom, setDisplayComm] = useState(false);
+  const [makeCom, setMakeComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
@@ -58,8 +58,8 @@ const Resource = (props) => {
 
       <h3>Description</h3>
       <p>{props.data.description}</p>
-      <h3>
-        Comments{" "}
+      <span>
+        See Comments{" "}
         <img
           className='icon'
           src='https://img.icons8.com/material-rounded/72/give-way.png'
@@ -68,19 +68,30 @@ const Resource = (props) => {
             setDisplayComm(!displayCom);
           }}
         ></img>{" "}
-      </h3>
+      </span>
+      <span>
+        Comment{" "}
+        <img
+          className='icon'
+          src='icons/comment.svg'
+          alt='Login Icon'
+          onClick={() => {
+            setMakeComm(!makeCom);
+          }}
+        />
+      </span>
       {displayCom && (
         <Fragment>
           {props.data.comments ? (
-            props.data.comments.map((comment, index) => (
-              <Comment data={comment}></Comment>
+            props.data.comments.map((comment) => (
+              <Comment key={comment._id} data={comment}></Comment>
             ))
           ) : (
             <p>There is no comment for the moment</p>
           )}
         </Fragment>
       )}
-      <CreateComment resourceId={props.data._id} />
+      {makeCom && <CreateComment resourceId={props.data._id} />}
     </section>
   );
 };
