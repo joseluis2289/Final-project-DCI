@@ -32,6 +32,7 @@ export default function MyComments() {
               alt='preview'
             ></img>
             {comment.date}
+            <p>count how much time ago</p>
           </div>
         );
       })}
