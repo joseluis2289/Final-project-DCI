@@ -53,6 +53,17 @@ router.put("/:comment_id", (req, res, next) => {
       res.send(err);
     });
 });
+
+ // delete one resource 
+ router.delete("/:comment_id", (req, res, next) => {
+  Comment.findByIdAndRemove(req.params.comment_id)
+    .then((response) => {
+      res.send("your comment was deleted");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
  
 
 module.exports = router;
