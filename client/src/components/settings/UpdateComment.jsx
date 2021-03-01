@@ -4,6 +4,8 @@ import axios from "axios";
 export default function UpdateComment(props) {
   const [comment, setComment] = useState(props.data);
   const [date, setDate] = useState(props.data.date);
+  const [alert, setAlert] = useState(false);
+  const [deleted, setDeleted] = useState(false);
   let formHandler = (e) => {
     setComment({
       ...comment,
@@ -25,7 +27,7 @@ export default function UpdateComment(props) {
       data: comment,
     })
       .then(function (response) {
-        console.log("responde from request to update comment", response);
+        response.data.nModified > 0 && setAlert(true);
       })
       .catch((err) => {
         console.log(err);
@@ -41,6 +43,7 @@ export default function UpdateComment(props) {
       data: comment,
     })
       .then((response) => {
+        response.data.nModified > 0 && setDeleted(true);
         console.log("deleted", response.data);
       })
       .catch((err) => {
@@ -87,6 +90,8 @@ export default function UpdateComment(props) {
         </div>
         <button type="submit">Update Comment</button>
       </form>
+      {alert && <p>data updated</p>}
+      {deleted && <p>comment deleted</p>}
     </div>
   );
 }
