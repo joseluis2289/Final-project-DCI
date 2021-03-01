@@ -7,6 +7,7 @@ import Settings from "./Settings";
 
 export default function MyResources() {
   const user = useSelector((state) => state.user);
+  const update = useSelector((state) => state.update);
   const [userResources, setUserResources] = useState([]);
   useEffect(() => {
     axios
@@ -16,7 +17,7 @@ export default function MyResources() {
         console.log(res.data.resources);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [update]);
   return (
     <Fragment>
       <Settings />

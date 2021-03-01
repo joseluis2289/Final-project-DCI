@@ -8,6 +8,7 @@ import Settings from "./Settings";
 
 export default function MyComments() {
   const user = useSelector((state) => state.user);
+  const update = useSelector((state) => state.update);
   const [userComments, setUserComments] = useState([]);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function MyComments() {
         console.log("comments", res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [update]);
   return (
     <Fragment>
       <Settings />

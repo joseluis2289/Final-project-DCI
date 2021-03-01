@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateData } from "../../redux/actions";
 
 export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
+  const update = useSelector((state) => state.update);
   const dispatch = useDispatch();
   const [alert, setAlert] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -47,16 +49,16 @@ export default function UpdateResource(props) {
     })
       .then(function (response) {
         response.data.nModified > 0 && setAlert(true);
-        console.log(response);
+        dispatch(updateData(update));
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  let delResource = (e) => {
+  let delResource = async (e) => {
     e.preventDefault();
-
+    await setResource({ ...resource, deleted: true, date: Date.now });
     axios({
       method: "PUT",
       url: `http://localhost:5000/resources/${resource._id}`,
@@ -65,6 +67,7 @@ export default function UpdateResource(props) {
     })
       .then((response) => {
         response.data.nModified > 0 && setDeleted(true);
+        dispatch(updateData(update));
         console.log("deleted", response);
       })
       .catch((err) => {
@@ -76,7 +79,6 @@ export default function UpdateResource(props) {
       <div className="delete-button">
         <button
           onClick={(e) => {
-            setResource({ ...resource, deleted: true, date: Date.now });
             delResource(e);
           }}
         >

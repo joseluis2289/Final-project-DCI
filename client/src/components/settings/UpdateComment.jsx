@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { updateData } from "../../redux/actions";
 
 export default function UpdateComment(props) {
+  const update = useSelector((state) => state.update);
   const [comment, setComment] = useState(props.data);
   const [date, setDate] = useState(props.data.date);
   const [alert, setAlert] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const dispatch = useDispatch();
   let formHandler = (e) => {
     setComment({
       ...comment,
@@ -27,6 +31,7 @@ export default function UpdateComment(props) {
       data: comment,
     })
       .then(function (response) {
+        dispatch(updateData(update));
         response.data.nModified > 0 && setAlert(true);
       })
       .catch((err) => {
@@ -43,6 +48,7 @@ export default function UpdateComment(props) {
       data: comment,
     })
       .then((response) => {
+        dispatch(updateData(update));
         response.data.nModified > 0 && setDeleted(true);
         console.log("deleted", response.data);
       })
