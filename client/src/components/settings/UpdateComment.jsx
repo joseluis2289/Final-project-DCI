@@ -39,18 +39,15 @@ export default function UpdateComment(props) {
       });
   };
 
-  let delComment = (e) => {
-    e.preventDefault();
+  let delComment = () => {
     axios({
-      method: "PUT",
-      url: `http://localhost:5000/comments/${comment._id}`,
+      method: "DELETE",
+      url: `http://localhost:5000/comments/${props.data._id}`,
       ContentType: "application/json",
-      data: comment,
     })
       .then((response) => {
         dispatch(updateData(update));
-        response.data.nModified > 0 && setDeleted(true);
-        console.log("deleted", response.data);
+        console.log(response);
       })
       .catch((err) => {
         console.log(err);

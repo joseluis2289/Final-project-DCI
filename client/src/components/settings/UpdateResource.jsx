@@ -8,7 +8,6 @@ export default function UpdateResource(props) {
   const update = useSelector((state) => state.update);
   const dispatch = useDispatch();
   const [alert, setAlert] = useState(false);
-  const [deleted, setDeleted] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
   );
@@ -48,25 +47,21 @@ export default function UpdateResource(props) {
       data: resource,
     })
       .then(function (response) {
-        response.data.nModified > 0 && setAlert(true);
         dispatch(updateData(update));
+        console.log(response);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  let delResource = (e) => {
-    e.preventDefault();
-    setResource({ ...resource, deleted: true, date: Date.now() });
+  let delResource = () => {
     axios({
-      method: "PUT",
+      method: "DELETE",
       url: `http://localhost:5000/resources/${resource._id}`,
       ContentType: "application/json",
-      data: resource,
     })
       .then((response) => {
-        response.data.nModified > 0 && setDeleted(true);
         dispatch(updateData(update));
         console.log("deleted", response);
       })
@@ -84,12 +79,6 @@ export default function UpdateResource(props) {
         >
           X
         </button>
-        {deleted && (
-          <span>
-            Resource deleted{" "}
-            <img className="icon" src="icons/x.png" alt="checked Icon" />
-          </span>
-        )}
       </div>
       <form onSubmit={updateResource}>
         <div>
