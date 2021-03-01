@@ -20,13 +20,6 @@ export default function Navbar() {
         </Link>
         {logIn ? (
           <React.Fragment>
-            <Link to="/profile">
-              <img
-                className="icon"
-                src="icons/icon_profile.svg"
-                alt="Profile Icon"
-              />
-            </Link>
             <Link to="/settings">
               <img className="icon" src="icons/settings.svg" alt="Login Icon" />
               Settings

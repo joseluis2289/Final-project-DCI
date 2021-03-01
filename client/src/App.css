@@ -125,6 +125,7 @@ fieldset {
 /***** MAIN CONTENT *****/
 
 .references-container {
+  border: 1px solid var(--yellow-dark);
   background-color: var(--off-white);
   padding: 1rem;
   display: grid;
@@ -212,6 +213,7 @@ button:hover {
   cursor: pointer;
 }
 /*** RESOURCES ***/
+
 .rating {
   display: flex;
   align-items: center;
@@ -250,12 +252,60 @@ button:hover {
   cursor: pointer;
 }
 
+/****SETTINGS****/
+.add-resource {
+  width: 30vw;
+}
+.settings-navbar {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: var(--violett-light);
+}
+.settings-navbar a {
+  text-decoration: none;
+  color: var(--yellow-light);
+  font-weight: 500;
+  margin: 0.5rem;
+}
+
+.settings-navbar img {
+  margin: 0 0.5rem;
+}
+
 /****UPDATE RESOURCE****/
-.update-resource{
+
+.update-resource {
   border: 1px solid var(--yellow-dark);
   margin: 2rem;
 }
+.delete-button {
+  align-self: flex-end;
+  display: block;
+}
+/****COMMENT****/
+.comment {
+  border: 1px solid var(--yellow-dark);
+  padding: 1rem;
+}
 
+.comment-image {
+  width: 150px;
+  height: 150px;
+}
+.comment button {
+  float: right;
+}
+.update-comment{
+  border: 2px solid var(--yellow-dark);
+  width: 50vw;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
 .errorsMsg {
   color: red;
