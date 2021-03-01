@@ -9,6 +9,7 @@ export default function UpdateResource(props) {
   const dispatch = useDispatch();
   const [alert, setAlert] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const [flag, setFlag] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
   );
@@ -56,9 +57,9 @@ export default function UpdateResource(props) {
       });
   };
 
-  let delResource = async (e) => {
+  let delResource = (e) => {
     e.preventDefault();
-    await setResource({ ...resource, deleted: true, date: Date.now });
+    setResource({ ...resource, deleted: true, date: Date.now() });
     axios({
       method: "PUT",
       url: `http://localhost:5000/resources/${resource._id}`,
