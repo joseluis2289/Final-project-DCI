@@ -83,11 +83,7 @@ const Resource = (props) => {
         <Fragment>
           {props.data.comments ? (
             props.data.comments.map((comment) => (
-              <Comment
-                key={comment._id}
-                data={comment}
-                makeComm={{ setMakeComm, makeCom }}
-              ></Comment>
+              <Comment key={comment._id} data={comment}></Comment>
             ))
           ) : (
             <p>There is no comment for the moment</p>
