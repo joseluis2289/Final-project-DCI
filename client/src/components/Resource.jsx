@@ -61,15 +61,19 @@ const Resource = (props) => {
       <h3>Description</h3>
       <p>{props.data.description}</p>
       <span>
-        See Comments{" "}
-        <img
-          className="icon"
-          src="https://img.icons8.com/material-rounded/72/give-way.png"
-          alt="arrow"
-          onClick={() => {
-            setDisplayComm(!displayCom);
-          }}
-        ></img>{" "}
+        {props.data.comments !== [] && (
+          <Fragment>
+            See Comments{" "}
+            <img
+              className="icon"
+              src="https://img.icons8.com/material-rounded/72/give-way.png"
+              alt="arrow"
+              onClick={() => {
+                setDisplayComm(!displayCom);
+              }}
+            ></img>{" "}
+          </Fragment>
+        )}
       </span>
       {user ? (
         <span>
@@ -89,12 +93,15 @@ const Resource = (props) => {
 
       {displayCom && (
         <Fragment>
-          {props.data.comments ? (
-            props.data.comments.map((comment) => (
-              <Comment key={comment._id} data={comment}></Comment>
-            ))
+          {props.data.comments === [] ? (
+            <p>no comments yet</p>
           ) : (
-            <p>There is no comment for the moment</p>
+            props.data.comments.map(
+              (comment) =>
+                !comment.deleted && (
+                  <Comment key={comment._id} data={comment}></Comment>
+                )
+            )
           )}
         </Fragment>
       )}
