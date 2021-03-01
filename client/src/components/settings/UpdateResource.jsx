@@ -38,7 +38,7 @@ export default function UpdateResource(props) {
 
   let updateResource = (e) => {
     e.preventDefault();
-    setResource({ ...resource, date: Date.now });
+    setResource({ ...resource, edited: true, date: Date.now });
     axios({
       method: "PUT",
       url: `http://localhost:5000/resources/${resource._id}`,
@@ -56,7 +56,7 @@ export default function UpdateResource(props) {
 
   let delResource = (e) => {
     e.preventDefault();
-    setResource({ ...resource, deleted: true, date: Date.now });
+
     axios({
       method: "PUT",
       url: `http://localhost:5000/resources/${resource._id}`,
@@ -74,7 +74,14 @@ export default function UpdateResource(props) {
   return (
     <div className="update-resource">
       <div className="delete-button">
-        <button onClick={(e) => delResource(e)}>X</button>
+        <button
+          onClick={(e) => {
+            setResource({ ...resource, deleted: true, date: Date.now });
+            delResource(e);
+          }}
+        >
+          X
+        </button>
         {deleted && (
           <span>
             Resource deleted{" "}
