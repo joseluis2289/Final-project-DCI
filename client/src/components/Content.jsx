@@ -16,8 +16,11 @@ const Content = ({ getResources, resources, filter }) => {
       console.log(resources);
       setFirstPageLoad(false);
     }
-  }, [firstPageLoad, update, getResources, resources]);
+  }, [firstPageLoad, update, resources]);
 
+  useEffect(() => {
+    getResources();
+  }, [update]);
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
   // PAGINATION

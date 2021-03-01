@@ -10,6 +10,7 @@ const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
   const user = useSelector((state) => state.user._id);
+  const logIn = useSelector((state) => state.logIn);
   const update = useSelector((state) => state.update);
   const [displayCom, setDisplayComm] = useState(false);
   const [makeCom, setMakeComm] = useState(false);
@@ -80,7 +81,7 @@ const Resource = (props) => {
           </Fragment>
         )}
       </span>
-      {user ? (
+      {logIn ? (
         <span>
           Comment{" "}
           <img

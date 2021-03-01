@@ -7,8 +7,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["frontend"],
     "rating": 1,
-    "num_ratings": 102.797,
-    "num_views": 349.813,
+    "num_ratings": 102797,
+    "num_views": 349813,
     "paid": false,
     "description":
       "Dive in and learn React.js from scratch! Learn Reactjs, Hooks, Redux, React Routing, Animations, Next.js and way more!",
@@ -26,7 +26,7 @@
     "category": ["backend"],
     "rating": 1,
     "num_ratings": 250,
-    "num_views": 1374.56,
+    "num_views": 137456,
     "paid": false,
     "description":
       "REST Client allows you to send HTTP request and view the response in Visual Studio Code directly.",
@@ -42,7 +42,7 @@
     "category": ["database"],
     "rating": 2,
     "num_ratings": 3500,
-    "num_views": 1384.745,
+    "num_views": 1384745,
     "paid": false,
     "description":
       "Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.",
@@ -76,7 +76,7 @@
     "category": ["backend"],
     "rating": 3,
     "num_ratings": 437,
-    "num_views": 112.394,
+    "num_views": 112394,
     "paid": false,
     "description":
       "Generates massive amounts of realistic fake data in Node.js and the browser",
@@ -92,7 +92,7 @@
     "category": ["general"],
     "rating": 3,
     "num_ratings": 782,
-    "num_views": 10.523,
+    "num_views": 10523,
     "paid": false,
     "description":
       "Are you learning to code and need an easy, free way to host your projects? GitHub pages is your answer. Not only is it an easy hosting solution for websites with HTML, CSS, and JavaScript files, but it also gives you practice using Git, an important but tricky tool. This step-by-step guide gets you up to speed in minutes.",
@@ -108,7 +108,7 @@
     "category": ["general"],
     "rating": 4,
     "num_ratings": 852,
-    "num_views": 11.529,
+    "num_views": 11529,
     "paid": false,
     "description":
       "This site teaches you how to use Git. It is open source and maintained by members of the Git community. We welcome patches, suggestions, and corrections.",
@@ -125,7 +125,7 @@
     "category": ["backend", "frontend"],
     "rating": 4.5,
     "num_ratings": 15985,
-    "num_views": 1589.253,
+    "num_views": 1589253,
     "paid": false,
     "description":
       "How to generate 64bit secret key in the terminal and other useful things in this video",
@@ -159,7 +159,7 @@
      "user": "60362580210652c9f15a790d",
     "category": ["backend", "frontend", "database"],
     "rating": 5,
-    "num_ratings": 11.152,
+    "num_ratings": 11152,
     "num_views": 0,
     "paid": false,
     "description":
@@ -176,8 +176,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["frontend"],
     "rating": 4.6,
-    "num_ratings": 138.647,
-    "num_views": 459.039,
+    "num_ratings": 138647,
+    "num_views": 459039,
     "paid": true,
     "description":
       " With this course you are going to Develop modern, complex, responsive and scalable web applications with Angular 11 Fully understand the architecture behind an Angular application and how to use it ",
@@ -194,7 +194,7 @@
     "category": ["frontend", "backend"],
     "rating": 4.6,
     "num_ratings": 623,
-    "num_views": 72.447,
+    "num_views": 72447,
     "paid": true,
     "description":
       " n this course, we'll look at the JavaScript language, and how it supports the Object-Oriented pattern, with a focus on the unique aspect of how JavaScript approaches OO. We'll explore a brief introduction to the jQuery library, which is widely used to do in-browser manipulation of the Document Object Model (DOM) and event handling. You'll also learn more about JavaScript Object Notation (JSON), which is commonly used as a syntax to exchange data between code running on the server (i.e. in PHP) and code running in the browser (JavaScript/jQuery).",
@@ -211,7 +211,7 @@
     "category": ["database"],
     "rating": 4.3,
     "num_ratings": 524,
-    "num_views": 41.946,
+    "num_views": 41946,
     "paid": false,
     "description":
       "This course will get you up and running with MongoDB quickly, and teach you how to leverage its power for data analytics. We'll start by mastering the fundamentals of MongoDB, including MongoDB’s Document data model, importing data into a cluster, working with our CRUD API and Aggregation Framework. These topics will be taught through a demo application which will give you a great first encounter of how simple and practical it can be to build applications with MongoDB.In addition to these essential topics, you will also learn and work with useful MongoDB tools and services. You will work with Atlas, MongoDB's database as a service, MongoDB Compass, a schema visualization tool, as well as many other useful command-line utilities.",
@@ -227,8 +227,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["database"],
     "rating": 4.8,
-    "num_ratings": 322.448,
-    "num_views": 981.019,
+    "num_ratings": 322448,
+    "num_views": 981019,
     "paid": false,
     "description":
       "This Specialization builds on the success of the Python for Everybody course and will introduce fundamental programming concepts including data structures, networked application program interfaces, and databases, using the Python programming language. In the Capstone Project, you’ll use the technologies learned throughout the Specialization to design and create your own  applications for data retrieval, processing, and visualization.",
@@ -244,8 +244,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["machineLearning"],
     "rating": 4.5,
-    "num_ratings": 41.838,
-    "num_views": 272.307,
+    "num_ratings": 41838,
+    "num_views": 272307,
     "paid": false,
     "description":
       "The 5 courses in this University of Michigan specialization introduce learners to data science through the python programming language. This skills-based specialization is intended for learners who have a basic python or programming background, and want to apply statistical, machine learning, information visualization, text analysis, and social network analysis techniques through popular python toolkits such as pandas, matplotlib, scikit-learn, nltk, and networkx to gain insight into their data.",
@@ -261,8 +261,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["machineLearning"],
     "rating": 4.7,
-    "num_ratings": 23.157,
-    "num_views": 165.313,
+    "num_ratings": 23157,
+    "num_views": 165313,
     "paid": true,
     "description":
       "This Specialization from leading researchers at the University of Washington introduces you to the exciting, high-demand field of Machine Learning. Through a series of practical case studies, you will gain applied experience in major areas of Machine Learning including Prediction, Classification, Clustering, and Information Retrieval. You will learn to analyze large and complex datasets, create systems that adapt and improve over time, and build intelligent applications that can make predictions from data.",
@@ -277,8 +277,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["database"],
     "rating": 4.1,
-    "num_ratings": 9.395,
-    "num_views": 69.752,
+    "num_ratings": 9395,
+    "num_views": 69752,
     "paid": false,
     "description":
       "This Specialization is intended for a learner with no previous coding experience seeking to develop SQL query fluency. Through four progressively more difficult SQL projects with data science applications, you will cover topics such as SQL basics, data wrangling, SQL analysis, AB testing, distributed computing using Apache Spark, and more. These topics will prepare you to apply SQL creatively to analyze and explore data; demonstrate efficiency in writing queries; create data analysis datasets; conduct feature engineering, use SQL with other data analysis and machine learning toolsets; and use SQL with unstructured data sets.",
@@ -294,8 +294,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["database"],
     "rating": 4.8,
-    "num_ratings": 3.698,
-    "num_views": 105.789,
+    "num_ratings": 3698,
+    "num_views": 105789,
     "paid": false,
     "description":
       "In this course, you'll walk through installation steps for installing a text editor, installing MAMP or XAMPP (or equivalent) and creating a MySql Database. You'll learn about single table queries and the basic syntax of the SQL language, as well as database design with multiple tables, foreign keys, and the JOIN operation. Lastly, you'll learn to model many-to-many relationships like those needed to represent users, roles, and courses.",
@@ -311,8 +311,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["frontend", "backend", "database"],
     "rating": 4.7,
-    "num_ratings": 11.413,
-    "num_views": 103.123,
+    "num_ratings": 11413,
+    "num_views": 103123,
     "paid": false,
     "description":
       "The first two courses in this Specialization cover front-end frameworks: Bootstrap 4 and React. You’ll also learn to create hybrid mobile applications, using React Native. On the server side, you’ll learn to implement NoSQL databases using MongoDB, work within a Node.js environment and Express framework, and communicate to the client side through a RESTful API. Learners enrolling in this Specialization are expected to have prior working knowledge of HTML, CSS and JavaScript.",
@@ -327,8 +327,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["frontend", "backend", "database"],
     "rating": 4.5,
-    "num_ratings": 9.421,
-    "num_views": 54.122,
+    "num_ratings": 9421,
+    "num_views": 54122,
     "paid": false,
     "description":
       "Responsive web design is all about creating the best user experience regardless of whether a user is accessing your site from a desktop computer, a mobile phone, or a tablet. This Specialisation covers the basics of modern full stack web development, from UX design to front-end coding to custom databases. You’ll build foundational skills in a full range of technologies, including HTML/CSS, Javascript, and MongoDB, and you’ll learn to implement a reactive, multi-user web application using the meteor.js framework. We’ll also touch on more advanced topics, such as APIs, data visualization, and animation.",
@@ -343,8 +343,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["frontend"],
     "rating": 4.7,
-    "num_ratings": 6.421,
-    "num_views": 360.122,
+    "num_ratings": 6421,
+    "num_views": 360122,
     "paid": false,
     "description":
       "This course will appeal to a wide variety of people, but specifically those who would like a step-by-step description of the basics. There are no prerequisites for this course and it is assumed that students have no prior programming skills or IT experience. The course will culminate in a small final project that will require the completion of a very simple page with links and images. The focus of this course is on the basics, not appearance. You can see a sample final page at http://intro-webdesign.com/html5-plain.html.  ",
@@ -360,8 +360,8 @@
      "user": "60362580210652c9f15a790d",
     "category": ["frontend"],
     "rating": 4.8,
-    "num_ratings": 10.421,
-    "num_views": 474.115,
+    "num_ratings": 10421,
+    "num_views": 474115,
     "paid": true,
     "description":
       "In this course, we will learn the basic tools that every web page coder needs to know. We will start from the ground up by learning how to implement modern web pages with HTML and CSS. We will then advance to learning how to code our pages such that its components rearrange and resize themselves automatically based on the size of the user’s screen. You’ll be able to code up a web page that will be just as useful on a mobile phone as on a desktop computer. No “pinch and zoom” required! Last but certainly not least, we will get a thorough introduction to the most ubiquitous, popular, and incredibly powerful language of the web: Javascript. Using Javascript, you will be able to build a fully functional web application that utilizes Ajax to expose server-side functionality and data to the end user. ",
@@ -381,8 +381,8 @@ export default fakeData;
    "user": "60362580210652c9f15a790d",
   "category": ["frontend"],
   "rating": 4.8,
-  "num_ratings": 10.421,
-  "num_views": 474.115,
+  "num_ratings": 10421,
+  "num_views": 474115,
   "paid": true,
   "description":
     "In this course, we will learn the basic tools that every web page coder needs to know. We will start from the ground up by learning how to implement modern web pages with HTML and CSS. We will then advance to learning how to code our pages such that its components rearrange and resize themselves automatically based on the size of the user’s screen. You’ll be able to code up a web page that will be just as useful on a mobile phone as on a desktop computer. No “pinch and zoom” required! Last but certainly not least, we will get a thorough introduction to the most ubiquitous, popular, and incredibly powerful language of the web: Javascript. Using Javascript, you will be able to build a fully functional web application that utilizes Ajax to expose server-side functionality and data to the end user. ",

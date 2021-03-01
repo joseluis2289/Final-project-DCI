@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateData } from "../redux/actions";
 import axios from "axios";
 
 export default function CreateComment(props) {
   const user = useSelector((state) => state.user._id);
+  const update = useSelector((state) => state.update);
+  const dispatch = useDispatch();
   const [comment, setComment] = useState({
     resource: props.resourceId,
   });
@@ -12,7 +15,6 @@ export default function CreateComment(props) {
   }
 
   const addComment = (e) => {
-    handleCom();
     e.preventDefault();
     axios({
       method: "POST",
@@ -21,6 +23,8 @@ export default function CreateComment(props) {
       data: comment,
     })
       .then((res) => {
+        handleCom();
+        dispatch(updateData(update));
         console.log("here", res.data);
       })
       .catch((err) => console.log(err));
