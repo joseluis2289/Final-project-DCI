@@ -125,6 +125,7 @@ fieldset {
 /***** MAIN CONTENT *****/
 
 .references-container {
+  border: 1px solid var(--yellow-dark);
   background-color: var(--off-white);
   padding: 1rem;
   display: grid;
@@ -294,6 +295,16 @@ button:hover {
 }
 .comment button {
   float: right;
+}
+.update-comment{
+  border: 2px solid var(--yellow-dark);
+  width: 50vw;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
 }
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
 .errorsMsg {
