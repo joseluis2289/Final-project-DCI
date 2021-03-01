@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import UpdateComment from "./UpdateComment";
-import Resource from "../Resource";
 import Settings from "./Settings";
 
 export default function MyComments() {
@@ -19,7 +18,7 @@ export default function MyComments() {
         console.log("comments", res.data);
       })
       .catch((err) => console.log(err));
-  }, [update]);
+  }, [update, user._id]);
   return (
     <Fragment>
       <Settings />
