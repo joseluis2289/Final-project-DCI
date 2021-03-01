@@ -10,15 +10,20 @@ const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
   const user = useSelector((state) => state.user._id);
+  const update = useSelector((state) => state.update);
   const [displayCom, setDisplayComm] = useState(false);
   const [makeCom, setMakeComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
-
+  //create function to allow the child component "CreateComment" to change "displayCom" state
+  function handleCom(newValue) {
+    setMakeComm(newValue);
+  }
   useEffect(() => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
-  }, [props.data.previewImage]);
+    setDisplayComm(true);
+  }, [props.data.previewImage, update]);
 
   return (
     <section className="resource-container">
@@ -105,7 +110,9 @@ const Resource = (props) => {
           )}
         </Fragment>
       )}
-      {makeCom && <CreateComment resourceId={props.data._id} />}
+      {makeCom && (
+        <CreateComment resourceId={props.data._id} handleCom={handleCom} />
+      )}
     </section>
   );
 };

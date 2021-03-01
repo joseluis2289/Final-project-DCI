@@ -9,7 +9,6 @@ export default function UpdateResource(props) {
   const dispatch = useDispatch();
   const [alert, setAlert] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  const [flag, setFlag] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
   );

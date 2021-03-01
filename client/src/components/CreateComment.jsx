@@ -7,7 +7,12 @@ export default function CreateComment(props) {
   const [comment, setComment] = useState({
     resource: props.resourceId,
   });
+  function handleCom() {
+    props.handleCom(false);
+  }
+
   const addComment = (e) => {
+    handleCom();
     e.preventDefault();
     axios({
       method: "POST",

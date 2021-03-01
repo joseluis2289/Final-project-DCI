@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import Resource from "./Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
@@ -9,13 +9,14 @@ const Content = ({ getResources, resources, filter }) => {
   // When page loads for the first time, load resources from the database
   // into the Redux store. From there they are displayed with React.
   const [firstPageLoad, setFirstPageLoad] = useState(true);
+  const update = useSelector((state) => state.update);
   useEffect(() => {
     if (firstPageLoad) {
       getResources();
       console.log(resources);
       setFirstPageLoad(false);
     }
-  }, [firstPageLoad]);
+  }, [firstPageLoad, update, getResources, resources]);
 
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
