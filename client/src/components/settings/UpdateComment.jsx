@@ -5,12 +5,16 @@ export default function UpdateComment(props) {
   const [comment, setComment] = useState(props.data);
 
   let formHandler = (e) => {
-    setComment({ ...comment, edited: true, [e.target.name]: e.target.value });
+    setComment({
+      ...comment,
+      edited: true,
+      date: Date.now,
+      [e.target.name]: e.target.value,
+    });
   };
 
   let updateComment = (e) => {
     e.preventDefault();
-    setComment({ ...comment, date: Date.now });
     axios({
       method: "PUT",
       url: `http://localhost:5000/comment/${comment._id}`,
@@ -18,7 +22,7 @@ export default function UpdateComment(props) {
       data: comment,
     })
       .then(function (response) {
-        console.log(response);
+        console.log("responde from reqauest to update comment", response);
       })
       .catch((err) => {
         console.log(err);
@@ -29,7 +33,7 @@ export default function UpdateComment(props) {
     setComment({ ...comment, deleted: true, date: Date.now });
     axios({
       method: "PUT",
-      url: `http://localhost:5000/comments/${comment.id}`,
+      url: `http://localhost:5000/comments/${comment._id}`,
       ContentType: "application/json",
       data: comment,
     })
@@ -49,11 +53,12 @@ export default function UpdateComment(props) {
         </div>
         {props.data.edited ? <span>Edited</span> : <span>Original</span>}
         <div>
-          <label htmlFor="title">description</label>
+          <label htmlFor="title">comment </label>
+          {"  "}
           <textarea
             name="description"
-            rows="15"
-            cols="70"
+            rows="10"
+            cols="40"
             style={{ border: "solid black 2px" }}
             placeholder={props.data.text}
             onChange={formHandler}

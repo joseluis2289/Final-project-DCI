@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import UpdateResource from "./UpdateResource";
 import Settings from "./Settings";
@@ -19,14 +20,25 @@ export default function MyResources() {
   return (
     <Fragment>
       <Settings />
-      <div className="references-container ">
-        {userResources.map(
-          (resource) =>
-            !resource.deleted && (
-              <UpdateResource id={resource._id} data={resource} author={true} />
-            )
-        )}
-      </div>
+      {userResources ? (
+        <div className="references-container ">
+          {userResources.map(
+            (resource) =>
+              !resource.deleted && (
+                <UpdateResource
+                  id={resource._id}
+                  data={resource}
+                  author={true}
+                />
+              )
+          )}
+        </div>
+      ) : (
+        <Fragment>
+          <h1>Go to Login</h1>
+          <Link to="/login">here </Link>
+        </Fragment>
+      )}
     </Fragment>
   );
 }

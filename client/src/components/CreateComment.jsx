@@ -17,6 +17,7 @@ export default function CreateComment(props) {
     })
       .then((res) => {
         console.log("here", res.data);
+        props.makeComm.setMakeComm(!props.makeComm.makeCom);
       })
       .catch((err) => console.log(err));
   };

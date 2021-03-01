@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Settings from "./settings/Settings";
 
 export default function AddResource() {
@@ -126,6 +127,9 @@ export default function AddResource() {
       </div>
     </Fragment>
   ) : (
-    <p>fo to Login page</p>
+    <Fragment>
+      <h1>Go to Login</h1>
+      <Link to="/login">here </Link>
+    </Fragment>
   );
 }
