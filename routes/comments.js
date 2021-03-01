@@ -20,12 +20,24 @@ router.post("/", (req, res, next) => {
   newComment
     .save()
     .then((comment) => {
-      res.send({ msg: "comment added" });
-    })
+
+      UserSchema.findByIdAndUpdate(comment.user, {$push:{comments: comment._id}})
+          .then((userUpdated)=>{
+            
+              Resource.findByIdAndUpdate(comment.resource, {$push:{comments: comment._id}})
+              .then((ResourceUpdated)=>{
+                res.send(comment)
+              })
+              .catch(err=>console.log(err))
+
+          })
+          .catch(err=>console.log(err))
+        })
+
     .catch((err) => {
       console.log(err);
-      res.send({ msg: "error by sending comment" });
+      res.send(err);
     });
-});
+      })
 
 module.exports = router;

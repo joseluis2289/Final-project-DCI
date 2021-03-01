@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
@@ -7,9 +7,10 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Content from "./components/Content";
-import AddResource from "./components/Settings/AddResource";
-import Settings from "./components/Settings/Settings";
-import UpdateResource from "./components/Settings/UpdateResource";
+import AddResource from "./components/AddResource";
+import MyResources from "./components/settings/MyResources"
+import Settings from "./components/settings/Settings";
+import UpdateResource from "./components/settings/UpdateResource";
 import NotFound from "./components/NotFound";
 import "./App.css";
 
@@ -27,6 +28,7 @@ export default function App() {
           <Route path='/' exact={true} component={Content} />
           <Route path='/settings' component={Settings} />
           <Route path='/add_resource' component={AddResource} />
+          <Route path='/my_resources' component={MyResources} />
           <Route path='/update_resource' component={UpdateResource} />
           <Route path='#!' component={NotFound} />
         </main>

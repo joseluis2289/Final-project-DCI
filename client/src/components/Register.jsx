@@ -1,11 +1,39 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
   const [registerData, setRegisterData] = useState({});
   const { register, handleSubmit, errors } = useForm();
 
+  const notify = () => {
+    toast.success(`Successfully Registered!`, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  const notifyError = () => {
+    toast.error("Error to Register", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  const notifyInfo = () => {
+    toast.info("Name and password need 3+ characters", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+  const NotifyWarn = () => {
+    toast.warn("This Email is already taken!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
   function handleChange(e) {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   }
@@ -17,7 +45,7 @@ export default function Register() {
         onSubmit={handleSubmit(() => {
           // e.preventDefault();
           console.log("Login Request!");
-          fetch("http://localhost:5000/register", {
+          fetch("/register", {
             method: "POST",
             body: JSON.stringify(registerData),
             headers: {
@@ -28,18 +56,13 @@ export default function Register() {
             .then((response) => {
               console.log(response);
               if (response.msg === false) {
-                console.log("if");
-                alert("this email is already taken");
+                NotifyWarn();
               } else if (response.validation) {
-                console.log("esle if");
                 setRegisterData({ success: response.success });
-                alert("Name and password need 3+ characters");
+                notifyInfo();
               } else {
                 history.push("/login");
-                console.log("else");
-                response
-                  ? alert(`SUCCESSFULLY REGISTER ${response.userName}`)
-                  : alert("error to register");
+                response ? notify() : notifyError();
               }
             })
             .catch((err) => console.log(err));
@@ -55,7 +78,17 @@ export default function Register() {
           }}
           ref={register({ required: true, maxLength: 15, minLength: 3 })}
         />
-
+        {errors.name && errors.name.type === "required" && (
+          <span className="errorsMsg">Your Name is required</span>
+        )}
+        {errors.name && errors.name.type === "minLength" && (
+          <span className="errorsMsg">
+            Your Name Must be more than 3 character
+          </span>
+        )}
+        {errors.name && errors.name.type === "maxLength" && (
+          <span className="errorsMsg">Max length exceeded</span>
+        )}
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -80,7 +113,7 @@ export default function Register() {
 
         <label htmlFor="email">Email</label>
         <input
-          type="email"
+          type="text"
           name="email"
           id="email"
           onChange={(e) => {

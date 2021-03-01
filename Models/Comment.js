@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 const Comment = new mongoose.Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
   },
   resource: {
     type: Schema.Types.ObjectId,
-    ref: "resources",
+    ref: "Resource",
   },
   text: { type: String, required: true },
 });
 
-module.exports = mongoose.model("comment", Comment);
+module.exports = mongoose.model("Comment", Comment);

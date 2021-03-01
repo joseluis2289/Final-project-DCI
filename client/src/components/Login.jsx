@@ -3,8 +3,24 @@ import React, { useState } from "react";
 //import { userLogin } from "../redux/actions";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+toast.configure();
 export default function Login() {
+  const notify = () => {
+    toast.success("You are successfully Logged in!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  const notifyError = () => {
+    toast.error("Your password is wrong! please try again!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
   // const login = useSelector((state) => state.username);
   //const dispatch = useDispatch();
   const [loginData, setLoginData] = useState({});
@@ -21,6 +37,7 @@ export default function Login() {
       <form
         onSubmit={handleSubmit(() => {
           //e.preventDefault();
+
           console.log("Login Request!");
           fetch("/login", {
             method: "POST",
@@ -37,10 +54,10 @@ export default function Login() {
                   // dispatch(userLogin(data));
                   if (data.logIn === true) {
                     sessionStorage.setItem("email", data.email);
-                    //ADD this to the logout => sessionStorage.clear();
-                    alert(`Welcome`);
+                    notify();
                   } else {
-                    alert("Your password is wrong! please try again!");
+                    notifyError();
+                    history.push("/login");
                   }
                 });
               } else {

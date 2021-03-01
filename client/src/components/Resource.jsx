@@ -16,7 +16,7 @@ const Resource = (props) => {
 
   useEffect(() => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
-  }, []);
+  }, [props.data.previewImage]);
 
   return (
     <section className="resource-container">
@@ -30,13 +30,15 @@ const Resource = (props) => {
               resourceId={props.data._id}
             />
           </div>
-          <h3>
-            {props.data.category.map((item, index) => {
-              let name = item[0].toUpperCase() + item.substring(1);
-              return <span key={index}>{name}</span>;
-            })}
-          </h3>
-          <h3>added by {props.data.user}</h3>
+          <div className="category">
+            <h3>
+              {props.data.category.map((item, index) => {
+                let name = item[0].toUpperCase() + item.substring(1);
+                return <span key={index}>{name}</span>;
+              })}
+            </h3>
+          </div>
+          {/* <h3>added by {props.data.user.name}</h3> */}
         </hgroup>
       </header>
       <figure role="group">
@@ -56,7 +58,6 @@ const Resource = (props) => {
       <p>{props.data.num_views} views</p>
 
       <Reaction love={10} like={5} dislike={1} />
-      <button>Add Reaction</button>
       <h3>Description</h3>
       <p>{props.data.description}</p>
       <h3>
@@ -69,7 +70,6 @@ const Resource = (props) => {
             setDisplayComm(!displayCom);
           }}
         ></img>{" "}
-        <button>Add Comment</button>
       </h3>
       {displayCom && (
         <Fragment>

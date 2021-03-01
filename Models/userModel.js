@@ -11,7 +11,7 @@ const UserSchema = new Schema({
   resources: [
     {
       type: Schema.Types.ObjectId,
-      ref: "resources",
+      ref: "Resource",
     },
   ],
   comments: [
