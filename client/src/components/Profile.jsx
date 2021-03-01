@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
   const [updateData, setUpdateData] = useState({
@@ -10,6 +12,21 @@ export default function Profile() {
     userName: "",
     _id: "",
   });
+
+  const notify = () => {
+    toast.success(`Successfully Updated!`, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  const notifyError = () => {
+    toast.error("Error to Update profile!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
   const { register, handleSubmit, errors } = useForm();
 
   const profileHandler = (e) => {
@@ -43,10 +60,11 @@ export default function Profile() {
     })
       .then((response) => {
         console.log(response.data);
-        alert("You have successfully update your profile");
+        notify();
         setUpdateData({ ...response.data, password: updateData.password });
       })
       .catch((err) => {
+        notifyError();
         console.error("Error to update", err);
       });
   };

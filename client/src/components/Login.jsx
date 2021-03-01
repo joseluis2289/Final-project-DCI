@@ -1,12 +1,28 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { userLogin } from "../redux/actions";
+//import { useDispatch } from "react-redux";
+//import { userLogin } from "../redux/actions";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+toast.configure();
 export default function Login() {
+  const notify = () => {
+    toast.success("You are successfully Logged in!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  const notifyError = () => {
+    toast.error("Your password is wrong! please try again!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
   // const login = useSelector((state) => state.username);
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const [loginData, setLoginData] = useState({});
   const { register, handleSubmit, errors } = useForm();
   let history = useHistory();
@@ -21,6 +37,7 @@ export default function Login() {
       <form
         onSubmit={handleSubmit(() => {
           //e.preventDefault();
+
           console.log("Login Request!");
           fetch("/login", {
             method: "POST",
@@ -34,13 +51,13 @@ export default function Login() {
               if (response.status === 200) {
                 response.json().then((data) => {
                   console.log(data);
-                  dispatch(userLogin(data));
+                  // dispatch(userLogin(data));
                   if (data.logIn === true) {
-                    sessionStorage.setItem("email", data.user.email);
-                    //sessionStorage.clear();
-                    alert(`Welcome`);
+                    sessionStorage.setItem("email", data.email);
+                    notify();
                   } else {
-                    alert("Your password is wrong! please try again!");
+                    notifyError();
+                    history.push("/login");
                   }
                 });
               } else {

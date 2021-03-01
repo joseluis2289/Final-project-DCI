@@ -10,14 +10,11 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 
-//const protectedRoutes = require("./routes/protectedRoutes");
-
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
- const url = process.env.MONGO_URIBel;
-// const url = process.env.MONGO_URIJose;
-//listen to a port
+//const url = process.env.MONGO_URIBel;
+const url = process.env.MONGO_URIJose;
 
 //connect to DataBase
 const connectDB = async () => {
@@ -74,18 +71,32 @@ app.use("/users", require("./routes/users"));
 ///All routes
 
 //register user
-app.post("/register", (req, res, next) => {
-  let newUser = req.body;
+app.post("/register", async (req, res, next) => {
+  let newUser = await req.body;
+  let users = await UserModel.find({ email: newUser.email });
   console.log(newUser);
   req.check("name", "invalid name").isLength({ min: 3 });
   req.check("userName", "invalid userName").isLength({ min: 3 });
-  req.check("email").isEmail().normalizeEmail();
+  req
+    .check("email")
+    .isEmail()
+    .withMessage("Email is not correct")
+    .normalizeEmail()
+    .withMessage("email not normalized")
+    .custom(function () {
+      if (users.length) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+    .withMessage("This email is taken!");
   req.check("password", "invalid Password").isLength({ min: 3 });
 
   let errors = req.validationErrors();
   //console.log(errors);
   if (errors) {
-    res.send({ validation: errors });
+    res.send({ validation: errors, msg: false });
   } else {
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(newUser.password, salt, function (err, hash) {
@@ -106,7 +117,8 @@ app.post("/register", (req, res, next) => {
               res.send(result);
             })
             .catch((err) => {
-              res.send({ msg: false, err });
+              console.log(err);
+              res.send(err);
             });
         }
       });
@@ -130,7 +142,7 @@ app.post("/login", (req, res) => {
           req.session.user = result;
           res.json({
             logIn: output,
-            user: result
+            user: result,
           });
         }
       });
@@ -183,8 +195,8 @@ app.put("/update", (req, res, next) => {
 });
 
 app.delete("/logout", (req, res, next) => {
-  refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
   req.session.destroy();
+  sessionStorage.clear();
   res.sendStatus(204);
   UserModel.findByIdAndUpdate(
     { email: newUser.email },
