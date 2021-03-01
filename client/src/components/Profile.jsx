@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import Settings from "./settings/Settings";
 
 export default function Profile() {
   const [updateData, setUpdateData] = useState({
@@ -52,79 +53,82 @@ export default function Profile() {
   };
 
   return (
-    <div>
-      <h2>Profile Update</h2>
-      <form
-        onSubmit={handleSubmit((e) => {
-          updateHandler(e);
-        })}
-      >
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={updateData.name}
-          onChange={(e) => {
-            profileHandler(e);
-          }}
-        />
+    <Fragment>
+      <Settings />
+      <div>
+        <h2>Profile Update</h2>
+        <form
+          onSubmit={handleSubmit((e) => {
+            updateHandler(e);
+          })}
+        >
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={updateData.name}
+            onChange={(e) => {
+              profileHandler(e);
+            }}
+          />
 
-        <label htmlFor="userName">Username</label>
-        <input
-          type="text"
-          name="userName"
-          id="username"
-          value={updateData.userName}
-          onChange={profileHandler}
-        />
+          <label htmlFor="userName">Username</label>
+          <input
+            type="text"
+            name="userName"
+            id="username"
+            value={updateData.userName}
+            onChange={profileHandler}
+          />
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={updateData.email}
-          onChange={profileHandler}
-        />
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={updateData.email}
+            onChange={profileHandler}
+          />
 
-        <label htmlFor="password">Enter new password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          //value={updateData.password}
-          onChange={profileHandler}
-          ref={register({ required: true, maxLength: 15, minLength: 3 })}
-        />
-        {errors.password && errors.password.type === "maxLength" && (
-          <span className="errorsMsg">Max length exceeded</span>
-        )}
-        {errors.password && errors.password.type === "minLength" && (
-          <span className="errorsMsg">Must be more than 3 character</span>
-        )}
-        <label htmlFor="confirm-password">Confirm new Password</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          id="confirm-password"
-          onChange={profileHandler}
-          ref={register({ required: true, maxLength: 15, minLength: 3 })}
-        />
-        {errors.confirmPassword &&
-          errors.confirmPassword.type === "required" && (
-            <span className="errorsMsg">Please confirm your password</span>
-          )}
-        {errors.confirmPassword &&
-          errors.confirmPassword.type === "maxLength" && (
+          <label htmlFor="password">Enter new password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            //value={updateData.password}
+            onChange={profileHandler}
+            ref={register({ required: true, maxLength: 15, minLength: 3 })}
+          />
+          {errors.password && errors.password.type === "maxLength" && (
             <span className="errorsMsg">Max length exceeded</span>
           )}
-        {errors.confirmPassword &&
-          errors.confirmPassword.type === "minLength" && (
+          {errors.password && errors.password.type === "minLength" && (
             <span className="errorsMsg">Must be more than 3 character</span>
           )}
-        <button type="submit">Update</button>
-      </form>
-    </div>
+          <label htmlFor="confirm-password">Confirm new Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirm-password"
+            onChange={profileHandler}
+            ref={register({ required: true, maxLength: 15, minLength: 3 })}
+          />
+          {errors.confirmPassword &&
+            errors.confirmPassword.type === "required" && (
+              <span className="errorsMsg">Please confirm your password</span>
+            )}
+          {errors.confirmPassword &&
+            errors.confirmPassword.type === "maxLength" && (
+              <span className="errorsMsg">Max length exceeded</span>
+            )}
+          {errors.confirmPassword &&
+            errors.confirmPassword.type === "minLength" && (
+              <span className="errorsMsg">Must be more than 3 character</span>
+            )}
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </Fragment>
   );
 }

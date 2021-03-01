@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import UpdateResource from "./UpdateResource";
+import Settings from "./Settings";
 
 export default function MyResources() {
   const user = useSelector((state) => state.user);
+  const update = useSelector((state) => state.update);
   const [userResources, setUserResources] = useState([]);
   useEffect(() => {
     axios
@@ -14,15 +17,29 @@ export default function MyResources() {
         console.log(res.data.resources);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [update]);
   return (
-    <div className="references-container ">
-      {userResources.map(
-        (resource) =>
-          !resource.deleted && (
-            <UpdateResource id={resource._id} data={resource} author={true} />
-          )
+    <Fragment>
+      <Settings />
+      {userResources ? (
+        <div className="references-container ">
+          {userResources.map(
+            (resource) =>
+              !resource.deleted && (
+                <UpdateResource
+                  id={resource._id}
+                  data={resource}
+                  author={true}
+                />
+              )
+          )}
+        </div>
+      ) : (
+        <Fragment>
+          <h1>Go to Login</h1>
+          <Link to="/login">here </Link>
+        </Fragment>
       )}
-    </div>
+    </Fragment>
   );
 }

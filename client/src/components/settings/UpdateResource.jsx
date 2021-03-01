@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import "../styles/settings.css";
+import { useDispatch, useSelector } from "react-redux";
+import { updateData } from "../../redux/actions";
 
 export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
+  const update = useSelector((state) => state.update);
   const dispatch = useDispatch();
   const [alert, setAlert] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const [flag, setFlag] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
-    "illustrations/road_to_knowledge.svg"
+    "./illustrations/road_to_knowledge.svg"
   );
   const [categories, setCategories] = useState([
     "frontend",
@@ -39,7 +41,7 @@ export default function UpdateResource(props) {
 
   let updateResource = (e) => {
     e.preventDefault();
-    setResource({ ...resource, date: Date.now });
+    setResource({ ...resource, edited: true, date: Date.now });
     axios({
       method: "PUT",
       url: `http://localhost:5000/resources/${resource._id}`,
@@ -47,25 +49,27 @@ export default function UpdateResource(props) {
       data: resource,
     })
       .then(function (response) {
-        setAlert(true);
-        console.log(response);
+        response.data.nModified > 0 && setAlert(true);
+        dispatch(updateData(update));
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  let delResource = () => {
-    setDeleted(true);
-    setResource({ ...resource, deleted: true, date: Date.now });
+  let delResource = (e) => {
+    e.preventDefault();
+    setResource({ ...resource, deleted: true, date: Date.now() });
     axios({
       method: "PUT",
-      url: `http://localhost:5000/resources/${resource.id}`,
+      url: `http://localhost:5000/resources/${resource._id}`,
       ContentType: "application/json",
       data: resource,
     })
       .then((response) => {
-        console.log("deleted", response.data);
+        response.data.nModified > 0 && setDeleted(true);
+        dispatch(updateData(update));
+        console.log("deleted", response);
       })
       .catch((err) => {
         console.log(err);
@@ -73,16 +77,22 @@ export default function UpdateResource(props) {
   };
   return (
     <div className="update-resource">
+      <div className="delete-button">
+        <button
+          onClick={(e) => {
+            delResource(e);
+          }}
+        >
+          X
+        </button>
+        {deleted && (
+          <span>
+            Resource deleted{" "}
+            <img className="icon" src="icons/x.png" alt="checked Icon" />
+          </span>
+        )}
+      </div>
       <form onSubmit={updateResource}>
-        <div className="delete-button">
-          <button onClick={delResource}>X</button>
-          {deleted && (
-            <span>
-              Resource deleted{" "}
-              <img className="icon" src="icons/x.png" alt="checked Icon" />
-            </span>
-          )}
-        </div>
         <div>
           <label htmlFor="title">Title</label>
           <input
@@ -136,6 +146,7 @@ export default function UpdateResource(props) {
                 id="access_paid"
                 value="true"
                 checked={resource.paid ? "true" : "false"}
+                onChange={formHandler}
               />
               Yes
             </label>
@@ -147,6 +158,7 @@ export default function UpdateResource(props) {
                 id="access_free"
                 value="false"
                 checked={resource.paid ? "false" : "true"}
+                onChange={formHandler}
               />
               No
             </label>

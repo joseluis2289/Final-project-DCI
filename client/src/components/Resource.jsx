@@ -1,15 +1,17 @@
 import React, { useEffect, useState, Fragment } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Rating from "./Rating";
-import Reaction from "./Reaction";
+import CreateComment from "./CreateComment.jsx";
 import Comment from "./Comment";
-// import { connect } from "react-redux";
-// import PropTypes from "prop-types";
 
 // Gets reference ID as props.data.id
 const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
+  const user = useSelector((state) => state.user._id);
   const [displayCom, setDisplayComm] = useState(false);
+  const [makeCom, setMakeComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
@@ -34,11 +36,11 @@ const Resource = (props) => {
             <h3>
               {props.data.category.map((item, index) => {
                 let name = item[0].toUpperCase() + item.substring(1);
-                return <span key={index}>{name}</span>;
+                return <span key={index}>{name} </span>;
               })}
             </h3>
           </div>
-          {/* <h3>added by {props.data.user.name}</h3> */}
+          <h3>added by {props.data.user.name}</h3>
         </hgroup>
       </header>
       <figure role="group">
@@ -54,35 +56,56 @@ const Resource = (props) => {
           {props.data.link}
         </a>
       </p>
-      <p>(Reactions... 🦝)</p>
       <p>{props.data.num_views} views</p>
 
-      <Reaction love={10} like={5} dislike={1} />
       <h3>Description</h3>
       <p>{props.data.description}</p>
-      <h3>
-        Comments{" "}
-        <img
-          className="icon"
-          src="https://img.icons8.com/material-rounded/72/give-way.png"
-          alt="arrow"
-          onClick={() => {
-            setDisplayComm(!displayCom);
-          }}
-        ></img>{" "}
-      </h3>
+      <span>
+        {props.data.comments !== [] && (
+          <Fragment>
+            See Comments{" "}
+            <img
+              className="icon"
+              src="https://img.icons8.com/material-rounded/72/give-way.png"
+              alt="arrow"
+              onClick={() => {
+                setDisplayComm(!displayCom);
+              }}
+            ></img>{" "}
+          </Fragment>
+        )}
+      </span>
+      {user ? (
+        <span>
+          Comment{" "}
+          <img
+            className="icon"
+            src="icons/comment.svg"
+            alt="Login Icon"
+            onClick={() => {
+              setMakeComm(!makeCom);
+            }}
+          />
+        </span>
+      ) : (
+        <Link to="/login">LogIn to comment </Link>
+      )}
+
       {displayCom && (
         <Fragment>
-          {props.data.comments ? (
-            props.data.comments.map((comment, index) => (
-              <p key={index}>{comment}</p>
-            ))
+          {props.data.comments === [] ? (
+            <p>no comments yet</p>
           ) : (
-            <p>There is no comment for the moment</p>
+            props.data.comments.map(
+              (comment) =>
+                !comment.deleted && (
+                  <Comment key={comment._id} data={comment}></Comment>
+                )
+            )
           )}
         </Fragment>
       )}
-      <Comment resourceId={props.data._id} />
+      {makeCom && <CreateComment resourceId={props.data._id} />}
     </section>
   );
 };
