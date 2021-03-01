@@ -15,7 +15,7 @@ export default function MyComments() {
       .get(`http://localhost:5000/users/comments/${user._id}`)
       .then((res) => {
         setUserComments(res.data.comments);
-        console.log(res.data);
+        console.log("comments", res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -27,17 +27,19 @@ export default function MyComments() {
           {" "}
           {userComments.map((comment) => {
             return (
-              <div className="update-comment">
-                <div>
-                  <h2>{comment.resource.title}</h2>
-                  <img
-                    className="comment-image"
-                    src={comment.resource.previewImage}
-                    alt="preview"
-                  ></img>
+              !comment.deleted && (
+                <div className="update-comment">
+                  <div>
+                    <h2>{comment.resource.title}</h2>
+                    <img
+                      className="comment-image"
+                      src={comment.resource.previewImage}
+                      alt="preview"
+                    ></img>
+                  </div>
+                  <UpdateComment data={comment} />
                 </div>
-                <UpdateComment data={comment} />
-              </div>
+              )
             );
           })}
         </Fragment>
