@@ -1,12 +1,29 @@
 import React from "react";
 import Star from "./Star";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Gets Rating (between 0 and 5) as decimal number in props.rating
 export default function Rating(props) {
   const [rating, setRating] = React.useState(props.rating);
   const [hoverRating, setHoverRating] = React.useState(0);
   let history = useHistory();
+
+  const notifyInfo = () => {
+    toast.info("You can rate only rate once!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  const NotifyWarn = () => {
+    toast.warn("you need to login if you want to rate", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
   const onMouseEnter = (index) => {
     setHoverRating(index);
   };
@@ -32,13 +49,13 @@ export default function Rating(props) {
           response.json().then((data) => {
             console.log(data.average);
             if (data.isUserRateAccepted === false) {
-              alert("You can only rate once!");
+              notifyInfo();
             }
           });
         } else {
           if (response.status === 401) {
             history.push("/login");
-            alert("you need to login if you want to rate");
+            NotifyWarn();
           }
         }
       })
