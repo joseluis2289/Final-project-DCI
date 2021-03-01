@@ -36,6 +36,7 @@ export default function CreateComment(props) {
             cols="33"
             style={{ border: "solid black 2px" }}
             placeholder="Please comment here..."
+            required
             onChange={formHandler}
           ></textarea>
         </div>

@@ -1,4 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Rating from "./Rating";
 import CreateComment from "./CreateComment.jsx";
 import Comment from "./Comment";
@@ -7,6 +9,7 @@ import Comment from "./Comment";
 const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
+  const user = useSelector((state) => state.user._id);
   const [displayCom, setDisplayComm] = useState(false);
   const [makeCom, setMakeComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
@@ -68,17 +71,22 @@ const Resource = (props) => {
           }}
         ></img>{" "}
       </span>
-      <span>
-        Comment{" "}
-        <img
-          className="icon"
-          src="icons/comment.svg"
-          alt="Login Icon"
-          onClick={() => {
-            setMakeComm(!makeCom);
-          }}
-        />
-      </span>
+      {user ? (
+        <span>
+          Comment{" "}
+          <img
+            className="icon"
+            src="icons/comment.svg"
+            alt="Login Icon"
+            onClick={() => {
+              setMakeComm(!makeCom);
+            }}
+          />
+        </span>
+      ) : (
+        <Link to="/login">LogIn to comment </Link>
+      )}
+
       {displayCom && (
         <Fragment>
           {props.data.comments ? (
