@@ -22,14 +22,6 @@ export default function Settings() {
         <img className="icon" src="icons/comment.svg" alt="Login Icon" />
         My Comments
       </Link>{" "}
-      <Link to="/update_resource">
-        <img
-          className="icon"
-          src="icons/icon_update_resource.svg"
-          alt="Login Icon"
-        />
-        UpdateResource
-      </Link>{" "}
     </div>
   );
 }
