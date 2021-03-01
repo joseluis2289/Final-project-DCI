@@ -18,10 +18,10 @@ const Resource = (props) => {
   }, [props.data.previewImage]);
 
   return (
-    <section className='resource-container'>
+    <section className="resource-container">
       <header>
         <hgroup>
-          <div className='resource-title'>
+          <div className="resource-title">
             <h2>{props.data.title}</h2>
             <Rating
               rating={props.data.rating}
@@ -29,7 +29,7 @@ const Resource = (props) => {
               resourceId={props.data._id}
             />
           </div>
-          <div className='category'>
+          <div className="category">
             <h3>
               {props.data.category.map((item, index) => {
                 let name = item[0].toUpperCase() + item.substring(1);
@@ -40,16 +40,16 @@ const Resource = (props) => {
           <h3>added by {props.data.user.name}</h3>
         </hgroup>
       </header>
-      <figure role='group'>
+      <figure role="group">
         <img
-          className='resource-preview'
+          className="resource-preview"
           src={previewUrl}
-          alt='Illustration for Online Learning'
+          alt="Illustration for Online Learning"
         />
         <figcaption>{props.data.paid ? "paid" : "free"}</figcaption>
       </figure>
       <p>
-        <a target='_blank' rel='noreferrer' href={props.data.link}>
+        <a target="_blank" rel="noreferrer" href={props.data.link}>
           {props.data.link}
         </a>
       </p>
@@ -60,9 +60,9 @@ const Resource = (props) => {
       <span>
         See Comments{" "}
         <img
-          className='icon'
-          src='https://img.icons8.com/material-rounded/72/give-way.png'
-          alt='arrow'
+          className="icon"
+          src="https://img.icons8.com/material-rounded/72/give-way.png"
+          alt="arrow"
           onClick={() => {
             setDisplayComm(!displayCom);
           }}
@@ -71,9 +71,9 @@ const Resource = (props) => {
       <span>
         Comment{" "}
         <img
-          className='icon'
-          src='icons/comment.svg'
-          alt='Login Icon'
+          className="icon"
+          src="icons/comment.svg"
+          alt="Login Icon"
           onClick={() => {
             setMakeComm(!makeCom);
           }}
@@ -83,7 +83,11 @@ const Resource = (props) => {
         <Fragment>
           {props.data.comments ? (
             props.data.comments.map((comment) => (
-              <Comment key={comment._id} data={comment}></Comment>
+              <Comment
+                key={comment._id}
+                data={comment}
+                makeComm={{ setMakeComm, makeCom }}
+              ></Comment>
             ))
           ) : (
             <p>There is no comment for the moment</p>
