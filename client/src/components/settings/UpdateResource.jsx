@@ -15,7 +15,6 @@ export default function UpdateResource(props) {
       transform: "translate(-50%, -50%)",
     },
   };
-  var subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
     setIsOpen(true);
@@ -33,6 +32,7 @@ export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
   const update = useSelector((state) => state.update);
   const dispatch = useDispatch();
+
   const [alert, setAlert] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
