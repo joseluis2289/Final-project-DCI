@@ -31,7 +31,7 @@ export default function MyComments() {
           {userComments.map((comment) => {
             return (
               comment.resource && (
-                <div className="update-comment">
+                <div key={comment._id} className="update-comment">
                   <div>
                     <h2>
                       {comment.resource

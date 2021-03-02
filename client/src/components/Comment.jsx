@@ -30,6 +30,7 @@ export default function Comment(props) {
       {props.data.edited && <span>Edited</span>}
       {props.data.user._id === user._id && <ModalBox function={delComment} />}
       <p>{props.data.text}</p>
+      {/* <input disabled>{props.data.text}</input> */}
       <span>
         {props.data.date
           .slice(0, 10)
