@@ -48,6 +48,7 @@ export default function UpdateResource(props) {
     })
       .then(function (response) {
         dispatch(updateData(update));
+        setAlert(true);
         console.log(response);
       })
       .catch((err) => {
@@ -166,7 +167,7 @@ export default function UpdateResource(props) {
         <button type="submit">Update resource</button>
         {alert && (
           <span>
-            Data updated{" "}
+            Saved{" "}
             <img className="icon" src="icons/checked.svg" alt="checked Icon" />
           </span>
         )}

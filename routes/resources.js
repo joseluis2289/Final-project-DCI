@@ -201,24 +201,25 @@ router.put("/:resource_id", (req, res, next) => {
     });
 });
 
-// delete one resource → not used on our application, once we are storing data and just updating the property "deleted" to true
+// delete one resource and its comments
 router.delete("/:resource_id", (req, res, next) => {
   Resource.findById(req.params.resource_id)
   .then(response=>{
-    response.comments.map(comID=>{
-      Comment.findByIdAndRemove(comID)
-    .then((response) => {
-      res.send("comment deleted");
-    })
-    .catch((err) => res.send(err))
-    })
-console.log("where are comments id?", response.comments);
-  }).catch(err=>res.send(err))
- /*  Resource.findByIdAndRemove(req.params.resource_id)
-    .then((response) => {
-      res.send("resource deleted");
-    })
-    .catch((err) => res.send(err)); */
+        response.comments.map(comID=>{
+          Comment.findByIdAndRemove(comID)
+        .then((response) => {
+          console.log("comment deleted")
+        })
+        .catch((err) => res.send(err))
+        })
+        Resource.findByIdAndRemove(req.params.resource_id)
+          .then((response) => {
+            console.log("resource deleted")
+          })
+          .catch((err) => res.send(err)); 
+    console.log("where are comments id?", response.comments);
+  })
+  .catch(err=>res.send(err))
 });
 
 module.exports = router;
