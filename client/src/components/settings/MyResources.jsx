@@ -9,6 +9,7 @@ export default function MyResources() {
   const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
   const [userResources, setUserResources] = useState([]);
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/users/resources/${user._id}`)
@@ -17,7 +18,7 @@ export default function MyResources() {
         console.log(res.data.resources);
       })
       .catch((err) => console.log(err));
-  }, [update, user._id]);
+  }, [update]);
   return (
     <div id="my-resources">
       <Settings />

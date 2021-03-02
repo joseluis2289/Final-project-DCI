@@ -8,7 +8,6 @@ export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
   const update = useSelector((state) => state.update);
   const dispatch = useDispatch();
-
   const [alert, setAlert] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
@@ -22,7 +21,7 @@ export default function UpdateResource(props) {
   ]);
   useEffect(() => {
     resource.previewImage && setPreviewUrl(resource.previewImage);
-  }, [resource.previewImage]);
+  }, [resource.previewImage, update]);
 
   let defineCategory = (e) => {
     let categories = resource.category;
@@ -66,7 +65,6 @@ export default function UpdateResource(props) {
     })
       .then((response) => {
         dispatch(updateData(update));
-        console.log("deleted", response);
       })
       .catch((err) => {
         console.log(err);

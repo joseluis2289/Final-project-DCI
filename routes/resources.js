@@ -208,16 +208,14 @@ router.delete("/:resource_id", (req, res, next) => {
         response.comments.map(comID=>{
           Comment.findByIdAndRemove(comID)
         .then((response) => {
-          console.log("comment deleted")
         })
         .catch((err) => res.send(err))
         })
         Resource.findByIdAndRemove(req.params.resource_id)
           .then((response) => {
-            console.log("resource deleted")
+            res.send("resource deleted")
           })
           .catch((err) => res.send(err)); 
-    console.log("where are comments id?", response.comments);
   })
   .catch(err=>res.send(err))
 });
