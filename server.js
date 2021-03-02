@@ -69,6 +69,12 @@ app.use("/comments", require("./routes/comments"));
 app.use("/users", require("./routes/users"));
 //app.use("/posts", protectedRoutes);
 
+
+//deploying on Heroku
+if(process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"))
+}
+
 ///All routes
 
 //register user
