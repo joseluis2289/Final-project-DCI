@@ -9,10 +9,13 @@ export default function MyComments() {
   const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
   const [userComments, setUserComments] = useState([]);
+  const [previewUrl, setPreviewUrl] = useState(
+    "illustrations/road_to_knowledge.svg"
+  );
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users/comments/${user._id}`)
+      .get(`/users/comments/${user._id}`)
       .then((res) => {
         setUserComments(res.data.comments);
         console.log("comments", res.data);
@@ -27,13 +30,21 @@ export default function MyComments() {
           {" "}
           {userComments.map((comment) => {
             return (
-              !comment.deleted && (
-                <div className="update-comment">
+              comment.resource && (
+                <div key={comment._id} className="update-comment">
                   <div>
-                    <h2>{comment.resource.title}</h2>
+                    <h2>
+                      {comment.resource
+                        ? `${comment.resource.title}`
+                        : "This resource was deleted"}
+                    </h2>
                     <img
                       className="comment-image"
-                      src={comment.resource.previewImage}
+                      src={
+                        comment.resource
+                          ? `${comment.resource.previewImage}`
+                          : previewUrl
+                      }
                       alt="preview"
                     ></img>
                   </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateData } from "../../redux/actions";
@@ -8,7 +8,6 @@ export default function UpdateComment(props) {
   const [comment, setComment] = useState(props.data);
   const [date, setDate] = useState(props.data.date);
   const [alert, setAlert] = useState(false);
-  const [deleted, setDeleted] = useState(false);
   const dispatch = useDispatch();
   let formHandler = (e) => {
     setComment({
@@ -16,17 +15,22 @@ export default function UpdateComment(props) {
       [e.target.name]: e.target.value,
     });
   };
-
-  let updateComment = (e) => {
-    e.preventDefault();
+  useEffect(() => {
     setComment({
       ...comment,
       edited: true,
-      date: Date.now,
+    });
+  }, []);
+
+  let updateComment = async (e) => {
+    e.preventDefault();
+    await setComment({
+      ...comment,
+      date: Date.now(),
     });
     axios({
       method: "PUT",
-      url: `http://localhost:5000/comments/${comment._id}`,
+      url: `/comments/${comment._id}`,
       ContentType: "application/json",
       data: comment,
     })
@@ -42,7 +46,7 @@ export default function UpdateComment(props) {
   let delComment = () => {
     axios({
       method: "DELETE",
-      url: `http://localhost:5000/comments/${props.data._id}`,
+      url: `/comments/${props.data._id}`,
       ContentType: "application/json",
     })
       .then((response) => {
@@ -94,7 +98,6 @@ export default function UpdateComment(props) {
         <button type="submit">Update Comment</button>
       </form>
       {alert && <p>data updated</p>}
-      {deleted && <p>comment deleted</p>}
     </div>
   );
 }

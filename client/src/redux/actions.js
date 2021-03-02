@@ -49,7 +49,7 @@ export function filterCategory(topic, status) {
 //RESOURCES ACTIONS
 export const getResources = () => async (dispatch) => {
   axios
-    .get("http://localhost:5000/resources/")
+    .get("/resources")
     .then((res) => {
       dispatch({
         type: "GET_RESOURCES",
@@ -75,7 +75,7 @@ export function updateData(boolean) {
 export const searchResources = (term) => async (dispatch) => {
   if (term) {
     axios
-      .get("http://localhost:5000/resources/search/" + term)
+      .get("/resources/search/" + term)
       .then((res) => {
         dispatch({
           type: "SEARCH_RESOURCES",

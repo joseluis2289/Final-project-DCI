@@ -102,12 +102,9 @@ const Resource = (props) => {
           {props.data.comments === [] ? (
             <p>no comments yet</p>
           ) : (
-            props.data.comments.map(
-              (comment) =>
-                !comment.deleted && (
-                  <Comment key={comment._id} data={comment}></Comment>
-                )
-            )
+            props.data.comments.map((comment) => (
+              <Comment key={comment._id} data={comment}></Comment>
+            ))
           )}
         </Fragment>
       )}
