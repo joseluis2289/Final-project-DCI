@@ -20,10 +20,10 @@ const Resource = (props) => {
   //create function to allow the child component "CreateComment" to change "displayCom" state
   function handleCom(newValue) {
     setMakeComm(newValue);
+    setDisplayComm(!newValue);
   }
   useEffect(() => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
-    setDisplayComm(true);
   }, [props.data.previewImage, update]);
 
   return (
