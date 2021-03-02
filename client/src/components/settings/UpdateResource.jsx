@@ -2,8 +2,34 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateData } from "../../redux/actions";
+import Modal from "react-modal";
 
 export default function UpdateResource(props) {
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+  var subtitle;
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal(e) {
+    e.preventDefault();
+    delResource(e);
+    setIsOpen(false);
+  }
+  function cancelModal() {
+    setIsOpen(false);
+  }
+
   const [resource, setResource] = useState(props.data);
   const update = useSelector((state) => state.update);
   const dispatch = useDispatch();
@@ -72,15 +98,21 @@ export default function UpdateResource(props) {
   };
   return (
     <div className="update-resource">
-      <div className="delete-button">
-        <button
-          onClick={(e) => {
-            delResource(e);
-          }}
-        >
-          X
-        </button>
-      </div>
+      <button onClick={openModal}>X</button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Delete Modal"
+      >
+        <div className="modal">
+          <h3>Are you sure you want to delete it?</h3>
+          <p>This action can not be undone!</p>
+          <button onClick={closeModal}>Yes</button>
+          <button onClick={cancelModal}>Cancel</button>
+        </div>
+      </Modal>
+
       <form onSubmit={updateResource}>
         <div>
           <label htmlFor="title">Title</label>

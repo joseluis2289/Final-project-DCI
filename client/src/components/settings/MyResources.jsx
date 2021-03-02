@@ -19,7 +19,7 @@ export default function MyResources() {
       .catch((err) => console.log(err));
   }, [update, user._id]);
   return (
-    <Fragment>
+    <div id="my-resources">
       <Settings />
       {userResources ? (
         <div className="references-container ">
@@ -40,6 +40,6 @@ export default function MyResources() {
           <Link to="/login">here </Link>
         </Fragment>
       )}
-    </Fragment>
+    </div>
   );
 }
