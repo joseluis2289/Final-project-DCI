@@ -15,7 +15,7 @@ export default function MyComments() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users/comments/${user._id}`)
+      .get(`/users/comments/${user._id}`)
       .then((res) => {
         setUserComments(res.data.comments);
         console.log("comments", res.data);

@@ -18,7 +18,7 @@ export default function CreateComment(props) {
     e.preventDefault();
     axios({
       method: "POST",
-      url: "http://localhost:5000/comments",
+      url: "/comments",
       ContentType: "application/json",
       data: comment,
     })

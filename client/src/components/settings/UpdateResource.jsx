@@ -43,7 +43,7 @@ export default function UpdateResource(props) {
     setResource({ ...resource, edited: true, date: Date.now });
     axios({
       method: "PUT",
-      url: `http://localhost:5000/resources/${resource._id}`,
+      url: `/resources/${resource._id}`,
       ContentType: "application/json",
       data: resource,
     })
@@ -60,7 +60,7 @@ export default function UpdateResource(props) {
   let delResource = () => {
     axios({
       method: "DELETE",
-      url: `http://localhost:5000/resources/${resource._id}`,
+      url: `/resources/${resource._id}`,
       ContentType: "application/json",
     })
       .then((response) => {

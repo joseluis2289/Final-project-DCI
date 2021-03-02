@@ -12,7 +12,7 @@ export default function Comment(props) {
   let delComment = () => {
     axios({
       method: "DELETE",
-      url: `http://localhost:5000/comments/${props.data._id}`,
+      url: `/comments/${props.data._id}`,
       ContentType: "application/json",
     })
       .then((response) => {

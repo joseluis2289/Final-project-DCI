@@ -30,7 +30,7 @@ export default function UpdateComment(props) {
     });
     axios({
       method: "PUT",
-      url: `http://localhost:5000/comments/${comment._id}`,
+      url: `/comments/${comment._id}`,
       ContentType: "application/json",
       data: comment,
     })
@@ -46,7 +46,7 @@ export default function UpdateComment(props) {
   let delComment = () => {
     axios({
       method: "DELETE",
-      url: `http://localhost:5000/comments/${props.data._id}`,
+      url: `/comments/${props.data._id}`,
       ContentType: "application/json",
     })
       .then((response) => {

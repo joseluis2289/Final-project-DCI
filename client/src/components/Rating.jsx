@@ -36,6 +36,7 @@ export default function Rating(props) {
           dispatch(updateData(update));
           response.json().then((data) => {
             console.log(data.average);
+            setRating(data.average);
             if (data.isUserRateAccepted === false) {
               alert("You can only rate once!");
             }

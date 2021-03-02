@@ -12,7 +12,7 @@ export default function MyResources() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users/resources/${user._id}`)
+      .get(`/users/resources/${user._id}`)
       .then((res) => {
         setUserResources(res.data.resources);
         console.log(res.data.resources);
