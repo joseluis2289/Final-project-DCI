@@ -10,7 +10,7 @@ export default function Navbar() {
     <header className="app-header">
       <Link to="/">(LOGO)</Link>
       <h1>
-        <Link to="/">Student Companion</Link>
+        <Link to="/results">Student Companion</Link>
       </h1>
       <nav>
         {/* Icons from https://material.io/resources/icons/ */}

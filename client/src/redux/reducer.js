@@ -15,6 +15,7 @@ const initialState = {
     accessToken: "",
     refreshToken: "",
   },
+  error: {},
 };
 
 // TODO: add multireducer -- one for user, one for filter

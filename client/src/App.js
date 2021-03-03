@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {useSelector} from "react-redux"
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Filter from "./components/Filter";
@@ -14,13 +15,16 @@ import MyComments from "./components/settings/MyComments"
 import Settings from "./components/settings/Settings";
 import UpdateResource from "./components/settings/UpdateResource";
 import NotFound from "./components/NotFound";
+import Footer from "./components/Footer"
 import "./App.css";
 
 export default function App() {
+  const error = useSelector((state) => state.error);
   return (
     <Router>
       <Navbar />
       <Filter />
+      {error && <NotFound />}
       <Switch>
         <main>
           <Route path='/home' component={Home} />
@@ -28,7 +32,7 @@ export default function App() {
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <Route path='/profile' component={Profile} />
-          <Route path='/' exact={true} component={Content} />
+          <Route path='/results' exact={true} component={Content} />
           <Route path='/settings' component={Settings} />
           <Route path='/add_resource' component={AddResource} />
           <Route path='/my_resources' component={MyResources} />
@@ -37,7 +41,8 @@ export default function App() {
           <Route path='#!' component={NotFound} />
         </main>
       </Switch>
-      <footer></footer>
+<Footer/>
+
     </Router>
   );
 }

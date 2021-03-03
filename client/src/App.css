@@ -302,6 +302,28 @@ button:hover {
   grid-template-columns: 1fr 1fr;
   justify-items: center;
 }
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: var(--yellow-light);
+  font-size: 1rem;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 1rem;
+}
+footer p {
+  margin: 0;
+  font-style: italic;
+}
+footer p > a {
+  color: black;
+}
+footer p > a:hover {
+  color: var(--blue-dark);
+}
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
 .errorsMsg {
   color: red;
