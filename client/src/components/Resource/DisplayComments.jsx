@@ -26,7 +26,6 @@ export default function DisplayComments({
             <div
               onClick={() => {
                 showComm(!displayCom);
-                handleCreateCom(false);
               }}
             >
               {parseInt(comments.length)} Comments{" "}

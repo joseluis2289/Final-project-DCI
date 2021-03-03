@@ -47,6 +47,7 @@ export default function CreateComment({
         <div
           onClick={() => {
             openCom(!makeCom);
+            showComm(false);
           }}
         >
           <span>
