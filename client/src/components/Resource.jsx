@@ -14,6 +14,7 @@ const Resource = (props) => {
   const update = useSelector((state) => state.update);
   const [displayCom, setDisplayComm] = useState(false);
   const [makeCom, setMakeComm] = useState(false);
+  const [editCom, setEditComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
@@ -21,6 +22,10 @@ const Resource = (props) => {
   function handleCom(newValue) {
     setMakeComm(newValue);
     setDisplayComm(!newValue);
+  }
+  function editComm(newValue) {
+    setMakeComm(!newValue);
+    setEditComm(newValue);
   }
   useEffect(() => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
@@ -109,7 +114,11 @@ const Resource = (props) => {
         </Fragment>
       )}
       {makeCom && (
-        <CreateComment resourceId={props.data._id} handleCom={handleCom} />
+        <CreateComment
+          resourceId={props.data._id}
+          handleCom={handleCom}
+          editComm={editComm}
+        />
       )}
     </section>
   );

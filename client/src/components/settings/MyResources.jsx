@@ -18,7 +18,8 @@ export default function MyResources() {
         console.log(res.data.resources);
       })
       .catch((err) => console.log(err));
-  }, [update]);
+  }, [update, user._id]);
+
   return (
     <div id="my-resources">
       <Settings />

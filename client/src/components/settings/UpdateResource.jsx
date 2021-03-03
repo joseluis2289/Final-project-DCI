@@ -64,6 +64,7 @@ export default function UpdateResource(props) {
       ContentType: "application/json",
     })
       .then((response) => {
+        console.log("sta é a resposta", response);
         dispatch(updateData(update));
       })
       .catch((err) => {

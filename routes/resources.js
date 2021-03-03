@@ -213,7 +213,7 @@ router.delete("/:resource_id", (req, res, next) => {
         })
         Resource.findByIdAndRemove(req.params.resource_id)
           .then((response) => {
-            res.send("resource deleted")
+            res.send(response)
           })
           .catch((err) => res.send(err)); 
   })
