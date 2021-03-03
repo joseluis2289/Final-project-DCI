@@ -14,6 +14,7 @@ const Resource = (props) => {
   const update = useSelector((state) => state.update);
   const [displayCom, setDisplayComm] = useState(false);
   const [makeCom, setMakeComm] = useState(false);
+  const [commentsArray, setCommentsArray] = useState(props.data.comments);
   const [editCom, setEditComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
@@ -27,7 +28,11 @@ const Resource = (props) => {
     setMakeComm(!newValue);
     setEditComm(newValue);
   }
+
   useEffect(() => {
+    let arrayReversed = commentsArray.reverse();
+    setCommentsArray(arrayReversed);
+    console.log("arrays", commentsArray);
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
   }, [props.data.previewImage, update]);
 
@@ -107,7 +112,7 @@ const Resource = (props) => {
           {props.data.comments === [] ? (
             <p>no comments yet</p>
           ) : (
-            props.data.comments.map((comment) => (
+            commentsArray.map((comment) => (
               <Comment key={comment._id} data={comment}></Comment>
             ))
           )}
