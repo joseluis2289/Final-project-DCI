@@ -52,9 +52,7 @@ export default function Rating(props) {
         console.log(err);
       });
   };
-  useEffect(() => {
-    console.log("upadate changed");
-  }, [update]);
+  useEffect(() => {}, [update]);
   return (
     <section>
       <figure className="rating-container" role="group">

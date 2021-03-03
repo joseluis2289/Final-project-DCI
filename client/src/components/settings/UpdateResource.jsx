@@ -73,7 +73,7 @@ export default function UpdateResource(props) {
   };
   return (
     <div className="update-resource">
-      <ModalBox function={delResource} />
+      <ModalBox function={delResource} text="X" />
 
       <form onSubmit={updateResource}>
         <div>

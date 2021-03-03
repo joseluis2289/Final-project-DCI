@@ -1,9 +1,16 @@
 import React, { useState, useEffect, Fragment } from "react";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { userLogout } from "../redux/actions";
 import Settings from "./settings/Settings";
+import ModalBox from "./ModalBox";
 
 export default function Profile() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  let history = useHistory();
   const [updateData, setUpdateData] = useState({
     email: "",
     name: "",
@@ -51,7 +58,17 @@ export default function Profile() {
         console.error("Error to update", err);
       });
   };
-
+  const delProfile = () => {
+    axios({
+      method: "DELETE",
+      url: `delete/${user._id}`,
+    })
+      .then((res) => {
+        history.push("/home");
+        dispatch(userLogout());
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <Fragment>
       <Settings />
@@ -128,6 +145,7 @@ export default function Profile() {
             )}
           <button type="submit">Update</button>
         </form>
+        <ModalBox function={delProfile} text="DELETE PROFILE" />
       </div>
     </Fragment>
   );

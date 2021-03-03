@@ -66,13 +66,18 @@ export default function Comment(props) {
 
   return (
     <div className="comment">
-      <h3>{props.data.user.userName}</h3>
+      {props.data.user ? (
+        <h3>{props.data.user.userName}</h3>
+      ) : (
+        <h3>user not Registered anymore</h3>
+      )}
+
       <span>{moment(props.data.date).fromNow()}</span>
 
       <div>
-        {props.data.user._id === user._id && !edit && (
+        {props.data.user && props.data.user._id === user._id && !edit && (
           <div>
-            <ModalBox function={delComment} />{" "}
+            <ModalBox function={delComment} text="X" />{" "}
             <button
               onClick={() => {
                 displayButtons(true);

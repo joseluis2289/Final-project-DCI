@@ -187,6 +187,17 @@ app.put("/update", (req, res, next) => {
   });
 });
 
+//delete profile 
+app.delete("/delete/:user_id", (req, res)=>{
+  let userId= req.params.user_id;
+  UserModel.findByIdAndDelete(userId)
+  .then((response)=>{
+    req.session.destroy();
+    res.send({msg: "your profile was successfully deleted"})
+  })
+  .catch(err=>res.send(err))
+})
+
 app.delete("/logout", (req, res, next) => {
   refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
   req.session.destroy();

@@ -13,7 +13,6 @@ export default function DisplayComments({
   const update = useSelector((state) => state.update);
 
   useEffect(() => {
-    console.log(commentsArray);
     let arrayReversed = comments.reverse();
     setCommentsArray(arrayReversed);
   }, [update, showComm]);

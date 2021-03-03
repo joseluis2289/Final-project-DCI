@@ -121,7 +121,6 @@ const Content = ({ getResources, resources, filter }) => {
           // page 2 -- index: 8-15
           let start = (pagination.current - 1) * pagination.perPage;
           let end = pagination.current * pagination.perPage - 1;
-          console.log(start, end);
           if (index >= start && index <= end) {
             showByCurrentPage = true;
           }
