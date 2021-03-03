@@ -19,15 +19,12 @@ export default function UpdateComment(props) {
     setComment({
       ...comment,
       edited: true,
+      date: Date.now(),
     });
   }, []);
 
-  let updateComment = async (e) => {
+  let updateComment = (e) => {
     e.preventDefault();
-    await setComment({
-      ...comment,
-      date: Date.now(),
-    });
     axios({
       method: "PUT",
       url: `/comments/${comment._id}`,
@@ -70,17 +67,6 @@ export default function UpdateComment(props) {
         >
           X
         </button>
-        {props.data.edited && (
-          <span>
-            Was already edited on{" "}
-            {date
-              .slice(0, 10)
-              .split("-")
-              .reverse()
-              .join("-")
-              .replaceAll("-", ".")}
-          </span>
-        )}
       </div>
       <form onSubmit={(e) => updateComment(e)}>
         <div>

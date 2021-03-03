@@ -27,6 +27,8 @@ export default function Comment(props) {
     setComment({
       ...comment,
       [e.target.name]: e.target.value,
+      edited: true,
+      date: Date.now(),
     });
   };
 
@@ -40,6 +42,8 @@ export default function Comment(props) {
     })
       .then(function (response) {
         response.data.nModified > 0 && dispatch(updateData(update));
+        setEdit(false);
+        console.log("updated");
       })
       .catch((err) => {
         console.log(err);
@@ -87,27 +91,33 @@ export default function Comment(props) {
           </div>
         )}
       </div>
-      <form onSubmit={(e) => updateComment(e)}>
-        <input
-          disabled={
-            props.data.user._id === user._id && edit ? null : "disabled"
-          }
-          value={props.data.text}
-          name="text"
-        ></input>
-        {edit && (
-          <div>
-            <button
-              onClick={() => {
-                displayButtons(false);
-              }}
-            >
-              Cancel
-            </button>
-            <button>Save</button>
-          </div>
-        )}
-      </form>
+      {!edit && <p>{props.data.text}</p>}
+      {edit && (
+        <form onSubmit={(e) => updateComment(e)}>
+          <input
+            type="text"
+            name="text"
+            disabled={
+              props.data.user._id === user._id && edit ? null : "disabled"
+            }
+            value={comment.text}
+            onChange={formHandler}
+          ></input>
+          {edit && (
+            <div>
+              <button
+                onClick={() => {
+                  displayButtons(false);
+                }}
+              >
+                Cancel
+              </button>
+              <button type="submit">Save</button>
+            </div>
+          )}
+        </form>
+      )}
+
       {props.data.edited && <span>Edited</span>}
     </div>
   );
