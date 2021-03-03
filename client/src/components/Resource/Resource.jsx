@@ -73,6 +73,7 @@ const Resource = (props) => {
         comments={props.data.comments}
         displayCom={displayCom}
         showComm={showComm}
+        handleCreateCom={handleCreateCom}
       />
 
       <CreateComment
