@@ -3,16 +3,27 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateData } from "../redux/actions";
 import axios from "axios";
 import ModalBox from "./ModalBox";
+import moment from "moment";
 
 export default function Comment(props) {
   const user = useSelector((state) => state.user);
+  const update = useSelector((state) => state.update);
   const [comment, setComment] = useState(props.data);
   const [edit, setEdit] = useState(false);
-  const update = useSelector((state) => state.update);
+  const [date, setDate] = useState({ datum: "", time: "" });
   const dispatch = useDispatch();
 
   //if user send request, the "edited" and "date" will be upated
   useEffect(() => {
+    /*     let calendarDate = props.data.date
+      .slice(0, 10)
+      .split("-")
+      .reverse()
+      .join("-")
+      .replaceAll("-", ".");
+
+    let hour = props.data.date.slice(11, 16);
+    setDate({ ...date, datum: calendarDate, time: hour }); */
     setComment({
       ...comment,
       edited: true,
@@ -68,14 +79,10 @@ export default function Comment(props) {
   return (
     <div className="comment">
       <h3>{props.data.user.userName}</h3>
-      <span>
-        {props.data.date
-          .slice(0, 10)
-          .split("-")
-          .reverse()
-          .join("-")
-          .replaceAll("-", ".")}
-      </span>
+      {/* <span>
+        am {date.datum} at {date.time}
+      </span> */}
+      <span>{moment(props.data.date).fromNow()}</span>
 
       <div>
         {props.data.user._id === user._id && !edit && (

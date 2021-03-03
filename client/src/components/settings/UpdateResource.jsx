@@ -40,7 +40,7 @@ export default function UpdateResource(props) {
 
   let updateResource = (e) => {
     e.preventDefault();
-    setResource({ ...resource, edited: true, date: Date.now });
+    setResource({ ...resource, edited: true, date: Date.now() });
     axios({
       method: "PUT",
       url: `/resources/${resource._id}`,
