@@ -71,15 +71,22 @@ router.post("/addmany", (req, res, next) => {
             res.send(resourceAdded);
           })
           .catch((err) => console.log(err));
-      })
-      .catch((err) => {
-        res.send(err);
+        })
+        .catch((err) => {
+          res.send(err);
+        });
       });
-  });
-});
+    });
+    
+    //search for specific term in Resources
+    router.get("/search/:term", (req, res, next) => {
+      const resources = Resource.find({ $text: { $search: req.params.term } })
+        .then((resources) => res.json(resources))
+        .catch((err) => res.send(err));
+    });
 
 //this MiddleWare is protecting all the routes down Below
-/* router.use((req, res, next) => {
+ router.use((req, res, next) => {
   if (req.session.user) {
     console.log(req.session.user)
     next();
@@ -87,7 +94,7 @@ router.post("/addmany", (req, res, next) => {
     console.log("error on middleware")
     res.sendStatus(401);
   }  
-});  */
+});  
 
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
@@ -117,12 +124,6 @@ router.post("/rating", (req, res, next) => {
   });
 });
 
-//search for specific term in Resources
-router.get("/search/:term", (req, res, next) => {
-  const resources = Resource.find({ $text: { $search: req.params.term } })
-    .then((resources) => res.json(resources))
-    .catch((err) => res.send(err));
-});
 
 // add one resource
 router.post("/add", (req, res, next) => {

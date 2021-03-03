@@ -7,7 +7,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Content from "./components/Content";
-import Resource from "./components/Resource"
+import Resource from "./components/Resource/Resource"
 import AddResource from "./components/AddResource";
 import MyResources from "./components/settings/MyResources"
 import MyComments from "./components/settings/MyComments"

@@ -51,7 +51,7 @@ export const getResources = () => async (dispatch) => {
   axios
     .get("/resources")
     .then((res) => {
-      dispatch({
+            dispatch({
         type: "GET_RESOURCES",
         payload: res.data,
       });

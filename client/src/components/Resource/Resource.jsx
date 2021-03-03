@@ -1,38 +1,28 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import Rating from "./Rating";
 import CreateComment from "./CreateComment.jsx";
-import Comment from "./Comment";
+import DisplayComments from "./DisplayComments";
 
 // Gets reference ID as props.data.id
 const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
-  const user = useSelector((state) => state.user._id);
-  const logIn = useSelector((state) => state.logIn);
   const update = useSelector((state) => state.update);
-  const [displayCom, setDisplayComm] = useState(false);
-  const [makeCom, setMakeComm] = useState(false);
-  const [commentsArray, setCommentsArray] = useState(props.data.comments);
-  const [editCom, setEditComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
   //create function to allow the child component "CreateComment" to change "displayCom" state
-  function handleCom(newValue) {
+  /* function handleCom(newValue) {
     setMakeComm(newValue);
     setDisplayComm(!newValue);
   }
   function editComm(newValue) {
     setMakeComm(!newValue);
     setEditComm(newValue);
-  }
+  } */
 
-  useEffect(() => {
-    let arrayReversed = commentsArray.reverse();
-    setCommentsArray(arrayReversed);
-    console.log("arrays", commentsArray);
+  useEffect(async () => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
   }, [props.data.previewImage, update]);
 
@@ -76,55 +66,13 @@ const Resource = (props) => {
 
       <h3>Description</h3>
       <p>{props.data.description}</p>
-      <span>
-        {props.data.comments !== [] && (
-          <Fragment>
-            {parseInt(props.data.comments.length)} Comments{" "}
-            <img
-              className="icon"
-              src="https://img.icons8.com/material-rounded/72/give-way.png"
-              alt="arrow"
-              onClick={() => {
-                setDisplayComm(!displayCom);
-              }}
-            ></img>{" "}
-          </Fragment>
-        )}
-      </span>
-      {logIn ? (
-        <span>
-          Comment{" "}
-          <img
-            className="icon"
-            src="icons/comment.svg"
-            alt="Login Icon"
-            onClick={() => {
-              setMakeComm(!makeCom);
-            }}
-          />
-        </span>
-      ) : (
-        <Link to="/login">LogIn to comment </Link>
-      )}
+      <DisplayComments comments={props.data.comments} />
 
-      {displayCom && (
-        <Fragment>
-          {props.data.comments === [] ? (
-            <p>no comments yet</p>
-          ) : (
-            commentsArray.map((comment) => (
-              <Comment key={comment._id} data={comment}></Comment>
-            ))
-          )}
-        </Fragment>
-      )}
-      {makeCom && (
-        <CreateComment
-          resourceId={props.data._id}
-          handleCom={handleCom}
-          editComm={editComm}
-        />
-      )}
+      <CreateComment
+        resourceId={props.data._id}
+        /*  handleCom={handleCom}
+        editComm={editComm} */
+      />
     </section>
   );
 };

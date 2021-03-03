@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
-import Resource from "./Resource";
+import Resource from "./Resource/Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateData } from "../redux/actions";
+import { updateData } from "../../redux/actions";
 import axios from "axios";
-import ModalBox from "./ModalBox";
+import ModalBox from "../ModalBox";
 import moment from "moment";
 
 export default function Comment(props) {
@@ -13,7 +13,7 @@ export default function Comment(props) {
   const [date, setDate] = useState({ datum: "", time: "" });
   const dispatch = useDispatch();
 
-  //if user send request, the "edited" and "date" will be upated
+  //if user send request, the "edited" and "date" will be updated
   useEffect(() => {
     /*     let calendarDate = props.data.date
       .slice(0, 10)
@@ -51,8 +51,8 @@ export default function Comment(props) {
       ContentType: "application/json",
       data: comment,
     })
-      .then(function (response) {
-        response.data.nModified > 0 && dispatch(updateData(update));
+      .then(async (response) => {
+        await dispatch(updateData(update));
         setEdit(false);
         console.log("updated");
       })
