@@ -24,11 +24,6 @@ export default function DisplayComments({ comments, displayCom, showComm }) {
               }}
             >
               {parseInt(comments.length)} Comments{" "}
-              <img
-                className="icon"
-                src="https://img.icons8.com/material-rounded/72/give-way.png"
-                alt="arrow"
-              ></img>{" "}
             </div>
           </Fragment>
         }

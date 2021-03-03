@@ -13,7 +13,6 @@ export default function CreateComment({
   const user = useSelector((state) => state.user._id);
   const update = useSelector((state) => state.update);
   const logIn = useSelector((state) => state.logIn);
-
   const [editCom, setEditComm] = useState(false);
   const [comment, setComment] = useState({
     resource: resourceId,

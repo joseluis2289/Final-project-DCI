@@ -24,10 +24,6 @@ const Resource = (props) => {
     setDisplayComm(newValue);
     /* setEditComm(newValue); */
   }
-  function editComm(newValue) {
-    setMakeComm(!newValue);
-    /* setEditComm(newValue); */
-  }
 
   useEffect(async () => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
