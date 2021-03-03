@@ -74,7 +74,7 @@ const Resource = (props) => {
       <span>
         {props.data.comments !== [] && (
           <Fragment>
-            See Comments{" "}
+            {parseInt(props.data.comments.length)} Comments{" "}
             <img
               className="icon"
               src="https://img.icons8.com/material-rounded/72/give-way.png"
