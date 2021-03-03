@@ -126,7 +126,6 @@ app.post("/login", (req, res) => {
   })
 
     .then((result) => {
-      console.log(result);
       bcrypt.compare(newUser.password, result.password, function (err, output) {
         if (err) {
           console.log(err);

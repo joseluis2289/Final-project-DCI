@@ -10,7 +10,7 @@ export default function CreateComment({
   makeCom,
   showComm,
 }) {
-  const user = useSelector((state) => state.user._id);
+  const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
   const logIn = useSelector((state) => state.logIn);
   const [editCom, setEditComm] = useState(false);
@@ -39,7 +39,7 @@ export default function CreateComment({
       .catch((err) => console.log(err));
   };
   const formHandler = (e) => {
-    setComment({ ...comment, user, [e.target.name]: e.target.value });
+    setComment({ ...comment, user: user._id, [e.target.name]: e.target.value });
   };
   return (
     <div>

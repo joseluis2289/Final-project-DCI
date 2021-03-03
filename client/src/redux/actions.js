@@ -3,10 +3,17 @@ import { v4 as uuidv4 } from "uuid";
 
 //USER ACTIONS
 export function userLogin({ logIn, user }) {
+  if (logIn === true) {
   return {
     type: "USER_LOGIN",
     payload: { logIn, user },
-  };
+  }
+}else {
+  return {
+    type: "LOGIN_FAIL",
+    payload: { logIn },
+  }
+}
 }
 
 export function userLogout() {

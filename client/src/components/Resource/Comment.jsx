@@ -69,7 +69,7 @@ export default function Comment(props) {
       {props.data.user ? (
         <h3>{props.data.user.userName}</h3>
       ) : (
-        <h3>user not Registered anymore</h3>
+        <h3>anonymous</h3>
       )}
 
       <span>{moment(props.data.date).fromNow()}</span>
