@@ -9,18 +9,25 @@ const Resource = (props) => {
   // If the preview image url in the database, or possibly coming from
   // an external API doesnt work, use a generic illustration instead.
   const update = useSelector((state) => state.update);
+  const [makeCom, setMakeComm] = useState(false);
+  const [displayCom, setDisplayComm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
   //create function to allow the child component "CreateComment" to change "displayCom" state
-  /* function handleCom(newValue) {
+  function handleCreateCom(newValue) {
     setMakeComm(newValue);
     setDisplayComm(!newValue);
+    /* setDisplayComm(!newValue); */
+  }
+  function showComm(newValue) {
+    setDisplayComm(newValue);
+    /* setEditComm(newValue); */
   }
   function editComm(newValue) {
     setMakeComm(!newValue);
-    setEditComm(newValue);
-  } */
+    /* setEditComm(newValue); */
+  }
 
   useEffect(async () => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
@@ -66,12 +73,18 @@ const Resource = (props) => {
 
       <h3>Description</h3>
       <p>{props.data.description}</p>
-      <DisplayComments comments={props.data.comments} />
+      <DisplayComments
+        comments={props.data.comments}
+        displayCom={displayCom}
+        showComm={showComm}
+      />
 
       <CreateComment
         resourceId={props.data._id}
-        /*  handleCom={handleCom}
-        editComm={editComm} */
+        handleCreateCom={handleCreateCom}
+        makeCom={makeCom}
+        showComm={showComm}
+        /* editComm={editComm} */
       />
     </section>
   );

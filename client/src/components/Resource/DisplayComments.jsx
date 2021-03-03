@@ -2,9 +2,9 @@ import React, { useState, useEffect, Fragment } from "react";
 import Comment from "./Comment";
 import { useSelector } from "react-redux";
 
-export default function DisplayComments({ comments }) {
+export default function DisplayComments({ comments, displayCom, showComm }) {
   const [commentsArray, setCommentsArray] = useState(comments);
-  const [displayCom, setDisplayComm] = useState(false);
+
   const update = useSelector((state) => state.update);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function DisplayComments({ comments }) {
           <Fragment>
             <div
               onClick={() => {
-                setDisplayComm(!displayCom);
+                showComm(!displayCom);
               }}
             >
               {parseInt(comments.length)} Comments{" "}

@@ -4,18 +4,23 @@ import { updateData } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-export default function CreateComment(props) {
+export default function CreateComment({
+  resourceId,
+  handleCreateCom,
+  makeCom,
+  showComm,
+}) {
   const user = useSelector((state) => state.user._id);
   const update = useSelector((state) => state.update);
   const logIn = useSelector((state) => state.logIn);
-  const [makeCom, setMakeComm] = useState(false);
+
   const [editCom, setEditComm] = useState(false);
   const [comment, setComment] = useState({
-    resource: props.resourceId,
+    resource: resourceId,
   });
   const dispatch = useDispatch();
-  function handleCom() {
-    props.handleCom(false);
+  function openCom(newValue) {
+    handleCreateCom(newValue);
   }
 
   const addComment = (e) => {
@@ -27,7 +32,8 @@ export default function CreateComment(props) {
       data: comment,
     })
       .then((res) => {
-        handleCom();
+        openCom(false);
+        showComm(true);
         dispatch(updateData(update));
         console.log("here", res.data);
       })
@@ -41,7 +47,7 @@ export default function CreateComment(props) {
       {logIn ? (
         <div
           onClick={() => {
-            setMakeComm(!makeCom);
+            openCom(!makeCom);
           }}
         >
           <span>
