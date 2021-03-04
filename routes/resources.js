@@ -88,19 +88,15 @@ router.post("/addmany", (req, res, next) => {
 });
 
 //this MiddleWare is protecting all the routes down Below
- router.use((req, res, next) => {
+router.use((req, res, next) => {
   if (req.session.user) {
-    console.log(req.session.user)
+    console.log(req.session.user);
     next();
   } else {
-    console.log("error on middleware")
+    console.log("error on middleware");
     res.sendStatus(401);
   }
 });
-
-  }  
-});  
-
 
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
@@ -129,7 +125,6 @@ router.post("/rating", (req, res, next) => {
     }
   });
 });
-
 
 //search for specific term in Resources
 router.get("/search/:term", (req, res, next) => {
@@ -253,7 +248,6 @@ router.delete("/", (req, res, next) => {
     .then((res) => res.json("all resources were deleted"))
     .catch((err) => res.send(err));
 
-
   resource
     .save()
     .then((resourceAdded) => {
@@ -268,7 +262,6 @@ router.delete("/", (req, res, next) => {
     .catch((err) => {
       res.send(err);
     });
-
 });
 
 // get one specific Resource
@@ -297,17 +290,18 @@ router.put("/:resource_id", (req, res, next) => {
 // delete one resource → not used on our application, once we are storing data and just updating the property "deleted" to true
 router.delete("/:resource_id", (req, res, next) => {
   Resource.findById(req.params.resource_id)
-  .then(response=>{
-    response.comments.map(comID=>{
-      Comment.findByIdAndRemove(comID)
     .then((response) => {
-      res.send("comment deleted");
+      response.comments.map((comID) => {
+        Comment.findByIdAndRemove(comID)
+          .then((response) => {
+            res.send("comment deleted");
+          })
+          .catch((err) => res.send(err));
+      });
+      console.log("where are comments id?", response.comments);
     })
-    .catch((err) => res.send(err))
-    })
-console.log("where are comments id?", response.comments);
-  }).catch(err=>res.send(err))
- /*  Resource.findByIdAndRemove(req.params.resource_id)
+    .catch((err) => res.send(err));
+  /*  Resource.findByIdAndRemove(req.params.resource_id)
     .then((response) => {
       res.send("resource deleted");
     })

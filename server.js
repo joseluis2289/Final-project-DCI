@@ -15,10 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 //const url = process.env.MONGO_URIBel;
 const url = process.env.MONGO_URIJose;
-<<<<<<< HEAD
 //listen to a port
-=======
->>>>>>> 43480774e42fe82b5857906192a1a63f682b00c5
 
 //connect to DataBase
 const connectDB = async () => {
@@ -145,7 +142,7 @@ app.post("/login", (req, res) => {
           res.json({
             userSession: req.session.user,
             logIn: output,
-            user: result, 
+            user: result,
           });
         }
       });
