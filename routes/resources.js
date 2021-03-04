@@ -6,7 +6,6 @@ const Comment = require("../Models/Comment");
 //get all Resources
 router.get("/", (req, res, next) => {
   Resource.find()
-
     .populate("user", "name")
     .populate({
       path: "comments",
@@ -100,7 +99,7 @@ router.get("/search/:term", (req, res, next) => {
 // get one specific Resource
 router.get("/resource/:resource_id", (req, res, next) => {
   Resource.findById(req.params.resource_id)
-    .populate("user")
+    .populate("user", "name")
     .populate({
       path: "comments",
       populate: { path: "user" },

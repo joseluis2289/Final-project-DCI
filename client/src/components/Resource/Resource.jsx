@@ -23,6 +23,7 @@ const Resource = (props) => {
   }
 
   useEffect(() => {
+    console.log("somethind?", props.data);
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
   }, [props.data.previewImage, update]);
 
@@ -40,6 +41,7 @@ const Resource = (props) => {
           </div>
           <div className="category">
             <h3>
+              {/* {console.log("somethign?", props.data)} */}
               {props.data.category.map((item, index) => {
                 let name = item[0].toUpperCase() + item.substring(1);
                 return <span key={index}>{name} </span>;
