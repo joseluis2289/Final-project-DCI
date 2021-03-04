@@ -1,46 +1,46 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateData } from "../redux/actions";
 import axios from "axios";
-
 export default function Comment(props) {
-  const user = useSelector((state) => state.user._id);
-  const [comment, setComment] = useState({
-    user: user,
-    resource: props.resourceId,
-  });
-  const addComment = (e) => {
-    e.preventDefault();
+  const user = useSelector((state) => state.user);
+  const update = useSelector((state) => state.update);
+  const [deleted, setDeleted] = useState(false);
+  const [comment, setComment] = useState({});
+  const dispatch = useDispatch();
+
+  let delComment = () => {
     axios({
-      method: "POST",
-      url: "http://localhost:5000/comments",
+      method: "DELETE",
+      url: `http://localhost:5000/comments/${props.data._id}`,
       ContentType: "application/json",
-      data: comment,
     })
-      .then((res) => {
-        console.log(res.msg);
+      .then((response) => {
+        dispatch(updateData(update));
+        console.log(response);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
-  const formHandler = (e) => {
-    setComment({ ...comment, [e.target.name]: e.target.value });
-  };
+
   return (
-    <div>
-      <form onSubmit={(e) => addComment(e)}>
-        {" "}
-        <div>
-          <label htmlFor="title">Comment:</label>
-          <textarea
-            name="text"
-            rows="5"
-            cols="33"
-            style={{ border: "solid black 2px" }}
-            placeholder="Please comment here..."
-            onChange={formHandler}
-          ></textarea>
-        </div>
-        <button type="submit">Add Comment</button>
-      </form>
+    <div className="comment">
+      <h3>{props.data.user.userName}</h3>
+      {props.data.edited && <span>Edited</span>}
+      {props.data.user._id === user._id && (
+        <button onClick={delComment}>X</button>
+      )}
+      {deleted && <p>worked</p>}
+      <p>{props.data.text}</p>
+      <span>
+        {props.data.date
+          .slice(0, 10)
+          .split("-")
+          .reverse()
+          .join("-")
+          .replaceAll("-", ".")}
+      </span>
     </div>
   );
 }

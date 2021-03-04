@@ -60,8 +60,6 @@ app.use(
 );
 app.use(cors());
 app.use(Logger("dev"));
-app.use(express.json());
-app.use(cookieParser());
 app.use(expValidator());
 app.use("/resources", require("./routes/resources"));
 app.use("/comments", require("./routes/comments"));
@@ -141,8 +139,9 @@ app.post("/login", (req, res) => {
         } else {
           req.session.user = result;
           res.json({
+            userSession: req.session.user,
             logIn: output,
-            user: result,
+            user: result, 
           });
         }
       });
@@ -154,7 +153,7 @@ app.post("/login", (req, res) => {
 
 //profile route GET to display the user data
 app.get("/profile", (req, res, next) => {
-  console.log(req.session.user);
+  console.log("is it working?", req.session.user);
   let displayUser = req.body;
   console.log(displayUser);
   UserModel.findOne({ email: req.session.user.email })
