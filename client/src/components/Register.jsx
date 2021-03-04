@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Form, Button, Header } from "semantic-ui-react";
 
 export default function Register() {
   const [registerData, setRegisterData] = useState({});
@@ -39,9 +40,19 @@ export default function Register() {
   }
   let history = useHistory();
   return (
-    <article>
-      <h2>Register</h2>
-      <form
+    <article
+      style={{
+        width: "300px",
+        margin: "auto",
+        marginTop: "20px",
+      }}
+      className="ui fluid card"
+    >
+      <Header size="large" style={{ margin: "auto", padding: "10px" }}>
+        Register
+      </Header>
+      <Form
+        style={{ margin: "auto" }}
         onSubmit={handleSubmit(() => {
           // e.preventDefault();
           console.log("Login Request!");
@@ -68,16 +79,18 @@ export default function Register() {
             .catch((err) => console.log(err));
         })}
       >
-        <label htmlFor="username">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          ref={register({ required: true, maxLength: 15, minLength: 3 })}
-        />
+        <Form.Field>
+          <label htmlFor="username">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            ref={register({ required: true, maxLength: 15, minLength: 3 })}
+          />
+        </Form.Field>
         {errors.name && errors.name.type === "required" && (
           <span className="errorsMsg">Your Name is required</span>
         )}
@@ -89,16 +102,18 @@ export default function Register() {
         {errors.name && errors.name.type === "maxLength" && (
           <span className="errorsMsg">Max length exceeded</span>
         )}
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="userName"
-          id="username"
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          ref={register({ required: true, maxLength: 15, minLength: 3 })}
-        />
+        <Form.Field>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="userName"
+            id="username"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            ref={register({ required: true, maxLength: 15, minLength: 3 })}
+          />
+        </Form.Field>
         {errors.userName && errors.userName.type === "required" && (
           <span className="errorsMsg">Your Username is required</span>
         )}
@@ -111,30 +126,34 @@ export default function Register() {
           </span>
         )}
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          ref={register({ required: true })}
-        />
+        <Form.Field>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            ref={register({ required: true })}
+          />
+        </Form.Field>
         {errors.email && errors.email.type === "required" && (
           <span className="errorsMsg">Your Email is required</span>
         )}
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          ref={register({ required: true, maxLength: 15, minLength: 3 })}
-        />
+        <Form.Field>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            ref={register({ required: true, maxLength: 15, minLength: 3 })}
+          />
+        </Form.Field>
         {errors.password && errors.password.type === "required" && (
           <span className="errorsMsg">Your Password is required</span>
         )}
@@ -144,21 +163,29 @@ export default function Register() {
         {errors.password && errors.password.type === "minLength" && (
           <span className="errorsMsg">Must be more than 3 character</span>
         )}
-
-        <label htmlFor="confirm-password">Confirm Password</label>
-        <input
-          type="password"
-          name="confirm-password"
-          id="confirm-password"
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          ref={register({ required: true })}
-        />
+        <Form.Field>
+          <label htmlFor="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            name="confirm-password"
+            id="confirm-password"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            ref={register({ required: true })}
+          />
+        </Form.Field>
         {errors.confirmPassword && "Please confirm your password"}
 
-        <button type="submit">Register</button>
-      </form>
+        <Button
+          style={{ width: "130px", alignItems: "center" }}
+          className="ui primary labeled icon button"
+          type="submit"
+        >
+          <i class="address card icon"></i>
+          Register
+        </Button>
+      </Form>
     </article>
   );
 }

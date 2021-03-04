@@ -3,7 +3,9 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Form, Button, Header } from "semantic-ui-react";
 import Settings from "./settings/Settings";
+
 
 export default function Profile() {
   const [updateData, setUpdateData] = useState({
@@ -71,6 +73,24 @@ export default function Profile() {
   };
 
   return (
+    <div
+      style={{
+        width: "300px",
+        margin: "auto",
+        marginTop: "20px",
+      }}
+      className="ui fluid card"
+    >
+      <Header size="large" style={{ margin: "auto", padding: "10px" }}>
+        Profile Update
+      </Header>
+      <Form
+        style={{ margin: "auto" }}
+        onSubmit={handleSubmit((e) => {
+          updateHandler(e);
+        })}
+      >
+        <Form.Field>
     <Fragment>
       <Settings />
       <div>
@@ -80,6 +100,7 @@ export default function Profile() {
             updateHandler(e);
           })}
         >
+
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -91,6 +112,9 @@ export default function Profile() {
             }}
           />
 
+        </Form.Field>
+        <Form.Field>
+
           <label htmlFor="userName">Username</label>
           <input
             type="text"
@@ -99,7 +123,8 @@ export default function Profile() {
             value={updateData.userName}
             onChange={profileHandler}
           />
-
+        </Form.Field>
+        <Form.Field>
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -109,6 +134,8 @@ export default function Profile() {
             onChange={profileHandler}
           />
 
+        </Form.Field>
+        <Form.Field>
           <label htmlFor="password">Enter new password</label>
           <input
             type="password"
@@ -118,12 +145,45 @@ export default function Profile() {
             onChange={profileHandler}
             ref={register({ required: true, maxLength: 15, minLength: 3 })}
           />
+        </Form.Field>
+        {errors.password && errors.password.type === "maxLength" && (
+          <span className="errorsMsg">Max length exceeded</span>
+        )}
+        {errors.password && errors.password.type === "minLength" && (
+          <span className="errorsMsg">Must be more than 3 character</span>
+        )}
+        <Form.Field>
+          <label htmlFor="confirm-password">Confirm new Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirm-password"
+            onChange={profileHandler}
+            ref={register({ required: true, maxLength: 15, minLength: 3 })}
+          />
+        </Form.Field>
+        {errors.confirmPassword &&
+          errors.confirmPassword.type === "required" && (
+            <span className="errorsMsg">Please confirm your password</span>
+          )}
+        {errors.confirmPassword &&
+          errors.confirmPassword.type === "maxLength" && (
+
           {errors.password && errors.password.type === "maxLength" && (
             <span className="errorsMsg">Max length exceeded</span>
           )}
           {errors.password && errors.password.type === "minLength" && (
             <span className="errorsMsg">Must be more than 3 character</span>
           )}
+        <Button
+          style={{ width: "130px", alignItems: "center" }}
+          className="ui primary labeled icon button"
+          type="submit"
+        >
+          <i class="edit icon"></i>Update
+        </Button>
+      </Form>
+    </div>
           <label htmlFor="confirm-password">Confirm new Password</label>
           <input
             type="password"

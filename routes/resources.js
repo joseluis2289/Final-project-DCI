@@ -6,6 +6,15 @@ const Comment = require("../Models/Comment");
 //get all Resources
 router.get("/", (req, res, next) => {
   Resource.find({ deleted: false })
+
+    .populate("user", "name")
+    .then((resources) => res.json(resources))
+    .catch((err) => res.send(err));
+});
+
+//search for specific term in Resources
+router.get("/search/:term", (req, res, next) => {
+  const resources = Resource.find({ $text: { $search: req.params.term } })
     .populate("user")
     .populate({
       path: "comments",
@@ -79,15 +88,19 @@ router.post("/addmany", (req, res, next) => {
 });
 
 //this MiddleWare is protecting all the routes down Below
-/* router.use((req, res, next) => {
+ router.use((req, res, next) => {
   if (req.session.user) {
     console.log(req.session.user)
     next();
   } else {
     console.log("error on middleware")
     res.sendStatus(401);
+  }
+});
+
   }  
-});  */
+});  
+
 
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
@@ -116,6 +129,7 @@ router.post("/rating", (req, res, next) => {
     }
   });
 });
+
 
 //search for specific term in Resources
 router.get("/search/:term", (req, res, next) => {
@@ -176,6 +190,85 @@ router.post("/add", (req, res, next) => {
     .catch((err) => {
       res.send(err);
     });
+});
+
+// add many resources
+router.post("/addmany", (req, res, next) => {
+  req.body.map((item) => {
+    const {
+      title,
+      link,
+      previewImage,
+      date,
+      user,
+      category,
+      rating,
+      num_ratings,
+      num_views,
+      paid,
+      format,
+      description,
+      edited,
+      deleted,
+      comments,
+    } = item;
+
+    let newResource = new Resource({
+      title,
+      link,
+      previewImage,
+      date,
+      user,
+      category,
+      rating,
+      num_ratings,
+      num_views,
+      paid,
+      format,
+      description,
+      edited,
+      deleted,
+      comments,
+    });
+    newResource
+      .save()
+      .then((resourceAdded) => {
+        UserSchema.findByIdAndUpdate(resourceAdded.user, {
+          $push: { resources: resourceAdded._id },
+        })
+          .then((userUpdated) => {
+            res.send(resourceAdded);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  });
+});
+
+//delete all resources
+router.delete("/", (req, res, next) => {
+  Resource.deleteMany()
+    .then((res) => res.json("all resources were deleted"))
+    .catch((err) => res.send(err));
+
+
+  resource
+    .save()
+    .then((resourceAdded) => {
+      UserSchema.findByIdAndUpdate(resourceAdded.user, {
+        $push: { resources: resourceAdded._id },
+      })
+        .then((userUpdated) => {
+          res.send(resourceAdded);
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+
 });
 
 // get one specific Resource
