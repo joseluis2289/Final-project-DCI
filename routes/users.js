@@ -1,6 +1,6 @@
 var router = require("express").Router();
 const Resource = require("../Models/ResourceModel");
-const User = require("../Models/userModel");
+const User = require("../Models/UserModel");
 const Comment = require("../Models/Comment");
 
 // get resourced added by specific user
@@ -20,6 +20,7 @@ router.get("/comments/:user_id", (req, res, next) => {
   User.findOne({ _id: userId })
     .populate({
       path: "comments",
+      populate: { path: "resource" },
     })
     .then((user) => {
       res.send(user);

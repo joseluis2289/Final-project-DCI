@@ -1,6 +1,6 @@
 var router = require("express").Router();
 const Resource = require("../Models/ResourceModel");
-const User = require("../Models/userModel");
+const User = require("../Models/UserModel");
 const Comment = require("../Models/Comment");
 
 //get all Resources
