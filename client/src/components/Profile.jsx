@@ -145,8 +145,8 @@ export default function Profile() {
             )}
           <button type="submit">Update</button>
         </form>
-        <ModalBox function={delProfile} text="DELETE PROFILE" />
       </div>
+      <ModalBox function={delProfile} text="DELETE PROFILE" />
     </Fragment>
   );
 }

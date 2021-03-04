@@ -6,9 +6,10 @@ import axios from "axios";
 
 export default function CreateComment({
   resourceId,
-  handleCreateCom,
   makeCom,
+  displayCom,
   showComm,
+  showMakeComm,
 }) {
   const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
@@ -18,7 +19,7 @@ export default function CreateComment({
   });
   const dispatch = useDispatch();
   function openCom(newValue) {
-    handleCreateCom(newValue);
+    showMakeComm(newValue);
   }
 
   const addComment = (e) => {
@@ -30,7 +31,7 @@ export default function CreateComment({
       data: comment,
     })
       .then((res) => {
-        openCom(false);
+        showMakeComm(false);
         showComm(true);
         dispatch(updateData(update));
         console.log("here", res.data);
@@ -46,7 +47,6 @@ export default function CreateComment({
         <div
           onClick={() => {
             openCom(!makeCom);
-            /* showComm(false); */
           }}
         >
           <span>

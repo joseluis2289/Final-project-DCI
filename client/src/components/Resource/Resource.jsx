@@ -15,14 +15,11 @@ const Resource = (props) => {
     "illustrations/road_to_knowledge.svg"
   );
   //create function to allow the child component "CreateComment" to change "displayCom" state
-  function handleCreateCom(newValue) {
+  function showMakeComm(newValue) {
     setMakeComm(newValue);
-    setDisplayComm(!newValue);
-    /* setDisplayComm(!newValue); */
   }
   function showComm(newValue) {
     setDisplayComm(newValue);
-    setMakeComm(false);
   }
 
   useEffect(() => {
@@ -71,17 +68,18 @@ const Resource = (props) => {
       <p>{props.data.description}</p>
       <DisplayComments
         comments={props.data.comments}
+        makeCom={makeCom}
         displayCom={displayCom}
         showComm={showComm}
-        handleCreateCom={handleCreateCom}
+        showMakeComm={showMakeComm}
       />
 
       <CreateComment
         resourceId={props.data._id}
-        handleCreateCom={handleCreateCom}
         makeCom={makeCom}
+        displayCom={displayCom}
         showComm={showComm}
-        /* editComm={editComm} */
+        showMakeComm={showMakeComm}
       />
     </section>
   );

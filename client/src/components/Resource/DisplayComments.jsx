@@ -2,7 +2,13 @@ import React, { useState, useEffect, Fragment } from "react";
 import Comment from "./Comment";
 import { useSelector } from "react-redux";
 
-export default function DisplayComments({ comments, displayCom, showComm }) {
+export default function DisplayComments({
+  comments,
+  makeCom,
+  displayCom,
+  showComm,
+  showMakeComm,
+}) {
   const [commentsArray, setCommentsArray] = useState(comments);
 
   const update = useSelector((state) => state.update);
