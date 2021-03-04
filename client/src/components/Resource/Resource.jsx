@@ -23,7 +23,6 @@ const Resource = (props) => {
   }
 
   useEffect(() => {
-    console.log("somethind?", props.data);
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
   }, [props.data.previewImage, update]);
 

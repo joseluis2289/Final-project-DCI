@@ -200,6 +200,7 @@ router.post("/add", (req, res, next) => {
       })
         .then((userUpdated) => {
           res.send(resourceAdded);
+          console.log("look at resource addedf", resourceAdded)
         })
         .catch((err) => console.log(err));
     })
