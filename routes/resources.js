@@ -1,16 +1,15 @@
 var router = require("express").Router();
-const Resource = require("../Models/ResourceSchema");
+const Resource = require("../Models/ResourceModel");
 const UserSchema = require("../Models/userModel");
 const Comment = require("../Models/Comment");
 
 //get all Resources
 router.get("/", (req, res, next) => {
-  Resource.find({ deleted: false })
+  Resource.find()
     .populate("user")
     .populate({
       path: "comments",
       populate: { path: "user" },
-      match: { deleted: false },
     })
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
@@ -71,15 +70,34 @@ router.post("/addmany", (req, res, next) => {
             res.send(resourceAdded);
           })
           .catch((err) => console.log(err));
-      })
-      .catch((err) => {
-        res.send(err);
+        })
+        .catch((err) => {
+          res.send(err);
+        });
       });
-  });
-});
+    });
+    
+    //search for specific term in Resources
+    router.get("/search/:term", (req, res, next) => {
+      const resources = Resource.find({ $text: { $search: req.params.term } })
+      .then((resources) => res.json(resources))
+      .catch((err) => res.send(err));
+    });
+    
+    // get one specific Resource
+    router.get("/resource/:resource_id", (req, res, next) => {
+      const resource = Resource.findById(req.params.resource_id)
+        .populate("user")
+        .populate({
+          path: "comments",
+          populate: { path: "user" },
+        })
+        .then((resource) => res.json(resource))
+        .catch((err) => res.send(err));
+    });
 
-//this MiddleWare is protecting all the routes down Below
-/* router.use((req, res, next) => {
+    //this MiddleWare is protecting all the routes down Below
+ router.use((req, res, next) => {
   if (req.session.user) {
     console.log(req.session.user)
     next();
@@ -87,7 +105,7 @@ router.post("/addmany", (req, res, next) => {
     console.log("error on middleware")
     res.sendStatus(401);
   }  
-});  */
+});  
 
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
@@ -117,12 +135,6 @@ router.post("/rating", (req, res, next) => {
   });
 });
 
-//search for specific term in Resources
-router.get("/search/:term", (req, res, next) => {
-  const resources = Resource.find({ $text: { $search: req.params.term } })
-    .then((resources) => res.json(resources))
-    .catch((err) => res.send(err));
-});
 
 // add one resource
 router.post("/add", (req, res, next) => {
@@ -178,13 +190,6 @@ router.post("/add", (req, res, next) => {
     });
 });
 
-// get one specific Resource
-router.get("/:resource_id", (req, res, next) => {
-  const resource = Resource.findById(req.params.resource_id)
-    .populate("user", "name")
-    .then((resource) => res.json(resource))
-    .catch((err) => res.send(err));
-});
 
 // update one resource (and change "deleted" to "true")
 router.put("/:resource_id", (req, res, next) => {
@@ -201,24 +206,23 @@ router.put("/:resource_id", (req, res, next) => {
     });
 });
 
-// delete one resource → not used on our application, once we are storing data and just updating the property "deleted" to true
+// delete one resource and its comments
 router.delete("/:resource_id", (req, res, next) => {
   Resource.findById(req.params.resource_id)
   .then(response=>{
-    response.comments.map(comID=>{
-      Comment.findByIdAndRemove(comID)
-    .then((response) => {
-      res.send("comment deleted");
-    })
-    .catch((err) => res.send(err))
-    })
-console.log("where are comments id?", response.comments);
-  }).catch(err=>res.send(err))
- /*  Resource.findByIdAndRemove(req.params.resource_id)
-    .then((response) => {
-      res.send("resource deleted");
-    })
-    .catch((err) => res.send(err)); */
+        response.comments.map(comID=>{
+          Comment.findByIdAndRemove(comID)
+        .then((response) => {
+        })
+        .catch((err) => res.send(err))
+        })
+        Resource.findByIdAndRemove(req.params.resource_id)
+          .then((response) => {
+            res.send(response)
+          })
+          .catch((err) => res.send(err)); 
+  })
+  .catch(err=>res.send(err))
 });
 
 module.exports = router;

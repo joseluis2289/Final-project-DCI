@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
-import Resource from "./Resource";
+import Resource from "./Resource/Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
 
@@ -16,11 +16,11 @@ const Content = ({ getResources, resources, filter }) => {
       console.log(resources);
       setFirstPageLoad(false);
     }
-  }, [firstPageLoad, update, resources]);
+  }, [firstPageLoad, update, resources, getResources]);
 
   useEffect(() => {
     getResources();
-  }, [update]);
+  }, [update, getResources]);
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
   // PAGINATION
@@ -121,7 +121,6 @@ const Content = ({ getResources, resources, filter }) => {
           // page 2 -- index: 8-15
           let start = (pagination.current - 1) * pagination.perPage;
           let end = pagination.current * pagination.perPage - 1;
-          console.log(start, end);
           if (index >= start && index <= end) {
             showByCurrentPage = true;
           }

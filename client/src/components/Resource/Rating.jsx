@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Star from "./Star";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -53,6 +53,7 @@ export default function Rating(props) {
           dispatch(updateData(update));
           response.json().then((data) => {
             console.log(data.average);
+            setRating(data.average);
             if (data.isUserRateAccepted === false) {
               notifyInfo();
             }
@@ -68,9 +69,7 @@ export default function Rating(props) {
         console.log(err);
       });
   };
-  useEffect(() => {
-    console.log("upadate changed");
-  }, [update]);
+  /* useEffect(() => {}, [update]); */
   return (
     <section>
       <figure className="rating-container" role="group">

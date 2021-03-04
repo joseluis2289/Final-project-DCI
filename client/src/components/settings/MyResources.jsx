@@ -9,17 +9,19 @@ export default function MyResources() {
   const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
   const [userResources, setUserResources] = useState([]);
+
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users/resources/${user._id}`)
+      .get(`/users/resources/${user._id}`)
       .then((res) => {
         setUserResources(res.data.resources);
         console.log(res.data.resources);
       })
       .catch((err) => console.log(err));
   }, [update, user._id]);
+
   return (
-    <Fragment>
+    <div id="my-resources">
       <Settings />
       {userResources ? (
         <div className="references-container ">
@@ -40,6 +42,6 @@ export default function MyResources() {
           <Link to="/login">here </Link>
         </Fragment>
       )}
-    </Fragment>
+    </div>
   );
 }

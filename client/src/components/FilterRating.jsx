@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { filterRating } from "../redux/actions";
-import Star from "./Star";
+import Star from "./Resource/Star";
 
 export default function FilterRating() {
   const [rating, setRating] = React.useState(false);

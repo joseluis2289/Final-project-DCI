@@ -33,7 +33,6 @@ const Resource = new Schema({
   }, // VIRTUAL → EMPTY AT BEGIN
   description: { type: String, required: true },
   edited: { type: Boolean, default: false }, //update the date
-  deleted: { type: Boolean, default: false },
   comments: [
     {
       type: Schema.Types.ObjectId,

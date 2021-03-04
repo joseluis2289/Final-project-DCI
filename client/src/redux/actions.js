@@ -3,10 +3,17 @@ import { v4 as uuidv4 } from "uuid";
 
 //USER ACTIONS
 export function userLogin({ logIn, user }) {
+  if (logIn === true) {
   return {
     type: "USER_LOGIN",
     payload: { logIn, user },
-  };
+  }
+}else {
+  return {
+    type: "LOGIN_FAIL",
+    payload: { logIn },
+  }
+}
 }
 
 export function userLogout() {
@@ -49,9 +56,9 @@ export function filterCategory(topic, status) {
 //RESOURCES ACTIONS
 export const getResources = () => async (dispatch) => {
   axios
-    .get("http://localhost:5000/resources/")
+    .get("/resources")
     .then((res) => {
-      dispatch({
+            dispatch({
         type: "GET_RESOURCES",
         payload: res.data,
       });
@@ -75,7 +82,7 @@ export function updateData(boolean) {
 export const searchResources = (term) => async (dispatch) => {
   if (term) {
     axios
-      .get("http://localhost:5000/resources/search/" + term)
+      .get("/resources/search/" + term)
       .then((res) => {
         dispatch({
           type: "SEARCH_RESOURCES",
