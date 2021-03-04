@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { updateData } from "../redux/actions";
+import { updateData } from "../../redux/actions";
 
 // Gets Rating (between 0 and 5) as decimal number in props.rating
 export default function Rating(props) {
