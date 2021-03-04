@@ -11,6 +11,8 @@ import { Form, Button, Header } from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [updateData, setUpdateData] = useState({
     email: "",
     name: "",
@@ -88,7 +90,6 @@ export default function Profile() {
       }}
       className="ui fluid card"
     >
-      <Settings />
       <Header size="large" style={{ margin: "auto", padding: "10px" }}>
         Profile Update
       </Header>
