@@ -4,6 +4,7 @@ import { connect, useSelector } from "react-redux";
 import Resource from "./Resource/Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
+import { Button, Icon, Pagination } from "semantic-ui-react";
 
 const Content = ({ getResources, resources, filter }) => {
   // When page loads for the first time, load resources from the database
@@ -56,28 +57,36 @@ const Content = ({ getResources, resources, filter }) => {
 
   return (
     <Fragment>
+      <Button primary>
+        <Icon name="add circle" />
+        Add Resource
+      </Button>
       <Link to="/add_resource">
-        <img
-          className="icon"
-          src="icons/icon_add_resource.svg"
-          alt="Login Icon"
-        />
+        <Icon name="add circle" />
         AddResource
       </Link>
       <div className="references-container">
         <section className="pagination">
           Found <strong>{resources.length}</strong> Entries / Page:{" "}
           {pagination.current} of {pagination.max} /
+          <Pagination
+            boundaryRange={0}
+            defaultActivePage={1}
+            siblingRange={0}
+            totalPages={pagination.max}
+          />
           {pagination.display.map((index) => {
             return (
-              <button
-                key={index}
-                id={"page-" + index}
-                onClick={handlePageChange}
-                className={index === pagination.current ? "active" : null}
-              >
-                {index}
-              </button>
+              <Fragment>
+                <button
+                  key={index}
+                  id={"page-" + index}
+                  onClick={handlePageChange}
+                  className={index === pagination.current ? "active" : null}
+                >
+                  {index}
+                </button>
+              </Fragment>
             );
           })}
         </section>

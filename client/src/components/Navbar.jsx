@@ -2,66 +2,72 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../redux/actions";
+import { Grid, Menu, Header, Icon } from "semantic-ui-react";
 
 export default function Navbar() {
   const logIn = useSelector((state) => state.logIn);
   const dispatch = useDispatch();
   return (
-    <header className="app-header">
-      <Link to="/">(LOGO)</Link>
-      <h1>
-        <Link to="/">Student Companion</Link>
-      </h1>
-      <nav>
-        {/* Icons from https://material.io/resources/icons/ */}
-        <Link to="/home">
-          <img className="icon" src="icons/home.svg" alt="Home Icon" />
-          Home
-        </Link>
-        {logIn ? (
-          <React.Fragment>
-            <Link to="/settings">
-              <img className="icon" src="icons/settings.svg" alt="Login Icon" />
-              Settings
-            </Link>
+    <Grid columns={2} as="header" className="app-header">
+      <Grid.Row>
+        <Grid.Column width={8}>
+          <Link to="/">
+            <Header as="h1">
+              <Icon name="book" />
+              Student Companion
+            </Header>
+          </Link>
+        </Grid.Column>
+        <Grid.Column as="nav" textAlign={"right"} width={8}>
+          <Menu compact>
+            <Menu.Item>
+              <Link to="/home">
+                <Icon name="home" />
+                Home
+              </Link>
+            </Menu.Item>
+            {logIn ? (
+              <React.Fragment>
+                <Menu.Item>
+                  <Link to="/settings">
+                    <Icon name="setting" />
+                    Settings
+                  </Link>
+                </Menu.Item>
 
-            <a
-              href="/logout"
-              onClick={(e) => {
-                e.preventDefault();
-                console.log("LOGOUT!");
-                dispatch(userLogout());
-              }}
-            >
-              <img
-                className="icon"
-                src="icons/icon_logout.svg"
-                alt="Logout Icon"
-              />
-              Logout
-            </a>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Link to="/register">
-              <img
-                className="icon"
-                src="icons/icon_register.svg"
-                alt="Register Icon"
-              />
-              Register
-            </Link>
-            <Link to="/login">
-              <img
-                className="icon"
-                src="icons/icon_login.svg"
-                alt="Login Icon"
-              />
-              Login
-            </Link>
-          </React.Fragment>
-        )}
-      </nav>
-    </header>
+                <Menu.Item>
+                  <a
+                    href="/logout"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      console.log("LOGOUT!");
+                      dispatch(userLogout());
+                    }}
+                  >
+                    <Icon name="logout" />
+                    Logout
+                  </a>
+                </Menu.Item>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Menu.Item>
+                  <Link to="/register">
+                    <Icon name="signup" />
+                    Register
+                  </Link>
+                </Menu.Item>
+                <Menu.Item>
+                  <Link to="/login">
+                    <Icon name="sign-in" />
+                    Login
+                  </Link>
+                </Menu.Item>
+              </React.Fragment>
+            )}
+          </Menu>{" "}
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 }
