@@ -9,9 +9,6 @@ export default function MyComments() {
   const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
   const [userComments, setUserComments] = useState([]);
-  const [previewUrl, setPreviewUrl] = useState(
-    "illustrations/road_to_knowledge.svg"
-  );
 
   useEffect(() => {
     axios
@@ -43,12 +40,15 @@ export default function MyComments() {
                       src={
                         comment.resource
                           ? `${comment.resource.previewImage}`
-                          : previewUrl
+                          : "illustrations/road_to_knowledge.svg"
                       }
                       alt="preview"
                     ></img>
                   </div>
                   <UpdateComment data={comment} />
+                  <Link to={`/resources/${comment.resource._id}`}>
+                    Go to Resource{" "}
+                  </Link>
                 </div>
               )
             );

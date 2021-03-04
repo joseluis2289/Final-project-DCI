@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Rating from "./Rating";
 import CreateComment from "./CreateComment.jsx";
@@ -25,7 +25,7 @@ const Resource = (props) => {
     /* setEditComm(newValue); */
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     props.data.previewImage && setPreviewUrl(props.data.previewImage);
   }, [props.data.previewImage, update]);
 

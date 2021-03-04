@@ -2,12 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import Comment from "./Comment";
 import { useSelector } from "react-redux";
 
-export default function DisplayComments({
-  comments,
-  displayCom,
-  showComm,
-  handleCreateCom,
-}) {
+export default function DisplayComments({ comments, displayCom, showComm }) {
   const [commentsArray, setCommentsArray] = useState(comments);
 
   const update = useSelector((state) => state.update);
@@ -15,7 +10,7 @@ export default function DisplayComments({
   useEffect(() => {
     let arrayReversed = comments.reverse();
     setCommentsArray(arrayReversed);
-  }, [update, showComm]);
+  }, [update, showComm, comments]);
 
   return (
     <div>

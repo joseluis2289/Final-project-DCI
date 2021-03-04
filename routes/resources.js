@@ -10,7 +10,6 @@ router.get("/", (req, res, next) => {
     .populate({
       path: "comments",
       populate: { path: "user" },
-      match: { deleted: false },
     })
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
@@ -81,11 +80,23 @@ router.post("/addmany", (req, res, next) => {
     //search for specific term in Resources
     router.get("/search/:term", (req, res, next) => {
       const resources = Resource.find({ $text: { $search: req.params.term } })
-        .then((resources) => res.json(resources))
+      .then((resources) => res.json(resources))
+      .catch((err) => res.send(err));
+    });
+    
+    // get one specific Resource
+    router.get("/:resource_id", (req, res, next) => {
+      const resource = Resource.findById(req.params.resource_id)
+        .populate("user")
+        .populate({
+          path: "comments",
+          populate: { path: "user" },
+        })
+        .then((resource) => res.json(resource))
         .catch((err) => res.send(err));
     });
 
-//this MiddleWare is protecting all the routes down Below
+    //this MiddleWare is protecting all the routes down Below
  router.use((req, res, next) => {
   if (req.session.user) {
     console.log(req.session.user)
@@ -179,13 +190,6 @@ router.post("/add", (req, res, next) => {
     });
 });
 
-// get one specific Resource
-router.get("/:resource_id", (req, res, next) => {
-  const resource = Resource.findById(req.params.resource_id)
-    .populate("user", "name")
-    .then((resource) => res.json(resource))
-    .catch((err) => res.send(err));
-});
 
 // update one resource (and change "deleted" to "true")
 router.put("/:resource_id", (req, res, next) => {

@@ -6,7 +6,6 @@ import { updateData } from "../../redux/actions";
 export default function UpdateComment(props) {
   const update = useSelector((state) => state.update);
   const [comment, setComment] = useState(props.data);
-  const [date, setDate] = useState(props.data.date);
   const [alert, setAlert] = useState(false);
   const dispatch = useDispatch();
   let formHandler = (e) => {

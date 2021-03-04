@@ -18,7 +18,7 @@ export default function Comment(props) {
       ...comment,
       edited: true,
     });
-  }, [edit]);
+  }, [edit, comment]);
 
   let displayButtons = (boolean) => {
     setEdit(boolean);
