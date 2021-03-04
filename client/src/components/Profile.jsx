@@ -1,14 +1,15 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { userLogout } from "../redux/actions";
-import ModalBox from "./ModalBox";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { userLogout } from "../redux/actions";
+import ModalBox from "./ModalBox";
 import { Form, Button, Header } from "semantic-ui-react";
-import Settings from "./settings/Settings";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Profile() {
   const [updateData, setUpdateData] = useState({
     email: "",
@@ -97,7 +98,6 @@ export default function Profile() {
           updateHandler(e);
         })}
       >
-        <h2>Profile Update</h2>
         <Form.Field>
           <label htmlFor="name">Name</label>
           <input
@@ -141,7 +141,6 @@ export default function Profile() {
             ref={register({ required: true, maxLength: 15, minLength: 3 })}
           />
         </Form.Field>
-
         {errors.password && errors.password.type === "maxLength" && (
           <span className="errorsMsg">Max length exceeded</span>
         )}
@@ -162,15 +161,18 @@ export default function Profile() {
           errors.confirmPassword.type === "required" && (
             <span className="errorsMsg">Please confirm your password</span>
           )}
-        {errors.confirmPassword && errors.confirmPassword.type === "maxLength" && (
-          <Button
-            style={{ width: "130px", alignItems: "center" }}
-            className="ui primary labeled icon button"
-            type="submit"
-          >
-            <i class="edit icon"></i>Update
-          </Button>
-        )}
+        {errors.confirmPassword &&
+          errors.confirmPassword.type === "maxLength" && (
+            <span className="errorsMsg">Max length exceeded</span>
+          )}
+        ;
+        <Button
+          style={{ width: "130px", alignItems: "center" }}
+          className="ui primary labeled icon button"
+          type="submit"
+        >
+          <i class="edit icon"></i>Update
+        </Button>
       </Form>
       <ModalBox function={delProfile} text="DELETE PROFILE" />
     </div>

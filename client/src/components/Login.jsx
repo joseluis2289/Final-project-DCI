@@ -3,10 +3,28 @@ import { useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Form, Button, Header } from "semantic-ui-react";
 
+toast.configure();
 export default function Login() {
-  // const login = useSelector((state) => state.username);
   const dispatch = useDispatch();
+  const notify = () => {
+    toast.success("You are successfully Logged in!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  const notifyError = () => {
+    toast.error("Your password is wrong! please try again!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+  // const login = useSelector((state) => state.username);
+  //const dispatch = useDispatch();
   const [loginData, setLoginData] = useState({});
   const { register, handleSubmit, errors } = useForm();
   let history = useHistory();
@@ -16,11 +34,18 @@ export default function Login() {
   }
 
   return (
-    <article>
-      <h2>Login</h2>
-      <form
+    <div
+      style={{ width: "300px", margin: "auto", marginTop: "40px" }}
+      className="ui fluid card"
+    >
+      <Header size="large" style={{ margin: "auto", padding: "10px" }}>
+        Login
+      </Header>
+      <Form
+        style={{ margin: "auto" }}
         onSubmit={handleSubmit(() => {
           //e.preventDefault();
+
           console.log("Login Request!");
           fetch("/login", {
             method: "POST",
@@ -36,11 +61,11 @@ export default function Login() {
                   console.log("TAKE", data);
                   dispatch(userLogin(data));
                   if (data.logIn === true) {
-                    sessionStorage.setItem("email", data.user.email);
-                    //sessionStorage.clear();
-                    alert(`Welcome`);
+                    sessionStorage.setItem("email", data.email);
+                    notify();
                   } else {
-                    alert("Your password is wrong! please try again!");
+                    notifyError();
+                    history.push("/login");
                   }
                 });
               } else {
@@ -50,16 +75,21 @@ export default function Login() {
             .catch((err) => console.log(err));
         })}
       >
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          ref={register({ required: true, maxLength: 15, minLength: 3 })}
-        />
+        <Form.Field>
+          <label htmlFor="username">Username</label>
+          <input
+            variant="outlined"
+            label="username"
+            type="text"
+            name="username"
+            size="small"
+            //id="username"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            ref={register({ required: true, maxLength: 15, minLength: 3 })}
+          />
+        </Form.Field>
         {errors.username && errors.username.type === "required" && (
           <span className="errorsMsg">Your Username is required</span>
         )}
@@ -69,17 +99,18 @@ export default function Login() {
         {errors.userName && errors.userName.type === "minLength" && (
           <span className="errorsMsg">Must be more than 3 character</span>
         )}
-
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          ref={register({ required: true, maxLength: 15, minLength: 3 })}
-        />
+        <Form.Field>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            // id="password"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            ref={register({ required: true, maxLength: 15, minLength: 3 })}
+          />
+        </Form.Field>
         {errors.password && errors.password.type === "required" && (
           <span className="errorsMsg">Your Password is required</span>
         )}
@@ -89,8 +120,15 @@ export default function Login() {
         {errors.password && errors.password.type === "minLength" && (
           <span className="errorsMsg">Must be more than 3 character</span>
         )}
-        <button type="submit">Login</button>
-      </form>
-    </article>
+        <Button
+          style={{ width: "150px" }}
+          className="ui primary labeled icon button"
+          type="submit"
+        >
+          {" "}
+          <i className="unlock alternate icon"></i>Login
+        </Button>
+      </Form>
+    </div>
   );
 }
