@@ -5,8 +5,15 @@ const Comment = require("../Models/Comment");
 
 //get all Resources
 router.get("/", (req, res, next) => {
-  Resource.find({deleted: false})
-  .populate("user", "name")
+  Resource.find({ deleted: false })
+    .populate("user", "name")
+    .then((resources) => res.json(resources))
+    .catch((err) => res.send(err));
+});
+
+//search for specific term in Resources
+router.get("/search/:term", (req, res, next) => {
+  const resources = Resource.find({ $text: { $search: req.params.term } })
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
 });
@@ -19,6 +26,7 @@ router.use("/", (req, res, next) => {
     res.sendStatus(401);
   }
 });
+
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
   const resourceId = req.body.resourceId;
@@ -47,14 +55,6 @@ router.post("/rating", (req, res, next) => {
   });
 });
 
-//search for specific term in Resources
-router.get("/search/:term", (req, res, next) => {
-  const resources = Resource.find({ $text: { $search: req.params.term } })
-    .then((resources) => res.json(resources))
-    .catch((err) => res.send(err));
-});
-
-
 // add one resource
 router.post("/add", (req, res, next) => {
   const {
@@ -75,36 +75,38 @@ router.post("/add", (req, res, next) => {
     comments,
   } = req.body;
 
-      let resource = new Resource({
-        title,
-        link,
-        previewImage,
-        date,
-        user,
-        category,
-        rating,
-        num_ratings,
-        num_views,
-        paid,
-        format,
-        description,
-        edited,
-        deleted,
-        comments,
-      });
+  let resource = new Resource({
+    title,
+    link,
+    previewImage,
+    date,
+    user,
+    category,
+    rating,
+    num_ratings,
+    num_views,
+    paid,
+    format,
+    description,
+    edited,
+    deleted,
+    comments,
+  });
 
-      resource
-        .save()
-        .then((resourceAdded) => {
-          UserSchema.findByIdAndUpdate(resourceAdded.user, {$push:{resources: resourceAdded._id}})
-          .then((userUpdated)=>{
-            res.send(resourceAdded)
-          })
-          .catch(err=>console.log(err))
+  resource
+    .save()
+    .then((resourceAdded) => {
+      UserSchema.findByIdAndUpdate(resourceAdded.user, {
+        $push: { resources: resourceAdded._id },
+      })
+        .then((userUpdated) => {
+          res.send(resourceAdded);
         })
-        .catch((err) => {
-          res.send(err);
-        });
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 });
 
 // add many resources
@@ -130,36 +132,37 @@ router.post("/addmany", (req, res, next) => {
 
     let newResource = new Resource({
       title,
-        link,
-        previewImage,
-        date,
-        user,
-        category,
-        rating,
-        num_ratings,
-        num_views,
-        paid,
-        format,
-        description,
-        edited,
-        deleted,
-        comments,
+      link,
+      previewImage,
+      date,
+      user,
+      category,
+      rating,
+      num_ratings,
+      num_views,
+      paid,
+      format,
+      description,
+      edited,
+      deleted,
+      comments,
     });
     newResource
-    .save()
-    .then((resourceAdded) => {
-      UserSchema.findByIdAndUpdate(resourceAdded.user, {$push:{resources: resourceAdded._id}})
-      .then((userUpdated)=>{
-        res.send(resourceAdded)
+      .save()
+      .then((resourceAdded) => {
+        UserSchema.findByIdAndUpdate(resourceAdded.user, {
+          $push: { resources: resourceAdded._id },
+        })
+          .then((userUpdated) => {
+            res.send(resourceAdded);
+          })
+          .catch((err) => console.log(err));
       })
-      .catch(err=>console.log(err))
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-});
+      .catch((err) => {
+        res.send(err);
+      });
   });
-
+});
 
 //delete all resources
 router.delete("/", (req, res, next) => {
