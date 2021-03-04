@@ -42,9 +42,6 @@ const Content = ({ getResources, resources, filter }) => {
       pageDisplay.push(i);
     }
     setPagination({ ...pagination, max: maxPages, display: pageDisplay });
-    return () => {
-      // cleanup
-    };
   }, [resources]);
 
   function handlePageChange(e) {

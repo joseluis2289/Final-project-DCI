@@ -109,7 +109,6 @@ export default function Profile() {
           updateHandler(e);
         })}
       >
-        <h2>Profile Update</h2>
         <Form.Field>
           <label htmlFor="name">Name</label>
           <input
