@@ -5,6 +5,7 @@ function SvgStar(props) {
   // Initial State: Star is empty (fill=none)
   const { fill = "none" } = props;
   return (
+    //className="star-icon"
     <svg
       className="star-icon"
       fill={fill}

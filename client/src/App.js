@@ -17,6 +17,7 @@ import UpdateResource from "./components/settings/UpdateResource";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer"
 import "./App.css";
+import "semantic-ui-css/semantic.min.css";
 
 export default function App() {
   const error = useSelector((state) => state.error);
@@ -27,6 +28,7 @@ export default function App() {
       {(error === {}) ? <NotFound /> : <Filter />}  
       <Switch>
         <main>
+
           <Route path='/home' component={Home} />
           <Route exact path="/resources/resource/:resourceId" component={ResourcePage} />
           <Route path='/register' component={Register} />
@@ -39,6 +41,7 @@ export default function App() {
           <Route path='/my_comments' component={MyComments} />
           <Route path='/update_resource' component={UpdateResource} />
           <Route path='#!' component={NotFound} />
+
         </main>
       </Switch>
 <Footer/>
