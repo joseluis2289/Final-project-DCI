@@ -1,5 +1,5 @@
 var router = require("express").Router();
-const Resource = require("../Models/ResourceSchema");
+const Resource = require("../Models/ResourceModel");
 const UserSchema = require("../Models/userModel");
 const Comment = require("../Models/Comment");
 
