@@ -68,16 +68,13 @@ const Resource = (props) => {
       <p>{props.data.description}</p>
       <DisplayComments
         comments={props.data.comments}
-        makeCom={makeCom}
         displayCom={displayCom}
         showComm={showComm}
-        showMakeComm={showMakeComm}
       />
 
       <CreateComment
         resourceId={props.data._id}
         makeCom={makeCom}
-        displayCom={displayCom}
         showComm={showComm}
         showMakeComm={showMakeComm}
       />

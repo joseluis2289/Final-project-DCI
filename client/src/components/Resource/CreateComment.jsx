@@ -7,7 +7,6 @@ import axios from "axios";
 export default function CreateComment({
   resourceId,
   makeCom,
-  displayCom,
   showComm,
   showMakeComm,
 }) {
