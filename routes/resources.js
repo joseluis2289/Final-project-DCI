@@ -8,6 +8,10 @@ router.get("/", (req, res, next) => {
   Resource.find()
 
     .populate("user", "name")
+    .populate({
+      path: "comments",
+      populate: { path: "user" },
+    })
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
 });

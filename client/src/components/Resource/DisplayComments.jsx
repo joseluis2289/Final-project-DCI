@@ -29,6 +29,7 @@ export default function DisplayComments({ comments, displayCom, showComm }) {
       </span>
       {displayCom && (
         <Fragment>
+          {console.log("comment", comments)}
           {commentsArray.map((comment) => (
             <Comment key={comment._id} data={comment}></Comment>
           ))}

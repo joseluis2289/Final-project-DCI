@@ -123,9 +123,7 @@ const Content = ({ getResources, resources, filter }) => {
           }
           // If resource matches all filter criteria, it is displayed
           if (showByCost && showByRating && showByCategory && showByCurrentPage)
-            return (
-              <Resource id={item._id} key={index} data={item} author="false" />
-            );
+            return <Resource id={item._id} key={index} data={item} />;
           return "";
           // } else return "";
         })}
