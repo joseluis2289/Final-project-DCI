@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Star from "./Star";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { updateData } from "../redux/actions";
+import { updateData } from "../../redux/actions";
 
 // Gets Rating (between 0 and 5) as decimal number in props.rating
 export default function Rating(props) {
@@ -53,6 +53,7 @@ export default function Rating(props) {
           dispatch(updateData(update));
           response.json().then((data) => {
             console.log(data.average);
+            setRating(data.average);
             if (data.isUserRateAccepted === false) {
               notifyInfo();
             }
@@ -68,9 +69,7 @@ export default function Rating(props) {
         console.log(err);
       });
   };
-  useEffect(() => {
-    console.log("upadate changed");
-  }, [update]);
+  /* useEffect(() => {}, [update]); */
   return (
     <section>
       <figure className="rating-container" role="group">

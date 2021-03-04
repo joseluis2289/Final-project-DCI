@@ -32,7 +32,7 @@ export default function AddResource() {
     console.log("resource from AddResource", resource);
     axios({
       method: "POST",
-      url: "http://localhost:5000/resources/add",
+      url: "/resources/add",
       headers: {
         "Content-Type": "application/json",
       },

@@ -57,8 +57,8 @@ export default function Login() {
               history.push("/");
               if (response.status === 200) {
                 response.json().then((data) => {
-                  console.log(data);
-                  // dispatch(userLogin(data));
+                  console.log("TAKE", data);
+                  dispatch(userLogin(data));
                   if (data.logIn === true) {
                     sessionStorage.setItem("email", data.email);
                     notify();

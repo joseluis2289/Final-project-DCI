@@ -15,6 +15,7 @@ const initialState = {
     accessToken: "",
     refreshToken: "",
   },
+  error: {},
 };
 
 // TODO: add multireducer -- one for user, one for filter
@@ -24,7 +25,8 @@ const reducer = (state = initialState, action) => {
   switch (type) {
     case "USER_LOGIN":
       return { ...state, logIn: payload.logIn, user: payload.user };
-
+    case "LOGIN_FAIL":
+      return { ...state, logIn: payload.logIn, user: {} };
     case "USER_LOGOUT":
       return { ...state, user: {}, logIn: payload };
 

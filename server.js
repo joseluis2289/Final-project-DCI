@@ -15,7 +15,6 @@ const PORT = process.env.PORT || 5000;
 
 //const url = process.env.MONGO_URIBel;
 const url = process.env.MONGO_URIJose;
-//listen to a port
 
 //connect to DataBase
 const connectDB = async () => {
@@ -66,6 +65,11 @@ app.use("/resources", require("./routes/resources"));
 app.use("/comments", require("./routes/comments"));
 app.use("/users", require("./routes/users"));
 //app.use("/posts", protectedRoutes);
+
+//deploying on Heroku
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 ///All routes
 
@@ -133,7 +137,6 @@ app.post("/login", (req, res) => {
   })
 
     .then((result) => {
-      console.log(result);
       bcrypt.compare(newUser.password, result.password, function (err, output) {
         if (err) {
           console.log(err);
@@ -192,6 +195,17 @@ app.put("/update", (req, res, next) => {
       }
     });
   });
+});
+
+//delete profile
+app.delete("/delete/:user_id", (req, res) => {
+  let userId = req.params.user_id;
+  UserModel.findByIdAndDelete(userId)
+    .then((response) => {
+      req.session.destroy();
+      res.send({ msg: "your profile was successfully deleted" });
+    })
+    .catch((err) => res.send(err));
 });
 
 app.delete("/logout", (req, res, next) => {

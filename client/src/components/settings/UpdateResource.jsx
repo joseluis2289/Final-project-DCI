@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateData } from "../../redux/actions";
+import ModalBox from "../ModalBox";
 
 export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
@@ -20,7 +21,7 @@ export default function UpdateResource(props) {
   ]);
   useEffect(() => {
     resource.previewImage && setPreviewUrl(resource.previewImage);
-  }, [resource.previewImage]);
+  }, [resource.previewImage, update]);
 
   let defineCategory = (e) => {
     let categories = resource.category;
@@ -39,15 +40,16 @@ export default function UpdateResource(props) {
 
   let updateResource = (e) => {
     e.preventDefault();
-    setResource({ ...resource, edited: true, date: Date.now });
+    setResource({ ...resource, edited: true, date: Date.now() });
     axios({
       method: "PUT",
-      url: `http://localhost:5000/resources/${resource._id}`,
+      url: `/resources/${resource._id}`,
       ContentType: "application/json",
       data: resource,
     })
       .then(function (response) {
         dispatch(updateData(update));
+        setAlert(true);
         console.log(response);
       })
       .catch((err) => {
@@ -58,12 +60,12 @@ export default function UpdateResource(props) {
   let delResource = () => {
     axios({
       method: "DELETE",
-      url: `http://localhost:5000/resources/${resource._id}`,
+      url: `/resources/${resource._id}`,
       ContentType: "application/json",
     })
       .then((response) => {
+        console.log("sta é a resposta", response);
         dispatch(updateData(update));
-        console.log("deleted", response);
       })
       .catch((err) => {
         console.log(err);
@@ -71,15 +73,8 @@ export default function UpdateResource(props) {
   };
   return (
     <div className="update-resource">
-      <div className="delete-button">
-        <button
-          onClick={(e) => {
-            delResource(e);
-          }}
-        >
-          X
-        </button>
-      </div>
+      <ModalBox function={delResource} text="X" />
+
       <form onSubmit={updateResource}>
         <div>
           <label htmlFor="title">Title</label>
@@ -166,7 +161,7 @@ export default function UpdateResource(props) {
         <button type="submit">Update resource</button>
         {alert && (
           <span>
-            Data updated{" "}
+            Saved{" "}
             <img className="icon" src="icons/checked.svg" alt="checked Icon" />
           </span>
         )}

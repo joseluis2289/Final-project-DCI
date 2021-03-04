@@ -1,16 +1,20 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { userLogout } from "../redux/actions";
-//import ModalBox from "./ModalBox";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Form, Button, Header } from "semantic-ui-react";
+import axios from "axios";
+import { userLogout } from "../redux/actions";
 import Settings from "./settings/Settings";
+import ModalBox from "./ModalBox";
+import { Form, Button, Header } from "semantic-ui-react";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  let history = useHistory();
   const [updateData, setUpdateData] = useState({
     email: "",
     name: "",
@@ -127,8 +131,7 @@ export default function Profile() {
             value={updateData.userName}
             onChange={profileHandler}
           />
-        </Form.Field>
-        <Form.Field>
+
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -182,7 +185,7 @@ export default function Profile() {
           <i class="edit icon"></i>Update
         </Button>
       </Form>
-      {/* <ModalBox function={delProfile} text="DELETE PROFILE" /> */}
+      <ModalBox function={delProfile} text="DELETE PROFILE" />
     </div>
   );
 }

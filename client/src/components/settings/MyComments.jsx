@@ -12,7 +12,7 @@ export default function MyComments() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users/comments/${user._id}`)
+      .get(`/users/comments/${user._id}`)
       .then((res) => {
         setUserComments(res.data.comments);
         console.log("comments", res.data);
@@ -27,17 +27,28 @@ export default function MyComments() {
           {" "}
           {userComments.map((comment) => {
             return (
-              !comment.deleted && (
-                <div className="update-comment">
+              comment.resource && (
+                <div key={comment._id} className="update-comment">
                   <div>
-                    <h2>{comment.resource.title}</h2>
+                    <h2>
+                      {comment.resource
+                        ? `${comment.resource.title}`
+                        : "This resource was deleted"}
+                    </h2>
                     <img
                       className="comment-image"
-                      src={comment.resource.previewImage}
+                      src={
+                        comment.resource
+                          ? `${comment.resource.previewImage}`
+                          : "illustrations/road_to_knowledge.svg"
+                      }
                       alt="preview"
                     ></img>
                   </div>
                   <UpdateComment data={comment} />
+                  <Link to={`/resources/resource/${comment.resource._id}`}>
+                    Go to Resource{" "}
+                  </Link>
                 </div>
               )
             );
