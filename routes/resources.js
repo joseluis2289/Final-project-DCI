@@ -1,6 +1,6 @@
 var router = require("express").Router();
 const Resource = require("../Models/ResourceModel");
-const UserSchema = require("../Models/userModel");
+const User = require("../Models/userModel");
 const Comment = require("../Models/Comment");
 
 //get all Resources
@@ -76,7 +76,7 @@ router.post("/addmany", (req, res, next) => {
     newResource
       .save()
       .then((resourceAdded) => {
-        UserSchema.findByIdAndUpdate(resourceAdded.user, {
+        User.findByIdAndUpdate(resourceAdded.user, {
           $push: { resources: resourceAdded._id },
         })
           .then((userUpdated) => {
@@ -99,18 +99,18 @@ router.get("/search/:term", (req, res, next) => {
 
 // get one specific Resource
 router.get("/resource/:resource_id", (req, res, next) => {
-  const resource = Resource.findById(req.params.resource_id)
+  Resource.findById(req.params.resource_id)
     .populate("user")
     .populate({
       path: "comments",
       populate: { path: "user" },
     })
-    .then((resource) => res.json(resource))
+    .then((resource) => {console.log("IS RUNNING", resource) ; res.json(resource)})
     .catch((err) => res.send(err));
 });
 
 //this MiddleWare is protecting all the routes down Below
-router.use((req, res, next) => {
+/* router.use((req, res, next) => {
   if (req.session.user) {
     console.log(req.session.user);
     next();
@@ -118,7 +118,7 @@ router.use((req, res, next) => {
     console.log("error on middleware");
     res.sendStatus(401);
   }
-});
+});  */
 
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
@@ -196,7 +196,7 @@ router.post("/add", (req, res, next) => {
   resource
     .save()
     .then((resourceAdded) => {
-      UserSchema.findByIdAndUpdate(resourceAdded.user, {
+      User.findByIdAndUpdate(resourceAdded.user, {
         $push: { resources: resourceAdded._id },
       })
         .then((userUpdated) => {
@@ -250,7 +250,7 @@ router.post("/addmany", (req, res, next) => {
     newResource
       .save()
       .then((resourceAdded) => {
-        UserSchema.findByIdAndUpdate(resourceAdded.user, {
+        User.findByIdAndUpdate(resourceAdded.user, {
           $push: { resources: resourceAdded._id },
         })
           .then((userUpdated) => {
@@ -273,7 +273,7 @@ router.delete("/", (req, res, next) => {
   resource
     .save()
     .then((resourceAdded) => {
-      UserSchema.findByIdAndUpdate(resourceAdded.user, {
+      User.findByIdAndUpdate(resourceAdded.user, {
         $push: { resources: resourceAdded._id },
       })
         .then((userUpdated) => {

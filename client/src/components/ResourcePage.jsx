@@ -10,15 +10,11 @@ export default function ResourcePage() {
     console.log(resourceId);
     axios
       .get(`http://localhost:5000/resources/resource/${resourceId}`)
-      .then(async (res) => {
-        await setResource(res.data);
-        console.log(res.data);
+      .then((res) => {
+        setResource(res.data);
+        console.log("response", res.data);
       })
       .catch((err) => console.log(err));
   }, []);
-  return (
-    <div>
-      <Resource data={resource} />
-    </div>
-  );
+  return <div>{/* <Resource data={resource} /> */}</div>;
 }
