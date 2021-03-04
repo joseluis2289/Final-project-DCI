@@ -1,4 +1,8 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { userLogout } from "../redux/actions";
+import ModalBox from "./ModalBox";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -71,16 +75,29 @@ export default function Profile() {
         console.error("Error to update", err);
       });
   };
-
+const delProfile = () => {
+axios({
+method: "DELETE",
+url: `delete/${user._id}`,
+})
+.then((res) => {
+history.push("/home");
+dispatch(userLogout());
+})
+.catch((err) => console.log(err));
+};
   return (
+    
+    
     <div
-      style={{
-        width: "300px",
-        margin: "auto",
-        marginTop: "20px",
-      }}
-      className="ui fluid card"
+    style={{
+      width: "300px",
+      margin: "auto",
+      marginTop: "20px",
+    }}
+    className="ui fluid card"
     >
+    <Settings />
       <Header size="large" style={{ margin: "auto", padding: "10px" }}>
         Profile Update
       </Header>
@@ -91,8 +108,6 @@ export default function Profile() {
           updateHandler(e);
         })}
       >
-    <Fragment>
-      <Settings />
       
         <h2>Profile Update</h2>
   
@@ -166,6 +181,8 @@ export default function Profile() {
           )}
         {errors.confirmPassword &&
           errors.confirmPassword.type === "maxLength" && (
+
+
         <Button
           style={{ width: "130px", alignItems: "center" }}
           className="ui primary labeled icon button"
@@ -173,10 +190,11 @@ export default function Profile() {
         >
           <i class="edit icon"></i>Update
         </Button>
+          );
       
-      </Fragment>
       </Form>
+      <ModalBox function={delProfile} text="DELETE PROFILE" />
       </div>
-      
+    
   );
 }
