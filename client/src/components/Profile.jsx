@@ -2,14 +2,13 @@ import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogout } from "../redux/actions";
-import ModalBox from "./ModalBox";
+//import ModalBox from "./ModalBox";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form, Button, Header } from "semantic-ui-react";
 import Settings from "./settings/Settings";
-
 
 export default function Profile() {
   const [updateData, setUpdateData] = useState({
@@ -75,43 +74,39 @@ export default function Profile() {
         console.error("Error to update", err);
       });
   };
-const delProfile = () => {
-axios({
-method: "DELETE",
-url: `delete/${user._id}`,
-})
-.then((res) => {
-history.push("/home");
-dispatch(userLogout());
-})
-.catch((err) => console.log(err));
-};
+  const delProfile = () => {
+    axios({
+      method: "DELETE",
+      url: `delete/${user._id}`,
+    })
+      .then((res) => {
+        history.push("/home");
+        dispatch(userLogout());
+      })
+      .catch((err) => console.log(err));
+  };
   return (
-    
-    
     <div
-    style={{
-      width: "300px",
-      margin: "auto",
-      marginTop: "20px",
-    }}
-    className="ui fluid card"
+      style={{
+        width: "300px",
+        margin: "auto",
+        marginTop: "20px",
+      }}
+      className="ui fluid card"
     >
-    <Settings />
+      <Settings />
       <Header size="large" style={{ margin: "auto", padding: "10px" }}>
         Profile Update
       </Header>
-      
+
       <Form
         style={{ margin: "auto" }}
         onSubmit={handleSubmit((e) => {
           updateHandler(e);
         })}
       >
-      
         <h2>Profile Update</h2>
-  
-          <Form.Field>
+        <Form.Field>
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -123,9 +118,7 @@ dispatch(userLogout());
             }}
           />
         </Form.Field>
-
         <Form.Field>
-
           <label htmlFor="userName">Username</label>
           <input
             type="text"
@@ -135,8 +128,6 @@ dispatch(userLogout());
             onChange={profileHandler}
           />
         </Form.Field>
-
-
         <Form.Field>
           <label htmlFor="email">Email</label>
           <input
@@ -146,7 +137,6 @@ dispatch(userLogout());
             value={updateData.email}
             onChange={profileHandler}
           />
-
         </Form.Field>
         <Form.Field>
           <label htmlFor="password">Enter new password</label>
@@ -181,8 +171,9 @@ dispatch(userLogout());
           )}
         {errors.confirmPassword &&
           errors.confirmPassword.type === "maxLength" && (
-
-
+            <span className="errorsMsg">Max length exceeded</span>
+          )}
+        ;
         <Button
           style={{ width: "130px", alignItems: "center" }}
           className="ui primary labeled icon button"
@@ -190,11 +181,8 @@ dispatch(userLogout());
         >
           <i class="edit icon"></i>Update
         </Button>
-          );
-      
       </Form>
-      <ModalBox function={delProfile} text="DELETE PROFILE" />
-      </div>
-    
+      {/* <ModalBox function={delProfile} text="DELETE PROFILE" /> */}
+    </div>
   );
 }
