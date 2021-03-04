@@ -52,7 +52,7 @@ export default function Rating(props) {
         console.log(err);
       });
   };
-  useEffect(() => {}, [update]);
+  /* useEffect(() => {}, [update]); */
   return (
     <section>
       <figure className="rating-container" role="group">
