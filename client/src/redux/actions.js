@@ -1,4 +1,5 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 //USER ACTIONS
 export function userLogin({ logIn, user }) {
@@ -89,4 +90,17 @@ export const searchResources = (term) => async (dispatch) => {
         });
       });
   }
+};
+
+
+/* ALERTS */
+
+export const setAlert = (msg, alertType, timeout = 5000) => (dispatch) => {
+  const id = uuidv4();
+  dispatch({
+    type: "SET_ALERT",
+    payload: { msg, alertType, id },
+  });
+
+  setTimeout(() => dispatch({ type: "REMOVE_ALERT", payload: id }), timeout);
 };

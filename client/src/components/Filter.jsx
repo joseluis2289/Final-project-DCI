@@ -7,8 +7,27 @@ import {
   searchResources,
 } from "../redux/actions";
 import FilterRating from "../components/FilterRating";
+import { TextField } from "@material-ui/core/";
+import { makeStyles } from "@material-ui/core/styles";
+import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
+import InputAdornment from "@material-ui/core/InputAdornment";
+
+const useStyles = makeStyles({
+  root: {
+    fontSize: "18px",
+    margin: "2px",
+    fontFamily: "Roboto",
+    fontWeight: "regular",
+    backgroundColor: "#fff",
+    color: "#706FD3",
+    borderColor: "#706FD3",
+    borderRadius: "0.5rem",
+    width: 360,
+  },
+});
 
 export default function Filter() {
+  const classes = useStyles();
   // In the beginning all resources are shown: free, paid and all ratings.
   let initialState = {
     free: true,
@@ -191,13 +210,31 @@ export default function Filter() {
       <form className="search-form" action="" method="post" onSubmit={search}>
         {/* Search Field */}
         <fieldset className="search-container">
-          <input
+          <TextField
+            className={classes.root}
+            id="outlined-basic"
+            label="Search"
+            variant="outlined"
+            type="search"
+            name="search"
+            placeholder="Search"
+            size="small"
+            onChange={handleSearchChange}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <SearchOutlinedIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {/* <input
             type="search"
             name="search"
             id="search"
             placeholder="Search..."
             onChange={handleSearchChange}
-          />
+          /> */}
 
           <button type="submit">Search</button>
         </fieldset>

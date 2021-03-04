@@ -29,7 +29,12 @@ export default function FilterRating() {
   }, [rating, dispatch]);
 
   return (
-    <figure className="rating-container" role="group">
+    //className="rating-container"
+    <figure
+      style={{ width: "300px", height: "1vh" }}
+      className="rating-container"
+      role="group"
+    >
       {[1, 2, 3, 4, 5].map((index) => {
         return (
           <Star
