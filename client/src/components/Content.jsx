@@ -45,7 +45,7 @@ const Content = ({ getResources, resources, filter }) => {
     return () => {
       // cleanup
     };
-  }, [resources, pagination]);
+  }, [resources]);
 
   function handlePageChange(e) {
     setPagination({
