@@ -23,8 +23,8 @@ export default function App() {
   return (
     <Router>
       <Navbar />
-      <Filter />
-      {error && <NotFound />}
+      
+      {!error ? <NotFound /> : <Filter />}  
       <Switch>
         <main>
           <Route path='/home' component={Home} />
@@ -32,7 +32,7 @@ export default function App() {
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <Route path='/profile' component={Profile} />
-          <Route path='/results' exact={true} component={Content} />
+          <Route path='/' exact={true} component={Content} />
           <Route path='/settings' component={Settings} />
           <Route path='/add_resource' component={AddResource} />
           <Route path='/my_resources' component={MyResources} />
