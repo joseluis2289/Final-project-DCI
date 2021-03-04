@@ -22,7 +22,7 @@ const Resource = (props) => {
   }
   function showComm(newValue) {
     setDisplayComm(newValue);
-    /* setEditComm(newValue); */
+    setMakeComm(false);
   }
 
   useEffect(() => {
