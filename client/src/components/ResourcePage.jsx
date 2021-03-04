@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Resource from "./Resource/Resource";
-const ResourcePage = (match) => {
+
+export default function ResourcePage() {
   const [resource, setResource] = useState({});
   useEffect(() => {
+    let url = window.location.href.split("/");
+    const resourceId = url[url.length - 1];
+    console.log(resourceId);
     axios
-      .get(`http://localhost:5000/resources/${match.params.resourceId}`)
-      /* .get("http://localhost:5000/resources/604084b7583dd96c92ce3667")  */
-      .then((res) => {
-        console.log(res);
-        setResource(res.data);
+      .get(`http://localhost:5000/resources/resource/${resourceId}`)
+      .then(async (res) => {
+        await setResource(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -18,6 +21,4 @@ const ResourcePage = (match) => {
       <Resource data={resource} />
     </div>
   );
-};
-
-export default ResourcePage;
+}

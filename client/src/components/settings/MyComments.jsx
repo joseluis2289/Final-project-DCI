@@ -46,7 +46,7 @@ export default function MyComments() {
                     ></img>
                   </div>
                   <UpdateComment data={comment} />
-                  <Link to={`/resources/${comment.resource._id}`}>
+                  <Link to={`/resources/resource/${comment.resource._id}`}>
                     Go to Resource{" "}
                   </Link>
                 </div>

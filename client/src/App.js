@@ -28,7 +28,7 @@ export default function App() {
       <Switch>
         <main>
           <Route path='/home' component={Home} />
-          <Route exact path="/resources/:resourceId" component={ResourcePage} />
+          <Route exact path="/resources/resource/:resourceId" component={ResourcePage} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <Route path='/profile' component={Profile} />

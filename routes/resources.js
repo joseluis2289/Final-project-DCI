@@ -85,7 +85,7 @@ router.post("/addmany", (req, res, next) => {
     });
     
     // get one specific Resource
-    router.get("/:resource_id", (req, res, next) => {
+    router.get("/resource/:resource_id", (req, res, next) => {
       const resource = Resource.findById(req.params.resource_id)
         .populate("user")
         .populate({
