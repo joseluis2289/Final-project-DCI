@@ -1,7 +1,7 @@
 var express = require("express");
+require("dotenv").config();
 const mongoose = require("mongoose");
 var cors = require("cors");
-require("dotenv").config();
 const app = express();
 const UserModel = require("./Models/userModel");
 const expValidator = require("express-validator");
