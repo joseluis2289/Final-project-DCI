@@ -26,7 +26,7 @@ export default function CreateComment({
     axios({
       method: "POST",
       url: "/comments",
-      ContentType: "application/json",
+      ContentType: "application/json; charset=utf-8",
       data: comment,
     })
       .then((res) => {
