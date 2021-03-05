@@ -9,6 +9,7 @@ const Logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
+const path = require("path")
 
 //const protectedRoutes = require("./routes/protectedRoutes");
 
@@ -70,10 +71,8 @@ app.use("/users", require("./routes/users"));
 //app.use("/posts", protectedRoutes);
 
 
-//deploying on Heroku
-if(process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"))
-}
+// middleware to deploy on Heroku
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 ///All routes
 
@@ -215,5 +214,10 @@ app.delete("/logout", (req, res, next) => {
 });
 
 connectDB();
+
+//added to deploy on heroku
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
