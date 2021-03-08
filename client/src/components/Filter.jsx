@@ -16,6 +16,7 @@ import {
   Header,
   Container,
 } from "semantic-ui-react";
+import "./Filter.css";
 
 export default function Filter() {
   // In the beginning all resources are shown: free, paid and all ratings.
@@ -115,9 +116,10 @@ export default function Filter() {
   }
 
   return (
-    <Grid columns={2} as="section">
+    <Grid columns={2}>
       <Grid.Row>
-        <Grid.Column width={16}>
+        <Grid.Column width={1}></Grid.Column>
+        <Grid.Column width={14}>
           <Form size="big" onSubmit={search}>
             <Form.Input
               icon="search"
@@ -131,13 +133,14 @@ export default function Filter() {
           </Form>
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
+      <Grid.Row className="filter-container">
         <Grid.Column width={8}>
           <Header as="h3">FILTER by CATEGORY</Header>
           <Form>
             <Form.Group widths="equal">
               <Form.Field>
                 <Checkbox
+                  toggle
                   id="general"
                   name="general"
                   onChange={handleCheckboxChange}
@@ -147,6 +150,7 @@ export default function Filter() {
               </Form.Field>
               <Form.Field>
                 <Checkbox
+                  toggle
                   id="frontend"
                   name="frontend"
                   onChange={handleCheckboxChange}
@@ -158,6 +162,7 @@ export default function Filter() {
             <Form.Group widths="equal">
               <Form.Field>
                 <Checkbox
+                  toggle
                   id="backend"
                   name="backend"
                   onChange={handleCheckboxChange}
@@ -167,6 +172,7 @@ export default function Filter() {
               </Form.Field>
               <Form.Field>
                 <Checkbox
+                  toggle
                   id="database"
                   name="database"
                   onChange={handleCheckboxChange}
@@ -183,6 +189,7 @@ export default function Filter() {
             <Form.Group widths="equal">
               <Form.Field>
                 <Checkbox
+                  toggle
                   name="free"
                   id="filter-free"
                   onChange={handleCheckboxChange}
@@ -192,6 +199,7 @@ export default function Filter() {
               </Form.Field>
               <Form.Field>
                 <Checkbox
+                  toggle
                   name="paid"
                   id="filter-paid"
                   onChange={handleCheckboxChange}
