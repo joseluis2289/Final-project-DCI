@@ -38,7 +38,7 @@ export default function App() {
             path="/resources/resource/:resourceId"
             component={ResourcePage}
           />
-          <Route path="/register" component={Register} />
+                    <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
           <Route path="/" exact={true} component={Content} />
