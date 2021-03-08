@@ -294,7 +294,7 @@ button:hover {
   width: 150px;
   height: 150px;
 }
-.update-comment{
+.update-comment {
   border: 2px solid var(--yellow-dark);
   width: 50vw;
   align-items: center;

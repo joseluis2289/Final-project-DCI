@@ -13,7 +13,7 @@ export default function DisplayComments({ comments, displayCom, showComm }) {
   }, [update, showComm, comments]);
 
   return (
-    <div>
+    <div style={{ border: "solid orange 1px" }}>
       <span>
         {
           <Fragment>

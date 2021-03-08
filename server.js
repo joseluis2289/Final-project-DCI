@@ -9,13 +9,13 @@ const Logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
-const path = require("path")
+const path = require("path");
 
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
-const url = process.env.MONGO_URIBel;
-//const url = process.env.MONGO_URIJose;
+//const url = process.env.MONGO_URIBel;
+const url = process.env.MONGO_URIJose;
 
 //connect to DataBase
 const connectDB = async () => {
@@ -73,7 +73,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // middleware to deploy on Heroku
-app.use(express.static(path.join(__dirname, "client", "build")))
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 ///All routes
 

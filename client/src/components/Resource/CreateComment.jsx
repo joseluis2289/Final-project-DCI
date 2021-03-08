@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateData } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Form, TextArea, Button, Label, Input } from "semantic-ui-react";
 
 export default function CreateComment({
   resourceId,
@@ -53,25 +54,36 @@ export default function CreateComment({
           </span>
         </div>
       ) : (
-        <Link to="/login">LogIn to comment </Link>
+        <Link
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "50px",
+            fontSize: "20px",
+          }}
+          to="/login"
+        >
+          You must be logged in to post a comment{" "}
+        </Link>
       )}
       {makeCom && (
-        <form onSubmit={(e) => addComment(e)}>
+        <Form onSubmit={(e) => addComment(e)}>
           {" "}
           <div>
-            <label htmlFor="title">Comment:</label>
-            <textarea
+            <Label htmlFor="title">Comment:</Label>
+            <Input
               name="text"
               rows="5"
               cols="33"
-              style={{ border: "solid black 2px" }}
               placeholder="Please comment here..."
               required
               onChange={formHandler}
-            ></textarea>
+            ></Input>
           </div>
-          <button type="submit">Add Comment</button>
-        </form>
+          <Button style={{ marginTop: "5px" }} basic color="blue" type="submit">
+            Add Comment
+          </Button>
+        </Form>
       )}
     </div>
   );
