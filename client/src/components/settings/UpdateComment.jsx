@@ -27,7 +27,7 @@ export default function UpdateComment(props) {
     axios({
       method: "PUT",
       url: `/comments/${comment._id}`,
-      ContentType: "application/json",
+      ContentType: "application/json; charset=utf-8",
       data: comment,
     })
       .then(function (response) {
@@ -43,7 +43,7 @@ export default function UpdateComment(props) {
     axios({
       method: "DELETE",
       url: `/comments/${props.data._id}`,
-      ContentType: "application/json",
+      ContentType: "application/json; charset=utf-8",
     })
       .then((response) => {
         dispatch(updateData(update));

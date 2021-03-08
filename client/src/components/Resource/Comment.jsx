@@ -36,7 +36,7 @@ export default function Comment(props) {
     axios({
       method: "PUT",
       url: `/comments/${comment._id}`,
-      ContentType: "application/json",
+      ContentType: "application/json; charset=utf-8",
       data: comment,
     })
       .then(async (response) => {
@@ -53,7 +53,7 @@ export default function Comment(props) {
     axios({
       method: "DELETE",
       url: `/comments/${props.data._id}`,
-      ContentType: "application/json",
+      ContentType: "application/json; charset=utf-8",
     })
       .then((response) => {
         dispatch(updateData(update));
