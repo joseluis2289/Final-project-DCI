@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-export default function Options({ resource, userId }) {
+export default function Options({ resource }) {
   const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
   const [reasonForReport, setReasonForReport] = useState("");
@@ -61,7 +61,11 @@ export default function Options({ resource, userId }) {
         <Dropdown
           className="button icon"
           floating
-          options={user._id === resource.user._id ? optionsAuthor : options}
+          options={
+            user !== {} && user._id === resource.user._id
+              ? optionsAuthor
+              : options
+          }
           trigger={<></>}
           onChange={handle}
         />

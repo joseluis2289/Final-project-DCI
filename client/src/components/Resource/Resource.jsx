@@ -91,7 +91,7 @@ const Resource = (props) => {
                   floated="right"
                   size="mini"
                 >
-                  <i class="ellipsis horizontal icon"></i>
+                  <Options resource={props.data} />
                 </Item>
               </GridRow>
             </Grid>
