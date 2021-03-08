@@ -2,6 +2,20 @@ import React, { useEffect, useState, Fragment } from "react";
 import Rating from "./Rating";
 import Reaction from "./Reaction";
 import Comment from "./Comment";
+// import {
+//   Button,
+//   Card,
+//   CardContent,
+//   CardHeader,
+//   Image,
+//   Grid,
+//   GridRow,
+
+//   GridColumn,
+//   CardMeta,
+//   Item,
+//   CardDescription,
+// } from "semantic-ui-react";
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 
