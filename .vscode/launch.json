@@ -5,18 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch server.js via nodemon linux",
-            "type": "node",
+            "type": "pwa-chrome",
             "request": "launch",
-            "runtimeExecutable": "nodemon",
-            "program": "${workspaceFolder}/server.js",
-            "restart": true,
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "skipFiles": [
-                "${workspaceFolder}/node_modules/**/*.js",
-                "${workspaceFolder}/public/**/**/*.js"
-            ]
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

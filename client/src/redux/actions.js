@@ -1,11 +1,19 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 //USER ACTIONS
 export function userLogin({ logIn, user }) {
+  if (logIn === true) {
   return {
     type: "USER_LOGIN",
     payload: { logIn, user },
-  };
+  }
+}else {
+  return {
+    type: "LOGIN_FAIL",
+    payload: { logIn },
+  }
+}
 }
 
 export function userLogout() {
@@ -48,9 +56,9 @@ export function filterCategory(topic, status) {
 //RESOURCES ACTIONS
 export const getResources = () => async (dispatch) => {
   axios
-    .get("http://localhost:5000/resources/")
+    .get("/resources")
     .then((res) => {
-      dispatch({
+            dispatch({
         type: "GET_RESOURCES",
         payload: res.data,
       });
@@ -74,7 +82,7 @@ export function updateData(boolean) {
 export const searchResources = (term) => async (dispatch) => {
   if (term) {
     axios
-      .get("http://localhost:5000/resources/search/" + term)
+      .get("/resources/search/" + term)
       .then((res) => {
         dispatch({
           type: "SEARCH_RESOURCES",
@@ -89,4 +97,17 @@ export const searchResources = (term) => async (dispatch) => {
         });
       });
   }
+};
+
+
+/* ALERTS */
+
+export const setAlert = (msg, alertType, timeout = 5000) => (dispatch) => {
+  const id = uuidv4();
+  dispatch({
+    type: "SET_ALERT",
+    payload: { msg, alertType, id },
+  });
+
+  setTimeout(() => dispatch({ type: "REMOVE_ALERT", payload: id }), timeout);
 };

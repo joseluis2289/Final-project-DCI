@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { userLogout } from "../redux/actions";
+import ModalBox from "./ModalBox";
 import { Form, Button, Header } from "semantic-ui-react";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [updateData, setUpdateData] = useState({
     email: "",
     name: "",
@@ -13,29 +21,24 @@ export default function Profile() {
     userName: "",
     _id: "",
   });
-
   const notify = () => {
     toast.success(`Successfully Updated!`, {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000,
     });
   };
-
   const notifyError = () => {
     toast.error("Error to Update profile!", {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000,
     });
   };
-
   const { register, handleSubmit, errors } = useForm();
-
   const profileHandler = (e) => {
     //console.log(e);
     e.preventDefault();
     setUpdateData({ ...updateData, [e.target.name]: e.target.value });
   };
-
   //GET DATA TO DISPLAY
   useEffect(() => {
     fetch("/profile")
@@ -51,7 +54,6 @@ export default function Profile() {
       })
       .catch((err) => console.log(err));
   }, []);
-
   const updateHandler = () => {
     //e.preventDefault();
     axios({
@@ -69,7 +71,17 @@ export default function Profile() {
         console.error("Error to update", err);
       });
   };
-
+  const delProfile = () => {
+    axios({
+      method: "DELETE",
+      url: `delete/${user._id}`,
+    })
+      .then((res) => {
+        history.push("/home");
+        dispatch(userLogout());
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div
       style={{
@@ -155,10 +167,7 @@ export default function Profile() {
           errors.confirmPassword.type === "maxLength" && (
             <span className="errorsMsg">Max length exceeded</span>
           )}
-        {errors.confirmPassword &&
-          errors.confirmPassword.type === "minLength" && (
-            <span className="errorsMsg">Must be more than 3 character</span>
-          )}
+        ;
         <Button
           style={{ width: "130px", alignItems: "center" }}
           className="ui primary labeled icon button"
@@ -167,6 +176,7 @@ export default function Profile() {
           <i class="edit icon"></i>Update
         </Button>
       </Form>
+      <ModalBox function={delProfile} text="DELETE PROFILE" />
     </div>
   );
 }

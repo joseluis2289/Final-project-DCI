@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   filterCategory,
   filterFree,
@@ -27,6 +28,7 @@ const useStyles = makeStyles({
 });
 
 export default function Filter() {
+  const history = useHistory();
   const classes = useStyles();
   // In the beginning all resources are shown: free, paid and all ratings.
   let initialState = {
@@ -122,6 +124,7 @@ export default function Filter() {
     e.preventDefault();
     // console.log("Searching for...", filterData.search);
     dispatch(searchResources(filterData.search));
+    history.push("/");
   }
 
   return (

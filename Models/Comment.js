@@ -11,6 +11,10 @@ const Comment = new mongoose.Schema({
     ref: "Resource",
   },
   text: { type: String, required: true },
+  edited: { type: Boolean, default: false }, 
+  deleted: { type: Boolean, default: false },
+  date: { type: Date, default: Date.now },
+  
 });
 
 module.exports = mongoose.model("Comment", Comment);

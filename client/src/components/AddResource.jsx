@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import Settings from "./settings/Settings";
 
 export default function AddResource() {
   const user = useSelector((state) => state.user._id);
+  let history = useHistory();
   const [resource, setResource] = useState({
     user: user,
     category: [],
@@ -30,93 +33,104 @@ export default function AddResource() {
     console.log("resource from AddResource", resource);
     axios({
       method: "POST",
-      url: "http://localhost:5000/resources/add",
+      url: "/resources/add",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=utf-8",
       },
       data: resource,
     })
       .then((response) => {
-        console.log("resource added");
-        console.log(response);
+        console.log("resource added", response.data._id);
+        history.push(`/resources/resource/${response.data._id}`);
       })
       .catch((err) => {
         console.log(err);
       });
   };
   return user ? (
-    <div>
-      <form onSubmit={addResource}>
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            name="title"
-            placeholder="Enter the title..."
-            onChange={formHandler}
-          />
-        </div>
-        <div>
-          <label htmlFor="link">Link</label>
-          <input
-            type="text"
-            name="link"
-            placeholder="Enter the Link.."
-            onChange={formHandler}
-          />
-        </div>
-        <div name="category" onChange={defineCategory}>
-          <label>Category</label>
-          <label htmlFor="frontend">
-            <input type="checkbox" name="category" value="frontend" />
-            Frontend
-          </label>
-
-          <label htmlFor="backend">
-            <input type="checkbox" name="category" value="backend" />
-            Backend
-          </label>
-
-          <label htmlFor="database">
-            <input type="checkbox" name="category" value="database" />
-            Database
-          </label>
-
-          <label htmlFor="general">
-            <input type="checkbox" name="category" value="general" />
-            General
-          </label>
-        </div>
-
-        <div name="paid" onChange={formHandler}>
-          <label htmlFor="link">Paid</label>
+    <Fragment>
+      <Settings />
+      <div className="add-resource">
+        <form onSubmit={addResource}>
           <div>
-            <label htmlFor="access_paid">
-              <input type="radio" name="paid" id="access_paid" value={true} />
-              Yes
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              name="title"
+              placeholder="Enter the title..."
+              onChange={formHandler}
+            />
+          </div>
+          <div>
+            <label htmlFor="link">Link</label>
+            <input
+              type="text"
+              name="link"
+              placeholder="Enter the Link.."
+              onChange={formHandler}
+            />
+          </div>
+          <div name="category" onChange={defineCategory}>
+            <label>Category</label>
+            <label htmlFor="frontend">
+              <input type="checkbox" name="category" value="frontend" />
+              Frontend
             </label>
 
-            <label htmlFor="access_free">
-              <input type="radio" name="paid" id="access_free" value={false} />
-              No
+            <label htmlFor="backend">
+              <input type="checkbox" name="category" value="backend" />
+              Backend
+            </label>
+
+            <label htmlFor="database">
+              <input type="checkbox" name="category" value="database" />
+              Database
+            </label>
+
+            <label htmlFor="general">
+              <input type="checkbox" name="category" value="general" />
+              General
             </label>
           </div>
-        </div>
-        <div>
-          <label htmlFor="title">description</label>
-          <textarea
-            name="description"
-            rows="5"
-            cols="33"
-            style={{ border: "solid black 2px" }}
-            placeholder="Enter your description..."
-            onChange={formHandler}
-          ></textarea>
-        </div>
-        <button type="submit">Add Resource</button>
-      </form>
-    </div>
+
+          <div name="paid" onChange={formHandler}>
+            <label htmlFor="link">Paid</label>
+            <div>
+              <label htmlFor="access_paid">
+                <input type="radio" name="paid" id="access_paid" value={true} />
+                Yes
+              </label>
+
+              <label htmlFor="access_free">
+                <input
+                  type="radio"
+                  name="paid"
+                  id="access_free"
+                  value={false}
+                />
+                No
+              </label>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="title">description</label>
+            <textarea
+              name="description"
+              rows="5"
+              cols="33"
+              style={{ border: "solid black 2px" }}
+              placeholder="Enter your description..."
+              onChange={formHandler}
+            ></textarea>
+          </div>
+          <button type="submit">Add Resource</button>
+        </form>
+      </div>
+    </Fragment>
   ) : (
-    <p>fo to Login page</p>
+    <Fragment>
+      <h1>Go to Login</h1>
+      <Link to="/login">here </Link>
+    </Fragment>
   );
 }

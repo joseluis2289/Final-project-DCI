@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import Resource from "./Resource";
+import { connect, useSelector } from "react-redux";
+import Resource from "./Resource/Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
 
@@ -9,14 +9,18 @@ const Content = ({ getResources, resources, filter }) => {
   // When page loads for the first time, load resources from the database
   // into the Redux store. From there they are displayed with React.
   const [firstPageLoad, setFirstPageLoad] = useState(true);
+  const update = useSelector((state) => state.update);
   useEffect(() => {
     if (firstPageLoad) {
       getResources();
       console.log(resources);
       setFirstPageLoad(false);
     }
-  }, [firstPageLoad]);
+  }, [firstPageLoad, update, resources, getResources]);
 
+  useEffect(() => {
+    getResources();
+  }, [update, getResources]);
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
   // PAGINATION
@@ -38,9 +42,6 @@ const Content = ({ getResources, resources, filter }) => {
       pageDisplay.push(i);
     }
     setPagination({ ...pagination, max: maxPages, display: pageDisplay });
-    return () => {
-      // cleanup
-    };
   }, [resources]);
 
   function handlePageChange(e) {
@@ -117,15 +118,12 @@ const Content = ({ getResources, resources, filter }) => {
           // page 2 -- index: 8-15
           let start = (pagination.current - 1) * pagination.perPage;
           let end = pagination.current * pagination.perPage - 1;
-          console.log(start, end);
           if (index >= start && index <= end) {
             showByCurrentPage = true;
           }
           // If resource matches all filter criteria, it is displayed
           if (showByCost && showByRating && showByCategory && showByCurrentPage)
-            return (
-              <Resource id={item._id} key={index} data={item} author="false" />
-            );
+            return <Resource id={item._id} key={index} data={item} />;
           return "";
           // } else return "";
         })}

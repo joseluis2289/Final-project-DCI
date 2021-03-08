@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-//import { useDispatch } from "react-redux";
-//import { userLogin } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../redux/actions";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,6 +9,7 @@ import { Form, Button, Header } from "semantic-ui-react";
 
 toast.configure();
 export default function Login() {
+  const dispatch = useDispatch();
   const notify = () => {
     toast.success("You are successfully Logged in!", {
       position: toast.POSITION.TOP_CENTER,
@@ -57,8 +58,7 @@ export default function Login() {
               history.push("/");
               if (response.status === 200) {
                 response.json().then((data) => {
-                  console.log(data);
-                  // dispatch(userLogin(data));
+                  dispatch(userLogin(data));
                   if (data.logIn === true) {
                     sessionStorage.setItem("email", data.email);
                     notify();
