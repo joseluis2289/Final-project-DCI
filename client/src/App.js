@@ -15,6 +15,7 @@ import ResourcePage from "./components/ResourcePage";
 import UpdateResource from "./components/settings/UpdateResource";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
+import { Container } from "semantic-ui-react";
 import "./App.css";
 import "semantic-ui-css/semantic.min.css";
 
@@ -23,6 +24,10 @@ export default function App() {
   return (
     <Router>
       <Navbar />
+
+      <p className="intro-text">
+        Find a resource to help you learn about a specific topic.
+      </p>
 
       {error === {} ? <NotFound /> : <Filter />}
       <Switch>
