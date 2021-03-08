@@ -267,7 +267,6 @@ button:hover {
 /* FOOTER */
 footer {
   display: flex;
-  justify-content: center;
   background-color: var(--yellow-light);
   font-size: 1rem;
   position: fixed;
@@ -278,12 +277,17 @@ footer {
 footer p {
   margin: 0;
   font-style: italic;
+  text-align: center;
 }
 footer p > a {
   color: black;
 }
 footer p > a:hover {
   color: var(--blue-dark);
+}
+footer .icon {
+  height: 1.67rem;
+  margin: 0.5rem 0.5rem -0.5rem 1rem;
 }
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
 .errorsMsg {

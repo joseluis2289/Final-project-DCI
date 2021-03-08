@@ -30,7 +30,12 @@ export default function Options({ resource }) {
   ];
   const optionsAuthor = [
     { key: "edit", icon: "edit", text: "Edit Post", value: "edit" },
-    { key: "delete", icon: "delete", text: "Remove Post", value: "delete" },
+    {
+      key: "delete",
+      icon: "trash alternate outline",
+      text: "Remove Post",
+      value: "delete",
+    },
     { key: "share", icon: "share", text: "Copy link", value: "share" },
     { key: "report", icon: "attention", text: "Report", value: "report" },
   ];
