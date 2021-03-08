@@ -104,12 +104,15 @@ router.get("/resource/:resource_id", (req, res, next) => {
       path: "comments",
       populate: { path: "user" },
     })
-    .then((resource) => {console.log("IS RUNNING", resource) ; res.json(resource)})
+    .then((resource) => {
+      console.log("IS RUNNING", resource);
+      res.json(resource);
+    })
     .catch((err) => res.send(err));
 });
 
 //this MiddleWare is protecting all the routes down Below
-/* router.use((req, res, next) => {
+router.use((req, res, next) => {
   if (req.session.user) {
     console.log(req.session.user);
     next();
@@ -117,7 +120,7 @@ router.get("/resource/:resource_id", (req, res, next) => {
     console.log("error on middleware");
     res.sendStatus(401);
   }
-});  */
+});
 
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
@@ -200,7 +203,7 @@ router.post("/add", (req, res, next) => {
       })
         .then((userUpdated) => {
           res.send(resourceAdded);
-          console.log("look at resource addedf", resourceAdded)
+          console.log("look at resource addedf", resourceAdded);
         })
         .catch((err) => console.log(err));
     })

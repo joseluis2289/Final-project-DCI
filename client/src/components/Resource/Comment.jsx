@@ -4,6 +4,21 @@ import { updateData } from "../../redux/actions";
 import axios from "axios";
 import ModalBox from "../ModalBox";
 import moment from "moment";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Image,
+  Grid,
+  GridRow,
+  GridColumn,
+  CardMeta,
+  Item,
+  CardDescription,
+  Label,
+  Header,
+} from "semantic-ui-react";
 
 export default function Comment(props) {
   const user = useSelector((state) => state.user);
@@ -65,18 +80,20 @@ export default function Comment(props) {
   };
 
   return (
-    <div className="comment">
+    <div style={{ border: "solid blue 1px" }} className="comment">
       {props.data.user ? (
         <h3>{props.data.user.userName}</h3>
       ) : (
         <h3>anonymous</h3>
       )}
 
-      <span>{moment(props.data.date).fromNow()}</span>
+      <span style={{ border: "solid red 1px" }}>
+        {moment(props.data.date).fromNow()}
+      </span>
 
       <div>
         {props.data.user && props.data.user._id === user._id && !edit && (
-          <div>
+          <div style={{ border: "solid green 1px" }}>
             <ModalBox function={delComment} text="X" />{" "}
             <button
               onClick={() => {
@@ -88,7 +105,8 @@ export default function Comment(props) {
           </div>
         )}
       </div>
-      {!edit && <p>{props.data.text}</p>}
+
+      {!edit && <p style={{ border: "solid red 1px" }}>{props.data.text}</p>}
       {edit && (
         <form onSubmit={(e) => updateComment(e)}>
           <input

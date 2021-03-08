@@ -72,7 +72,11 @@ export default function Rating(props) {
   /* useEffect(() => {}, [update]); */
   return (
     <section>
-      <figure className="rating-container" role="group">
+      <figure
+        style={{ display: "flex", justifyContent: "center" }}
+        // className="rating-container"
+        role="group"
+      >
         {[1, 2, 3, 4, 5].map((index) => {
           return (
             <Star
