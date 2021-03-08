@@ -69,10 +69,9 @@ app.use("/comments", require("./routes/comments"));
 app.use("/users", require("./routes/users"));
 //app.use("/posts", protectedRoutes);
 
-
 //deploying on Heroku
-if(process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"))
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 }
 
 ///All routes
@@ -134,7 +133,7 @@ app.post("/login", (req, res) => {
           res.json({
             userSession: req.session.user,
             logIn: output,
-            user: result, 
+            user: result,
           });
         }
       });
@@ -186,16 +185,16 @@ app.put("/update", (req, res, next) => {
   });
 });
 
-//delete profile 
-app.delete("/delete/:user_id", (req, res)=>{
-  let userId= req.params.user_id;
+//delete profile
+app.delete("/delete/:user_id", (req, res) => {
+  let userId = req.params.user_id;
   UserModel.findByIdAndDelete(userId)
-  .then((response)=>{
-    req.session.destroy();
-    res.send({msg: "your profile was successfully deleted"})
-  })
-  .catch(err=>res.send(err))
-})
+    .then((response) => {
+      req.session.destroy();
+      res.send({ msg: "your profile was successfully deleted" });
+    })
+    .catch((err) => res.send(err));
+});
 
 app.delete("/logout", (req, res, next) => {
   refreshTokens = refreshTokens.filter((token) => token !== req.body.token);

@@ -67,7 +67,7 @@ const Content = ({ getResources, resources, filter }) => {
     <Grid doubling columns={2} className="references-container">
       <Grid.Row>
         <Grid.Column>
-          <Header as="h3">RESOURCES</Header>
+          <Header as="h2">RESOURCES</Header>
           <Link to="/add_resource">
             <Button primary>
               <Icon name="add circle" />
