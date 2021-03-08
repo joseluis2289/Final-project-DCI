@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -35,6 +35,10 @@ export default function AddResource() {
     "general",
   ]);
   const [paid, setPaid] = useState(false);
+
+  useEffect(() => {
+    !user && history.push("/login");
+  }, []);
 
   let defineCategory = (value) => {
     let categoriesSelected = resource.category;
