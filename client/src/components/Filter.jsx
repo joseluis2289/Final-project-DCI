@@ -5,13 +5,12 @@ import {
   filterCategory,
   filterFree,
   filterPaid,
+  filterRating,
   searchResources,
 } from "../redux/actions";
-import FilterRating from "../components/FilterRating";
 import {
   Grid,
   Form,
-  Button,
   Checkbox,
   Rating,
   Header,
@@ -25,7 +24,7 @@ export default function Filter() {
   let initialState = {
     free: true,
     paid: true,
-    rating: 0,
+    rating: 1,
     general: true,
     frontend: true,
     backend: true,
@@ -34,7 +33,24 @@ export default function Filter() {
     search: "",
   };
   const [filterData, setFilterData] = useState(initialState);
+  const [rating, setRating] = useState(false);
   const dispatch = useDispatch();
+
+  // const onSaveRating = (index) => {
+  //   setRating(index);
+  // };
+
+  function onSaveRating(e, { rating, maxRating }) {
+    setRating(rating);
+  }
+
+  // FILTER -- RATING
+  useEffect(() => {
+    if (rating) dispatch(filterRating(rating));
+    return () => {
+      // cleanup
+    };
+  }, [rating, dispatch]);
 
   // FILTER -- CATEGORY -- "general"
   useEffect(() => {
@@ -138,7 +154,7 @@ export default function Filter() {
       </Grid.Row>
       <Grid.Row className="filter-container">
         <Grid.Column width={8}>
-          <Header as="h3">FILTER by CATEGORY</Header>
+          <Header as="h3">Filter by Category</Header>
           <Form>
             <Form.Group widths="equal">
               <Form.Field>
@@ -187,7 +203,7 @@ export default function Filter() {
           </Form>
         </Grid.Column>
         <Grid.Column width={8}>
-          <Header as="h3">FILTER by PRICE</Header>
+          <Header as="h3">Filter by Price</Header>
           <Form>
             <Form.Group widths="equal">
               <Form.Field>
@@ -212,10 +228,15 @@ export default function Filter() {
               </Form.Field>
             </Form.Group>
           </Form>
-          <Header as="h3">FILTER by RATING</Header>
+          <Header as="h3">Filter by Rating</Header>
           <Container fluid>
-            <Rating maxRating={5} defaultRating={4} icon="star" size="huge" />
-            {/* <FilterRating /> */}
+            <Rating
+              maxRating={5}
+              defaultRating={0}
+              icon="star"
+              size="huge"
+              onRate={onSaveRating}
+            />
           </Container>
         </Grid.Column>
       </Grid.Row>
