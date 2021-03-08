@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Rating from "./Rating";
 import CreateComment from "./CreateComment.jsx";
 import DisplayComments from "./DisplayComments";
+import Options from "./Options";
 
 // Gets reference ID as props.data.id
 const Resource = (props) => {
@@ -11,6 +12,7 @@ const Resource = (props) => {
   const update = useSelector((state) => state.update);
   const [makeCom, setMakeComm] = useState(false);
   const [displayCom, setDisplayComm] = useState(false);
+
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
@@ -40,7 +42,6 @@ const Resource = (props) => {
           </div>
           <div className="category">
             <h3>
-              {/* {console.log("somethign?", props.data)} */}
               {props.data.category.map((item, index) => {
                 let name = item[0].toUpperCase() + item.substring(1);
                 return <span key={index}>{name} </span>;
@@ -48,6 +49,7 @@ const Resource = (props) => {
             </h3>
           </div>
           {/* <h3>added by {props.data.user.name}</h3> */}
+          <Options resource={props.data} userId={props.data.user._id} />
         </hgroup>
       </header>
       <figure role="group">
