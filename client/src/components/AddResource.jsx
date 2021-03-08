@@ -1,11 +1,12 @@
 import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Settings from "./settings/Settings";
 
 export default function AddResource() {
   const user = useSelector((state) => state.user._id);
+  let history = useHistory();
   const [resource, setResource] = useState({
     user: user,
     category: [],
@@ -39,8 +40,8 @@ export default function AddResource() {
       data: resource,
     })
       .then((response) => {
-        console.log("resource added");
-        console.log(response);
+        console.log("resource added", response.data._id);
+        history.push(`/resources/resource/${response.data._id}`);
       })
       .catch((err) => {
         console.log(err);

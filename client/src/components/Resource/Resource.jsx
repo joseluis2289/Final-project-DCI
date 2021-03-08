@@ -15,14 +15,11 @@ const Resource = (props) => {
     "illustrations/road_to_knowledge.svg"
   );
   //create function to allow the child component "CreateComment" to change "displayCom" state
-  function handleCreateCom(newValue) {
+  function showMakeComm(newValue) {
     setMakeComm(newValue);
-    setDisplayComm(!newValue);
-    /* setDisplayComm(!newValue); */
   }
   function showComm(newValue) {
     setDisplayComm(newValue);
-    setMakeComm(false);
   }
 
   useEffect(() => {
@@ -43,13 +40,14 @@ const Resource = (props) => {
           </div>
           <div className="category">
             <h3>
+              {/* {console.log("somethign?", props.data)} */}
               {props.data.category.map((item, index) => {
                 let name = item[0].toUpperCase() + item.substring(1);
                 return <span key={index}>{name} </span>;
               })}
             </h3>
           </div>
-          <h3>added by {props.data.user.name}</h3>
+          {/* <h3>added by {props.data.user.name}</h3> */}
         </hgroup>
       </header>
       <figure role="group">
@@ -73,15 +71,13 @@ const Resource = (props) => {
         comments={props.data.comments}
         displayCom={displayCom}
         showComm={showComm}
-        handleCreateCom={handleCreateCom}
       />
 
       <CreateComment
         resourceId={props.data._id}
-        handleCreateCom={handleCreateCom}
         makeCom={makeCom}
         showComm={showComm}
-        /* editComm={editComm} */
+        showMakeComm={showMakeComm}
       />
     </section>
   );
