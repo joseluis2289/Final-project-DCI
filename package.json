@@ -1,7 +1,8 @@
 {
   "name": "final-project-dci",
   "version": "1.0.0",
-  "description": "**Team members:** Christian, Jose and Bel",
+  "description": "he aim of this project is to optimize the progress of web development students by sharing links from online courses, documentation, or youtube tutorials. The resources can be rated and commented.",
+  "repository": "https://github.com/belcosta/Final-Project-DCI",
   "main": "index.js",
      "scripts": {
     "start": "node server.js",
