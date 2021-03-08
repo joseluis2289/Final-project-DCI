@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Button, Dropdown } from "semantic-ui-react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateData } from "../../redux/actions";
+import { Button, Dropdown, Header, Icon, Modal } from "semantic-ui-react";
+import axios from "axios";
 
 export default function Options({ resource, userId }) {
-  const [share, setShare] = useState(false);
   const user = useSelector((state) => state.user);
+  const update = useSelector((state) => state.update);
+  const [share, setShare] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const dispatch = useDispatch();
   const options = [
     { key: "share", icon: "share", text: "Share", value: "share" },
     { key: "attention", icon: "attention", text: "Report", value: "attention" },
@@ -15,6 +21,50 @@ export default function Options({ resource, userId }) {
     { key: "share", icon: "share", text: "Share", value: "share" },
     { key: "attention", icon: "attention", text: "Report", value: "attention" },
   ];
+
+  const handle = (e, { value }) => {
+    if (value === "delete") {
+      <Modal
+        closeIcon
+        open={open}
+        trigger={<Button>Show Modal</Button>}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+      >
+        <Header icon="trash alternate" content="Delete Resource" />
+        <Modal.Content>
+          <p>
+            Would you like to delete this resource permanently? This action can
+            not be undone.
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color="green" onClick={() => setOpen(false)}>
+            <Icon name="remove" /> No
+          </Button>
+          <Button
+            color="red"
+            onClick={() => {
+              axios({
+                method: "DELETE",
+                url: `/resources/${resource._id}`,
+                ContentType: "application/json; charset=utf-8",
+              })
+                .then((response) => {
+                  dispatch(updateData(update));
+                  setOpen(false);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }}
+          >
+            <Icon name="checkmark" /> Yes
+          </Button>
+        </Modal.Actions>
+      </Modal>;
+    }
+  };
 
   function copyFunction() {
     /* Get the text field */
@@ -40,13 +90,10 @@ export default function Options({ resource, userId }) {
           floating
           options={user._id === resource.user._id ? optionsAuthor : options}
           trigger={<></>}
+          onChange={handle}
         />
       </Button.Group>
 
-      <button>
-        {" "}
-        <img className="icon" src="icons/options.svg" alt="options Icon" />
-      </button>
       {/* The button used to copy the link  */}
       {share && (
         <div>
