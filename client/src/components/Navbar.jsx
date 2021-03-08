@@ -10,6 +10,10 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const history = useHistory();
   const move = (e, { value }) => {
+    if (value === "/home") {
+      e.preventDefault();
+      dispatch(userLogout());
+    }
     history.push(value);
   };
   const trigger = (
@@ -18,7 +22,7 @@ export default function Navbar() {
     </span>
   );
 
-  const options = [
+  const loggedOptions = [
     {
       key: "user",
       text: (
@@ -31,7 +35,7 @@ export default function Navbar() {
     { key: "profile", text: "Profile", value: "/profile" },
     { key: "stars", text: "My Resources", value: "/my_resources" },
     { key: "explore", text: "My Comments", value: "/my_comments" },
-    { key: "sign-out", text: "Sign Out", value: "/logout" },
+    { key: "sign-out", text: "Sign Out", value: "/home" },
   ];
 
   return (
@@ -41,8 +45,23 @@ export default function Navbar() {
         <Link to="/">Student Companion</Link>
       </h1>
       {logIn ? (
-        <Dropdown trigger={trigger} options={options} onChange={move} />
-      ) : null}
+        <Dropdown trigger={trigger} options={loggedOptions} onChange={move} />
+      ) : (
+        <React.Fragment>
+          <Link to="/register">
+            <img
+              className="icon"
+              src="icons/icon_register.svg"
+              alt="Register Icon"
+            />
+            Register
+          </Link>
+          <Link to="/login">
+            <img className="icon" src="icons/icon_login.svg" alt="Login Icon" />
+            Login
+          </Link>
+        </React.Fragment>
+      )}
 
       <nav>
         {/* Icons from https://material.io/resources/icons/ */}
@@ -50,49 +69,6 @@ export default function Navbar() {
           <img className="icon" src="icons/home.svg" alt="Home Icon" />
           Home
         </Link>
-        {logIn ? (
-          <React.Fragment>
-            <Link to="/settings">
-              <img className="icon" src="icons/settings.svg" alt="Login Icon" />
-              Settings
-            </Link>
-
-            <a
-              href="/logout"
-              onClick={(e) => {
-                e.preventDefault();
-                console.log("LOGOUT!");
-                dispatch(userLogout());
-              }}
-            >
-              <img
-                className="icon"
-                src="icons/icon_logout.svg"
-                alt="Logout Icon"
-              />
-              Logout
-            </a>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Link to="/register">
-              <img
-                className="icon"
-                src="icons/icon_register.svg"
-                alt="Register Icon"
-              />
-              Register
-            </Link>
-            <Link to="/login">
-              <img
-                className="icon"
-                src="icons/icon_login.svg"
-                alt="Login Icon"
-              />
-              Login
-            </Link>
-          </React.Fragment>
-        )}
       </nav>
     </header>
   );

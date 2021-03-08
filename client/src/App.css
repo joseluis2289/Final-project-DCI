@@ -255,25 +255,6 @@ button:hover {
   cursor: pointer;
 }
 
-/****SETTINGS****/
-.add-resource {
-  width: 30vw;
-}
-.settings-navbar {
-  display: flex;
-  justify-content: space-around;
-  padding: 1rem;
-  background-color: var(--violett-light);
-}
-.settings-navbar a {
-  text-decoration: none;
-  color: var(--yellow-light);
-  font-weight: 500;
-  margin: 0.5rem;
-}
-.settings-navbar img {
-  margin: 0 0.5rem;
-}
 
 /****UPDATE RESOURCE****/
 .update-resource {
