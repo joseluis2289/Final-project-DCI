@@ -1,7 +1,7 @@
 var express = require("express");
+require("dotenv").config();
 const mongoose = require("mongoose");
 var cors = require("cors");
-require("dotenv").config();
 const app = express();
 const User = require("./Models/UserModel");
 const expValidator = require("express-validator");
@@ -9,6 +9,7 @@ const Logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
+const path = require("path")
 
 //Define PORT
 const PORT = process.env.PORT || 5000;
@@ -66,10 +67,16 @@ app.use("/comments", require("./routes/comments"));
 app.use("/users", require("./routes/users"));
 //app.use("/posts", protectedRoutes);
 
+<<<<<<< HEAD
 //deploying on Heroku
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+=======
+
+// middleware to deploy on Heroku
+app.use(express.static(path.join(__dirname, "client", "build")))
+>>>>>>> 6d01d7a00ec2b128b02e83369f34211870132f57
 
 ///All routes
 
@@ -226,5 +233,10 @@ app.delete("/logout", (req, res, next) => {
 });
 
 connectDB();
+
+//added to deploy on heroku
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));

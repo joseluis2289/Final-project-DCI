@@ -35,7 +35,7 @@ export default function AddResource() {
       method: "POST",
       url: "/resources/add",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=utf-8",
       },
       data: resource,
     })
