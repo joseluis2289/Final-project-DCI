@@ -16,7 +16,6 @@ export default function UpdateResource(props) {
     "frontend",
     "backend",
     "database",
-    "machineLearning",
     "general",
   ]);
   useEffect(() => {

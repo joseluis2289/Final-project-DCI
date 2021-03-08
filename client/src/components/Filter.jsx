@@ -29,7 +29,6 @@ export default function Filter() {
     frontend: true,
     backend: true,
     database: true,
-    machineLearning: true,
     search: "",
   };
   const [filterData, setFilterData] = useState(initialState);
@@ -87,16 +86,6 @@ export default function Filter() {
       // cleanup
     };
   }, [filterData.database, dispatch]);
-
-  // FILTER -- CATEGORY -- "machineLearning"
-  useEffect(() => {
-    if (filterData.machineLearning)
-      dispatch(filterCategory("machineLearning", true));
-    else dispatch(filterCategory("machineLearning", false));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.machineLearning, dispatch]);
 
   // FILTER -- FREE RESOURCES
   useEffect(() => {

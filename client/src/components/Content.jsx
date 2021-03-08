@@ -105,13 +105,7 @@ const Content = ({ getResources, resources, filter }) => {
           let showByCurrentPage = false;
 
           // FILTER FOR CATEGORIES
-          let categories = [
-            "general",
-            "frontend",
-            "backend",
-            "database",
-            "machineLearning",
-          ];
+          let categories = ["general", "frontend", "backend", "database"];
           categories.forEach((cat) => {
             if (filter[cat] === true && item.category.includes(cat)) {
               showByCategory = true;
