@@ -1,17 +1,49 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../redux/actions";
+import { Dropdown, Icon } from "semantic-ui-react";
 
 export default function Navbar() {
   const logIn = useSelector((state) => state.logIn);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const move = (e, { value }) => {
+    history.push(value);
+  };
+  const trigger = (
+    <span>
+      <Icon name="user" /> Hello, {`${user.name}`}
+    </span>
+  );
+
+  const options = [
+    {
+      key: "user",
+      text: (
+        <span>
+          Signed in as <strong>{user.name}</strong>
+        </span>
+      ),
+      disabled: true,
+    },
+    { key: "profile", text: "Profile", value: "/profile" },
+    { key: "stars", text: "My Resources", value: "/my_resources" },
+    { key: "explore", text: "My Comments", value: "/my_comments" },
+    { key: "sign-out", text: "Sign Out", value: "/logout" },
+  ];
+
   return (
     <header className="app-header">
       <Link to="/">(LOGO)</Link>
       <h1>
         <Link to="/">Student Companion</Link>
       </h1>
+      {logIn ? (
+        <Dropdown trigger={trigger} options={options} onChange={move} />
+      ) : null}
+
       <nav>
         {/* Icons from https://material.io/resources/icons/ */}
         <Link to="/home">
