@@ -21,7 +21,6 @@ import "./Filter.css";
 
 export default function Filter() {
   const history = useHistory();
-  const classes = useStyles();
   // In the beginning all resources are shown: free, paid and all ratings.
   let initialState = {
     free: true,
