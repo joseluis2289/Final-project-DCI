@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Home from "./components/Home";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar2";
 import Filter from "./components/Filter";
 import Register from "./components/Register";
 import Login from "./components/Login";
