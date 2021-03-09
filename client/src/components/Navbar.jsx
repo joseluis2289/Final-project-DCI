@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../redux/actions";
 import { Grid, Menu, Header, Icon, Dropdown } from "semantic-ui-react";
@@ -7,7 +7,37 @@ import "./Navbar.css";
 
 export default function Navbar() {
   const logIn = useSelector((state) => state.logIn);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const move = (e, { value }) => {
+    if (value === "/home") {
+      e.preventDefault();
+      dispatch(userLogout());
+    }
+    history.push(value);
+  };
+  const trigger = (
+    <span>
+      <Icon name="user" /> Hello, {`${user.name}`}
+    </span>
+  );
+
+  const loggedOptions = [
+    {
+      key: "user",
+      text: (
+        <span>
+          Signed in as <strong>{user.name}</strong>
+        </span>
+      ),
+      disabled: true,
+    },
+    { key: "profile", text: "Profile", value: "/profile" },
+    { key: "stars", text: "My Resources", value: "/my_resources" },
+    { key: "explore", text: "My Comments", value: "/my_comments" },
+    { key: "sign-out", text: "Sign Out", value: "/home" },
+  ];
   return (
     <Grid columns={2} as="header" className="app-header">
       <Grid.Row>
@@ -21,28 +51,11 @@ export default function Navbar() {
                 </Link>
               </Dropdown.Item>
               {logIn ? (
-                <React.Fragment>
-                  <Dropdown.Item>
-                    <Link to="/settings">
-                      <Icon name="setting" />
-                      Settings
-                    </Link>
-                  </Dropdown.Item>
-
-                  <Dropdown.Item>
-                    <a
-                      href="/logout"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        console.log("LOGOUT!");
-                        dispatch(userLogout());
-                      }}
-                    >
-                      <Icon name="logout" />
-                      Logout
-                    </a>
-                  </Dropdown.Item>
-                </React.Fragment>
+                <Dropdown
+                  trigger={trigger}
+                  options={loggedOptions}
+                  onChange={move}
+                />
               ) : (
                 <React.Fragment>
                   <Dropdown.Item>

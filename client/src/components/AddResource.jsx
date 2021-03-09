@@ -143,33 +143,6 @@ export default function AddResource() {
         />
         <Button type="submit">Submit</Button>
       </Form>
-
-      <div className="add-resource">
-        <form onSubmit={addResource}>
-          <div name="category" onChange={defineCategory}>
-            <label>Category</label>
-            <label htmlFor="frontend">
-              <input type="checkbox" name="category" value="frontend" />
-              Frontend
-            </label>
-
-            <label htmlFor="backend">
-              <input type="checkbox" name="category" value="backend" />
-              Backend
-            </label>
-
-            <label htmlFor="database">
-              <input type="checkbox" name="category" value="database" />
-              Database
-            </label>
-
-            <label htmlFor="general">
-              <input type="checkbox" name="category" value="general" />
-              General
-            </label>
-          </div>
-        </form>
-      </div>
     </Card.Group>
   );
 }
