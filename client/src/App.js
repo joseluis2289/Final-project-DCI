@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Home from "./components/Home";
-import Navbar from "./components/Navbar2";
+import Navbar from "./components/Navbar";
 import Filter from "./components/Filter";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -15,20 +15,14 @@ import ResourcePage from "./components/ResourcePage";
 import UpdateResource from "./components/settings/UpdateResource";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
-import { Container } from "semantic-ui-react";
 import "./App.css";
-import "semantic-ui-css/semantic.min.css";
 
 export default function App() {
   const error = useSelector((state) => state.error);
   return (
     <Router>
       <Navbar />
-
-      <p className="intro-text">
-        Find a resource to help you learn about a specific topic.
-      </p>
-
+      <p>Find a resource to help you learn about a specific topic.</p>
       {error === {} ? <NotFound /> : <Filter />}
       <Switch>
         <main>
@@ -38,7 +32,7 @@ export default function App() {
             path="/resources/resource/:resourceId"
             component={ResourcePage}
           />
-                    <Route path="/register" component={Register} />
+          <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
           <Route path="/" exact={true} component={Content} />
