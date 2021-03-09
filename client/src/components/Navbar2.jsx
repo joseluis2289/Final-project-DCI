@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../redux/actions";
 import { Dropdown, Icon } from "semantic-ui-react";
 
-export default function Navbar() {
+export default function Navbar2() {
   const logIn = useSelector((state) => state.logIn);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export default function Navbar() {
     <header className="app-header">
       <Link to="/">(LOGO)</Link>
       <h1>
-        <Link to="/">Student Companion</Link>
+        <Link to="/">Student Companion #2</Link>
       </h1>
       {logIn ? (
         <Dropdown trigger={trigger} options={loggedOptions} onChange={move} />

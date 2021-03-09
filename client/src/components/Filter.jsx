@@ -127,8 +127,8 @@ export default function Filter() {
   return (
     <Grid columns={2} as="section">
       <Grid.Row>
-        <Grid.Column width={1}></Grid.Column>
-        <Grid.Column width={14}>
+        <Grid.Column width={2}></Grid.Column>
+        <Grid.Column width={12}>
           <Form size="big" onSubmit={search}>
             <Form.Input
               icon="search"
