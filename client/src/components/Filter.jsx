@@ -17,6 +17,7 @@ import {
   Header,
   Container,
 } from "semantic-ui-react";
+import "./Filter.css";
 
 export default function Filter() {
   const history = useHistory();
