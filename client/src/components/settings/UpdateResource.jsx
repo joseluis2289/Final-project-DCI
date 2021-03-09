@@ -16,7 +16,6 @@ export default function UpdateResource(props) {
     "frontend",
     "backend",
     "database",
-    "machineLearning",
     "general",
   ]);
   useEffect(() => {
@@ -64,7 +63,6 @@ export default function UpdateResource(props) {
       ContentType: "application/json; charset=utf-8",
     })
       .then((response) => {
-        console.log("sta é a resposta", response);
         dispatch(updateData(update));
       })
       .catch((err) => {

@@ -2,7 +2,6 @@ import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import Settings from "./settings/Settings";
 
 export default function AddResource() {
   const user = useSelector((state) => state.user._id);
@@ -49,7 +48,6 @@ export default function AddResource() {
   };
   return user ? (
     <Fragment>
-      <Settings />
       <div className="add-resource">
         <form onSubmit={addResource}>
           <div>

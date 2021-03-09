@@ -23,6 +23,14 @@ export function userLogout() {
   };
 }
 
+export function updateUser(user) {
+  return {
+    type: "UPDATE_USER",
+    payload: user,
+  }
+}
+
+
 // FILTER ACTIONS
 
 export function filterFree(status) {
@@ -44,7 +52,7 @@ export function filterRating(rating) {
   };
 }
 
-// topic = "general", "frontend", "backend", "database", "machinelearning"
+// topic = "general", "frontend", "backend", "database"
 // status = checkbox status = true / false
 export function filterCategory(topic, status) {
   return {

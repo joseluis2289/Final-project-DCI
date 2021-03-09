@@ -5,15 +5,16 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { userLogout } from "../redux/actions";
+import { updateUser, userLogout } from "../redux/actions";
 import ModalBox from "./ModalBox";
-import { Form, Button, Header } from "semantic-ui-react";
+import { Form, Button, Header, Icon, Modal } from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [openModal, setOpenModal] = useState(false);
   const [updateData, setUpdateData] = useState({
     email: "",
     name: "",
@@ -54,17 +55,18 @@ export default function Profile() {
       })
       .catch((err) => console.log(err));
   }, []);
-  const updateHandler = () => {
-    //e.preventDefault();
+  const updateHandler = (e) => {
     axios({
       method: "PUT",
       url: `/update`,
       data: updateData,
     })
       .then((response) => {
-        console.log(response.data);
+        console.log("what came?", response);
         notify();
         setUpdateData({ ...response.data, password: updateData.password });
+        dispatch(updateUser(response.data));
+        history.push("/home");
       })
       .catch((err) => {
         notifyError();
@@ -167,7 +169,7 @@ export default function Profile() {
           errors.confirmPassword.type === "maxLength" && (
             <span className="errorsMsg">Max length exceeded</span>
           )}
-        ;
+
         <Button
           style={{ width: "130px", alignItems: "center" }}
           className="ui primary labeled icon button"
@@ -175,7 +177,42 @@ export default function Profile() {
         >
           <i class="edit icon"></i>Update
         </Button>
+        <Button
+          style={{ width: "130px", alignItems: "center" }}
+          className="ui red labeled icon button"
+          onClick={() => setOpenModal(true)}
+        >
+          <i class="trash alternate outline icon"></i>Delete
+        </Button>
       </Form>
+      {/* MODAL TO DELETE */}
+      <Modal
+        size="mini"
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        onOpen={() => setOpenModal(true)}
+      >
+        <Header icon="trash alternate" content="Delete Profile" />
+        <Modal.Content>
+          <p>
+            Would you like to delete your profile permanently? This action can
+            not be undone.
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button
+            color="red"
+            onClick={() => {
+              delProfile();
+            }}
+          >
+            <Icon name="checkmark" /> Yes
+          </Button>
+          <Button color="green" onClick={() => setOpenModal(false)}>
+            <Icon name="cancel" /> Cancel
+          </Button>
+        </Modal.Actions>
+      </Modal>
       <ModalBox function={delProfile} text="DELETE PROFILE" />
     </div>
   );

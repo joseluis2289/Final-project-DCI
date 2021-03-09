@@ -14,8 +14,8 @@ const path = require("path");
 //Define PORT
 const PORT = process.env.PORT || 5000;
 
-//const url = process.env.MONGO_URIBel;
-const url = process.env.MONGO_URIJose;
+const url = process.env.MONGO_URIBel;
+//const url = process.env.MONGO_URIJose;
 
 //connect to DataBase
 const connectDB = async () => {
@@ -181,14 +181,15 @@ app.put("/update", (req, res, next) => {
       if (err) {
         res.send(err);
       } else {
-        User.updateOne(
+        User.findOneAndUpdate(
           { email: updateUser.email },
           {
             name: updateUser.name,
             userName: updateUser.userName,
             email: updateUser.email,
             password: hash,
-          }
+          }, 
+          { new: true } 
         )
           .then((result) => {
             res.send(result);

@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700&family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap");
+/* Lots of Google Fonts were imported for testing, the ones not used
+have to be removed later... */
+
 /* Color Palette: https://flatuicolors.com/palette/es */
 :root {
   --green-light: #33d9b2;
@@ -14,8 +18,26 @@
   --yellow-dark: #020202;
 }
 
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* TYPOGRAPHY */
+
 body {
+  font-family: "Roboto", sans-serif;
   background-color: var(--off-white);
+  color: #181818;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Epilogue", sans-serif;
+  font-weight: 600;
 }
 
 legend,
@@ -62,6 +84,7 @@ button {
   padding: 1rem 0;
 }
 /* .searchbar-form {
+>>>>>>> 2d60b92ef5ce5bf29a0badefa3c4502b8364093b
   background-color: #ffda79;
   display: flex;
   align-items: center;
@@ -154,11 +177,11 @@ main h2 {
   margin: 1rem 0 0 1rem;
 }
 
-/* main input {
+main input {
   min-width: 33ch;
   box-shadow: 0.2rem 0.2rem 0 var(--yellow-dark);
   border: 1px solid var(--yellow-dark);
-} */
+}
 main input:focus {
   border: 1px solid var(--violett-light);
 }
@@ -213,14 +236,10 @@ button:hover {
 .star-icon {
   width: 1.67rem;
   height: 1.67rem;
-  display: flex;
-  justify-content: center;
 }
 .rating-container {
   display: flex;
   align-items: center;
-  width: 300px;
-  height: 4vh;
 }
 .rating-number {
   font-weight: bold;
@@ -233,8 +252,28 @@ button:hover {
   cursor: pointer;
 }
 
+/****SETTINGS****/
+.add-resource {
+  width: 30vw;
+}
+.settings-navbar {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: var(--violett-light);
+}
+.settings-navbar a {
+  text-decoration: none;
+  color: var(--yellow-light);
+  font-weight: 500;
+  margin: 0.5rem;
+}
+.settings-navbar img {
+  margin: 0 0.5rem;
+}
 
 /****UPDATE RESOURCE****/
+
 .update-resource {
   border: 1px solid var(--yellow-dark);
   margin: 2rem;
@@ -267,6 +306,7 @@ button:hover {
 /* FOOTER */
 footer {
   display: flex;
+  justify-content: center;
   background-color: var(--yellow-light);
   font-size: 1rem;
   position: fixed;
@@ -277,7 +317,6 @@ footer {
 footer p {
   margin: 0;
   font-style: italic;
-  text-align: center;
 }
 footer p > a {
   color: black;
@@ -285,17 +324,7 @@ footer p > a {
 footer p > a:hover {
   color: var(--blue-dark);
 }
-footer .icon {
-  height: 1.67rem;
-  margin: 0.5rem 0.5rem -0.5rem 1rem;
-}
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
 .errorsMsg {
   color: red;
-}
-.intro-text {
-  background-color: var(--off-white);
-  text-align: center;
-  font-size: 1.125rem;
-  padding: 1em 1em 0 1em;
 }

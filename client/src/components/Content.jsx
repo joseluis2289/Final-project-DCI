@@ -4,7 +4,15 @@ import { connect, useSelector } from "react-redux";
 import Resource from "./Resource/Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
-import { Button, Icon, Pagination } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Icon,
+  Pagination,
+  Header,
+  Grid,
+} from "semantic-ui-react";
+import "./Content.css";
 
 const Content = ({ getResources, resources, filter }) => {
   // When page loads for the first time, load resources from the database
@@ -53,41 +61,43 @@ const Content = ({ getResources, resources, filter }) => {
   }
 
   return (
-    <Fragment>
-      <Button primary>
-        <Icon name="add circle" />
-        Add Resource
-      </Button>
-      <Link to="/add_resource">
-        <Icon name="add circle" />
-        AddResource
-      </Link>
-      <div className="references-container">
-        <section className="pagination">
-          Found <strong>{resources.length}</strong> Entries / Page:{" "}
-          {pagination.current} of {pagination.max} /
-          <Pagination
-            boundaryRange={0}
-            defaultActivePage={1}
-            siblingRange={0}
-            totalPages={pagination.max}
-          />
-          {pagination.display.map((index) => {
-            return (
-              <Fragment>
-                <button
-                  key={index}
-                  id={"page-" + index}
-                  onClick={handlePageChange}
-                  className={index === pagination.current ? "active" : null}
-                >
-                  {index}
-                </button>
-              </Fragment>
-            );
-          })}
-        </section>
-
+    <Grid doubling columns={2} className="references-container">
+      <Grid.Row>
+        <Grid.Column>
+          <Header as="h2">RESOURCES</Header>
+          <Link to="/add_resource">
+            <Button primary>
+              <Icon name="add circle" />
+              Add Resource
+            </Button>
+          </Link>
+          <section className="pagination">
+            Found <strong>{resources.length}</strong> Entries / Page:{" "}
+            {pagination.current} of {pagination.max} /
+            <Pagination
+              boundaryRange={0}
+              defaultActivePage={1}
+              siblingRange={0}
+              totalPages={pagination.max}
+            />
+            {pagination.display.map((index) => {
+              return (
+                <Fragment>
+                  <button
+                    key={index}
+                    id={"page-" + index}
+                    onClick={handlePageChange}
+                    className={index === pagination.current ? "active" : null}
+                  >
+                    {index}
+                  </button>
+                </Fragment>
+              );
+            })}
+          </section>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
         {resources.map((item, index) => {
           let showByCategory = false;
           let showByRating = false;
@@ -95,13 +105,7 @@ const Content = ({ getResources, resources, filter }) => {
           let showByCurrentPage = false;
 
           // FILTER FOR CATEGORIES
-          let categories = [
-            "general",
-            "frontend",
-            "backend",
-            "database",
-            "machineLearning",
-          ];
+          let categories = ["general", "frontend", "backend", "database"];
           categories.forEach((cat) => {
             if (filter[cat] === true && item.category.includes(cat)) {
               showByCategory = true;
@@ -132,12 +136,21 @@ const Content = ({ getResources, resources, filter }) => {
           }
           // If resource matches all filter criteria, it is displayed
           if (showByCost && showByRating && showByCategory && showByCurrentPage)
-            return <Resource id={item._id} key={index} data={item} />;
+            return (
+              <Grid.Column>
+                <Resource
+                  id={item._id}
+                  key={index}
+                  data={item}
+                  author="false"
+                />
+              </Grid.Column>
+            );
           return "";
           // } else return "";
         })}
-      </div>
-    </Fragment>
+      </Grid.Row>
+    </Grid>
   );
 };
 

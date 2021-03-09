@@ -2,5 +2,56 @@
      User Global Variables
 *******************************/
 
-@primaryColor   : #33D9B2;
-@secondaryColor : #706FD0;
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName           : 'Roboto';
+@fontSmoothing      : antialiased;
+
+@headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+
+@googleFontName    : @fontName;
+@importGoogleFonts : true;
+@googleFontSizes   : '400;500;600;700';
+@googleSubset      : 'latin';
+
+@googleProtocol    : 'https://';
+@googleFontRequest : '{googleFontName}:wght@{googleFontSizes}&subset=@{googleSubset}&display=swap';
+
+@bold              : bold;
+@normal            : normal;
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+@emSize   : 17px;
+
+/* The size of page text  */
+@fontSize : 17px;
+
+
+/*-------------------
+    Border Radius
+--------------------*/
+
+/* See Power-user section below
+   for explanation of @px variables
+*/
+@relativeBorderRadius: @relative8px;
+@absoluteBorderRadius: @8px;
+
+@defaultBorderRadius: @absoluteBorderRadius;
+
+/*-------------------
+    Brand Colors
+--------------------*/
+
+@primaryColor   : #218c74;
+@secondaryColor : #474787;
+
+@lightPrimaryColor   : #33d9b2;
+@lightSecondaryColor : #706fd3;
