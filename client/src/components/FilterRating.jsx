@@ -30,9 +30,9 @@ export default function FilterRating() {
 
   return (
     <figure
+      style={{ width: "300px", height: "1vh" }}
       className="rating-container"
       role="group"
-      // style={{ display: "flex" }}
     >
       {[1, 2, 3, 4, 5].map((index) => {
         return (
