@@ -4,21 +4,7 @@ import { updateData } from "../../redux/actions";
 import axios from "axios";
 import ModalBox from "../ModalBox";
 import moment from "moment";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Image,
-  Grid,
-  GridRow,
-  GridColumn,
-  CardMeta,
-  Item,
-  CardDescription,
-  Label,
-  Header,
-} from "semantic-ui-react";
+import { Button, Card, Header, Form, Input, Grid } from "semantic-ui-react";
 
 export default function Comment(props) {
   const user = useSelector((state) => state.user);
@@ -80,36 +66,50 @@ export default function Comment(props) {
   };
 
   return (
-    <div style={{ border: "solid blue 1px" }} className="comment">
-      {props.data.user ? (
-        <h3>{props.data.user.userName}</h3>
-      ) : (
-        <h3>anonymous</h3>
-      )}
-
-      <span style={{ border: "solid red 1px" }}>
-        {moment(props.data.date).fromNow()}
-      </span>
-
-      <div>
-        {props.data.user && props.data.user._id === user._id && !edit && (
-          <div style={{ border: "solid green 1px" }}>
-            <ModalBox function={delComment} text="X" />{" "}
-            <button
-              onClick={() => {
-                displayButtons(true);
-              }}
-            >
-              Edit
-            </button>
-          </div>
+    <Grid divided="vertically">
+      <Grid.Row
+        style={{ display: "flex", justifyContent: "space-around" }}
+        column={2}
+      >
+        {props.data.user ? (
+          <Header style={{ color: "blue" }} as="h4">
+            {props.data.user.userName}
+          </Header>
+        ) : (
+          <Header as="h4">anonymous</Header>
         )}
-      </div>
 
-      {!edit && <p style={{ border: "solid red 1px" }}>{props.data.text}</p>}
+        <Card.Meta>{moment(props.data.date).fromNow()}</Card.Meta>
+
+        <div>
+          {props.data.user && props.data.user._id === user._id && !edit && (
+            <div style={{ display: "flex" }}>
+              <ModalBox function={delComment} text="X" />{" "}
+              <Button
+                style={{
+                  fontSize: "10px",
+                  width: "5px",
+                  height: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: "0",
+                }}
+                onClick={() => {
+                  displayButtons(true);
+                }}
+              >
+                Edit
+              </Button>
+            </div>
+          )}
+        </div>
+      </Grid.Row>
+      {!edit && <p style={{ marginLeft: "15px" }}>{props.data.text}</p>}
+
       {edit && (
-        <form onSubmit={(e) => updateComment(e)}>
-          <input
+        <Form onSubmit={(e) => updateComment(e)}>
+          <Input
             type="text"
             name="text"
             disabled={
@@ -117,23 +117,23 @@ export default function Comment(props) {
             }
             value={comment.text}
             onChange={formHandler}
-          ></input>
+          ></Input>
           {edit && (
-            <div>
-              <button
+            <div style={{ display: "flex" }}>
+              <Button
                 onClick={() => {
                   displayButtons(false);
                 }}
               >
                 Cancel
-              </button>
-              <button type="submit">Save</button>
+              </Button>
+              <Button type="submit">Save</Button>
             </div>
           )}
-        </form>
+        </Form>
       )}
 
-      {props.data.edited && <span>Edited</span>}
-    </div>
+      {props.data.edited && <Card.Meta>Edited</Card.Meta>}
+    </Grid>
   );
 }
