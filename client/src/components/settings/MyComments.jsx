@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import UpdateComment from "./UpdateComment";
-import Settings from "./Settings";
 
 export default function MyComments() {
   const user = useSelector((state) => state.user);
@@ -21,7 +20,6 @@ export default function MyComments() {
   }, [update, user._id]);
   return (
     <Fragment>
-      <Settings />
       {userComments ? (
         <Fragment>
           {" "}

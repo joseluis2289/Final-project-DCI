@@ -8,6 +8,7 @@ Optimize the progress of web development students by developing an web applicati
 The users can share a link he liked, rate the resource he saw and comment his experience.
 
 The resources can be found depending on:
+
 - [x] its category
-- [x] it is payed or not
+- [x] if is payed or not
 - [x] the input from search bar

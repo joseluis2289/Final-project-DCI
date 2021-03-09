@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Rating from "./Rating";
 import CreateComment from "./CreateComment.jsx";
 import DisplayComments from "./DisplayComments";
+import Options from "./Options";
 import {
   Button,
   Card,
@@ -26,6 +27,7 @@ const Resource = (props) => {
   const update = useSelector((state) => state.update);
   const [makeCom, setMakeComm] = useState(false);
   const [displayCom, setDisplayComm] = useState(false);
+
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
@@ -89,7 +91,7 @@ const Resource = (props) => {
                   floated="right"
                   size="mini"
                 >
-                  <i class="ellipsis horizontal icon"></i>
+                  <Options resource={props.data} />
                 </Item>
               </GridRow>
             </Grid>

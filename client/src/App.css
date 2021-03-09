@@ -1,7 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700&family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap");
-/* Lots of Google Fonts were imported for testing, the ones not used
-have to be removed later... */
-
 /* Color Palette: https://flatuicolors.com/palette/es */
 :root {
   --green-light: #33d9b2;
@@ -15,21 +11,12 @@ have to be removed later... */
   --violett-light: #706fd3;
   --violett-dark: #474787;
   --yellow-light: #ffda79;
-  --yellow-dark: #ccae62;
+  --yellow-dark: #020202;
 }
-
-* {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* TYPOGRAPHY */
 
 body {
-  font-family: "Roboto", sans-serif;
   background-color: var(--off-white);
+
   color: #181818;
 }
 
@@ -331,6 +318,7 @@ footer p > a:hover {
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
 .errorsMsg {
   color: red;
+
 }
 
 #main_comment_box {
