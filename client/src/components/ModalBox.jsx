@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { Button, Card, Header } from "semantic-ui-react";
+
 export default function ModalBox(props) {
   const customStyles = {
     content: {
@@ -27,7 +29,20 @@ export default function ModalBox(props) {
 
   return (
     <div>
-      <button onClick={openModal}>{props.text}</button>
+      <Button
+        style={{
+          fontSize: "10px",
+          width: "5px",
+          height: "10px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "0",
+        }}
+        onClick={openModal}
+      >
+        {props.text}
+      </Button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -35,10 +50,10 @@ export default function ModalBox(props) {
         contentLabel="Delete Modal"
       >
         <div className="modal">
-          <h3>Are you sure you want to delete it?</h3>
+          <Header>Are you sure you want to delete it?</Header>
           <p>This action can not be undone!</p>
-          <button onClick={closeModal}>Yes</button>
-          <button onClick={cancelModal}>Cancel</button>
+          <Button onClick={closeModal}>Yes</Button>
+          <Button onClick={cancelModal}>Cancel</Button>
         </div>
       </Modal>
     </div>

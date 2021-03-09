@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateData } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Form, TextArea, Button, Label, Input } from "semantic-ui-react";
+import { Form, Button, Item, TextArea, Card } from "semantic-ui-react";
 
 export default function CreateComment({
   resourceId,
@@ -69,20 +69,24 @@ export default function CreateComment({
       {makeCom && (
         <Form onSubmit={(e) => addComment(e)}>
           {" "}
-          <div>
-            <Label htmlFor="title">Comment:</Label>
-            <Input
+          <Card style={{ width: "400px" }}>
+            <TextArea
               name="text"
-              rows="5"
+              rows="2"
               cols="33"
               placeholder="Please comment here..."
               required
               onChange={formHandler}
-            ></Input>
-          </div>
-          <Button style={{ marginTop: "5px" }} basic color="blue" type="submit">
-            Add Comment
-          </Button>
+            />
+            <Button
+              style={{ marginTop: "5px" }}
+              basic
+              color="blue"
+              type="submit"
+            >
+              Add Comment
+            </Button>
+          </Card>
         </Form>
       )}
     </div>

@@ -286,8 +286,10 @@ button:hover {
 }
 /****COMMENT****/
 .comment {
-  border: 1px solid var(--yellow-dark);
+  /* border: 1px solid var(--yellow-dark); */
   padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .comment-image {
@@ -329,4 +331,11 @@ footer p > a:hover {
 /***** ERRROR MSG TO INPUT IN lOGIN AND REGISTER FORM *****/
 .errorsMsg {
   color: red;
+}
+
+#main_comment_box {
+  overflow-y: scroll;
+  max-height: 150px;
+  width: 450px;
+  scroll-behavior: smooth;
 }

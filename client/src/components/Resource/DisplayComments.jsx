@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Comment from "./Comment";
 import { useSelector } from "react-redux";
+import { Button, Card, Label, Item } from "semantic-ui-react";
 
 export default function DisplayComments({ comments, displayCom, showComm }) {
   const [commentsArray, setCommentsArray] = useState(comments);
@@ -13,27 +14,38 @@ export default function DisplayComments({ comments, displayCom, showComm }) {
   }, [update, showComm, comments]);
 
   return (
-    <div style={{ border: "solid orange 1px" }}>
+    <Item>
       <span>
         {
           <Fragment>
-            <div
+            <Button
+              style={{ marginTop: "15px" }}
               onClick={() => {
                 showComm(!displayCom);
               }}
             >
-              {parseInt(comments.length)} Comments{" "}
-            </div>
+              show comments {parseInt(comments.length)} Comments{" "}
+            </Button>
           </Fragment>
         }
       </span>
-      {displayCom && (
-        <Fragment>
-          {commentsArray.map((comment) => (
-            <Comment key={comment._id} data={comment}></Comment>
-          ))}
-        </Fragment>
-      )}
-    </div>
+      <Item
+        style={{
+          overflow: "scroll",
+          maxHeight: "150px",
+          width: "450px",
+          scrollBehavior: "smooth",
+          marginTop: "15px",
+        }}
+      >
+        {displayCom && (
+          <Fragment>
+            {commentsArray.map((comment) => (
+              <Comment key={comment._id} data={comment}></Comment>
+            ))}
+          </Fragment>
+        )}
+      </Item>
+    </Item>
   );
 }
