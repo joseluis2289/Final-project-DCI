@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   filterCategory,
   filterFree,
   filterPaid,
   searchResources,
 } from "../redux/actions";
-import FilterRating from "../components/FilterRating";
+// import FilterRating from "../components/FilterRating";
 import {
   Grid,
   Form,
-  Button,
   Checkbox,
   Rating,
   Header,
@@ -18,6 +18,7 @@ import {
 } from "semantic-ui-react";
 
 export default function Filter() {
+  const history = useHistory();
   // In the beginning all resources are shown: free, paid and all ratings.
   let initialState = {
     free: true,
@@ -112,6 +113,7 @@ export default function Filter() {
     e.preventDefault();
     // console.log("Searching for...", filterData.search);
     dispatch(searchResources(filterData.search));
+    history.push("/");
   }
 
   return (

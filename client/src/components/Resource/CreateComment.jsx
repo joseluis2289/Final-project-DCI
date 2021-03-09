@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateData } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Form, TextArea, Button, Label, Input } from "semantic-ui-react";
 
 export default function CreateComment({
   resourceId,
-  handleCreateCom,
   makeCom,
   showComm,
+  showMakeComm,
 }) {
   const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
@@ -18,7 +19,7 @@ export default function CreateComment({
   });
   const dispatch = useDispatch();
   function openCom(newValue) {
-    handleCreateCom(newValue);
+    showMakeComm(newValue);
   }
 
   const addComment = (e) => {
@@ -26,11 +27,11 @@ export default function CreateComment({
     axios({
       method: "POST",
       url: "/comments",
-      ContentType: "application/json",
+      ContentType: "application/json; charset=utf-8",
       data: comment,
     })
       .then((res) => {
-        openCom(false);
+        showMakeComm(false);
         showComm(true);
         dispatch(updateData(update));
         console.log("here", res.data);
@@ -46,7 +47,6 @@ export default function CreateComment({
         <div
           onClick={() => {
             openCom(!makeCom);
-            /* showComm(false); */
           }}
         >
           <span>
@@ -54,25 +54,36 @@ export default function CreateComment({
           </span>
         </div>
       ) : (
-        <Link to="/login">LogIn to comment </Link>
+        <Link
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "50px",
+            fontSize: "20px",
+          }}
+          to="/login"
+        >
+          You must be logged in to post a comment{" "}
+        </Link>
       )}
       {makeCom && (
-        <form onSubmit={(e) => addComment(e)}>
+        <Form onSubmit={(e) => addComment(e)}>
           {" "}
           <div>
-            <label htmlFor="title">Comment:</label>
-            <textarea
+            <Label htmlFor="title">Comment:</Label>
+            <Input
               name="text"
               rows="5"
               cols="33"
-              style={{ border: "solid black 2px" }}
               placeholder="Please comment here..."
               required
               onChange={formHandler}
-            ></textarea>
+            ></Input>
           </div>
-          <button type="submit">Add Comment</button>
-        </form>
+          <Button style={{ marginTop: "5px" }} basic color="blue" type="submit">
+            Add Comment
+          </Button>
+        </Form>
       )}
     </div>
   );

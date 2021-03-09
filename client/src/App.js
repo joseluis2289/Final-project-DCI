@@ -16,7 +16,8 @@ import ResourcePage from "./components/ResourcePage";
 import UpdateResource from "./components/settings/UpdateResource";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
-// import "./App.css";
+import "./App.css";
+import "semantic-ui-css/semantic.min.css";
 
 export default function App() {
   const error = useSelector((state) => state.error);
@@ -24,7 +25,6 @@ export default function App() {
     <Router>
       <Navbar />
       <p>Find a resource to help you learn about a specific topic.</p>
-
       {error === {} ? <NotFound /> : <Filter />}
       <Switch>
         <main>

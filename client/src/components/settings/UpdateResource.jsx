@@ -44,7 +44,7 @@ export default function UpdateResource(props) {
     axios({
       method: "PUT",
       url: `/resources/${resource._id}`,
-      ContentType: "application/json",
+      ContentType: "application/json; charset=utf-8",
       data: resource,
     })
       .then(function (response) {
@@ -61,7 +61,7 @@ export default function UpdateResource(props) {
     axios({
       method: "DELETE",
       url: `/resources/${resource._id}`,
-      ContentType: "application/json",
+      ContentType: "application/json; charset=utf-8",
     })
       .then((response) => {
         console.log("sta é a resposta", response);

@@ -1,6 +1,6 @@
 var router = require("express").Router();
 const Resource = require("../Models/ResourceModel");
-const UserSchema = require("../Models/userModel");
+const User = require("../Models/UserModel");
 const Comment = require("../Models/Comment");
 
 /*  router.use("/", (req, res, next) => {
@@ -21,7 +21,7 @@ router.post("/", (req, res, next) => {
     .save()
     .then((comment) => {
 
-      UserSchema.findByIdAndUpdate(comment.user, {$push:{comments: comment._id}})
+      User.findByIdAndUpdate(comment.user, {$push:{comments: comment._id}})
           .then((userUpdated)=>{
             
               Resource.findByIdAndUpdate(comment.resource, {$push:{comments: comment._id}})

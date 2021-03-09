@@ -84,7 +84,6 @@ button {
   padding: 1rem 0;
 }
 /* .searchbar-form {
->>>>>>> 2d60b92ef5ce5bf29a0badefa3c4502b8364093b
   background-color: #ffda79;
   display: flex;
   align-items: center;
@@ -177,11 +176,11 @@ main h2 {
   margin: 1rem 0 0 1rem;
 }
 
-main input {
+/* main input {
   min-width: 33ch;
   box-shadow: 0.2rem 0.2rem 0 var(--yellow-dark);
   border: 1px solid var(--yellow-dark);
-}
+} */
 main input:focus {
   border: 1px solid var(--violett-light);
 }
@@ -236,10 +235,14 @@ button:hover {
 .star-icon {
   width: 1.67rem;
   height: 1.67rem;
+  display: flex;
+  justify-content: center;
 }
 .rating-container {
   display: flex;
   align-items: center;
+  width: 300px;
+  height: 4vh;
 }
 .rating-number {
   font-weight: bold;
@@ -273,7 +276,6 @@ button:hover {
 }
 
 /****UPDATE RESOURCE****/
-
 .update-resource {
   border: 1px solid var(--yellow-dark);
   margin: 2rem;
@@ -292,7 +294,7 @@ button:hover {
   width: 150px;
   height: 150px;
 }
-.update-comment{
+.update-comment {
   border: 2px solid var(--yellow-dark);
   width: 50vw;
   align-items: center;

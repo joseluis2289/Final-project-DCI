@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Star from "./Star";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { updateData } from "../../redux/actions";
 
 // Gets Rating (between 0 and 5) as decimal number in props.rating
@@ -11,6 +13,21 @@ export default function Rating(props) {
   const [hoverRating, setHoverRating] = useState(0);
   const dispatch = useDispatch();
   let history = useHistory();
+
+  const notifyInfo = () => {
+    toast.info("You can rate only rate once!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  const NotifyWarn = () => {
+    toast.warn("you need to login if you want to rate", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
   const onMouseEnter = (index) => {
     setHoverRating(index);
   };
@@ -38,13 +55,13 @@ export default function Rating(props) {
             console.log(data.average);
             setRating(data.average);
             if (data.isUserRateAccepted === false) {
-              alert("You can only rate once!");
+              notifyInfo();
             }
           });
         } else {
           if (response.status === 401) {
             history.push("/login");
-            alert("you need to login if you want to rate");
+            NotifyWarn();
           }
         }
       })
@@ -55,7 +72,11 @@ export default function Rating(props) {
   /* useEffect(() => {}, [update]); */
   return (
     <section>
-      <figure className="rating-container" role="group">
+      <figure
+        style={{ display: "flex", justifyContent: "center" }}
+        // className="rating-container"
+        role="group"
+      >
         {[1, 2, 3, 4, 5].map((index) => {
           return (
             <Star
