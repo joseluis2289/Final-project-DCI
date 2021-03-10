@@ -160,13 +160,8 @@ const Content = ({ getResources, resources, filter }) => {
               // && showByCurrentPage
             )
               return (
-                <Grid.Column>
-                  <Resource
-                    id={item._id}
-                    key={index}
-                    data={item}
-                    author="false"
-                  />
+                <Grid.Column key={item._id}>
+                  <Resource id={item._id} data={item} author="false" />
                 </Grid.Column>
               );
             return "";
