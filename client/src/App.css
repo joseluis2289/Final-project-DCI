@@ -339,3 +339,14 @@ footer p > a:hover {
   width: 450px;
   scroll-behavior: smooth;
 }
+/* .resource-box {
+  width: 95%;
+  margin-top: "20px";
+}
+@media only screen and (max-width: 600px) {
+  .references-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 5px;
+  }
+} */

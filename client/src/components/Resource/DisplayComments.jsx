@@ -32,8 +32,8 @@ export default function DisplayComments({ comments, displayCom, showComm }) {
       <Item
         style={{
           overflow: "scroll",
-          maxHeight: "150px",
-          width: "450px",
+          maxHeight: "180px",
+          width: "500px",
           scrollBehavior: "smooth",
           marginTop: "15px",
         }}
