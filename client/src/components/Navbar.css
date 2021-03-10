@@ -1,10 +1,14 @@
 .app-header {
-  background-color: #ffda79;
+  background-color: var(--yellow-light);
 }
-.app-header nav a {
-  color: rgb(71, 71, 135);
+.app-header a,
+.app-header .dropdown-label {
+  color: var(--violett-dark);
   font-weight: 500;
 }
-.app-header nav .icon {
+.app-header .icon {
   color: rgba(0, 0, 0, 0.8);
+}
+.app-header .dropdown a .icon {
+  /* color: var(--gray-dark); */
 }
