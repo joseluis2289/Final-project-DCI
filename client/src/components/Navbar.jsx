@@ -39,23 +39,61 @@ export default function Navbar() {
     { key: "sign-out", text: "Sign Out", value: "/home" },
   ];
   return (
-    <Grid columns={2} as="header" className="app-header">
+    <Grid
+      verticalAlign="middle"
+      padded
+      columns={2}
+      as="header"
+      className="app-header"
+    >
       <Grid.Row>
-        <Grid.Column textAlign={"center"} width={3} only="mobile">
+        <Grid.Column textAlign={"center"} width={2} only="mobile">
           <Dropdown item icon="bars" simple>
             <Dropdown.Menu>
+              <Dropdown.Item disabled>
+                <span>
+                  <Icon name="user" /> Hello, {`${user.name}`}
+                </span>
+              </Dropdown.Item>
               <Dropdown.Item>
-                <Link to="/home">
-                  <Icon name="home" />
-                  Home
+                <Link to="/about">
+                  <Icon name="info circle" />
+                  About
+                </Link>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Link to="/">
+                  <Icon name="book" />
+                  Material
                 </Link>
               </Dropdown.Item>
               {logIn ? (
-                <Dropdown
-                  trigger={trigger}
-                  options={loggedOptions}
-                  onChange={move}
-                />
+                <React.Fragment>
+                  <Dropdown.Item>
+                    <Link to="/profile">
+                      <Icon name="user circle" />
+                      Profile
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link to="/my_resources">
+                      <Icon name="star" />
+                      My Resources
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link to="/my_comments">
+                      <Icon name="comment" />
+                      My Comments
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link to="/logout">
+                      <Icon name="logout" />
+                      Logout
+                    </Link>
+                  </Dropdown.Item>
+                </React.Fragment>
               ) : (
                 <React.Fragment>
                   <Dropdown.Item>
@@ -75,7 +113,7 @@ export default function Navbar() {
             </Dropdown.Menu>
           </Dropdown>
         </Grid.Column>
-        <Grid.Column width={13} only="mobile">
+        <Grid.Column width={14} only="mobile">
           <Link to="/">
             <Header as="h1">Student Companion</Header>
           </Link>
@@ -93,11 +131,17 @@ export default function Navbar() {
           width={7}
           only="tablet computer"
         >
-          <Menu compact>
+          <Menu compact secondary>
             <Menu.Item>
-              <Link to="/home">
-                <Icon name="home" />
-                Home
+              <Link to="/about">
+                <Icon name="info circle" />
+                About
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link to="/">
+                <Icon name="book" />
+                Learn
               </Link>
             </Menu.Item>
             {logIn ? (

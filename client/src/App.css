@@ -11,12 +11,10 @@
   --violett-light: #706fd3;
   --violett-dark: #474787;
   --yellow-light: #ffda79;
-  --yellow-dark: #020202;
+  --yellow-dark: #ccae62;
 }
 
 body {
   background-color: var(--off-white);
-
   color: #181818;
 }
-

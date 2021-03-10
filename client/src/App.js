@@ -14,19 +14,17 @@ import MyComments from "./components/settings/MyComments";
 import ResourcePage from "./components/ResourcePage";
 import UpdateResource from "./components/settings/UpdateResource";
 import NotFound from "./components/NotFound";
-import Footer from "./components/Footer";
+import About from "./components/About";
 import "./App.css";
 
 export default function App() {
-  const error = useSelector((state) => state.error);
   return (
     <Router>
       <Navbar />
-      <p>Find a resource to help you learn about a specific topic.</p>
-      {error === {} ? <NotFound /> : <Filter />}
       <Switch>
         <main>
           <Route path="/home" component={Home} />
+          <Route path="/about" component={About} />
           <Route
             exact
             path="/resources/resource/:resourceId"

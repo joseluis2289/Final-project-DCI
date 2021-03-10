@@ -1,14 +1,26 @@
+/* Small text above Search Field */
+.intro-text {
+  font-size: 1.125rem;
+  font-weight: normal;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.logo {
+  height: 9rem;
+}
 .references-container {
   background-color: hsl(241, 53%, 67%);
-  /* border-top-left-radius: 1.67rem;
-  border-top-right-radius: 1.67rem; */
 }
 .resource-container {
-  background-color: #fff;
+  background-color: #fff !;
   border-radius: 1.33rem;
   margin: 0.67rem;
   padding: 1.33rem;
 }
-.references-container .icon {
+.references-container .resources-title {
+  color: #fff;
+}
+.references-container button .icon {
+  background: rgba(0, 0, 0, 0.16) !important;
   color: #000;
 }

@@ -8,7 +8,6 @@ import {
   filterRating,
   searchResources,
 } from "../redux/actions";
-// import FilterRating from "../components/FilterRating";
 import {
   Grid,
   Form,
@@ -126,22 +125,25 @@ export default function Filter() {
 
   return (
     <Grid columns={2} as="section">
+      {/* ---------- SEARCH BAR ---------- */}
       <Grid.Row>
         <Grid.Column width={2}></Grid.Column>
         <Grid.Column width={12}>
           <Form size="big" onSubmit={search}>
             <Form.Input
+              focus
               icon="search"
               iconPosition="left"
               type="search"
               name="search"
               id="search"
-              placeholder="Search..."
+              placeholder='Search... (for example "React", or "Git")'
               onChange={handleSearchChange}
             />
           </Form>
         </Grid.Column>
       </Grid.Row>
+      {/* ---------- FILTER ---------- */}
       <Grid.Row className="filter-container">
         <Grid.Column width={8}>
           <Header as="h3">Filter by Category</Header>

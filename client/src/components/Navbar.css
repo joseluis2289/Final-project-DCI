@@ -1,3 +1,10 @@
 .app-header {
   background-color: #ffda79;
 }
+.app-header nav a {
+  color: rgb(71, 71, 135);
+  font-weight: 500;
+}
+.app-header nav .icon {
+  color: rgba(0, 0, 0, 0.8);
+}
