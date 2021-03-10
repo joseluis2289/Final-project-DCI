@@ -61,19 +61,24 @@ export default function Options({ resource }) {
 
   //setting function depending on which link from dropdown was clicked
   const handle = (e, { value }) => {
+    console.log("handle", e.target);
     if (value === "edit") {
+      console.log("edit");
       history.push(`/update_resource/${resource._id}`);
     }
     if (value === "delete") {
+      console.log("delete");
       setDeleteModal(true);
     }
     if (value === "share") {
+      console.log("share");
       var url = `https://webdevelop-student-companion.herokuapp.com/resources/resource/${resource._id}`;
       navigator.clipboard.writeText(url);
       notify();
     }
     //updating property "reported" to true
     if (value === "report") {
+      console.log("resport");
       if (logIn) {
         setFirstOpen(true);
         setResourceData({ ...resource, reported: true });
@@ -167,7 +172,7 @@ export default function Options({ resource }) {
         onOpen={() => setFirstOpen(true)}
         open={firstOpen}
       >
-        <Header icon="attention alternate" content="Report Content" />
+        <Header icon="attention" content="Report Content" />
         <Modal.Content>
           <Form>
             <Form.Field>Why do you want to report this resource?</Form.Field>
