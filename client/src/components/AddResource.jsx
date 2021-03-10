@@ -1,25 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import {
-  Button,
-  Card,
-  Form,
-  Checkbox,
-  Radio,
-  CardContent,
-  CardHeader,
-  Image,
-  Grid,
-  GridRow,
-  GridColumn,
-  CardMeta,
-  Item,
-  CardDescription,
-  Label,
-  Header,
-} from "semantic-ui-react";
+import { useHistory } from "react-router-dom";
+import { Button, Card, Form, Radio } from "semantic-ui-react";
 
 export default function AddResource() {
   const user = useSelector((state) => state.user._id);
@@ -96,7 +79,7 @@ export default function AddResource() {
         <Form.Field>
           <label htmlFor="link">Link</label>
           <input
-            type="text"
+            type="url"
             name="link"
             placeholder="Enter the Link.."
             onChange={(e) => {
@@ -114,7 +97,7 @@ export default function AddResource() {
                 key={index}
                 type="checkbox"
                 control="input"
-                value={`${name}`}
+                value={item}
                 onChange={(e) => {
                   defineCategory(e.target.value);
                 }}

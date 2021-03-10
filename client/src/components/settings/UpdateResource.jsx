@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateData } from "../../redux/actions";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Button, Card, Form, Radio } from "semantic-ui-react";
+
 import ModalBox from "../ModalBox";
 
 export default function UpdateResource(props) {
   const [resource, setResource] = useState(props.data);
   const update = useSelector((state) => state.update);
+  const [paid, setPaid] = useState(false);
   const dispatch = useDispatch();
-  const [alert, setAlert] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
   );
@@ -18,6 +22,22 @@ export default function UpdateResource(props) {
     "database",
     "general",
   ]);
+
+  //alert messages
+  const notify = () => {
+    toast.success(`Successfully Updated!`, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+  const notifyError = () => {
+    toast.error("Error to Update resource! Try again", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  //show image
   useEffect(() => {
     resource.previewImage && setPreviewUrl(resource.previewImage);
   }, [resource.previewImage, update]);
@@ -48,10 +68,11 @@ export default function UpdateResource(props) {
     })
       .then(function (response) {
         dispatch(updateData(update));
-        setAlert(true);
+        notify();
         console.log(response);
       })
       .catch((err) => {
+        notifyError();
         console.log(err);
       });
   };
@@ -73,8 +94,8 @@ export default function UpdateResource(props) {
     <div className="update-resource">
       <ModalBox function={delResource} text="X" />
 
-      <form onSubmit={updateResource}>
-        <div>
+      <Form onSubmit={updateResource}>
+        <Form.Field>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -82,88 +103,56 @@ export default function UpdateResource(props) {
             placeholder={resource.title}
             onChange={formHandler}
           />
-        </div>
+        </Form.Field>
         <img
           src={previewUrl}
           alt="preview"
           style={{ width: "100px", height: "100px" }}
         ></img>
-        <div>
+        <Form.Field>
           <label htmlFor="link">Link</label>
           <p>{resource.link}</p>
-        </div>
-        <fieldset
-          className="category"
-          name="category"
-          onChange={defineCategory}
-        >
-          <legend>Category</legend>
-
+        </Form.Field>
+        <Form.Group inline>
+          <label>Category</label>
           {categories.map((item, index) => {
             let name = item[0].toUpperCase() + item.substring(1);
             return (
-              <div key={index}>
-                <label htmlFor={item}>
-                  <input
-                    type="checkbox"
-                    name="category"
-                    value={item}
-                    checked={resource.category.indexOf(item) > -1}
-                  />
-                  {name}
-                </label>
-              </div>
+              <Form.Field
+                label={name}
+                key={index}
+                type="checkbox"
+                control="input"
+                value={item}
+                checked={resource.category.indexOf(item) > -1}
+              />
             );
           })}
-        </fieldset>
+        </Form.Group>
 
-        <div name="paid" onChange={formHandler}>
-          <label htmlFor="link">Paid</label>
-          <div>
-            <label htmlFor="access_paid">
-              <input
-                type="radio"
-                name="paid"
-                id="access_paid"
-                value="true"
-                checked={resource.paid ? "true" : "false"}
-                onChange={formHandler}
-              />
-              Yes
-            </label>
-
-            <label htmlFor="access_free">
-              <input
-                type="radio"
-                name="paid"
-                id="access_free"
-                value="false"
-                checked={resource.paid ? "false" : "true"}
-                onChange={formHandler}
-              />
-              No
-            </label>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="title">description</label>
-          <textarea
+        <Form.Field>
+          <Radio
+            toggle
+            label="Paid"
+            name="paid"
+            value={paid}
+            checked={paid === true}
+            onChange={(e) => {
+              setPaid(!paid);
+              setResource({ ...resource, paid: paid });
+            }}
+          />
+        </Form.Field>
+        <Form.Field>
+          <Form.Textarea
+            label="Description"
             name="description"
-            rows="15"
-            cols="70"
-            style={{ border: "solid black 2px" }}
             placeholder={resource.description}
             onChange={formHandler}
-          ></textarea>
-        </div>
-        <button type="submit">Update resource</button>
-        {alert && (
-          <span>
-            Saved{" "}
-            <img className="icon" src="icons/checked.svg" alt="checked Icon" />
-          </span>
-        )}
-      </form>
+          ></Form.Textarea>
+        </Form.Field>
+        <Button type="submit">Update Resource</Button>
+      </Form>
     </div>
   );
 }
