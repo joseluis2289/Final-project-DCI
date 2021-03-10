@@ -71,7 +71,12 @@ export default function Options({ resource }) {
     }
     //updating property "reported" to true
     if (value === "report") {
-      logIn ? setFirstOpen(true) : history.push("/login");
+      if (logIn) {
+        setFirstOpen(true);
+        setResourceData({ ...resource, reported: true });
+      } else {
+        history.push("/login");
+      }
     }
   };
 
@@ -199,7 +204,6 @@ export default function Options({ resource }) {
           <Button
             color="green"
             onClick={(e) => {
-              setResourceData({ ...resource, reported: true });
               /* setFirstOpen(false); */
               setSecondOpen(true);
             }}
