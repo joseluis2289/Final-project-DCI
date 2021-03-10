@@ -79,7 +79,7 @@ export default function AddResource() {
         <Form.Field>
           <label htmlFor="link">Link</label>
           <input
-            type="url"
+            type="text"
             name="link"
             placeholder="Enter the Link.."
             onChange={(e) => {
