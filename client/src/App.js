@@ -43,7 +43,6 @@ export default function App() {
           <Route path="#!" component={NotFound} />
         </main>
       </Switch>
-      <Footer />
     </Router>
   );
 }

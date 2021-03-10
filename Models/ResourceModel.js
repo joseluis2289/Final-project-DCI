@@ -32,7 +32,8 @@ const Resource = new Schema({
     enum: ["documentation", "course"],
   }, // VIRTUAL → EMPTY AT BEGIN
   description: { type: String, required: true },
-  edited: { type: Boolean, default: false }, //update the date
+  edited: { type: Boolean, default: false }, //update the date, 
+  reported: { type: Boolean, default: false },
   comments: [
     {
       type: Schema.Types.ObjectId,

@@ -27,7 +27,6 @@ const Resource = (props) => {
   const update = useSelector((state) => state.update);
   const [makeCom, setMakeComm] = useState(false);
   const [displayCom, setDisplayComm] = useState(false);
-
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );

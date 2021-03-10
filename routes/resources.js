@@ -5,7 +5,7 @@ const Comment = require("../Models/Comment");
 
 //get all Resources
 router.get("/", (req, res, next) => {
-  Resource.find()
+  Resource.find({ reported: false})
     .populate("user", "name")
     .populate({
       path: "comments",
@@ -297,7 +297,7 @@ router.get("/:resource_id", (req, res, next) => {
     .catch((err) => res.send(err));
 });
 
-// update one resource (and change "deleted" to "true")
+// update one resource 
 router.put("/:resource_id", (req, res, next) => {
   console.log("inside put router");
   resourceUpdated = Resource.updateOne(

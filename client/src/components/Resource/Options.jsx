@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { updateData } from "../../redux/actions";
 import {
   Button,
@@ -16,18 +17,28 @@ import axios from "axios";
 
 export default function Options({ resource }) {
   const user = useSelector((state) => state.user);
+  const logIn = useSelector((state) => state.logIn);
+  const [resourceData, setResourceData] = useState(resource);
   const update = useSelector((state) => state.update);
-  const [reasonForReport, setReasonForReport] = useState("");
+  //modal to delete
   const [deleteModal, setDeleteModal] = useState(false);
-  const [reportModal, setReportModal] = useState(false);
+  //modals to report
+  const [firstOpen, setFirstOpen] = React.useState(false);
+  const [secondOpen, setSecondOpen] = React.useState(false);
+  const [reasonForReport, setReasonForReport] = useState("");
 
+  //function to future implementation
   const handleChange = (e, { value }) => setReasonForReport(value);
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  //creating open link to dropdown
   const options = [
     { key: "share", icon: "share", text: "Copy link", value: "share" },
     { key: "report", icon: "attention", text: "Report", value: "report" },
   ];
+  //creating private links to dropdown
   const optionsAuthor = [
     { key: "edit", icon: "edit", text: "Edit Post", value: "edit" },
     {
@@ -39,6 +50,8 @@ export default function Options({ resource }) {
     { key: "share", icon: "share", text: "Copy link", value: "share" },
     { key: "report", icon: "attention", text: "Report", value: "report" },
   ];
+
+  //alert to confirm that link was copied
   const notify = () => {
     toast.success("The link was copied!", {
       position: toast.POSITION.TOP_CENTER,
@@ -46,6 +59,7 @@ export default function Options({ resource }) {
     });
   };
 
+  //setting function depending on which link from dropdown was clicked
   const handle = (e, { value }) => {
     if (value === "delete") {
       setDeleteModal(true);
@@ -55,9 +69,30 @@ export default function Options({ resource }) {
       navigator.clipboard.writeText(url);
       notify();
     }
+    //updating property "reported" to true
     if (value === "report") {
-      setReportModal(true);
+      logIn ? setFirstOpen(true) : history.push("/login");
     }
+  };
+
+  //function to from report
+  const report = (e) => {
+    e.preventDefault();
+    setResourceData({ ...resource, reported: true });
+    axios({
+      method: "PUT",
+      url: `/resources/${resource._id}`,
+      ContentType: "application/json; charset=utf-8",
+      data: resourceData,
+    })
+      .then(function (response) {
+        dispatch(updateData(update));
+        setFirstOpen(false);
+        setSecondOpen(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -117,11 +152,12 @@ export default function Options({ resource }) {
       </Modal>
 
       {/* MODAL TO REPORT */}
+      {/* 2 modals  */}
       <Modal
         size="mini"
-        open={reportModal}
-        onClose={() => setReportModal(false)}
-        onOpen={() => setReportModal(true)}
+        onClose={() => setFirstOpen(false)}
+        onOpen={() => setFirstOpen(true)}
+        open={firstOpen}
       >
         <Header icon="attention alternate" content="Report Content" />
         <Modal.Content>
@@ -157,13 +193,54 @@ export default function Options({ resource }) {
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button color="red" onClick={() => setReportModal(false)}>
+          <Button color="red" onClick={() => setFirstOpen(false)}>
             <Icon name="remove" /> Cancel
           </Button>
-          <Button color="green" onClick={() => setReportModal(false)}>
-            <Icon name="checkmark" /> Send
+          <Button
+            color="green"
+            onClick={(e) => {
+              setResourceData({ ...resource, reported: true });
+              /* setFirstOpen(false); */
+              setSecondOpen(true);
+            }}
+          >
+            Send <Icon name="checkmark" />
           </Button>
         </Modal.Actions>
+
+        <Modal
+          onClose={() => setSecondOpen(false)}
+          open={secondOpen}
+          size="small"
+        >
+          <Modal.Header>Thanks for your help</Modal.Header>
+          <Modal.Content>
+            <p>Our moderators will check this report.</p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button
+              color="red"
+              icon="check"
+              content="Close"
+              onClick={() => {
+                axios({
+                  method: "PUT",
+                  url: `/resources/${resource._id}`,
+                  ContentType: "application/json; charset=utf-8",
+                  data: resourceData,
+                })
+                  .then(function (response) {
+                    dispatch(updateData(update));
+                    setSecondOpen(false);
+                    setFirstOpen(false);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              }}
+            />
+          </Modal.Actions>
+        </Modal>
       </Modal>
     </div>
   );
