@@ -10,33 +10,52 @@ export default function Navbar() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // Navigation for Dropdown menu (tablet/computer view)
   const move = (e, { value }) => {
-    if (value === "/home") {
+    if (value === "/signout") {
       e.preventDefault();
       dispatch(userLogout());
     }
     history.push(value);
   };
+
+  // Label for Dropdown menu (tablet/computer view)
   const trigger = (
-    <span>
-      <Icon name="user" /> Hello, {`${user.name}`}
+    <span className="dropdown-label">
+      <Icon name="user" /> {user.name}
     </span>
   );
 
+  // Content for Dropdown menu (tablet/computer view)
   const loggedOptions = [
     {
-      key: "user",
+      key: "account",
       text: (
-        <span>
-          Signed in as <strong>{user.name}</strong>
-        </span>
+        <strong>
+          <Icon name="setting" />
+          Settings
+        </strong>
       ),
       disabled: true,
     },
-    { key: "profile", text: "Profile", value: "/profile" },
-    { key: "stars", text: "My Resources", value: "/my_resources" },
-    { key: "explore", text: "My Comments", value: "/my_comments" },
-    { key: "sign-out", text: "Sign Out", value: "/home" },
+    { key: "profile", text: "My Profile", value: "/profile" },
+    {
+      key: "resources",
+      text: "My Resources",
+      value: "/my_resources",
+    },
+    { key: "comments", text: "My Comments", value: "/my_comments" },
+    {
+      key: "signout",
+      text: (
+        <span>
+          <Icon name="sign-out" />
+          Sign Out
+        </span>
+      ),
+      value: "/signout",
+    },
   ];
   return (
     <Grid
@@ -48,11 +67,17 @@ export default function Navbar() {
     >
       <Grid.Row>
         <Grid.Column textAlign={"center"} width={2} only="mobile">
-          <Dropdown item icon="bars" simple>
+          <Dropdown
+            item
+            icon="bars"
+            simple
+            // onChange={move}
+            // options={loggedOptions}
+          >
             <Dropdown.Menu>
               <Dropdown.Item disabled>
                 <span>
-                  <Icon name="user" /> Hello, {`${user.name}`}
+                  <Icon name="user" /> Hello, {user.name ? user.name : "Guest"}
                 </span>
               </Dropdown.Item>
               <Dropdown.Item>
@@ -88,7 +113,14 @@ export default function Navbar() {
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>
-                    <Link to="/logout">
+                    <Link
+                      to="/logout"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        console.log("LOGOUT!");
+                        dispatch(userLogout());
+                      }}
+                    >
                       <Icon name="logout" />
                       Logout
                     </Link>
@@ -119,7 +151,7 @@ export default function Navbar() {
           </Link>
         </Grid.Column>
 
-        <Grid.Column width={9} only="tablet computer">
+        <Grid.Column floated="left" width={7} only="tablet computer">
           <Link to="/">
             <Header as="h1">Student Companion</Header>
           </Link>
@@ -128,7 +160,8 @@ export default function Navbar() {
         <Grid.Column
           as="nav"
           textAlign={"right"}
-          width={7}
+          floated="right"
+          width={9}
           only="tablet computer"
         >
           <Menu compact secondary>
@@ -147,13 +180,15 @@ export default function Navbar() {
             {logIn ? (
               <React.Fragment>
                 <Menu.Item>
-                  <Link to="/settings">
-                    <Icon name="setting" />
-                    Settings
-                  </Link>
+                  <Dropdown
+                    // item
+                    // simple
+                    trigger={trigger}
+                    onChange={move}
+                    options={loggedOptions}
+                  />
                 </Menu.Item>
-
-                <Menu.Item>
+                {/* <Menu.Item>
                   <a
                     href="/logout"
                     onClick={(e) => {
@@ -165,7 +200,7 @@ export default function Navbar() {
                     <Icon name="logout" />
                     Logout
                   </a>
-                </Menu.Item>
+                </Menu.Item> */}
               </React.Fragment>
             ) : (
               <React.Fragment>

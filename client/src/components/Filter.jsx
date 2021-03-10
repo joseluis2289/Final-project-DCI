@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
+  Grid,
+  Form,
+  Checkbox,
+  Rating,
+  Header,
+  // Container,
+} from "semantic-ui-react";
+import {
   filterCategory,
   filterFree,
   filterPaid,
   filterRating,
   searchResources,
 } from "../redux/actions";
-import {
-  Grid,
-  Form,
-  Checkbox,
-  Rating,
-  Header,
-  Container,
-} from "semantic-ui-react";
 import "./Filter.css";
 
 export default function Filter() {
@@ -31,15 +31,13 @@ export default function Filter() {
     database: true,
     search: "",
   };
-  const [filterData, setFilterData] = useState(initialState);
-  const [rating, setRating] = useState(false);
   const dispatch = useDispatch();
-
-  // const onSaveRating = (index) => {
-  //   setRating(index);
-  // };
-
-  function onSaveRating(e, { rating, maxRating }) {
+  // React Hook to store the active filter settings
+  const [filterData, setFilterData] = useState(initialState);
+  // React Hook to store state of Semantic UI React - Rating component
+  const [rating, setRating] = useState(false);
+  // Function that handles the changes of the Rating component
+  function onFilterRating(e, { rating, maxRating }) {
     setRating(rating);
   }
 
@@ -124,114 +122,118 @@ export default function Filter() {
   }
 
   return (
-    <Grid columns={2} as="section">
-      {/* ---------- SEARCH BAR ---------- */}
-      <Grid.Row>
-        <Grid.Column width={2}></Grid.Column>
-        <Grid.Column width={12}>
-          <Form size="big" onSubmit={search}>
-            <Form.Input
-              focus
-              icon="search"
-              iconPosition="left"
-              type="search"
-              name="search"
-              id="search"
-              placeholder='Search... (for example "React", or "Git")'
-              onChange={handleSearchChange}
-            />
-          </Form>
-        </Grid.Column>
-      </Grid.Row>
-      {/* ---------- FILTER ---------- */}
-      <Grid.Row className="filter-container">
-        <Grid.Column width={8}>
-          <Header as="h3">Filter by Category</Header>
-          <Form>
-            <Form.Group widths="equal">
-              <Form.Field>
-                <Checkbox
-                  toggle
-                  id="general"
-                  name="general"
-                  onChange={handleCheckboxChange}
-                  checked={filterData.general}
-                  label={<label>General</label>}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Checkbox
-                  toggle
-                  id="frontend"
-                  name="frontend"
-                  onChange={handleCheckboxChange}
-                  checked={filterData.frontend}
-                  label={<label>Frontend</label>}
-                />
-              </Form.Field>
-            </Form.Group>
-            <Form.Group widths="equal">
-              <Form.Field>
-                <Checkbox
-                  toggle
-                  id="backend"
-                  name="backend"
-                  onChange={handleCheckboxChange}
-                  checked={filterData.backend}
-                  label={<label>Backend</label>}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Checkbox
-                  toggle
-                  id="database"
-                  name="database"
-                  onChange={handleCheckboxChange}
-                  checked={filterData.database}
-                  label={<label>Database</label>}
-                />
-              </Form.Field>
-            </Form.Group>
-          </Form>
-        </Grid.Column>
-        <Grid.Column width={8}>
-          <Header as="h3">Filter by Price</Header>
-          <Form>
-            <Form.Group widths="equal">
-              <Form.Field>
-                <Checkbox
-                  toggle
-                  name="free"
-                  id="filter-free"
-                  onChange={handleCheckboxChange}
-                  checked={filterData.free}
-                  label={<label>Free</label>}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Checkbox
-                  toggle
-                  name="paid"
-                  id="filter-paid"
-                  onChange={handleCheckboxChange}
-                  checked={filterData.paid}
-                  label={<label>Paid</label>}
-                />
-              </Form.Field>
-            </Form.Group>
-          </Form>
-          <Header as="h3">Filter by Rating</Header>
-          <Container fluid>
+    <React.Fragment>
+      <Grid as="section">
+        {/* ---------- SEARCH BAR ---------- */}
+        <Grid.Row>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={12}>
+            <Form size="big" onSubmit={search}>
+              <Form.Input
+                focus
+                icon="search"
+                iconPosition="left"
+                type="search"
+                name="search"
+                id="search"
+                placeholder='Search... (for example "React", or "Git")'
+                onChange={handleSearchChange}
+              />
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+      <Grid columns={2} divided padded="horizontally">
+        {/* ---------- FILTER ---------- */}
+        <Grid.Row className="filter-container">
+          <Grid.Column>
+            <Header as="h3">Filter by Category</Header>
+            <Form>
+              <Form.Group widths="equal">
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    id="general"
+                    name="general"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.general}
+                    label={<label>General</label>}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    id="frontend"
+                    name="frontend"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.frontend}
+                    label={<label>Frontend</label>}
+                  />
+                </Form.Field>
+              </Form.Group>
+              <Form.Group widths="equal">
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    id="backend"
+                    name="backend"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.backend}
+                    label={<label>Backend</label>}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    id="database"
+                    name="database"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.database}
+                    label={<label>Database</label>}
+                  />
+                </Form.Field>
+              </Form.Group>
+            </Form>
+          </Grid.Column>
+          <Grid.Column>
+            <Header as="h3">Filter by Price</Header>
+            <Form>
+              <Form.Group widths="equal">
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    name="free"
+                    id="filter-free"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.free}
+                    label={<label>Free</label>}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    name="paid"
+                    id="filter-paid"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.paid}
+                    label={<label>Paid</label>}
+                  />
+                </Form.Field>
+              </Form.Group>
+            </Form>
+            <Header as="h3" className="rating-header">
+              Filter by Rating
+            </Header>
             <Rating
               maxRating={5}
               defaultRating={0}
               icon="star"
               size="huge"
-              onRate={onSaveRating}
+              onRate={onFilterRating}
             />
-          </Container>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </React.Fragment>
   );
 }
