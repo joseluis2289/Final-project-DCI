@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Button, Card, Form, Radio } from "semantic-ui-react";
+import { Button, Card, Form, Checkbox } from "semantic-ui-react";
 
 export default function AddResource() {
   const user = useSelector((state) => state.user._id);
@@ -18,7 +18,6 @@ export default function AddResource() {
     "database",
     "general",
   ]);
-  const [isPaid, setIsPaid] = useState(false);
 
   useEffect(() => {
     !user && history.push("/login");
@@ -106,21 +105,18 @@ export default function AddResource() {
             );
           })}
         </Form.Group>
-        <Form.Field>
-          <Radio
-            toggle
-            label="Paid"
-            name="paid"
-            /* value={resource.paid} */
-            checked={resource.paid}
-            onClick={(e) => {
-              e.preventDefault();
-              setIsPaid(!isPaid);
-              setResource({ ...resource, paid: isPaid });
-              return resource;
-            }}
-          />
-        </Form.Field>
+        <Checkbox
+          toggle
+          label="Paid"
+          name="paid"
+          type="checkbox"
+          control="input"
+          value={resource.paid}
+          onChange={(e, { value }) => {
+            setResource({ ...resource, paid: !resource.paid });
+            console.log("resource", resource.paid);
+          }}
+        ></Checkbox>
         <Form.TextArea
           label="Description"
           placeholder="Enter your description..."

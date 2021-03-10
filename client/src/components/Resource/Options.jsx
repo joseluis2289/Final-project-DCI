@@ -61,6 +61,9 @@ export default function Options({ resource }) {
 
   //setting function depending on which link from dropdown was clicked
   const handle = (e, { value }) => {
+    if (value === "edit") {
+      history.push(`/update_resource/${resource._id}`);
+    }
     if (value === "delete") {
       setDeleteModal(true);
     }
