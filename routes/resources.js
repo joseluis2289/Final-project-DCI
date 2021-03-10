@@ -112,7 +112,7 @@ router.get("/resource/:resource_id", (req, res, next) => {
 });
 
 //this MiddleWare is protecting all the routes down Below
-router.use((req, res, next) => {
+/* router.use((req, res, next) => {
   if (req.session.user) {
     console.log(req.session.user);
     next();
@@ -120,7 +120,7 @@ router.use((req, res, next) => {
     console.log("error on middleware");
     res.sendStatus(401);
   }
-});
+}); */
 
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
@@ -173,6 +173,7 @@ router.post("/add", (req, res, next) => {
     format,
     description,
     edited,
+    reported,
     deleted,
     comments,
   } = req.body;
@@ -191,6 +192,7 @@ router.post("/add", (req, res, next) => {
     format,
     description,
     edited,
+    reported,
     deleted,
     comments,
   });
@@ -201,8 +203,8 @@ router.post("/add", (req, res, next) => {
       User.findByIdAndUpdate(resourceAdded.user, {
         $push: { resources: resourceAdded._id },
       })
-        .then((userUpdated) => {
-          res.send(resourceAdded);
+      .then((userUpdated) => {
+        res.send(resourceAdded);
           console.log("look at resource addedf", resourceAdded);
         })
         .catch((err) => console.log(err));
@@ -229,6 +231,7 @@ router.post("/addmany", (req, res, next) => {
       format,
       description,
       edited,
+      reported,
       deleted,
       comments,
     } = item;
@@ -247,6 +250,7 @@ router.post("/addmany", (req, res, next) => {
       format,
       description,
       edited,
+      reported,
       deleted,
       comments,
     });

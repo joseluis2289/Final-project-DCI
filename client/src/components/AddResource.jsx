@@ -10,6 +10,7 @@ export default function AddResource() {
   const [resource, setResource] = useState({
     user: user,
     category: [],
+    paid: false,
   });
   const [categories, setCategories] = useState([
     "frontend",
@@ -17,7 +18,7 @@ export default function AddResource() {
     "database",
     "general",
   ]);
-  const [paid, setPaid] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
 
   useEffect(() => {
     !user && history.push("/login");
@@ -52,7 +53,7 @@ export default function AddResource() {
       data: resource,
     })
       .then((response) => {
-        console.log("resource added", response.data._id);
+        console.log("resource added", response.data);
         history.push(`/resources/resource/${response.data._id}`);
       })
       .catch((err) => {
@@ -110,19 +111,23 @@ export default function AddResource() {
             toggle
             label="Paid"
             name="paid"
-            value={paid}
-            checked={paid === true}
-            onChange={(e) => {
-              setPaid(!paid);
-              setResource({ ...resource, paid: paid });
+            /* value={resource.paid} */
+            checked={resource.paid}
+            onClick={(e) => {
+              e.preventDefault();
+              setIsPaid(!isPaid);
+              setResource({ ...resource, paid: isPaid });
+              return resource;
             }}
           />
         </Form.Field>
         <Form.TextArea
           label="Description"
           placeholder="Enter your description..."
-          onChange={formHandler}
           name="description"
+          onChange={(e) => {
+            formHandler(e, e.target.value);
+          }}
         />
         <Button type="submit">Submit</Button>
       </Form>

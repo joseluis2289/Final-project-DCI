@@ -136,7 +136,7 @@ export default function UpdateResource(props) {
             label="Paid"
             name="paid"
             value={paid}
-            checked={paid === true}
+            checked={paid === false}
             onChange={(e) => {
               setPaid(!paid);
               setResource({ ...resource, paid: paid });

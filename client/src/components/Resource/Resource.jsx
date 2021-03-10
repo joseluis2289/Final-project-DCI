@@ -57,9 +57,6 @@ const Resource = (props) => {
         <CardContent>
           <CardHeader style={{ color: "white", padding: "10px" }}>
             Resources{" "}
-            <Button floated="right" size="mini">
-              +Add
-            </Button>
           </CardHeader>
         </CardContent>
         <Card
@@ -148,15 +145,6 @@ const Resource = (props) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <Label
-                    target="_blank"
-                    rel="noreferrer"
-                    href={props.data.link}
-                    value={props.data.link}
-                  >
-                    <i class="linkify icon"></i>Resource link
-                  </Label>
-
                   <CardMeta> {props.data.num_views} Views</CardMeta>
                 </GridRow>
                 <CardDescription style={{ margin: "10px" }}>
