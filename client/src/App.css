@@ -55,41 +55,7 @@ button {
   font-size: 1rem;
 }
 
-/***** HEADER / NAVIGATION *****/
-
-.app-header {
-  background-color: var(--violett-light);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1rem;
-}
-.app-header .icon {
-  height: 1.67rem;
-  margin: 0.5rem 0.5rem -0.5rem 1rem;
-}
-.app-header h1 {
-  padding: 1rem 0;
-  font-size: 2.67rem;
-}
-.app-header h1 a {
-  color: var(--off-white);
-  text-shadow: 0.2rem 0.2rem 0 var(--violett-dark);
-  text-decoration: none;
-  font-weight: 600;
-}
-.app-header nav a {
-  color: var(--off-white);
-  text-shadow: 0.1rem 0.1rem 0 var(--violett-dark);
-  text-decoration: none;
-  padding: 1rem 0;
-}
-/* .searchbar-form {
-  background-color: #ffda79;
-  display: flex;
-  align-items: center;
-} */
-
+/
 /* FORMS -- GENERAL */
 
 legend,
