@@ -26,7 +26,6 @@ export default function App() {
     <Router>
       <Navbar />
 
-      {error === {} ? <NotFound /> : <Filter />}
       <Switch>
         <main>
           <Route path="/home" component={Home} />
