@@ -21,10 +21,16 @@ export default function ModalBox({
           <p>{text}</p>
         </Modal.Content>
         <Modal.Actions>
-          <Button color="red" onClick={(e) => action(e)}>
+          <Button
+            style={{ backgroundColor: "var(--red-dark)" }}
+            onClick={(e) => action(e)}
+          >
             <Icon name="checkmark" /> Yes
           </Button>
-          <Button color="green" onClick={() => setDeleteModal(false)}>
+          <Button
+            style={{ backgroundColor: "var(--green-dark)" }}
+            onClick={() => setDeleteModal(false)}
+          >
             <Icon name="cancel" /> Cancel
           </Button>
         </Modal.Actions>

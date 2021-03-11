@@ -96,7 +96,6 @@ const UpdateResource = (props) => {
 
   return (
     <div className="update-resource">
-      <ModalBox function={delResource} text="X" />
       <Form onSubmit={updateResource}>
         <Form.Field>
           <label htmlFor="title">Title</label>
@@ -172,6 +171,7 @@ const UpdateResource = (props) => {
       </Button>
 
       <ModalBox
+        header="Delete Resource"
         text="Would you like to delete this resource permanently? This action can
             not be undone."
         action={delResource}
