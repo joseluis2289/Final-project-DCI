@@ -31,7 +31,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev-start": "craco start",
+    "dev-build": "craco build",
+    "dev-test": "craco test",
+    "dev-eject": "craco eject"
   },
   "eslintConfig": {
     "extends": [
