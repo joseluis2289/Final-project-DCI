@@ -15,11 +15,13 @@ import {
   Container,
 } from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
+import ModalBox from "./ModalBox";
 
 export default function Profile() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [deleteModal, setDeleteModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [updateData, setUpdateData] = useState(user);
   const notify = () => {
@@ -183,39 +185,20 @@ export default function Profile() {
         <Button
           style={{ width: "130px", alignItems: "center" }}
           className="ui red labeled icon button"
-          onClick={() => setOpenModal(true)}
+          onClick={() => setDeleteModal(true)}
         >
           <i class="trash alternate outline icon"></i>Delete
         </Button>
       </Form>
       {/* MODAL TO DELETE */}
-      <Modal
-        size="mini"
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-        onOpen={() => setOpenModal(true)}
-      >
-        <Header icon="trash alternate" content="Delete Profile" />
-        <Modal.Content>
-          <p>
-            Would you like to delete your profile permanently? This action can
-            not be undone.
-          </p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button
-            color="red"
-            onClick={() => {
-              delProfile();
-            }}
-          >
-            <Icon name="checkmark" /> Yes
-          </Button>
-          <Button color="green" onClick={() => setOpenModal(false)}>
-            <Icon name="cancel" /> Cancel
-          </Button>
-        </Modal.Actions>
-      </Modal>
+      <ModalBox
+        header="Delete Profile"
+        text=" Would you like to delete your profile permanently? This action can
+                not be undone."
+        action={delProfile}
+        deleteModal={deleteModal}
+        setDeleteModal={setDeleteModal}
+      />
     </div>
   );
 }
