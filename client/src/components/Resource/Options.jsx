@@ -33,24 +33,6 @@ export default function Options({ resource }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  //creating open link to dropdown
-  const options = [
-    { key: "share", icon: "share", text: "Copy link", value: "share" },
-    { key: "report", icon: "attention", text: "Report", value: "report" },
-  ];
-  //creating private links to dropdown
-  const optionsAuthor = [
-    { key: "edit", icon: "edit", text: "Edit Post", value: "edit" },
-    {
-      key: "delete",
-      icon: "trash alternate outline",
-      text: "Remove Post",
-      value: "delete",
-    },
-    { key: "share", icon: "share", text: "Copy link", value: "share" },
-    { key: "report", icon: "attention", text: "Report", value: "report" },
-  ];
-
   //alert to confirm that link was copied
   const notify = () => {
     toast.success("The link was copied!", {
@@ -60,18 +42,18 @@ export default function Options({ resource }) {
   };
 
   //setting function depending on which link from dropdown was clicked
-  const handle = (e, { value }) => {
+  const handle = (e, value) => {
     console.log("handle", e.target);
     if (value === "edit") {
-      console.log("edit");
+      console.log("edit", e.target);
       history.push(`/update_resource/${resource._id}`);
     }
     if (value === "delete") {
-      console.log("delete");
+      console.log("delete", e.target);
       setDeleteModal(true);
     }
     if (value === "share") {
-      console.log("share");
+      console.log("share", e.target);
       var url = `https://webdevelop-student-companion.herokuapp.com/resources/resource/${resource._id}`;
       navigator.clipboard.writeText(url);
       notify();
@@ -110,19 +92,25 @@ export default function Options({ resource }) {
 
   return (
     <div>
-      <Button.Group color="teal">
-        <Dropdown
-          className="button icon"
-          floating
-          options={
-            user !== {} && user._id === resource.user._id
-              ? optionsAuthor
-              : options
-          }
-          trigger={<></>}
-          onChange={handle}
-        />
-      </Button.Group>
+      <Dropdown text="..." pointing="right" className="link item" color="teal">
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={(e) => handle(e, "share")}>
+            <Icon name="share"></Icon>Copy link
+          </Dropdown.Item>
+          <Dropdown.Item onClick={(e) => handle(e, "edit")}>
+            {" "}
+            <Icon name="edit"></Icon>Edit
+          </Dropdown.Item>
+          <Dropdown.Item onClick={(e) => handle(e, "delete")}>
+            {" "}
+            <Icon name="trash alternate outline"></Icon>Remove Post
+          </Dropdown.Item>
+          <Dropdown.Item onClick={(e) => handle(e, "report")}>
+            {" "}
+            <Icon name="attention"></Icon>Report
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
 
       {/* MODAL TO DELETE RESOURCE */}
       <Modal
