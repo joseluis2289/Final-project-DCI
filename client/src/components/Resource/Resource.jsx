@@ -142,15 +142,6 @@ const Resource = (props) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <Label
-                    target="_blank"
-                    rel="noreferrer"
-                    href={props.data.link}
-                    value={props.data.link}
-                  >
-                    <i class="linkify icon"></i>Resource link
-                  </Label>
-
                   <CardMeta> {props.data.num_views} Views</CardMeta>
                 </GridRow>
                 <CardDescription style={{ margin: "10px" }}>

@@ -10,10 +10,11 @@ import Profile from "./components/Profile";
 import Content from "./components/Content";
 import AddResource from "./components/AddResource";
 import MyResources from "./components/settings/MyResources";
+
 import MyComments from "./components/settings/MyComments";
 import Settings from "./components/settings/Settings";
 import ResourcePage from "./components/ResourcePage";
-import UpdateResource from "./components/settings/UpdateResource";
+import UpdateResourcePage from "./components/settings/UpdateResourcePage";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -42,11 +43,11 @@ export default function App() {
           <Route path="/add_resource" component={AddResource} />
           <Route path="/my_resources" component={MyResources} />
           <Route path="/my_comments" component={MyComments} />
-          <Route path="/update_resource" component={UpdateResource} />
+          <Route exact path="/update_resource/:resourceId" component={UpdateResourcePage} />
           <Route path="#!" component={NotFound} />
         </main>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }

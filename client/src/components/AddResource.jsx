@@ -1,8 +1,8 @@
 import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import Settings from "./settings/Settings";
+import { useHistory } from "react-router-dom";
+import { Button, Card, Form, Checkbox } from "semantic-ui-react";
 
 export default function AddResource() {
   const user = useSelector((state) => state.user._id);
@@ -10,7 +10,14 @@ export default function AddResource() {
   const [resource, setResource] = useState({
     user: user,
     category: [],
+    paid: false,
   });
+  const [categories, setCategories] = useState([
+    "frontend",
+    "backend",
+    "database",
+    "general",
+  ]);
 
   let defineCategory = (e) => {
     let categories = resource.category;
@@ -40,97 +47,81 @@ export default function AddResource() {
       data: resource,
     })
       .then((response) => {
-        console.log("resource added", response.data._id);
+        console.log("resource added", response.data);
         history.push(`/resources/resource/${response.data._id}`);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  return user ? (
-    <Fragment>
-      <Settings />
-      <div className="add-resource">
-        <form onSubmit={addResource}>
-          <div>
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              placeholder="Enter the title..."
-              onChange={formHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="link">Link</label>
-            <input
-              type="text"
-              name="link"
-              placeholder="Enter the Link.."
-              onChange={formHandler}
-            />
-          </div>
-          <div name="category" onChange={defineCategory}>
-            <label>Category</label>
-            <label htmlFor="frontend">
-              <input type="checkbox" name="category" value="frontend" />
-              Frontend
-            </label>
-
-            <label htmlFor="backend">
-              <input type="checkbox" name="category" value="backend" />
-              Backend
-            </label>
-
-            <label htmlFor="database">
-              <input type="checkbox" name="category" value="database" />
-              Database
-            </label>
-
-            <label htmlFor="general">
-              <input type="checkbox" name="category" value="general" />
-              General
-            </label>
-          </div>
-
-          <div name="paid" onChange={formHandler}>
-            <label htmlFor="link">Paid</label>
-            <div>
-              <label htmlFor="access_paid">
-                <input type="radio" name="paid" id="access_paid" value={true} />
-                Yes
-              </label>
-
-              <label htmlFor="access_free">
-                <input
-                  type="radio"
-                  name="paid"
-                  id="access_free"
-                  value={false}
-                />
-                No
-              </label>
-            </div>
-          </div>
-          <div>
-            <label htmlFor="title">description</label>
-            <textarea
-              name="description"
-              rows="5"
-              cols="33"
-              style={{ border: "solid black 2px" }}
-              placeholder="Enter your description..."
-              onChange={formHandler}
-            ></textarea>
-          </div>
-          <button type="submit">Add Resource</button>
-        </form>
-      </div>
-    </Fragment>
-  ) : (
-    <Fragment>
-      <h1>Go to Login</h1>
-      <Link to="/login">here </Link>
-    </Fragment>
+  return (
+    <Card.Group
+      style={{ width: "600px", marginTop: "20px" }}
+      className="ui container"
+    >
+      <Form onSubmit={addResource}>
+        <Form.Field>
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Enter the title..."
+            onChange={(e) => {
+              formHandler(e, e.target.value);
+            }}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="link">Link</label>
+          <input
+            type="text"
+            name="link"
+            placeholder="Enter the Link.."
+            onChange={(e) => {
+              formHandler(e, e.target.value);
+            }}
+          />
+        </Form.Field>
+        <Form.Group inline>
+          <label>Category</label>
+          {categories.map((item, index) => {
+            let name = item[0].toUpperCase() + item.substring(1);
+            return (
+              <Form.Field
+                label={name}
+                key={index}
+                type="checkbox"
+                control="input"
+                value={item}
+                onChange={(e) => {
+                  defineCategory(e.target.value);
+                }}
+              />
+            );
+          })}
+        </Form.Group>
+        <Checkbox
+          toggle
+          label="Paid"
+          name="paid"
+          type="checkbox"
+          control="input"
+          value={resource.paid}
+          onChange={(e, { value }) => {
+            setResource({ ...resource, paid: !resource.paid });
+            console.log("resource", resource.paid);
+          }}
+        ></Checkbox>
+        <Form.TextArea
+          label="Description"
+          placeholder="Enter your description..."
+          name="description"
+          onChange={(e) => {
+            formHandler(e, e.target.value);
+          }}
+        />
+        <Button type="submit">Submit</Button>
+      </Form>
+    </Card.Group>
   );
 }

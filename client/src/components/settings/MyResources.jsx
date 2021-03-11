@@ -28,11 +28,7 @@ export default function MyResources() {
           {userResources.map(
             (resource) =>
               !resource.deleted && (
-                <UpdateResource
-                  id={resource._id}
-                  data={resource}
-                  author={true}
-                />
+                <UpdateResource key={resource._id} data={resource} />
               )
           )}
         </div>

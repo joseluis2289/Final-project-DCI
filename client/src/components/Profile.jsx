@@ -176,7 +176,34 @@ export default function Profile() {
           <i class="edit icon"></i>Update
         </Button>
       </Form>
-      <ModalBox function={delProfile} text="DELETE PROFILE" />
+      {/* MODAL TO DELETE */}
+      <Modal
+        size="mini"
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        onOpen={() => setOpenModal(true)}
+      >
+        <Header icon="trash alternate" content="Delete Profile" />
+        <Modal.Content>
+          <p>
+            Would you like to delete your profile permanently? This action can
+            not be undone.
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button
+            color="red"
+            onClick={() => {
+              delProfile();
+            }}
+          >
+            <Icon name="checkmark" /> Yes
+          </Button>
+          <Button color="green" onClick={() => setOpenModal(false)}>
+            <Icon name="cancel" /> Cancel
+          </Button>
+        </Modal.Actions>
+      </Modal>
     </div>
   );
 }
