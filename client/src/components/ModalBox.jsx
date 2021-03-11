@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
 
 export default function ModalBox({
+  header,
   text,
   deleteModal,
   setDeleteModal,
@@ -15,7 +16,7 @@ export default function ModalBox({
         onClose={() => setDeleteModal(false)}
         onOpen={() => setDeleteModal(true)}
       >
-        <Header icon="trash alternate" content="Delete Profile" />
+        <Header icon="trash alternate" content={header} />
         <Modal.Content>
           <p>{text}</p>
         </Modal.Content>

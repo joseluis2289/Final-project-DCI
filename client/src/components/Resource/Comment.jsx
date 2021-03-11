@@ -94,7 +94,16 @@ export default function Comment(props) {
         <div>
           {props.data.user && props.data.user._id === user._id && !edit && (
             <div style={{ display: "flex" }}>
-              <Dropdown text="...">
+              <Dropdown
+                text="..."
+                style={{
+                  backgroundColor: "var(--violett-light)",
+                  color: "white",
+                  fontSize: "1.4rem",
+                  padding: "0.3rem",
+                  borderRadius: "10px",
+                }}
+              >
                 <Dropdown.Menu>
                   <Dropdown.Item
                     icon="edit"
@@ -134,13 +143,31 @@ export default function Comment(props) {
           {edit && (
             <div style={{ display: "flex" }}>
               <Button
+                style={{
+                  backgroundColor: "var(--blue-dark)",
+                  color: "white",
+                  padding: "0.6rem",
+                  borderRadius: "10px",
+                  marginRight: "0.3rem",
+                }}
                 onClick={() => {
                   displayButtons(false);
                 }}
               >
                 Cancel
               </Button>
-              <Button type="submit">Save</Button>
+              <Button
+                style={{
+                  backgroundColor: "var(--blue-light)",
+                  color: "white",
+                  padding: "0.6rem",
+                  borderRadius: "10px",
+                  marginRight: "0.3rem",
+                }}
+                type="submit"
+              >
+                Save
+              </Button>
             </div>
           )}
         </Form>
