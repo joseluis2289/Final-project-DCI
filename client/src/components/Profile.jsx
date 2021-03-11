@@ -6,8 +6,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { updateUser, userLogout } from "../redux/actions";
-import ModalBox from "./ModalBox";
-import { Form, Button, Header, Icon, Modal } from "semantic-ui-react";
+import {
+  Form,
+  Button,
+  Header,
+  Icon,
+  Modal,
+  Container,
+} from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
@@ -87,6 +93,9 @@ export default function Profile() {
       }}
       className="ui fluid card"
     >
+      <Container textAlign={"center"} className="intro-text">
+        <img src="./images/logo_200x200.png" alt="Logo" className="logo" />
+      </Container>
       <Header size="large" style={{ margin: "auto", padding: "10px" }}>
         Profile Update
       </Header>
