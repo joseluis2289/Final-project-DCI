@@ -20,17 +20,15 @@ import "./Filter.css";
 
 export default function Filter() {
   const history = useHistory();
-  const classes = useStyles();
   // In the beginning all resources are shown: free, paid and all ratings.
   let initialState = {
     free: true,
     paid: true,
-    rating: 0,
+    rating: 1,
     general: true,
     frontend: true,
     backend: true,
     database: true,
-    machineLearning: true,
     search: "",
   };
   const dispatch = useDispatch();
@@ -86,16 +84,6 @@ export default function Filter() {
       // cleanup
     };
   }, [filterData.database, dispatch]);
-
-  // FILTER -- CATEGORY -- "machineLearning"
-  useEffect(() => {
-    if (filterData.machineLearning)
-      dispatch(filterCategory("machineLearning", true));
-    else dispatch(filterCategory("machineLearning", false));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.machineLearning, dispatch]);
 
   // FILTER -- FREE RESOURCES
   useEffect(() => {

@@ -7,13 +7,14 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { userLogout } from "../redux/actions";
 import ModalBox from "./ModalBox";
-import { Form, Button, Header } from "semantic-ui-react";
+import { Form, Button, Header, Modal, Icon } from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [openModal, setOpenModal] = useState(false);
   const [updateData, setUpdateData] = useState({
     email: "",
     name: "",
