@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
-import Filter from "./components/Filter";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
@@ -16,9 +15,7 @@ import Settings from "./components/settings/Settings";
 import ResourcePage from "./components/ResourcePage";
 import UpdateResourcePage from "./components/settings/UpdateResourcePage";
 import NotFound from "./components/NotFound";
-import Footer from "./components/Footer";
 import "./App.css";
-import "semantic-ui-css/semantic.min.css";
 
 export default function App() {
   const error = useSelector((state) => state.error);
@@ -42,7 +39,11 @@ export default function App() {
           <Route path="/add_resource" component={AddResource} />
           <Route path="/my_resources" component={MyResources} />
           <Route path="/my_comments" component={MyComments} />
-          <Route exact path="/update_resource/:resourceId" component={UpdateResourcePage} />
+          <Route
+            exact
+            path="/update_resource/:resourceId"
+            component={UpdateResourcePage}
+          />
           <Route path="#!" component={NotFound} />
         </main>
       </Switch>
