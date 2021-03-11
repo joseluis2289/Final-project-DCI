@@ -8,7 +8,7 @@ function SvgStar(props) {
   return (
     //className="star-icon"
     <Rating
-      style={{ width: "1px", margin: "auto", left: "0" }}
+      style={{ width: "40px", margin: "auto" }}
       icon="star"
       size="large"
       defaultRating={5}
@@ -50,6 +50,7 @@ export default function Star(props) {
   }, [rating, hoverRating, index]);
   return (
     <figure
+      style={{ margin: "5px" }}
       className="star-container"
       onMouseEnter={() => onMouseEnter(index)}
       onMouseLeave={() => onMouseLeave()}

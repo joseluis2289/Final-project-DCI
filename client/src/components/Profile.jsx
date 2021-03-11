@@ -167,7 +167,7 @@ export default function Profile() {
           errors.confirmPassword.type === "maxLength" && (
             <span className="errorsMsg">Max length exceeded</span>
           )}
-        ;
+
         <Button
           style={{ width: "130px", alignItems: "center" }}
           className="ui primary labeled icon button"
