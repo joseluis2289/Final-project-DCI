@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { userLogout } from "../redux/actions";
+import { updateUser, userLogout } from "../redux/actions";
 import ModalBox from "./ModalBox";
-import { Form, Button, Header, Modal, Icon } from "semantic-ui-react";
+import { Form, Button, Header, Icon, Modal } from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
@@ -15,13 +15,7 @@ export default function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [openModal, setOpenModal] = useState(false);
-  const [updateData, setUpdateData] = useState({
-    email: "",
-    name: "",
-    password: "",
-    userName: "",
-    _id: "",
-  });
+  const [updateData, setUpdateData] = useState(user);
   const notify = () => {
     toast.success(`Successfully Updated!`, {
       position: toast.POSITION.TOP_CENTER,
@@ -55,17 +49,18 @@ export default function Profile() {
       })
       .catch((err) => console.log(err));
   }, []);
-  const updateHandler = () => {
-    //e.preventDefault();
+  const updateHandler = (e) => {
     axios({
       method: "PUT",
       url: `/update`,
       data: updateData,
     })
       .then((response) => {
-        console.log(response.data);
+        console.log("what came?", response);
         notify();
         setUpdateData({ ...response.data, password: updateData.password });
+        dispatch(updateUser(response.data));
+        history.push("/home");
       })
       .catch((err) => {
         notifyError();
@@ -175,6 +170,13 @@ export default function Profile() {
           type="submit"
         >
           <i class="edit icon"></i>Update
+        </Button>
+        <Button
+          style={{ width: "130px", alignItems: "center" }}
+          className="ui red labeled icon button"
+          onClick={() => setOpenModal(true)}
+        >
+          <i class="trash alternate outline icon"></i>Delete
         </Button>
       </Form>
       {/* MODAL TO DELETE */}
