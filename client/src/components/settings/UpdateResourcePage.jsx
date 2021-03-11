@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UpdateResource from "./UpdateResource";
 
-export default function ResourcePage() {
+export default function UpdateResourcePage() {
   const [resource, setResource] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -11,8 +11,9 @@ export default function ResourcePage() {
     const resourceId = url[url.length - 1];
     axios
       .get(`http://localhost:5000/resources/resource/${resourceId}`)
-      .then((res) => {
-        setResource(res.data);
+      .then(async (res) => {
+        await setResource(res.data);
+        console.log("resource updated?", resource);
         setLoading(false);
         console.log("response", res.data);
       })

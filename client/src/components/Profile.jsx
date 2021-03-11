@@ -213,7 +213,6 @@ export default function Profile() {
           </Button>
         </Modal.Actions>
       </Modal>
-      <ModalBox function={delProfile} text="DELETE PROFILE" />
     </div>
   );
 }

@@ -146,6 +146,7 @@ export default function UpdateResource(props) {
         <Form.Field>
           <Form.Textarea
             label="Description"
+            type="text"
             name="description"
             placeholder={resource.description}
             onChange={formHandler}
