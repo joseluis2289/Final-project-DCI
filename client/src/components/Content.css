@@ -1,14 +1,29 @@
+/* Small text above Search Field */
+.intro-text {
+  font-size: 1.125rem;
+  font-weight: normal;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/* The Owl on top of th Search Field */
+.logo {
+  height: 7rem;
+}
 .references-container {
+  /* HSL value instead of hex code, so I can change the lightness itself,
+  without touching the rest of the color */
   background-color: hsl(241, 53%, 67%);
-  /* border-top-left-radius: 1.67rem;
-  border-top-right-radius: 1.67rem; */
+}
+.references-container .resources-title {
+  color: #fff;
+}
+.references-container button .icon {
+  background: rgba(0, 0, 0, 0.16) !important;
+  color: #000;
 }
 .resource-container {
   background-color: #fff;
   border-radius: 1.33rem;
   margin: 0.67rem;
   padding: 1.33rem;
-}
-.references-container .icon {
-  color: #000;
 }

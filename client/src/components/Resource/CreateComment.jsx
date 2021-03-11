@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateData } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Form, Button, Item, TextArea, Card } from "semantic-ui-react";
+import { Form, Button, TextArea, Card, Popup } from "semantic-ui-react";
 
 export default function CreateComment({
   resourceId,
@@ -42,53 +42,61 @@ export default function CreateComment({
     setComment({ ...comment, user: user._id, [e.target.name]: e.target.value });
   };
   return (
-    <div>
-      {logIn ? (
-        <div
-          onClick={() => {
-            openCom(!makeCom);
-          }}
-        >
-          <span>
-            <img className="icon" src="icons/comment.svg" alt="Login Icon" />
-          </span>
-        </div>
-      ) : (
-        <Link
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "50px",
-            fontSize: "20px",
-          }}
-          to="/login"
-        >
-          You must be logged in to post a comment{" "}
-        </Link>
-      )}
-      {makeCom && (
-        <Form onSubmit={(e) => addComment(e)}>
-          {" "}
-          <Card style={{ width: "400px" }}>
-            <TextArea
-              name="text"
-              rows="2"
-              cols="33"
-              placeholder="Please comment here..."
-              required
-              onChange={formHandler}
-            />
-            <Button
-              style={{ marginTop: "5px" }}
-              basic
-              color="blue"
-              type="submit"
+    <Popup
+      trigger={
+        <div style={{ margin: "auto" }}>
+          {logIn ? (
+            <div
+              onClick={() => {
+                openCom(!makeCom);
+              }}
             >
-              Add Comment
-            </Button>
-          </Card>
-        </Form>
-      )}
-    </div>
+              <span style={{ fontSize: "20px" }}>
+                <i
+                  style={{ margin: "5px" }}
+                  class="comment alternate outline icon"
+                ></i>
+              </span>
+            </div>
+          ) : (
+            <Link
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "30px",
+                fontSize: "20px",
+              }}
+              to="/login"
+            >
+              You must be logged in to post a comment{" "}
+            </Link>
+          )}
+          {makeCom && (
+            <Form onSubmit={(e) => addComment(e)}>
+              {" "}
+              <Card>
+                <TextArea
+                  name="text"
+                  rows={2}
+                  placeholder="Comment here..."
+                  required
+                  onChange={formHandler}
+                />
+                <Button
+                  style={{ marginTop: "5px" }}
+                  basic
+                  color="blue"
+                  type="submit"
+                >
+                  Add Comment
+                </Button>
+              </Card>
+            </Form>
+          )}
+        </div>
+      }
+    >
+      <Popup.Header>Click here to comment</Popup.Header>
+    </Popup>
   );
 }

@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 import Rating from "./Rating";
 import CreateComment from "./CreateComment.jsx";
 import DisplayComments from "./DisplayComments";
-import Options from "./Options";
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -17,7 +15,6 @@ import {
   Item,
   CardDescription,
   Label,
-  Header,
 } from "semantic-ui-react";
 
 // Gets reference ID as props.data.id
@@ -27,7 +24,6 @@ const Resource = (props) => {
   const update = useSelector((state) => state.update);
   const [makeCom, setMakeComm] = useState(false);
   const [displayCom, setDisplayComm] = useState(false);
-
   const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
   );
@@ -44,59 +40,56 @@ const Resource = (props) => {
   }, [props.data.previewImage, update]);
 
   return (
-    <Card.Group
-      style={{ width: "600px", marginTop: "20px" }}
-      className="ui container"
-    >
+    <Card.Group style={{ margin: "10px" }} className="ui container">
       <Card
         style={{
-          width: "620px",
+          width: "600px",
           backgroundColor: "#706FCD",
-          height: "130vh",
+          height: "fit-content",
         }}
       >
         <CardContent>
-          <CardHeader style={{ color: "white", padding: "10px" }}>
-            Resources{" "}
-            <Button floated="right" size="mini">
-              +Add
-            </Button>
-          </CardHeader>
+          <Card.Header
+            style={{ color: "white", padding: "10px", textAlign: "center" }}
+          >
+            Resource{" "}
+          </Card.Header>
         </CardContent>
         <Card
           style={{
-            display: "flex",
-            align: "center",
-            width: "500px",
+            width: "550px",
             margin: "auto",
-            height: "115vh",
-            top: "-30px",
+            height: "fit-content",
+            bottom: "15px",
           }}
         >
-          <CardContent style={{ marginTop: "0" }}>
+          <CardContent>
             <Grid>
               <GridRow>
                 <CardHeader
                   style={{
-                    margin: "20px",
                     margin: "auto",
                     fontWeight: "bolder",
                     fontSize: "15px",
+                    padding: "10px",
                   }}
                 >
                   {props.data.title}
                 </CardHeader>
                 <Item
-                  style={{ margin: "10px", fontSize: "20px", padding: "10px" }}
+                  style={{
+                    margin: "10px",
+                    fontSize: "20px",
+                    padding: "10px",
+                  }}
                   floated="right"
                   size="mini"
                 >
-                  <Options resource={props.data} />
+                  <i class="ellipsis horizontal icon"></i>
                 </Item>
               </GridRow>
             </Grid>
             <Rating
-              style={{ marginRight: "40px" }}
               rating={props.data.rating}
               num_ratings={props.data.num_ratings}
               resourceId={props.data._id}
@@ -161,20 +154,21 @@ const Resource = (props) => {
                   <CardMeta> {props.data.num_views} Views</CardMeta>
                 </GridRow>
                 <CardDescription style={{ margin: "10px" }}>
-                  <Header></Header>
                   {props.data.description}
-                  <DisplayComments
-                    comments={props.data.comments}
-                    displayCom={displayCom}
-                    showComm={showComm}
-                  />
-                  <CreateComment
-                    resourceId={props.data._id}
-                    makeCom={makeCom}
-                    showComm={showComm}
-                    showMakeComm={showMakeComm}
-                  />
                 </CardDescription>
+
+                <DisplayComments
+                  comments={props.data.comments}
+                  displayCom={displayCom}
+                  showComm={showComm}
+                />
+
+                <CreateComment
+                  resourceId={props.data._id}
+                  makeCom={makeCom}
+                  showComm={showComm}
+                  showMakeComm={showMakeComm}
+                />
               </Grid>
             </GridColumn>
           </CardContent>
