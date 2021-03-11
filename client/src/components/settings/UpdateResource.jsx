@@ -12,6 +12,8 @@ const UpdateResource = (props) => {
   const [resource, setResource] = useState(props.data);
   const update = useSelector((state) => state.update);
   const [paid, setPaid] = useState(false);
+  //modal to delete
+  const [deleteModal, setDeleteModal] = useState(false);
   const dispatch = useDispatch();
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
@@ -101,7 +103,7 @@ const UpdateResource = (props) => {
           <input
             type="text"
             name="title"
-            placeholder={resource.title}
+            value={resource.title}
             onChange={formHandler}
           />
         </Form.Field>
@@ -149,12 +151,33 @@ const UpdateResource = (props) => {
           <TextArea
             label="Description"
             name="description"
-            placeholder={resource.description}
+            value={resource.description}
             onChange={formHandler}
           />
         </Form.Field>
-        <Button type="submit">Update Resource</Button>
+        <Button
+          style={{ width: "130px", alignItems: "center" }}
+          className="ui primary labeled icon button"
+          type="submit"
+        >
+          <i class="edit icon"></i>Update
+        </Button>
       </Form>
+      <Button
+        style={{ width: "130px", alignItems: "center", float: "right" }}
+        className="ui red labeled icon button"
+        onClick={() => setDeleteModal(true)}
+      >
+        <i class="trash alternate outline icon"></i>Delete
+      </Button>
+
+      <ModalBox
+        text="Would you like to delete this resource permanently? This action can
+            not be undone."
+        action={delResource}
+        deleteModal={deleteModal}
+        setDeleteModal={setDeleteModal}
+      />
     </div>
   );
 };

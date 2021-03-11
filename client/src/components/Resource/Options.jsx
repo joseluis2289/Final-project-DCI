@@ -14,6 +14,7 @@ import {
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import ModalBox from "../ModalBox";
 
 export default function Options({ resource }) {
   const user = useSelector((state) => state.user);
@@ -89,7 +90,21 @@ export default function Options({ resource }) {
         console.log(err);
       });
   };
-
+  const delResource = (e) => {
+    e.preventDefault();
+    axios({
+      method: "DELETE",
+      url: `/resources/${resource._id}`,
+      ContentType: "application/json; charset=utf-8",
+    })
+      .then((response) => {
+        dispatch(updateData(update));
+        setDeleteModal(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       <Dropdown text="..." pointing="right" className="link item" color="teal">
@@ -112,45 +127,13 @@ export default function Options({ resource }) {
         </Dropdown.Menu>
       </Dropdown>
 
-      {/* MODAL TO DELETE RESOURCE */}
-      <Modal
-        size="mini"
-        open={deleteModal}
-        onClose={() => setDeleteModal(false)}
-        onOpen={() => setDeleteModal(true)}
-      >
-        <Header icon="trash alternate" content="Delete Resource" />
-        <Modal.Content>
-          <p>
-            Would you like to delete this resource permanently? This action can
-            not be undone.
-          </p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button color="green" onClick={() => setDeleteModal(false)}>
-            <Icon name="remove" /> No
-          </Button>
-          <Button
-            color="red"
-            onClick={() => {
-              axios({
-                method: "DELETE",
-                url: `/resources/${resource._id}`,
-                ContentType: "application/json; charset=utf-8",
-              })
-                .then((response) => {
-                  dispatch(updateData(update));
-                  setDeleteModal(false);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            }}
-          >
-            <Icon name="checkmark" /> Yes
-          </Button>
-        </Modal.Actions>
-      </Modal>
+      <ModalBox
+        text="Would you like to delete this resource permanently? This action can
+            not be undone."
+        action={delResource}
+        deleteModal={deleteModal}
+        setDeleteModal={setDeleteModal}
+      />
 
       {/* MODAL TO REPORT */}
       {/* 2 modals  */}
