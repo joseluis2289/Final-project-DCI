@@ -107,7 +107,17 @@ export default function Options({ resource }) {
   };
   return (
     <div>
-      <Dropdown text="..." pointing="right" className="link item" color="teal">
+      <Dropdown
+        text="..."
+        pointing="right"
+        className="link item"
+        style={{
+          backgroundColor: "var(--yellow-light)",
+          padding: "0.6rem",
+          borderRadius: "10px",
+          marginRight: "0.3rem",
+        }}
+      >
         <Dropdown.Menu>
           <Dropdown.Item onClick={(e) => handle(e, "share")}>
             <Icon name="share"></Icon>Copy link
@@ -128,6 +138,7 @@ export default function Options({ resource }) {
       </Dropdown>
 
       <ModalBox
+        header="Delete Resource"
         text="Would you like to delete this resource permanently? This action can
             not be undone."
         action={delResource}

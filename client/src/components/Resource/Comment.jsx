@@ -118,6 +118,7 @@ export default function Comment(props) {
                 </Dropdown.Menu>
               </Dropdown>
               <ModalBox
+                header="Delete Comment"
                 text="Are you sure you want to delete this comment?"
                 action={delComment}
                 deleteModal={deleteModal}
