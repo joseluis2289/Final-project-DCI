@@ -4,13 +4,23 @@ import { updateData } from "../../redux/actions";
 import axios from "axios";
 import ModalBox from "../ModalBox";
 import moment from "moment";
-import { Button, Card, Header, Form, Input, Grid } from "semantic-ui-react";
+import {
+  Button,
+  Card,
+  Header,
+  Form,
+  Input,
+  Grid,
+  Dropdown,
+} from "semantic-ui-react";
 
 export default function Comment(props) {
   const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
   const [comment, setComment] = useState(props.data);
   const [edit, setEdit] = useState(false);
+  //modal to delete
+  const [deleteModal, setDeleteModal] = useState(false);
   const dispatch = useDispatch();
 
   //if user send request, the "edited" and "date" will be updated
@@ -84,23 +94,26 @@ export default function Comment(props) {
         <div>
           {props.data.user && props.data.user._id === user._id && !edit && (
             <div style={{ display: "flex" }}>
-              <ModalBox function={delComment} text="X" />{" "}
-              <Button
-                style={{
-                  fontSize: "10px",
-                  width: "5px",
-                  height: "10px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: "0",
-                }}
-                onClick={() => {
-                  displayButtons(true);
-                }}
-              >
-                Edit
-              </Button>
+              <Dropdown text="...">
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    icon="edit"
+                    onClick={() => {
+                      displayButtons(true);
+                    }}
+                  />
+                  <Dropdown.Item
+                    icon="trash"
+                    onClick={() => setDeleteModal(true)}
+                  />
+                </Dropdown.Menu>
+              </Dropdown>
+              <ModalBox
+                text="Are you sure you want to delete this comment?"
+                action={delComment}
+                deleteModal={deleteModal}
+                setDeleteModal={setDeleteModal}
+              />
             </div>
           )}
         </div>
