@@ -1,18 +1,19 @@
 {
   "name": "final-project-dci",
   "version": "1.0.0",
-  "description": "he aim of this project is to optimize the progress of web development students by sharing links from online courses, documentation, or youtube tutorials. The resources can be rated and commented.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/belcosta/Final-Project-DCI.git"
-  },
+  "description": "**Team members:** Christian, Jose and Bel",
   "main": "index.js",
-  "scripts": {
+     "scripts": {
     "start": "node server.js",
     "server": "nodemon server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"", 
+    "start": "node backend/server.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belcosta/Final-Project-DCI.git"
   },
   "keywords": [],
   "author": "Christian, Jose, Isabel",
@@ -41,5 +42,5 @@
   },
   "engines": {
     "node": "10.19.0"
-  }
+}
 }

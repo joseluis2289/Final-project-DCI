@@ -181,15 +181,14 @@ app.put("/update", (req, res, next) => {
       if (err) {
         res.send(err);
       } else {
-        User.findOneAndUpdate(
+        User.updateOne(
           { email: updateUser.email },
           {
             name: updateUser.name,
             userName: updateUser.userName,
             email: updateUser.email,
             password: hash,
-          },
-          { new: true }
+          }
         )
           .then((result) => {
             res.send(result);

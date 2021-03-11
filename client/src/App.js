@@ -12,20 +12,24 @@ import AddResource from "./components/AddResource";
 import MyResources from "./components/settings/MyResources";
 
 import MyComments from "./components/settings/MyComments";
+import Settings from "./components/settings/Settings";
 import ResourcePage from "./components/ResourcePage";
 import UpdateResourcePage from "./components/settings/UpdateResourcePage";
 import NotFound from "./components/NotFound";
-import About from "./components/About";
+import Footer from "./components/Footer";
 import "./App.css";
+import "semantic-ui-css/semantic.min.css";
 
 export default function App() {
+  const error = useSelector((state) => state.error);
   return (
     <Router>
       <Navbar />
+
+      {error === {} ? <NotFound /> : <Filter />}
       <Switch>
         <main>
           <Route path="/home" component={Home} />
-          <Route path="/about" component={About} />
           <Route
             exact
             path="/resources/resource/:resourceId"
@@ -35,6 +39,7 @@ export default function App() {
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
           <Route path="/" exact={true} component={Content} />
+          <Route path="/settings" component={Settings} />
           <Route path="/add_resource" component={AddResource} />
           <Route path="/my_resources" component={MyResources} />
           <Route path="/my_comments" component={MyComments} />
@@ -42,6 +47,7 @@ export default function App() {
           <Route path="#!" component={NotFound} />
         </main>
       </Switch>
+      {/* <Footer /> */}
     </Router>
   );
 }

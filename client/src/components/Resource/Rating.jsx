@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { updateData } from "../../redux/actions";
+import { Label, Item } from "semantic-ui-react";
 
 // Gets Rating (between 0 and 5) as decimal number in props.rating
 export default function Rating(props) {
@@ -96,10 +97,13 @@ export default function Rating(props) {
         {props.usedInFilter ? (
           ""
         ) : (
-          <figcaption className="rating-details">
-            <span className="rating-number">{rating}</span>
-            <span className="rating-users">({props.num_ratings})</span>
-          </figcaption>
+          <Item style={{ marginTop: "8px" }}>
+            <Item.Content>
+              {/* <figcaption className="rating-details"> */}
+              <span className="rating-number">{rating}</span>
+              <span className="rating-users">({props.num_ratings})</span>
+            </Item.Content>
+          </Item>
         )}
       </figure>
     </section>

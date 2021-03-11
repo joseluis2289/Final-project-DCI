@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -19,24 +19,19 @@ export default function AddResource() {
     "general",
   ]);
 
-  useEffect(() => {
-    !user && history.push("/login");
-  }, []);
-
-  let defineCategory = (value) => {
-    let categoriesSelected = resource.category;
-    console.log(value);
-    let cat = categoriesSelected.indexOf(value);
+  let defineCategory = (e) => {
+    let categories = resource.category;
+    let cat = categories.indexOf(e.target.value);
     if (cat === -1) {
-      categoriesSelected.push(value);
+      categories.push(e.target.value);
     } else if (cat !== -1) {
-      categoriesSelected.splice(cat, 1);
+      categories.splice(cat, 1);
     }
-    setResource({ ...resource, category: categoriesSelected });
+    setResource({ ...resource, [e.target.name]: categories });
   };
 
-  let formHandler = (e, value) => {
-    setResource({ ...resource, [e.target.name]: value });
+  let formHandler = (e) => {
+    setResource({ ...resource, [e.target.name]: e.target.value });
   };
 
   let addResource = (e) => {

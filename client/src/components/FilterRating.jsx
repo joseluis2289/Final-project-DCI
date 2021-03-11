@@ -29,6 +29,7 @@ export default function FilterRating() {
   }, [rating, dispatch]);
 
   return (
+    //className="rating-container"
     <figure
       style={{ width: "300px", height: "1vh" }}
       className="rating-container"

@@ -1,13 +1,10 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../redux/actions";
-import { Grid, Menu, Header, Icon, Dropdown } from "semantic-ui-react";
-import "./Navbar.css";
 
 export default function Navbar() {
   const logIn = useSelector((state) => state.logIn);
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
 
