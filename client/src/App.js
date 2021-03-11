@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
@@ -18,7 +18,7 @@ import NotFound from "./components/NotFound";
 import "./App.css";
 
 export default function App() {
-  const error = useSelector((state) => state.error);
+  // const error = useSelector((state) => state.error);
   return (
     <Router>
       <Navbar />
