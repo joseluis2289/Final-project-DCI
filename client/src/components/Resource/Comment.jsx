@@ -97,7 +97,7 @@ export default function Comment(props) {
               <Dropdown
                 text="..."
                 style={{
-                  backgroundColor: "var(--violett-light)",
+                  backgroundColor: "var(--yellow-light)",
                   color: "white",
                   fontSize: "1.4rem",
                   padding: "0.3rem",
