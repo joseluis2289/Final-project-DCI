@@ -59,6 +59,21 @@
 }
 
 /****SETTINGS****/
+.background-container{
+  background: rgb(112, 111, 211);
+  /* Gradient created with base colors and https://cssgradient.io/ */
+  background: linear-gradient(
+    135deg,
+    rgba(112, 111, 211, 1) 0%,
+    rgba(52, 172, 224, 1) 50%,
+    rgba(112, 111, 211, 1) 100%
+  );
+  background-repeat: repeat-y;
+  /* Browser window height - height of menu bar */
+  min-height: calc(100vh - 79px);
+  padding: 0 10rem;
+  display: grid !important;
+}
 .add-resource {
   width: 30vw;
 }
