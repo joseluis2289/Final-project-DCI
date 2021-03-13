@@ -3,6 +3,7 @@ const initialState = {
   logIn: false,
   update: false,
   resources: [],
+  dashboard: [],
   filter: {
     rating: 0, // show all
     frontend: true,
@@ -52,7 +53,7 @@ const reducer = (state = initialState, action) => {
         resources: payload,
       };
 
-      case "UPDATE_DATA":
+    case "UPDATE_DATA":
       return {
         ...state,
         update: !payload,
@@ -62,20 +63,23 @@ const reducer = (state = initialState, action) => {
         ...state,
         resources: payload,
       };
+    case "GET_DASHBOARD_DATA":
+      return {
+        ...state,
+        dashboard: payload,
+      };
     case "RESOURCES_ERROR":
       return {
         ...state,
         error: payload,
       };
     case "SET_ALERT":
-      return {...state, payload};
+      return { ...state, payload };
     case "REMOVE_ALERT":
       return state.filter((alert) => alert.id !== payload);
     default:
       return state;
   }
 };
-
-
 
 export default reducer;

@@ -4,22 +4,22 @@ import { v4 as uuidv4 } from "uuid";
 //USER ACTIONS
 export function userLogin({ logIn, user }) {
   if (logIn === true) {
-  return {
-    type: "USER_LOGIN",
-    payload: { logIn, user },
+    return {
+      type: "USER_LOGIN",
+      payload: { logIn, user },
+    };
+  } else {
+    return {
+      type: "LOGIN_FAIL",
+      payload: { logIn },
+    };
   }
-}else {
-  return {
-    type: "LOGIN_FAIL",
-    payload: { logIn },
-  }
-}
 }
 
 export function userLogout() {
   return {
     type: "USER_LOGOUT",
-    payload: false
+    payload: false,
   };
 }
 
@@ -65,8 +65,26 @@ export const getResources = () => async (dispatch) => {
   axios
     .get("/resources")
     .then((res) => {
-            dispatch({
+      dispatch({
         type: "GET_RESOURCES",
+        payload: res.data,
+      });
+      console.log("data from action", res.data);
+    })
+    .catch((error) => {
+      dispatch({
+        type: "RESOURCES_ERROR",
+        payload: error,
+      });
+    });
+};
+
+export const getDashboardData = () => async (dispatch) => {
+  axios
+    .get("/resources/dashboard/")
+    .then((res) => {
+      dispatch({
+        type: "GET_DASHBOARD_DATA",
         payload: res.data,
       });
       console.log("data from action", res.data);
@@ -82,7 +100,7 @@ export const getResources = () => async (dispatch) => {
 export function updateData(boolean) {
   return {
     type: "UPDATE_DATA",
-    payload: boolean
+    payload: boolean,
   };
 }
 
@@ -105,7 +123,6 @@ export const searchResources = (term) => async (dispatch) => {
       });
   }
 };
-
 
 /* ALERTS */
 

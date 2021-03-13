@@ -15,7 +15,7 @@ const path = require("path");
 const PORT = process.env.PORT || 5000;
 
 const url = process.env.MONGO_URIBel;
-//  const url = process.env.MONGO_URIJose;
+// const url = process.env.MONGO_URIJose;
 
 //connect to DataBase
 const connectDB = async () => {

@@ -83,6 +83,7 @@ const Content = ({ getResources, resources, filter }) => {
             </Header>
             <Link to="/add_resource">
               <Button
+                style={{ width: "150px" }}
                 content="Add Resource"
                 icon="add circle"
                 labelPosition="left"
