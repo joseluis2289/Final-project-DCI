@@ -65,97 +65,141 @@ export default function AddResource() {
   };
   return (
     <Container fluid>
-      <Grid divided="vertically" verticalAlign="middle">
+      <Grid divided="vertically">
         <Grid.Row columns={2}>
           <Grid.Column
+            verticalAlign="middle"
             mobile={16}
-            tablet={10}
-            computer={10}
+            tablet={16}
+            computer={9}
             className="background-container"
+            style={{
+              padding: "0 !important",
+              margin: "0",
+            }}
           >
-            <Header size="huge" mobile={8}>
-              How cool! You are helping colleges to learn faster!
-            </Header>
-            <Image
-              mobile={8}
-              src="./illustrations/add-resource.svg"
-              alt="man on computer"
-            />
+            {/* styling colored background + image depending on the screen width  */}
+            <Grid divided="vertically" verticalAlign="middle">
+              <Grid.Row columns={2}>
+                <Grid.Column mobile={16} tablet={6} computer={16}>
+                  <Header
+                    textAlign="center"
+                    style={{
+                      fontSize: "1.3rem",
+                      margin: "1em",
+                    }}
+                  >
+                    How cool! You are helping colleges to learn faster!
+                  </Header>
+                </Grid.Column>
+                <Grid.Column mobile={16} tablet={10} computer={16}>
+                  <Image
+                    wrapped
+                    src="./illustrations/add-resource.svg"
+                    alt="man on computer"
+                    style={{
+                      padding: "1.5rem",
+                      margin: "0",
+                    }}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
           </Grid.Column>
           <Grid.Column
-            className="ui segment"
+            className="add-form"
+            verticalAlign="middle"
             mobile={16}
-            tablet={6}
-            computer={6}
+            tablet={16}
+            computer={7}
           >
-            <Card.Group
-              style={{ width: "600px", marginTop: "20px" }}
-              className="ui container add-resource"
-            >
-              <Form onSubmit={addResource}>
-                <Form.Field>
-                  <label htmlFor="title">Title</label>
-                  <input
-                    type="text"
-                    name="title"
-                    placeholder="Enter the title..."
+            <div style={{ width: "300px", margin: "auto", marginTop: "40px" }}>
+              <Card.Group className="ui container add-resource">
+                <Form onSubmit={addResource}>
+                  <Form.Field>
+                    <label htmlFor="title">Title</label>
+                    <input
+                      type="text"
+                      name="title"
+                      placeholder="Enter the title..."
+                      onChange={(e) => {
+                        formHandler(e, e.target.value);
+                      }}
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <label htmlFor="link">Link</label>
+                    <input
+                      type="text"
+                      name="link"
+                      placeholder="Enter the Link.."
+                      onChange={(e) => {
+                        formHandler(e, e.target.value);
+                      }}
+                    />
+                  </Form.Field>
+                  <Form.Field label="Categories"></Form.Field>
+                  <Form.Group
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "250px",
+                      margin: "0.5em auto",
+                    }}
+                  >
+                    {categories.map((item, index) => {
+                      let name = item[0].toUpperCase() + item.substring(1);
+                      return (
+                        <Form.Field
+                          label={name}
+                          key={index}
+                          type="checkbox"
+                          control="input"
+                          value={item}
+                          onChange={(e) => {
+                            defineCategory(e);
+                          }}
+                        />
+                      );
+                    })}
+                  </Form.Group>
+                  <Checkbox
+                    toggle
+                    label="Paid"
+                    name="paid"
+                    type="checkbox"
+                    control="input"
+                    value={resource.paid}
+                    onChange={(e, { value }) => {
+                      setResource({ ...resource, paid: !resource.paid });
+                      console.log("resource", resource.paid);
+                    }}
+                    style={{
+                      margin: "0.em 0",
+                    }}
+                  ></Checkbox>
+                  <Form.TextArea
+                    label="Description"
+                    placeholder="Enter your description..."
+                    name="description"
                     onChange={(e) => {
                       formHandler(e, e.target.value);
                     }}
                   />
-                </Form.Field>
-                <Form.Field>
-                  <label htmlFor="link">Link</label>
-                  <input
-                    type="text"
-                    name="link"
-                    placeholder="Enter the Link.."
-                    onChange={(e) => {
-                      formHandler(e, e.target.value);
+                  <Button
+                    type="submit"
+                    className="ui labeled icon button"
+                    style={{
+                      width: "150px",
+                      marginBottom: "20px",
+                      backgroundColor: "var(--yellow-light)",
                     }}
-                  />
-                </Form.Field>
-                <Form.Group inline>
-                  <label>Category</label>
-                  {categories.map((item, index) => {
-                    let name = item[0].toUpperCase() + item.substring(1);
-                    return (
-                      <Form.Field
-                        label={name}
-                        key={index}
-                        type="checkbox"
-                        control="input"
-                        value={item}
-                        onChange={(e) => {
-                          defineCategory(e.target.value);
-                        }}
-                      />
-                    );
-                  })}
-                </Form.Group>
-                <Checkbox
-                  toggle
-                  label="Paid"
-                  name="paid"
-                  type="checkbox"
-                  control="input"
-                  value={resource.paid}
-                  onChange={(e, { value }) => {
-                    setResource({ ...resource, paid: !resource.paid });
-                    console.log("resource", resource.paid);
-                  }}
-                ></Checkbox>
-                <Form.TextArea
-                  label="Description"
-                  placeholder="Enter your description..."
-                  name="description"
-                  onChange={(e) => {
-                    formHandler(e, e.target.value);
-                  }}
-                />
-                <Button type="submit">Submit</Button>
-              </Form>
-            </Card.Group>
+                  >
+                    <i className="checkmark alternate icon"></i>Submit
+                  </Button>
+                </Form>
+              </Card.Group>
+            </div>
           </Grid.Column>
         </Grid.Row>
       </Grid>
