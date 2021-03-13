@@ -14,9 +14,7 @@ import MyComments from "./components/settings/MyComments";
 import ResourcePage from "./components/ResourcePage";
 import UpdateResourcePage from "./components/settings/UpdateResourcePage";
 import NotFound from "./components/NotFound";
-import Footer from "./components/Footer";
 import "./App.css";
-import "semantic-ui-css/semantic.min.css";
 
 export default function App() {
   const error = useSelector((state) => state.error);
@@ -39,7 +37,11 @@ export default function App() {
           <Route path="/add_resource" component={AddResource} />
           <Route path="/my_resources" component={MyResources} />
           <Route path="/my_comments" component={MyComments} />
-          <Route exact path="/update_resource/:resourceId" component={UpdateResourcePage} />
+          <Route
+            exact
+            path="/update_resource/:resourceId"
+            component={UpdateResourcePage}
+          />
           <Route path="#!" component={NotFound} />
         </main>
       </Switch>

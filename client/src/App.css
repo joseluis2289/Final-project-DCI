@@ -15,11 +15,6 @@
   --gray-dark: #84817a;
 }
 
-body {
-  min-height: 100vh;
-  background-color: var(--off-white);
-}
-
 /*** RESOURCES ***/
 .rating {
   display: flex;
