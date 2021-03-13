@@ -69,11 +69,24 @@
     rgba(112, 111, 211, 1) 100%
   );
   background-repeat: repeat-y;
+  min-height: 150px;
+  max-height: 300px;
   /* Browser window height - height of menu bar */
-  min-height: calc(100vh - 79px);
   padding: 0 10rem;
   display: grid !important;
 }
+
+@media only screen and (min-width: 769px) {
+  .background-container{
+    min-height: calc(100vh - 79px);
+  }
+
+}
+.add-form {
+  margin: auto 0;
+
+}
+
 .add-resource {
   width: 30vw;
 }
