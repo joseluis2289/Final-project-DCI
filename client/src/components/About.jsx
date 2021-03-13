@@ -133,8 +133,8 @@ function About() {
               <Item>
                 <Image
                   style={{
-                    objectFit: "fill",
-                    height: "20vh",
+                    objectFit: "cover",
+                    height: "22vh",
                   }}
                   src="/images/jose.jpg"
                   size="small"
@@ -188,7 +188,7 @@ function About() {
               </Item>
               <Item>
                 <Image
-                  style={{ height: "20vh", objectFit: "cover" }}
+                  style={{ height: "22vh", objectFit: "cover" }}
                   src="/images/christian.jpg"
                   size="small"
                   circular
