@@ -1,3 +1,7 @@
 body {
   background-color: #2f2e41;
 }
+.joseFoto {
+  object-fit: cover;
+  height: 30vh;
+}

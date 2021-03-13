@@ -1,5 +1,13 @@
 import React from "react";
-import { Image, Grid, Header, Divider, Message, Icon } from "semantic-ui-react";
+import {
+  Image,
+  Grid,
+  Header,
+  Divider,
+  Icon,
+  Item,
+  Container,
+} from "semantic-ui-react";
 import "./About.css";
 
 function About() {
@@ -107,11 +115,107 @@ function About() {
               constant improvement and last but not least making coding FUN!
             </Header.Subheader>
           </Header>
-        </Grid.Row>
-        <Grid.Row>
-          <Image style={{ width: "300px" }} src="/images/team.png" />
+          <Grid.Column>
+            <Image
+              style={{ width: "400px", margin: "auto" }}
+              src="/images/team.png"
+            />
+          </Grid.Column>
+          <Grid
+            style={{
+              justifyContent: "space-around",
+            }}
+            columns={1}
+            doubling
+            padded
+          >
+            <Grid.Row>
+              <Item>
+                <Image
+                  style={{
+                    objectFit: "fill",
+                    height: "20vh",
+                  }}
+                  src="/images/jose.jpg"
+                  size="small"
+                  circular
+                  centered
+                />
+                <Header style={{ color: "white" }} textAlign="center">
+                  Jose luis Salgado
+                </Header>
+                <Item
+                  style={{ marginLeft: "35px" }}
+                  as="a"
+                  target="_blank"
+                  href="https://github.com/joseluis2289/"
+                >
+                  {" "}
+                  <Icon name="github" size="large" />
+                </Item>
+                <Item
+                  as="a"
+                  target="_blank"
+                  href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_nav-header-signin"
+                >
+                  <Icon name="linkedin" size="large" />
+                </Item>
+              </Item>
+              <Item>
+                <Image
+                  src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+                  size="small"
+                  circular
+                />
+                <Header style={{ color: "white" }} textAlign="center">
+                  Isabel Costa
+                </Header>
+                <Item
+                  style={{ marginLeft: "45px" }}
+                  as="a"
+                  target="_blank"
+                  href="https://github.com/belcosta/"
+                >
+                  <Icon name="github" size="large" />
+                </Item>
+                <Item
+                  as="a"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/belcosta-webdeveloper/?locale=en_US"
+                >
+                  <Icon name="linkedin" size="large" />
+                </Item>
+              </Item>
+              <Item>
+                <Image
+                  style={{ height: "20vh", objectFit: "cover" }}
+                  src="/images/christian.jpg"
+                  size="small"
+                  circular
+                />
+                <Header style={{ color: "white" }} textAlign="center">
+                  Christian Heinrich
+                </Header>
+                <Item
+                  style={{ marginLeft: "45px" }}
+                  as="a"
+                  target="_blank"
+                  href="https://github.com/coffeerpyos"
+                >
+                  <Icon name="github" size="large" />
+                </Item>
+                <Icon name="linkedin" size="large" />
+              </Item>
+            </Grid.Row>
+          </Grid>
         </Grid.Row>
       </Grid>
+      <Container fluid style={{ backgroundColor: "#ffde59" }}>
+        <Image
+          style={{ margin: "auto", height: "50vh", objectFit: "fill" }}
+          src="/images/footer.png"
+        />
+      </Container>
     </div>
   );
 }
