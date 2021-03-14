@@ -22,13 +22,13 @@ export default function ModalBox({
         </Modal.Content>
         <Modal.Actions>
           <Button
-            style={{ backgroundColor: "var(--red-dark)" }}
+            style={{ backgroundColor: "var(--red-dark)", color: "white" }}
             onClick={(e) => action(e)}
           >
             <Icon name="checkmark" /> Yes
           </Button>
           <Button
-            style={{ backgroundColor: "var(--green-dark)" }}
+            style={{ backgroundColor: "var(--green-dark)", color: "white" }}
             onClick={() => setDeleteModal(false)}
           >
             <Icon name="cancel" /> Cancel

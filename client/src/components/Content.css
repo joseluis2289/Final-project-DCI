@@ -12,7 +12,12 @@
 .references-container {
   /* HSL value instead of hex code, so I can change the lightness itself,
   without touching the rest of the color */
-  background-color: hsl(241, 53%, 67%);
+  background: linear-gradient(
+    135deg,
+    rgba(112, 111, 211, 1) 0%,
+    rgba(52, 172, 224, 1) 50%,
+    rgba(112, 111, 211, 1) 100%
+  );
 }
 .references-container .resources-title {
   color: #fff;
