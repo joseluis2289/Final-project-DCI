@@ -1,14 +1,15 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import Resource from "./Resource/Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
+
 import {
   Button,
   Container,
-  Icon,
-  Pagination,
+  // Icon,
+  // Pagination,
   Header,
   Grid,
 } from "semantic-ui-react";
@@ -37,32 +38,32 @@ const Content = ({ getResources, resources, filter }) => {
   // TODO: once a Search or a Filter is applied, change the display accordingly
 
   // PAGINATION
-  const [pagination, setPagination] = useState({
-    perPage: 8,
-    current: 1,
-    max: 1,
-    display: [1],
-  });
+  // const [pagination, setPagination] = useState({
+  //   perPage: 8,
+  //   current: 1,
+  //   max: 1,
+  //   display: [1],
+  // });
 
   // Whenever the resources change (for example by searching)
   // the nr of max pages is calculated again. Also the display array
   // needed to render the buttons is created again, based on the new
   // number of pages.
-  useEffect(() => {
-    const maxPages = Math.ceil(resources.length / pagination.perPage);
-    let pageDisplay = [];
-    for (let i = 1; i <= maxPages; i++) {
-      pageDisplay.push(i);
-    }
-    setPagination({ ...pagination, max: maxPages, display: pageDisplay });
-  }, [resources]);
+  // useEffect(() => {
+  //   const maxPages = Math.ceil(resources.length / pagination.perPage);
+  //   let pageDisplay = [];
+  //   for (let i = 1; i <= maxPages; i++) {
+  //     pageDisplay.push(i);
+  //   }
+  //   setPagination({ ...pagination, max: maxPages, display: pageDisplay });
+  // }, [resources]);
 
-  function handlePageChange(e) {
-    setPagination({
-      ...pagination,
-      current: parseInt(e.target.id.replace("page-", "")),
-    });
-  }
+  // function handlePageChange(e) {
+  //   setPagination({
+  //     ...pagination,
+  //     current: parseInt(e.target.id.replace("page-", "")),
+  //   });
+  // }
 
   return (
     <React.Fragment>
@@ -83,6 +84,7 @@ const Content = ({ getResources, resources, filter }) => {
             </Header>
             <Link to="/add_resource">
               <Button
+                style={{ width: "150px" }}
                 content="Add Resource"
                 icon="add circle"
                 labelPosition="left"
@@ -120,7 +122,7 @@ const Content = ({ getResources, resources, filter }) => {
             let showByCategory = false;
             let showByRating = false;
             let showByCost = false;
-            let showByCurrentPage = false;
+            // let showByCurrentPage = false;
 
             // FILTER FOR CATEGORIES
             let categories = ["general", "frontend", "backend", "database"];
@@ -147,11 +149,11 @@ const Content = ({ getResources, resources, filter }) => {
             // FILTER BY CURRENT PAGE
             // page 1 -- index: 0-7
             // page 2 -- index: 8-15
-            let start = (pagination.current - 1) * pagination.perPage;
-            let end = pagination.current * pagination.perPage - 1;
-            if (index >= start && index <= end) {
-              showByCurrentPage = true;
-            }
+            // let start = (pagination.current - 1) * pagination.perPage;
+            // let end = pagination.current * pagination.perPage - 1;
+            // if (index >= start && index <= end) {
+            //   showByCurrentPage = true;
+            // }
             // If resource matches all filter criteria, it is displayed
             if (
               showByCost &&
@@ -160,13 +162,8 @@ const Content = ({ getResources, resources, filter }) => {
               // && showByCurrentPage
             )
               return (
-                <Grid.Column>
-                  <Resource
-                    id={item._id}
-                    key={index}
-                    data={item}
-                    author="false"
-                  />
+                <Grid.Column key={item._id}>
+                  <Resource id={item._id} data={item} author="false" />
                 </Grid.Column>
               );
             return "";

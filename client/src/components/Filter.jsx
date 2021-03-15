@@ -2,48 +2,52 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
+  Grid,
+  Form,
+  Checkbox,
+  Rating,
+  Header,
+  // Container,
+} from "semantic-ui-react";
+import {
   filterCategory,
   filterFree,
   filterPaid,
+  filterRating,
   searchResources,
 } from "../redux/actions";
-import FilterRating from "../components/FilterRating";
-import { TextField } from "@material-ui/core/";
-import { makeStyles } from "@material-ui/core/styles";
-import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
-import InputAdornment from "@material-ui/core/InputAdornment";
-
-const useStyles = makeStyles({
-  root: {
-    fontSize: "18px",
-    margin: "2px",
-    fontFamily: "Roboto",
-    fontWeight: "regular",
-    backgroundColor: "#fff",
-    color: "#706FD3",
-    borderColor: "#706FD3",
-    borderRadius: "0.5rem",
-    width: 360,
-  },
-});
+import "./Filter.css";
 
 export default function Filter() {
   const history = useHistory();
-  const classes = useStyles();
   // In the beginning all resources are shown: free, paid and all ratings.
   let initialState = {
     free: true,
     paid: true,
-    rating: 0,
+    rating: 1,
     general: true,
     frontend: true,
     backend: true,
     database: true,
-    machineLearning: true,
     search: "",
   };
-  const [filterData, setFilterData] = useState(initialState);
   const dispatch = useDispatch();
+  // React Hook to store the active filter settings
+  const [filterData, setFilterData] = useState(initialState);
+  // React Hook to store state of Semantic UI React - Rating component
+  const [rating, setRating] = useState(false);
+  // Function that handles the changes of the Rating component
+  function onFilterRating(e, { rating, maxRating }) {
+    setRating(rating);
+  }
+
+  // FILTER -- RATING
+  useEffect(() => {
+    if (rating) dispatch(filterRating(rating));
+    return () => {
+      // cleanup
+    };
+  }, [rating, dispatch]);
 
   // FILTER -- CATEGORY -- "general"
   useEffect(() => {
@@ -80,16 +84,6 @@ export default function Filter() {
       // cleanup
     };
   }, [filterData.database, dispatch]);
-
-  // FILTER -- CATEGORY -- "machineLearning"
-  useEffect(() => {
-    if (filterData.machineLearning)
-      dispatch(filterCategory("machineLearning", true));
-    else dispatch(filterCategory("machineLearning", false));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.machineLearning, dispatch]);
 
   // FILTER -- FREE RESOURCES
   useEffect(() => {
@@ -128,120 +122,118 @@ export default function Filter() {
   }
 
   return (
-    <section className="filter-container">
-      <form className="filter-form">
-        {/* Category Filter */}
-        <fieldset>
-          <legend>Category</legend>
-
-          <input
-            type="checkbox"
-            id="general"
-            name="general"
-            onChange={handleCheckboxChange}
-            checked={filterData.general}
-          />
-          <label htmlFor="general">General</label>
-
-          <input
-            type="checkbox"
-            id="frontend"
-            name="frontend"
-            onChange={handleCheckboxChange}
-            checked={filterData.frontend}
-          />
-          <label htmlFor="frontend">Frontend</label>
-
-          <input
-            type="checkbox"
-            id="backend"
-            name="backend"
-            onChange={handleCheckboxChange}
-            checked={filterData.backend}
-          />
-          <label htmlFor="backend">Backend</label>
-
-          <input
-            type="checkbox"
-            id="database"
-            name="database"
-            onChange={handleCheckboxChange}
-            checked={filterData.database}
-          />
-          <label htmlFor="database">Database</label>
-          <input
-            type="checkbox"
-            id="machineLearning"
-            name="machineLearning"
-            onChange={handleCheckboxChange}
-            checked={filterData.machineLearning}
-          />
-          <label htmlFor="machineLearning">Machine Learning</label>
-        </fieldset>
-
-        {/* Paid/Free Filter */}
-        <fieldset>
-          <legend>Is paid?</legend>
-          <input
-            type="checkbox"
-            name="free"
-            id="filter-free"
-            onChange={handleCheckboxChange}
-            checked={filterData.free}
-          />
-          <label htmlFor="filter-free">Free</label>
-
-          <input
-            type="checkbox"
-            name="paid"
-            id="filter-paid"
-            onChange={handleCheckboxChange}
-            checked={filterData.paid}
-          />
-          <label htmlFor="filter-paid">Paid</label>
-        </fieldset>
-
-        {/* Rating Filter */}
-        <fieldset>
-          <legend>
-            <strong>Rating:</strong>
-          </legend>
-          <FilterRating />
-        </fieldset>
-      </form>
-
-      <form className="search-form" action="" method="post" onSubmit={search}>
-        {/* Search Field */}
-        <fieldset className="search-container">
-          <TextField
-            className={classes.root}
-            id="outlined-basic"
-            label="Search"
-            variant="outlined"
-            type="search"
-            name="search"
-            placeholder="Search"
-            size="small"
-            onChange={handleSearchChange}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="start">
-                  <SearchOutlinedIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          {/* <input
-            type="search"
-            name="search"
-            id="search"
-            placeholder="Search..."
-            onChange={handleSearchChange}
-          /> */}
-
-          <button type="submit">Search</button>
-        </fieldset>
-      </form>
-    </section>
+    <React.Fragment>
+      <Grid as="section">
+        {/* ---------- SEARCH BAR ---------- */}
+        <Grid.Row>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={12}>
+            <Form size="big" onSubmit={search}>
+              <Form.Input
+                focus
+                icon="search"
+                iconPosition="left"
+                type="search"
+                name="search"
+                id="search"
+                placeholder='Search... (for example "React", or "Git")'
+                onChange={handleSearchChange}
+              />
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+      <Grid columns={2} divided padded="horizontally">
+        {/* ---------- FILTER ---------- */}
+        <Grid.Row className="filter-container">
+          <Grid.Column>
+            <Header as="h3">Filter by Category</Header>
+            <Form>
+              <Form.Group widths="equal">
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    id="general"
+                    name="general"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.general}
+                    label={<label>General</label>}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    id="frontend"
+                    name="frontend"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.frontend}
+                    label={<label>Frontend</label>}
+                  />
+                </Form.Field>
+              </Form.Group>
+              <Form.Group widths="equal">
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    id="backend"
+                    name="backend"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.backend}
+                    label={<label>Backend</label>}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    id="database"
+                    name="database"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.database}
+                    label={<label>Database</label>}
+                  />
+                </Form.Field>
+              </Form.Group>
+            </Form>
+          </Grid.Column>
+          <Grid.Column>
+            <Header as="h3">Filter by Price</Header>
+            <Form>
+              <Form.Group widths="equal">
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    name="free"
+                    id="filter-free"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.free}
+                    label={<label>Free</label>}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Checkbox
+                    toggle
+                    name="paid"
+                    id="filter-paid"
+                    onChange={handleCheckboxChange}
+                    checked={filterData.paid}
+                    label={<label>Paid</label>}
+                  />
+                </Form.Field>
+              </Form.Group>
+            </Form>
+            <Header as="h3" className="rating-header">
+              Filter by Rating
+            </Header>
+            <Rating
+              maxRating={5}
+              defaultRating={0}
+              icon="star"
+              size="huge"
+              onRate={onFilterRating}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </React.Fragment>
   );
 }

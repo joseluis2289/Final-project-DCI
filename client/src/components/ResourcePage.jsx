@@ -5,10 +5,10 @@ import Resource from "./Resource/Resource";
 export default function ResourcePage() {
   const [resource, setResource] = useState({});
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     let url = window.location.href.split("/");
     const resourceId = url[url.length - 1];
-    console.log(resourceId);
     axios
       .get(`http://localhost:5000/resources/resource/${resourceId}`)
       .then((res) => {

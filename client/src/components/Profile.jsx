@@ -5,22 +5,25 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { userLogout } from "../redux/actions";
-import ModalBox from "./ModalBox";
-import { Form, Button, Header } from "semantic-ui-react";
+import { updateUser, userLogout } from "../redux/actions";
+import {
+  Form,
+  Button,
+  Header,
+  Icon,
+  Modal,
+  Container,
+} from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
+import ModalBox from "./ModalBox";
 
 export default function Profile() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [updateData, setUpdateData] = useState({
-    email: "",
-    name: "",
-    password: "",
-    userName: "",
-    _id: "",
-  });
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [updateData, setUpdateData] = useState(user);
   const notify = () => {
     toast.success(`Successfully Updated!`, {
       position: toast.POSITION.TOP_CENTER,
@@ -54,17 +57,18 @@ export default function Profile() {
       })
       .catch((err) => console.log(err));
   }, []);
-  const updateHandler = () => {
-    //e.preventDefault();
+  const updateHandler = (e) => {
     axios({
       method: "PUT",
       url: `/update`,
       data: updateData,
     })
       .then((response) => {
-        console.log(response.data);
+        console.log("what came?", response);
         notify();
         setUpdateData({ ...response.data, password: updateData.password });
+        dispatch(updateUser(response.data));
+        history.push("/home");
       })
       .catch((err) => {
         notifyError();
@@ -91,6 +95,9 @@ export default function Profile() {
       }}
       className="ui fluid card"
     >
+      <Container textAlign={"center"} className="intro-text">
+        <img src="./images/logo_200x200.png" alt="Logo" className="logo" />
+      </Container>
       <Header size="large" style={{ margin: "auto", padding: "10px" }}>
         Profile Update
       </Header>
@@ -175,8 +182,23 @@ export default function Profile() {
         >
           <i class="edit icon"></i>Update
         </Button>
+        <Button
+          style={{ width: "130px", alignItems: "center" }}
+          className="ui red labeled icon button"
+          onClick={() => setDeleteModal(true)}
+        >
+          <i class="trash alternate outline icon"></i>Delete
+        </Button>
       </Form>
-      <ModalBox function={delProfile} text="DELETE PROFILE" />
+      {/* MODAL TO DELETE */}
+      <ModalBox
+        header="Delete Profile"
+        text=" Would you like to delete your profile permanently? This action can
+                not be undone."
+        action={delProfile}
+        deleteModal={deleteModal}
+        setDeleteModal={setDeleteModal}
+      />
     </div>
   );
 }

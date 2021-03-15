@@ -5,7 +5,7 @@ const Comment = require("../Models/Comment");
 
 //get all Resources
 router.get("/", (req, res, next) => {
-  Resource.find()
+  Resource.find({ reported: false })
     .populate("user", "name")
     .populate({
       path: "comments",
@@ -18,6 +18,18 @@ router.get("/", (req, res, next) => {
 //search for specific term in Resources
 router.get("/search/:term", (req, res, next) => {
   const resources = Resource.find({ $text: { $search: req.params.term } })
+    .populate("user")
+    .populate({
+      path: "comments",
+      populate: { path: "user" },
+    })
+    .then((resources) => res.json(resources))
+    .catch((err) => res.send(err));
+});
+
+//search for specific data to display on HOME (dashboard)
+router.get("/dashboard", (req, res, next) => {
+  const resources = Resource.find({ category: "frontend" })
     .populate("user")
     .populate({
       path: "comments",
@@ -173,6 +185,7 @@ router.post("/add", (req, res, next) => {
     format,
     description,
     edited,
+    reported,
     deleted,
     comments,
   } = req.body;
@@ -191,6 +204,7 @@ router.post("/add", (req, res, next) => {
     format,
     description,
     edited,
+    reported,
     deleted,
     comments,
   });
@@ -229,6 +243,7 @@ router.post("/addmany", (req, res, next) => {
       format,
       description,
       edited,
+      reported,
       deleted,
       comments,
     } = item;
@@ -247,6 +262,7 @@ router.post("/addmany", (req, res, next) => {
       format,
       description,
       edited,
+      reported,
       deleted,
       comments,
     });
@@ -297,7 +313,7 @@ router.get("/:resource_id", (req, res, next) => {
     .catch((err) => res.send(err));
 });
 
-// update one resource (and change "deleted" to "true")
+// update one resource
 router.put("/:resource_id", (req, res, next) => {
   console.log("inside put router");
   resourceUpdated = Resource.updateOne(
