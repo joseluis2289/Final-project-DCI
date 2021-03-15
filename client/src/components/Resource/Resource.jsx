@@ -17,7 +17,7 @@ import {
   CardDescription,
   Label,
 } from "semantic-ui-react";
-import "./resources.css";
+import "./resource.css";
 
 // Gets reference ID as props.data.id
 const Resource = (props) => {

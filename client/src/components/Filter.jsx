@@ -7,6 +7,7 @@ import {
   Checkbox,
   Rating,
   Header,
+  Button,
   // Container,
 } from "semantic-ui-react";
 import {
@@ -139,6 +140,14 @@ export default function Filter() {
                 placeholder='Search... (for example "React", or "Git")'
                 onChange={handleSearchChange}
               />
+              {
+                <Button
+                  style={{ backgroundColor: "var(--yellow-light)" }}
+                  type="submit"
+                >
+                  Search
+                </Button>
+              }
             </Form>
           </Grid.Column>
         </Grid.Row>

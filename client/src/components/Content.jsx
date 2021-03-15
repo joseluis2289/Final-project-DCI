@@ -76,34 +76,31 @@ const Content = ({ getResources, resources, filter }) => {
         </p>
       </Container>
       {error === {} ? <NotFound /> : <Filter />}
-      <Grid doubling padded className="references-container">
-        <Header
-          as="h2"
-          className="resources-title"
-          style={{ marginTop: "3rem" }}
-        >
-          RESOURCES
-        </Header>
+      <Grid doubling padded columns={2} className="references-container">
         <Grid.Row>
-          <Link to="/add_resource">
-            <Button
-              style={{ width: "150px" }}
-              content="Add Resource"
-              icon="add circle"
-              labelPosition="left"
-              primary
-            />
-          </Link>
-          <section className="pagination">
-            Found <strong>{resources.length}</strong> Entries
-            {/* {pagination.current} of {pagination.max} /
+          <Header as="h2" className="resources-title">
+            RESOURCES
+          </Header>
+          <Grid.Column>
+            <Link to="/add_resource">
+              <Button
+                style={{ width: "150px" }}
+                content="Add Resource"
+                icon="add circle"
+                labelPosition="left"
+                primary
+              />
+            </Link>
+            <section className="pagination">
+              Found <strong>{resources.length}</strong> Entries
+              {/* {pagination.current} of {pagination.max} /
               <Pagination
                 boundaryRange={0}
                 defaultActivePage={1}
                 siblingRange={0}
                 totalPages={pagination.max}
               /> */}
-            {/* {pagination.display.map((index) => {
+              {/* {pagination.display.map((index) => {
                 return (
                   <Fragment>
                     <button
@@ -117,7 +114,8 @@ const Content = ({ getResources, resources, filter }) => {
                   </Fragment>
                 );
               })} */}
-          </section>
+            </section>
+          </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           {resources.map((item, index) => {
@@ -164,9 +162,9 @@ const Content = ({ getResources, resources, filter }) => {
               // && showByCurrentPage
             )
               return (
-                <Grid.Row key={item._id}>
+                <Grid.Column key={item._id}>
                   <Resource id={item._id} data={item} author="false" />
-                </Grid.Row>
+                </Grid.Column>
               );
             return "";
             // } else return "";

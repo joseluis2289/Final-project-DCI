@@ -10,6 +10,7 @@ import {
   Button,
   Icon,
 } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import { getDashboardData } from "../redux/actions";
 import "./Home.css";
 
@@ -161,6 +162,29 @@ const Home = ({ getDashboardData, dashboard }) => {
             <Header as="h3">User with most comments</Header>
             <Container>
               <p>Jóse Luis (5)</p>
+            </Container>
+
+            <Container>
+              <Link to="/">
+                <Button
+                  style={{ width: "150px", margin: "1em" }}
+                  content="See Resource"
+                  icon="linkify"
+                  labelPosition="left"
+                  secondary
+                />
+              </Link>
+            </Container>
+            <Container>
+              <Link to="/add_resource">
+                <Button
+                  style={{ width: "150px", margin: "1em" }}
+                  content="Add Resource"
+                  icon="add circle"
+                  labelPosition="left"
+                  primary
+                />
+              </Link>
             </Container>
           </Grid.Column>
         </Grid.Row>
