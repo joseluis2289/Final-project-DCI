@@ -7,7 +7,7 @@ import Options from "./Options";
 import {
   Card,
   CardContent,
-  Label,
+  CardHeader,
   Image,
   Grid,
   GridRow,
@@ -15,8 +15,9 @@ import {
   CardMeta,
   Item,
   CardDescription,
+  Label,
 } from "semantic-ui-react";
-import "./resource.css";
+import "./resources.css";
 
 // Gets reference ID as props.data.id
 const Resource = (props) => {
@@ -43,17 +44,17 @@ const Resource = (props) => {
   return (
     <Card.Group style={{ margin: "10px" }} className="ui container">
       <Card
-        fluid
         style={{
-          border: "solid 2px var(--yellow-light)",
-          /* width: "600px",
-          backgroundColor: "#706FCD", */
+          width: "600px",
+          backgroundColor: "#706FCD",
           height: "fit-content",
         }}
       >
         <CardContent>
-          <Card.Header style={{ padding: "10px", textAlign: "center" }}>
-            {props.data.title}
+          <Card.Header
+            style={{ color: "white", padding: "10px", textAlign: "center" }}
+          >
+            Resource{" "}
           </Card.Header>
         </CardContent>
         <Card
@@ -65,16 +66,30 @@ const Resource = (props) => {
           }}
         >
           <CardContent>
-            <Options
-              style={{
-                margin: "10px",
-                fontSize: "20px",
-                padding: "10px",
-              }}
-              floated="right"
-              size="mini"
-              resource={props.data}
-            />
+            <Grid>
+              <GridRow>
+                <CardHeader
+                  style={{
+                    margin: "auto",
+                    fontWeight: "bolder",
+                    fontSize: "15px",
+                    padding: "10px",
+                  }}
+                >
+                  {props.data.title}
+                </CardHeader>
+                <Options
+                  style={{
+                    margin: "10px",
+                    fontSize: "20px",
+                    padding: "10px",
+                  }}
+                  floated="right"
+                  size="mini"
+                  resource={props.data}
+                />
+              </GridRow>
+            </Grid>
             <Rating
               rating={props.data.rating}
               num_ratings={props.data.num_ratings}
@@ -125,7 +140,7 @@ const Resource = (props) => {
                 size="medium"
               />
               <Grid>
-                {/* <GridRow
+                <GridRow
                   style={{
                     padding: "25px",
                     display: "flex",
@@ -133,7 +148,7 @@ const Resource = (props) => {
                   }}
                 >
                   <CardMeta> {props.data.num_views} Views</CardMeta>
-                </GridRow> */}
+                </GridRow>
                 <CardDescription style={{ margin: "10px" }}>
                   {props.data.description}
                 </CardDescription>
