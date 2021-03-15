@@ -13,6 +13,7 @@ import MyResources from "./components/settings/MyResources";
 
 import MyComments from "./components/settings/MyComments";
 import Settings from "./components/settings/Settings";
+import About from "./components/About";
 import ResourcePage from "./components/ResourcePage";
 import UpdateResourcePage from "./components/settings/UpdateResourcePage";
 import NotFound from "./components/NotFound";
@@ -38,11 +39,16 @@ export default function App() {
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
           <Route path="/" exact={true} component={Content} />
+          <Route path="/about" component={About} />
           <Route path="/settings" component={Settings} />
           <Route path="/add_resource" component={AddResource} />
           <Route path="/my_resources" component={MyResources} />
           <Route path="/my_comments" component={MyComments} />
-          <Route exact path="/update_resource/:resourceId" component={UpdateResourcePage} />
+          <Route
+            exact
+            path="/update_resource/:resourceId"
+            component={UpdateResourcePage}
+          />
           <Route path="#!" component={NotFound} />
         </main>
       </Switch>
