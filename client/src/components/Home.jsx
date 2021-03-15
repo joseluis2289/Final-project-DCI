@@ -116,7 +116,7 @@ const Home = ({ getDashboardData, dashboard }) => {
                       <Icon name="arrow right" />
                     </Button>
                     <img
-                      src="./illustrations/frontend2.svg"
+                      src="./illustrations/frontend3.svg"
                       alt="Frontend Illustration"
                       className="illustration"
                     />
