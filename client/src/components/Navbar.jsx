@@ -81,6 +81,12 @@ export default function Navbar() {
                 </span>
               </Dropdown.Item>
               <Dropdown.Item>
+                <Link to="/home">
+                  <Icon name="home" />
+                  Home
+                </Link>
+              </Dropdown.Item>
+              <Dropdown.Item>
                 <Link to="/about">
                   <Icon name="info circle" />
                   About
@@ -165,6 +171,12 @@ export default function Navbar() {
           only="tablet computer"
         >
           <Menu compact secondary>
+            <Menu.Item>
+              <Link to="/home">
+                <Icon name="home" />
+                Home
+              </Link>
+            </Menu.Item>
             <Menu.Item>
               <Link to="/about">
                 <Icon name="info circle" />

@@ -27,6 +27,18 @@ router.get("/search/:term", (req, res, next) => {
     .catch((err) => res.send(err));
 });
 
+//search for specific data to display on HOME (dashboard)
+router.get("/dashboard", (req, res, next) => {
+  const resources = Resource.find({ category: "frontend" })
+    .populate("user")
+    .populate({
+      path: "comments",
+      populate: { path: "user" },
+    })
+    .then((resources) => res.json(resources))
+    .catch((err) => res.send(err));
+});
+
 //delete all resources
 router.delete("/", (req, res, next) => {
   Resource.deleteMany()
