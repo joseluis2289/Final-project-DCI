@@ -79,7 +79,7 @@ const Content = ({ getResources, resources, filter }) => {
       <Grid doubling padded columns={2} className="references-container">
         <Grid.Row>
           <Grid.Column>
-            <Header as="h2" className="resources-title">
+            <Header as="h2" className="resources-title" textAlign="center">
               RESOURCES
             </Header>
             <Link to="/add_resource">

@@ -42,17 +42,17 @@ const Resource = (props) => {
   return (
     <Card.Group style={{ margin: "10px" }} className="ui container">
       <Card
+        fluid
         style={{
-          width: "600px",
-          backgroundColor: "#706FCD",
+          border: "solid 2px var(--yellow-light)",
+          /* width: "600px",
+          backgroundColor: "#706FCD", */
           height: "fit-content",
         }}
       >
         <CardContent>
-          <Card.Header
-            style={{ color: "white", padding: "10px", textAlign: "center" }}
-          >
-            Resource{" "}
+          <Card.Header as="h1" style={{ padding: "10px", textAlign: "center" }}>
+            {props.data.title}
           </Card.Header>
         </CardContent>
         <Card
@@ -64,30 +64,16 @@ const Resource = (props) => {
           }}
         >
           <CardContent>
-            <Grid>
-              <GridRow>
-                <CardHeader
-                  style={{
-                    margin: "auto",
-                    fontWeight: "bolder",
-                    fontSize: "15px",
-                    padding: "10px",
-                  }}
-                >
-                  {props.data.title}
-                </CardHeader>
-                <Options
-                  style={{
-                    margin: "10px",
-                    fontSize: "20px",
-                    padding: "10px",
-                  }}
-                  floated="right"
-                  size="mini"
-                  resource={props.data}
-                />
-              </GridRow>
-            </Grid>
+            <Options
+              style={{
+                margin: "10px",
+                fontSize: "20px",
+                padding: "10px",
+              }}
+              floated="right"
+              size="mini"
+              resource={props.data}
+            />
             <Rating
               rating={props.data.rating}
               num_ratings={props.data.num_ratings}
