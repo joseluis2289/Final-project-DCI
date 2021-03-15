@@ -37,7 +37,6 @@ export default function App() {
           <Route path="/profile" component={Profile} />
           <Route path="/" exact={true} component={Content} />
           <Route path="/about" component={About} />
-          <Route path="/settings" component={Settings} />
           <Route path="/add_resource" component={AddResource} />
           <Route path="/my_resources" component={MyResources} />
           <Route path="/my_comments" component={MyComments} />
