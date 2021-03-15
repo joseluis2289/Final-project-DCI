@@ -9,9 +9,7 @@ import Profile from "./components/Profile";
 import Content from "./components/Content";
 import AddResource from "./components/AddResource";
 import MyResources from "./components/settings/MyResources";
-
 import MyComments from "./components/settings/MyComments";
-import Settings from "./components/settings/Settings";
 import About from "./components/About";
 import ResourcePage from "./components/ResourcePage";
 import UpdateResourcePage from "./components/settings/UpdateResourcePage";
@@ -37,7 +35,6 @@ export default function App() {
           <Route path="/profile" component={Profile} />
           <Route path="/" exact={true} component={Content} />
           <Route path="/about" component={About} />
-          <Route path="/settings" component={Settings} />
           <Route path="/add_resource" component={AddResource} />
           <Route path="/my_resources" component={MyResources} />
           <Route path="/my_comments" component={MyComments} />
