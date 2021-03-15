@@ -31,7 +31,7 @@ const Home = ({ getDashboardData, dashboard }) => {
           <Grid.Column width={4} className="dashboard-sidebar sidebar-left">
             <Card centered>
               <Card.Content>
-                <Card.Header>Recently added recoures</Card.Header>
+                <Card.Header>Recently added resources</Card.Header>
               </Card.Content>
               <Card.Content>
                 <Feed>

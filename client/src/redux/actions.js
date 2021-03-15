@@ -23,6 +23,13 @@ export function userLogout() {
   };
 }
 
+export function updateUser(user) {
+  return {
+    type: "UPDATE_USER",
+    payload: user,
+  }
+}
+
 // FILTER ACTIONS
 
 export function filterFree(status) {

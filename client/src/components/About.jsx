@@ -12,7 +12,7 @@ import "./About.css";
 
 function About() {
   return (
-    <div>
+    <div className="about">
       <div>
         <Image style={{ height: "50vh" }} src="/images/banner.png" fluid />
       </div>

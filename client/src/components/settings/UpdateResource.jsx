@@ -4,14 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateData } from "../../redux/actions";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Card, Form, Radio } from "semantic-ui-react";
+import { Button, Form, Radio, TextArea } from "semantic-ui-react";
 
 import ModalBox from "../ModalBox";
 
-export default function UpdateResource(props) {
+const UpdateResource = (props) => {
   const [resource, setResource] = useState(props.data);
   const update = useSelector((state) => state.update);
   const [paid, setPaid] = useState(false);
+  //modal to delete
+  const [deleteModal, setDeleteModal] = useState(false);
   const dispatch = useDispatch();
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
@@ -37,7 +39,6 @@ export default function UpdateResource(props) {
       autoClose: 2000,
     });
   };
-
   //show image
   useEffect(() => {
     resource.previewImage && setPreviewUrl(resource.previewImage);
@@ -92,17 +93,16 @@ export default function UpdateResource(props) {
         console.log(err);
       });
   };
+
   return (
     <div className="update-resource">
-      <ModalBox function={delResource} text="X" />
-
       <Form onSubmit={updateResource}>
         <Form.Field>
           <label htmlFor="title">Title</label>
           <input
             type="text"
             name="title"
-            placeholder={resource.title}
+            value={resource.title}
             onChange={formHandler}
           />
         </Form.Field>
@@ -145,17 +145,41 @@ export default function UpdateResource(props) {
             }}
           />
         </Form.Field>
+
         <Form.Field>
-          <Form.Textarea
+          <TextArea
             label="Description"
-            type="text"
             name="description"
-            placeholder={resource.description}
+            value={resource.description}
             onChange={formHandler}
-          ></Form.Textarea>
+          />
         </Form.Field>
-        <Button type="submit">Update Resource</Button>
+        <Button
+          style={{ width: "130px", alignItems: "center" }}
+          className="ui primary labeled icon button"
+          type="submit"
+        >
+          <i class="edit icon"></i>Update
+        </Button>
       </Form>
+      <Button
+        style={{ width: "130px", alignItems: "center", float: "right" }}
+        className="ui red labeled icon button"
+        onClick={() => setDeleteModal(true)}
+      >
+        <i class="trash alternate outline icon"></i>Delete
+      </Button>
+
+      <ModalBox
+        header="Delete Resource"
+        text="Would you like to delete this resource permanently? This action can
+            not be undone."
+        action={delResource}
+        deleteModal={deleteModal}
+        setDeleteModal={setDeleteModal}
+      />
     </div>
   );
-}
+};
+
+export default UpdateResource;

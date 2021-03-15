@@ -14,6 +14,7 @@ import {
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import ModalBox from "../ModalBox";
 
 export default function Options({ resource }) {
   const user = useSelector((state) => state.user);
@@ -33,24 +34,6 @@ export default function Options({ resource }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  //creating open link to dropdown
-  const options = [
-    { key: "share", icon: "share", text: "Copy link", value: "share" },
-    { key: "report", icon: "attention", text: "Report", value: "report" },
-  ];
-  //creating private links to dropdown
-  const optionsAuthor = [
-    { key: "edit", icon: "edit", text: "Edit Post", value: "edit" },
-    {
-      key: "delete",
-      icon: "trash alternate outline",
-      text: "Remove Post",
-      value: "delete",
-    },
-    { key: "share", icon: "share", text: "Copy link", value: "share" },
-    { key: "report", icon: "attention", text: "Report", value: "report" },
-  ];
-
   //alert to confirm that link was copied
   const notify = () => {
     toast.success("The link was copied!", {
@@ -60,18 +43,18 @@ export default function Options({ resource }) {
   };
 
   //setting function depending on which link from dropdown was clicked
-  const handle = (e, { value }) => {
+  const handle = (e, value) => {
     console.log("handle", e.target);
     if (value === "edit") {
-      console.log("edit");
+      console.log("edit", e.target);
       history.push(`/update_resource/${resource._id}`);
     }
     if (value === "delete") {
-      console.log("delete");
+      console.log("delete", e.target);
       setDeleteModal(true);
     }
     if (value === "share") {
-      console.log("share");
+      console.log("share", e.target);
       var url = `https://webdevelop-student-companion.herokuapp.com/resources/resource/${resource._id}`;
       navigator.clipboard.writeText(url);
       notify();
@@ -107,62 +90,61 @@ export default function Options({ resource }) {
         console.log(err);
       });
   };
-
+  const delResource = (e) => {
+    e.preventDefault();
+    axios({
+      method: "DELETE",
+      url: `/resources/${resource._id}`,
+      ContentType: "application/json; charset=utf-8",
+    })
+      .then((response) => {
+        dispatch(updateData(update));
+        setDeleteModal(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
-      <Button.Group color="teal">
-        <Dropdown
-          className="button icon"
-          floating
-          options={
-            user !== {} && user._id === resource.user._id
-              ? optionsAuthor
-              : options
-          }
-          trigger={<></>}
-          onChange={handle}
-        />
-      </Button.Group>
-
-      {/* MODAL TO DELETE RESOURCE */}
-      <Modal
-        size="mini"
-        open={deleteModal}
-        onClose={() => setDeleteModal(false)}
-        onOpen={() => setDeleteModal(true)}
+      <Dropdown
+        text="..."
+        pointing="right"
+        className="link item"
+        style={{
+          backgroundColor: "var(--yellow-light)",
+          padding: "0.6rem",
+          borderRadius: "10px",
+          marginRight: "0.3rem",
+        }}
       >
-        <Header icon="trash alternate" content="Delete Resource" />
-        <Modal.Content>
-          <p>
-            Would you like to delete this resource permanently? This action can
-            not be undone.
-          </p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button color="green" onClick={() => setDeleteModal(false)}>
-            <Icon name="remove" /> No
-          </Button>
-          <Button
-            color="red"
-            onClick={() => {
-              axios({
-                method: "DELETE",
-                url: `/resources/${resource._id}`,
-                ContentType: "application/json; charset=utf-8",
-              })
-                .then((response) => {
-                  dispatch(updateData(update));
-                  setDeleteModal(false);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            }}
-          >
-            <Icon name="checkmark" /> Yes
-          </Button>
-        </Modal.Actions>
-      </Modal>
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={(e) => handle(e, "share")}>
+            <Icon name="share"></Icon>Copy link
+          </Dropdown.Item>
+          <Dropdown.Item onClick={(e) => handle(e, "edit")}>
+            {" "}
+            <Icon name="edit"></Icon>Edit
+          </Dropdown.Item>
+          <Dropdown.Item onClick={(e) => handle(e, "delete")}>
+            {" "}
+            <Icon name="trash alternate outline"></Icon>Remove Post
+          </Dropdown.Item>
+          <Dropdown.Item onClick={(e) => handle(e, "report")}>
+            {" "}
+            <Icon name="attention"></Icon>Report
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+
+      <ModalBox
+        header="Delete Resource"
+        text="Would you like to delete this resource permanently? This action can
+            not be undone."
+        action={delResource}
+        deleteModal={deleteModal}
+        setDeleteModal={setDeleteModal}
+      />
 
       {/* MODAL TO REPORT */}
       {/* 2 modals  */}

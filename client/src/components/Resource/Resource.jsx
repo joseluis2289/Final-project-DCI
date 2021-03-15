@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Rating from "./Rating";
 import CreateComment from "./CreateComment.jsx";
 import DisplayComments from "./DisplayComments";
+import Options from "./Options";
 import {
   Card,
   CardContent,
@@ -14,7 +15,6 @@ import {
   CardMeta,
   Item,
   CardDescription,
-  Label,
 } from "semantic-ui-react";
 
 // Gets reference ID as props.data.id
@@ -76,7 +76,7 @@ const Resource = (props) => {
                 >
                   {props.data.title}
                 </CardHeader>
-                <Item
+                <Options
                   style={{
                     margin: "10px",
                     fontSize: "20px",
@@ -84,9 +84,8 @@ const Resource = (props) => {
                   }}
                   floated="right"
                   size="mini"
-                >
-                  <i class="ellipsis horizontal icon"></i>
-                </Item>
+                  resource={props.data}
+                />
               </GridRow>
             </Grid>
             <Rating
