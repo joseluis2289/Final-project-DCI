@@ -170,7 +170,7 @@ export default function Navbar() {
                     style={{
                       backgroundColor: "var(--yellow-light)",
                       border: "none",
-                      margin: " 1rem -2rem ",
+                      margin: " -2rem ",
                     }}
                   >
                     <Dropdown.Item>
