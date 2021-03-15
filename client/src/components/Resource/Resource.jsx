@@ -7,7 +7,7 @@ import Options from "./Options";
 import {
   Card,
   CardContent,
-  CardHeader,
+  Label,
   Image,
   Grid,
   GridRow,
@@ -16,6 +16,7 @@ import {
   Item,
   CardDescription,
 } from "semantic-ui-react";
+import "./resource.css";
 
 // Gets reference ID as props.data.id
 const Resource = (props) => {
@@ -51,7 +52,7 @@ const Resource = (props) => {
         }}
       >
         <CardContent>
-          <Card.Header as="h1" style={{ padding: "10px", textAlign: "center" }}>
+          <Card.Header style={{ padding: "10px", textAlign: "center" }}>
             {props.data.title}
           </Card.Header>
         </CardContent>
@@ -95,7 +96,11 @@ const Resource = (props) => {
                   {" "}
                   {props.data.category.map((item, index) => {
                     let name = item[0].toUpperCase() + item.substring(1);
-                    return <span key={index}>{name}</span>;
+                    return (
+                      <Label key={index} className={`label-${item}`}>
+                        {name}
+                      </Label>
+                    );
                   })}
                 </CardMeta>
                 <Item floated="right" size="mini">
@@ -120,7 +125,7 @@ const Resource = (props) => {
                 size="medium"
               />
               <Grid>
-                <GridRow
+                {/* <GridRow
                   style={{
                     padding: "25px",
                     display: "flex",
@@ -128,7 +133,7 @@ const Resource = (props) => {
                   }}
                 >
                   <CardMeta> {props.data.num_views} Views</CardMeta>
-                </GridRow>
+                </GridRow> */}
                 <CardDescription style={{ margin: "10px" }}>
                   {props.data.description}
                 </CardDescription>
