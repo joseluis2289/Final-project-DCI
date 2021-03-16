@@ -54,7 +54,7 @@ const Resource = (props) => {
           <Card.Header
             style={{ color: "white", padding: "10px", textAlign: "center" }}
           >
-            Resource{" "}
+            {props.data.title}
           </Card.Header>
         </CardContent>
         <Card
@@ -68,17 +68,19 @@ const Resource = (props) => {
           <CardContent>
             <Grid>
               <GridRow>
-                <CardHeader
-                  style={{
-                    margin: "auto",
-                    fontWeight: "bolder",
-                    fontSize: "15px",
-                    padding: "10px",
-                  }}
-                >
-                  {props.data.title}
-                </CardHeader>
+                <Grid.Column width={13}>
+                  <Rating
+                    rating={props.data.rating}
+                    num_ratings={props.data.num_ratings}
+                    resourceId={props.data._id}
+                    size="large"
+                    icon="star"
+                    defaultRating={5}
+                    maxRating={5}
+                  />
+                </Grid.Column>
                 <Options
+                  width={3}
                   style={{
                     margin: "10px",
                     fontSize: "20px",
@@ -90,15 +92,6 @@ const Resource = (props) => {
                 />
               </GridRow>
             </Grid>
-            <Rating
-              rating={props.data.rating}
-              num_ratings={props.data.num_ratings}
-              resourceId={props.data._id}
-              size="large"
-              icon="star"
-              defaultRating={5}
-              maxRating={5}
-            />
             <Grid>
               <GridRow
                 style={{
