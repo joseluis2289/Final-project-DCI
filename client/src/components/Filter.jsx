@@ -130,7 +130,7 @@ export default function Filter() {
         <Grid.Row>
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={12}>
-            <Form size="big" onSubmit={search}>
+            <Form size="big">
               <Form.Input
                 focus
                 icon="search"
@@ -150,14 +150,6 @@ export default function Filter() {
                   }
                 }}
               />
-              {
-                <Button
-                  style={{ backgroundColor: "var(--yellow-light)" }}
-                  type="submit"
-                >
-                  Search
-                </Button>
-              }
             </Form>
           </Grid.Column>
         </Grid.Row>
