@@ -11,22 +11,6 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // Navigation for Dropdown menu (tablet/computer view)
-  const move = (e, { value }) => {
-    if (value === "/signout") {
-      e.preventDefault();
-      dispatch(userLogout());
-    }
-    history.push(value);
-  };
-
-  // Label for Dropdown menu (tablet/computer view)
-  const trigger = (
-    <span className="dropdown-label">
-      <Icon name="user" /> {user.name}
-    </span>
-  );
-
   return (
     <Grid
       verticalAlign="middle"
@@ -174,6 +158,12 @@ export default function Navbar() {
                     }}
                   >
                     <Dropdown.Item>
+                      <span style={{ color: "var(--violett-dark)" }}>
+                        <Icon name="user" /> Hello,{" "}
+                        {user.name ? user.name : "Guest"}
+                      </span>
+                    </Dropdown.Item>
+                    <Dropdown.Item>
                       <Link to="/profile">
                         <Icon name="user circle" />
                         Profile
@@ -193,10 +183,9 @@ export default function Navbar() {
                     </Dropdown.Item>
                     <Dropdown.Item>
                       <Link
-                        to="/logout"
                         onClick={(e) => {
                           e.preventDefault();
-                          console.log("LOGOUT!");
+                          history.push("/home");
                           dispatch(userLogout());
                         }}
                       >
