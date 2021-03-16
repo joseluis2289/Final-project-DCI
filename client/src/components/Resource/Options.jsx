@@ -115,25 +115,33 @@ export default function Options({ resource }) {
           marginRight: "0.3rem",
         }}
       >
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={(e) => handle(e, "share")}>
-            <Icon name="share"></Icon>Copy link
-          </Dropdown.Item>
-          <Dropdown.Item onClick={(e) => handle(e, "report")}>
-            {" "}
-            <Icon name="attention"></Icon>Report
-          </Dropdown.Item>
-          {user._id == resource.user._id && (
-            <div>
-              <Dropdown.Item onClick={(e) => handle(e, "edit")}>
-                <Icon name="edit"></Icon>Edit
-              </Dropdown.Item>
-              <Dropdown.Item onClick={(e) => handle(e, "delete")}>
-                <Icon name="trash alternate outline"></Icon>Remove Post
-              </Dropdown.Item>
-            </div>
-          )}
-        </Dropdown.Menu>
+        {user._id !== resource.user._id ? (
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={(e) => handle(e, "share")}>
+              <Icon name="share"></Icon>Copy link
+            </Dropdown.Item>
+            <Dropdown.Item onClick={(e) => handle(e, "report")}>
+              {" "}
+              <Icon name="attention"></Icon>Report
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        ) : (
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={(e) => handle(e, "share")}>
+              <Icon name="share"></Icon>Copy link
+            </Dropdown.Item>
+            <Dropdown.Item onClick={(e) => handle(e, "report")}>
+              {" "}
+              <Icon name="attention"></Icon>Report
+            </Dropdown.Item>
+            <Dropdown.Item onClick={(e) => handle(e, "edit")}>
+              <Icon name="edit"></Icon>Edit
+            </Dropdown.Item>
+            <Dropdown.Item onClick={(e) => handle(e, "delete")}>
+              <Icon name="trash alternate outline"></Icon>Remove Post
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        )}
       </Dropdown>
 
       <ModalBox
