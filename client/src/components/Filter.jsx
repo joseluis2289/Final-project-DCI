@@ -16,6 +16,7 @@ import {
   filterPaid,
   filterRating,
   searchResources,
+  getResources,
 } from "../redux/actions";
 import "./Filter.css";
 
@@ -138,7 +139,16 @@ export default function Filter() {
                 name="search"
                 id="search"
                 placeholder='Search... (for example "React", or "Git")'
-                onChange={handleSearchChange}
+                onChange={(e) => {
+                  e.preventDefault();
+                  setFilterData(initialState);
+                  if (e.target.value === "") {
+                    dispatch(getResources());
+                  } else {
+                    dispatch(searchResources(e.target.value));
+                    history.push("/");
+                  }
+                }}
               />
               {
                 <Button

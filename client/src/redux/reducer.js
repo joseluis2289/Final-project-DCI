@@ -3,6 +3,7 @@ const initialState = {
   logIn: false,
   update: false,
   resources: [],
+  searchedResources: [],
   dashboard: [],
   filter: {
     rating: 0, // show all
@@ -51,6 +52,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         resources: payload,
+        searchedResources: payload
       };
 
     case "UPDATE_DATA":
@@ -61,7 +63,7 @@ const reducer = (state = initialState, action) => {
     case "SEARCH_RESOURCES":
       return {
         ...state,
-        resources: payload,
+        searchedResources: payload,
       };
     case "GET_DASHBOARD_DATA":
       return {

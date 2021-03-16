@@ -21,49 +21,14 @@ const Content = ({ getResources, resources, filter }) => {
   // When page loads for the first time, load resources from the database
   // into the Redux store. From there they are displayed with React.
   const [firstPageLoad, setFirstPageLoad] = useState(true);
+  const searchedResources = useSelector((state) => state.searchedResources);
   const update = useSelector((state) => state.update);
   const error = useSelector((state) => state.error);
 
   useEffect(() => {
-    if (firstPageLoad) {
-      getResources();
-      console.log(resources);
-      setFirstPageLoad(false);
-    }
-  }, [firstPageLoad, update, resources, getResources]);
-
-  useEffect(() => {
+    console.log(searchedResources);
     getResources();
   }, [update, getResources]);
-  // TODO: once a Search or a Filter is applied, change the display accordingly
-
-  // PAGINATION
-  // const [pagination, setPagination] = useState({
-  //   perPage: 8,
-  //   current: 1,
-  //   max: 1,
-  //   display: [1],
-  // });
-
-  // Whenever the resources change (for example by searching)
-  // the nr of max pages is calculated again. Also the display array
-  // needed to render the buttons is created again, based on the new
-  // number of pages.
-  // useEffect(() => {
-  //   const maxPages = Math.ceil(resources.length / pagination.perPage);
-  //   let pageDisplay = [];
-  //   for (let i = 1; i <= maxPages; i++) {
-  //     pageDisplay.push(i);
-  //   }
-  //   setPagination({ ...pagination, max: maxPages, display: pageDisplay });
-  // }, [resources]);
-
-  // function handlePageChange(e) {
-  //   setPagination({
-  //     ...pagination,
-  //     current: parseInt(e.target.id.replace("page-", "")),
-  //   });
-  // }
 
   return (
     <React.Fragment>
@@ -78,9 +43,6 @@ const Content = ({ getResources, resources, filter }) => {
       {error === {} ? <NotFound /> : <Filter />}
       <Grid doubling padded columns={2} className="references-container">
         <Grid.Row>
-          {/*  <Header as="h2" className="resources-title">
-            RESOURCES
-          </Header> */}
           <Grid.Column>
             <Link to="/add_resource">
               <Button
@@ -95,32 +57,11 @@ const Content = ({ getResources, resources, filter }) => {
             </Link>
             <section className="pagination">
               Found <strong>{resources.length}</strong> Entries
-              {/* {pagination.current} of {pagination.max} /
-              <Pagination
-                boundaryRange={0}
-                defaultActivePage={1}
-                siblingRange={0}
-                totalPages={pagination.max}
-              /> */}
-              {/* {pagination.display.map((index) => {
-                return (
-                  <Fragment>
-                    <button
-                      key={index}
-                      id={"page-" + index}
-                      onClick={handlePageChange}
-                      className={index === pagination.current ? "active" : null}
-                    >
-                      {index}
-                    </button>
-                  </Fragment>
-                );
-              })} */}
             </section>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          {resources.map((item, index) => {
+          {searchedResources.map((item, index) => {
             let showByCategory = false;
             let showByRating = false;
             let showByCost = false;
