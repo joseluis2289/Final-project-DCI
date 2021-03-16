@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import {
   Container,
@@ -10,12 +10,14 @@ import {
   Button,
   Icon,
 } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getDashboardData } from "../redux/actions";
 import "./Home.css";
 
 const Home = ({ getDashboardData, dashboard }) => {
+  const logIn = useSelector((state) => state.logIn);
   const [firstDashboardLoad, setFirstDashboardLoad] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     if (firstDashboardLoad) {
@@ -176,15 +178,23 @@ const Home = ({ getDashboardData, dashboard }) => {
               </Link>
             </Container>
             <Container>
-              <Link to="/add_resource">
-                <Button
-                  style={{ width: "150px", margin: "1em" }}
-                  content="Add Resource"
-                  icon="add circle"
-                  labelPosition="left"
-                  primary
-                />
-              </Link>
+              <Button
+                style={{
+                  width: "150px",
+                  margin: "1em",
+                  color: "var(--violett-dark)",
+                }}
+                content="Add Resource"
+                icon="add circle"
+                labelPosition="left"
+                primary
+                onClick={() => {
+                  console.log(logIn);
+                  logIn
+                    ? history.push("/add_resource")
+                    : history.push("/login");
+                }}
+              />
             </Container>
           </Grid.Column>
         </Grid.Row>
