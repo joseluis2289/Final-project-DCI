@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import Resource from "./Resource/Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
+import { useHistory } from "react-router-dom";
 
 import {
   Button,
@@ -20,10 +20,11 @@ import "./Content.css";
 const Content = ({ getResources, resources, filter }) => {
   // When page loads for the first time, load resources from the database
   // into the Redux store. From there they are displayed with React.
-  const [firstPageLoad, setFirstPageLoad] = useState(true);
   const searchedResources = useSelector((state) => state.searchedResources);
   const update = useSelector((state) => state.update);
   const error = useSelector((state) => state.error);
+  const logIn = useSelector((state) => state.logIn);
+  const history = useHistory();
 
   useEffect(() => {
     console.log(searchedResources);
@@ -43,18 +44,28 @@ const Content = ({ getResources, resources, filter }) => {
       {error === {} ? <NotFound /> : <Filter />}
       <Grid doubling padded columns={2} className="references-container">
         <Grid.Row>
-          <Grid.Column>
-            <Link to="/add_resource">
-              <Button
-                style={{ width: "150px" }}
-                content="Add Resource"
-                icon="add circle"
-                labelPosition="left"
-                primary
-                floated="right"
-                marginTop="2em !important"
-              />
-            </Link>
+          <Grid.Column
+            style={{
+              marginTop: "1em",
+            }}
+          >
+            <Button
+              style={{
+                width: "200px",
+                height: "80px",
+                color: "var(--violett-dark)",
+              }}
+              content="Add Resource"
+              icon="add circle"
+              labelPosition="left"
+              primary
+              floated="right"
+              marginTop="2em !important"
+              onClick={() => {
+                logIn ? history.push("/add_resource") : history.push("/login");
+              }}
+            />
+            )
             <section className="pagination">
               Found <strong>{resources.length}</strong> Entries
             </section>
@@ -88,22 +99,7 @@ const Content = ({ getResources, resources, filter }) => {
             if (Math.floor(item.rating) >= filter.rating) {
               showByRating = true;
             }
-
-            // FILTER BY CURRENT PAGE
-            // page 1 -- index: 0-7
-            // page 2 -- index: 8-15
-            // let start = (pagination.current - 1) * pagination.perPage;
-            // let end = pagination.current * pagination.perPage - 1;
-            // if (index >= start && index <= end) {
-            //   showByCurrentPage = true;
-            // }
-            // If resource matches all filter criteria, it is displayed
-            if (
-              showByCost &&
-              showByRating &&
-              showByCategory
-              // && showByCurrentPage
-            )
+            if (showByCost && showByRating && showByCategory)
               return (
                 <Grid.Column key={item._id}>
                   <Resource id={item._id} data={item} />
