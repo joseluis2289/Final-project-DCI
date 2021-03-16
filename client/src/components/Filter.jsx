@@ -207,41 +207,61 @@ export default function Filter() {
             </Form>
           </Grid.Column>
           <Grid.Column>
-            <Header as="h3">Filter by Price</Header>
-            <Form>
-              <Form.Group widths="equal">
-                <Form.Field>
-                  <Checkbox
-                    toggle
-                    name="free"
-                    id="filter-free"
-                    onChange={handleCheckboxChange}
-                    checked={filterData.free}
-                    label={<label>Free</label>}
+            <Grid>
+              <Grid.Row>
+                <Grid.Column>
+                  <Header as="h3">Filter by Price</Header>
+                  <Form>
+                    <Form.Group widths="equal">
+                      <Form.Field>
+                        <Checkbox
+                          toggle
+                          name="free"
+                          id="filter-free"
+                          onChange={handleCheckboxChange}
+                          checked={filterData.free}
+                          label={<label>Free</label>}
+                        />
+                      </Form.Field>
+                      <Form.Field>
+                        <Checkbox
+                          toggle
+                          name="paid"
+                          id="filter-paid"
+                          onChange={handleCheckboxChange}
+                          checked={filterData.paid}
+                          label={<label>Paid</label>}
+                        />
+                      </Form.Field>
+                    </Form.Group>
+                  </Form>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row columns={2}>
+                <Grid.Column mobile={16} tablet={8} computer={8}>
+                  <Header as="h3" className="rating-header">
+                    Filter by Rating
+                  </Header>
+                  <Rating
+                    maxRating={5}
+                    defaultRating={0}
+                    icon="star"
+                    size="huge"
+                    onRate={onFilterRating}
                   />
-                </Form.Field>
-                <Form.Field>
-                  <Checkbox
-                    toggle
-                    name="paid"
-                    id="filter-paid"
-                    onChange={handleCheckboxChange}
-                    checked={filterData.paid}
-                    label={<label>Paid</label>}
-                  />
-                </Form.Field>
-              </Form.Group>
-            </Form>
-            <Header as="h3" className="rating-header">
-              Filter by Rating
-            </Header>
-            <Rating
-              maxRating={5}
-              defaultRating={0}
-              icon="star"
-              size="huge"
-              onRate={onFilterRating}
-            />
+                </Grid.Column>
+                <Grid.Column mobile={16} tablet={8} computer={8}>
+                  <Button
+                    style={{ marginTop: "0.5em" }}
+                    onClick={() => {
+                      setFilterData(initialState);
+                    }}
+                  >
+                    Reset filter
+                  </Button>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
           </Grid.Column>
         </Grid.Row>
       </Grid>
