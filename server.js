@@ -75,6 +75,7 @@ if (process.env.NODE_ENV === "production") {
 // middleware to deploy on Heroku
 app.use(express.static(path.join(__dirname, "client", "build")));
 
+
 ///All routes
 
 //register user
