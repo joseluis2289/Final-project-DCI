@@ -78,9 +78,9 @@ const Content = ({ getResources, resources, filter }) => {
       {error === {} ? <NotFound /> : <Filter />}
       <Grid doubling padded columns={2} className="references-container">
         <Grid.Row>
-          <Header as="h2" className="resources-title">
+          {/*  <Header as="h2" className="resources-title">
             RESOURCES
-          </Header>
+          </Header> */}
           <Grid.Column>
             <Link to="/add_resource">
               <Button
@@ -89,6 +89,8 @@ const Content = ({ getResources, resources, filter }) => {
                 icon="add circle"
                 labelPosition="left"
                 primary
+                floated="right"
+                marginTop="2em !important"
               />
             </Link>
             <section className="pagination">

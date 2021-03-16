@@ -140,7 +140,7 @@ const Resource = (props) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <CardMeta> {props.data.num_views} Views</CardMeta>
+                  {/*  <CardMeta> {props.data.num_views} Views</CardMeta> */}
                 </GridRow>
                 <CardDescription style={{ margin: "10px" }}>
                   {props.data.description}
