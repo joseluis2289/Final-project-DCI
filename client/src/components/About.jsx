@@ -18,11 +18,12 @@ function About() {
       </div>
       <Grid columns={2} divided>
         <Grid.Row>
-          <Grid.Column>
+          <Grid.Column mobile={16} tablet={4} computer={4}>
             <Image
               style={{
                 height: "50vh",
                 margin: "auto",
+                marginLeft: "25%",
                 marginTop: "80px",
                 borderRadius: "5px",
               }}
@@ -31,7 +32,7 @@ function About() {
           </Grid.Column>
           <Grid.Column
             width={7}
-            style={{ marginTop: "40px", color: "whitesmoke" }}
+            style={{ marginTop: "40px", color: "whitesmoke", margin: "auto" }}
           >
             <Header style={{ textAlign: "center", color: "white" }}>
               About
