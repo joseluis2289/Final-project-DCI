@@ -22,7 +22,6 @@ const UpdateResource = (props) => {
     "frontend",
     "backend",
     "database",
-    "machineLearning",
     "general",
   ]);
 

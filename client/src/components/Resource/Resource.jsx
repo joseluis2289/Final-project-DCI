@@ -16,6 +16,7 @@ import {
   Item,
   CardDescription,
   Label,
+  Icon,
 } from "semantic-ui-react";
 import "./resource.css";
 
@@ -140,7 +141,17 @@ const Resource = (props) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  {/*  <CardMeta> {props.data.num_views} Views</CardMeta> */}
+                  <Label
+                    as="a"
+                    color="blue"
+                    href={`${props.data.link}`}
+                    target="_blank"
+                  >
+                    <Icon name="linkify" />
+                    <Label.Detail style={{ fontSize: "1.2rem" }}>
+                      Go to original Page{" "}
+                    </Label.Detail>
+                  </Label>
                 </GridRow>
                 <CardDescription style={{ margin: "10px" }}>
                   {props.data.description}

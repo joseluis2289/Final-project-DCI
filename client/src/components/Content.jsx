@@ -165,7 +165,7 @@ const Content = ({ getResources, resources, filter }) => {
             )
               return (
                 <Grid.Column key={item._id}>
-                  <Resource id={item._id} data={item} author="false" />
+                  <Resource id={item._id} data={item} />
                 </Grid.Column>
               );
             return "";
