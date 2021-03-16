@@ -65,14 +65,14 @@ const Content = ({ getResources, resources, filter }) => {
                 logIn ? history.push("/add_resource") : history.push("/login");
               }}
             />
-            )
+
             <section className="pagination">
               Found <strong>{resources.length}</strong> Entries
             </section>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          {searchedResources.map((item, index) => {
+          {searchedResources.map((item) => {
             let showByCategory = false;
             let showByRating = false;
             let showByCost = false;

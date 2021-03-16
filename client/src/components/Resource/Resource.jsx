@@ -113,7 +113,15 @@ const Resource = (props) => {
                   })}
                 </CardMeta>
                 <Item floated="right" size="mini">
-                  {props.data.paid ? "paid" : "free"}
+                  {props.data.paid ? (
+                    <span>
+                      Paid <Icon name="dollar sign" color="green" />
+                    </span>
+                  ) : (
+                    <span>
+                      Free <Icon name="checkmark" color="green" />
+                    </span>
+                  )}
                 </Item>
               </GridRow>
             </Grid>

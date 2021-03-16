@@ -168,7 +168,7 @@ export default function Filter() {
                     name="general"
                     onChange={handleCheckboxChange}
                     checked={filterData.general}
-                    label={<label>General</label>}
+                    label="General"
                   />
                 </Form.Field>
                 <Form.Field>
@@ -178,7 +178,7 @@ export default function Filter() {
                     name="frontend"
                     onChange={handleCheckboxChange}
                     checked={filterData.frontend}
-                    label={<label>Frontend</label>}
+                    label="Frontend"
                   />
                 </Form.Field>
               </Form.Group>
@@ -190,7 +190,7 @@ export default function Filter() {
                     name="backend"
                     onChange={handleCheckboxChange}
                     checked={filterData.backend}
-                    label={<label>Backend</label>}
+                    label="Backend"
                   />
                 </Form.Field>
                 <Form.Field>
@@ -200,7 +200,7 @@ export default function Filter() {
                     name="database"
                     onChange={handleCheckboxChange}
                     checked={filterData.database}
-                    label={<label>Database</label>}
+                    label="Database"
                   />
                 </Form.Field>
               </Form.Group>
@@ -220,7 +220,7 @@ export default function Filter() {
                           id="filter-free"
                           onChange={handleCheckboxChange}
                           checked={filterData.free}
-                          label={<label>Free</label>}
+                          label="Free"
                         />
                       </Form.Field>
                       <Form.Field>
@@ -230,7 +230,7 @@ export default function Filter() {
                           id="filter-paid"
                           onChange={handleCheckboxChange}
                           checked={filterData.paid}
-                          label={<label>Paid</label>}
+                          label="Paid"
                         />
                       </Form.Field>
                     </Form.Group>
