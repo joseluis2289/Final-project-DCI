@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import {
   Container,
@@ -11,12 +11,14 @@ import {
   Icon,
 } from "semantic-ui-react";
 import { Link, useHistory } from "react-router-dom";
-import { getDashboardData } from "../redux/actions";
+import { getDashboardData, filterCategory } from "../redux/actions";
 import "./Home.css";
 
 const Home = ({ getDashboardData, dashboard }) => {
   const logIn = useSelector((state) => state.logIn);
+  const filter = useSelector((state) => state.filter);
   const [firstDashboardLoad, setFirstDashboardLoad] = useState(true);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
@@ -105,17 +107,20 @@ const Home = ({ getDashboardData, dashboard }) => {
           </Grid.Column>
           <Grid.Column width={8} className="dashboard-content">
             <Grid columns={2} doubling padded>
-              {/* <Grid.Row>
-                <Grid.Column width={16}>
-                  <Header as="h2">Categories</Header>
-                </Grid.Column>
-              </Grid.Row> */}
               <Grid.Row>
                 <Grid.Column width={16} className="dashboard-frontend">
                   <Header as="h3">Frontend</Header>
                   <Container>
                     <p>{dashboard.length} resources</p>
-                    <Button>
+                    <Button
+                      onClick={async () => {
+                        await dispatch(filterCategory("general", false));
+                        await dispatch(filterCategory("frontend", true));
+                        await dispatch(filterCategory("backend", false));
+                        await dispatch(filterCategory("database", false));
+                        history.push("/home");
+                      }}
+                    >
                       <Icon name="arrow right" />
                     </Button>
                     <img
@@ -129,7 +134,15 @@ const Home = ({ getDashboardData, dashboard }) => {
                   <Header as="h3">Backend</Header>
                   <Container>
                     <p>12 resources</p>
-                    <Button>
+                    <Button
+                      onClick={async () => {
+                        await dispatch(filterCategory("general", false));
+                        await dispatch(filterCategory("frontend", false));
+                        await dispatch(filterCategory("backend", true));
+                        await dispatch(filterCategory("database", false));
+                        history.push("/home");
+                      }}
+                    >
                       <Icon name="arrow right" />
                     </Button>
                     <img
@@ -148,7 +161,15 @@ const Home = ({ getDashboardData, dashboard }) => {
                       alt="Database Illustration"
                       className="illustration"
                     />
-                    <Button>
+                    <Button
+                      onClick={async () => {
+                        await dispatch(filterCategory("general", false));
+                        await dispatch(filterCategory("frontend", false));
+                        await dispatch(filterCategory("backend", false));
+                        await dispatch(filterCategory("database", true));
+                        history.push("/home");
+                      }}
+                    >
                       <Icon name="arrow right" />
                     </Button>
                   </Container>

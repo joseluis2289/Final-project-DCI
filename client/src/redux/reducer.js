@@ -6,11 +6,15 @@ const initialState = {
   searchedResources: [],
   dashboard: [],
   filter: {
-    rating: 0, // show all
+    free: true,
+    paid: true,
+    rating: 1,
+    general: true,
     frontend: true,
     backend: true,
     database: true,
-    general: true,
+    search: "",
+    rating: 0
   },
   loginData: {
     logIn: false,

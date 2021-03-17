@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   Grid,
@@ -23,22 +23,24 @@ import "./Filter.css";
 export default function Filter() {
   const history = useHistory();
   // In the beginning all resources are shown: free, paid and all ratings.
+  const dispatch = useDispatch();
   let initialState = {
     free: true,
     paid: true,
-    rating: 1,
+    rating: 0,
     general: true,
     frontend: true,
     backend: true,
     database: true,
     search: "",
   };
-  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.filter);
   // React Hook to store the active filter settings
-  const [filterData, setFilterData] = useState(initialState);
+  const [filterData, setFilterData] = useState(filter);
   // React Hook to store state of Semantic UI React - Rating component
   const [rating, setRating] = useState(false);
   // Function that handles the changes of the Rating component
+
   function onFilterRating(e, { rating, maxRating }) {
     setRating(rating);
   }
@@ -105,7 +107,7 @@ export default function Filter() {
                 placeholder='Search... (for example "React", or "Git")'
                 onChange={(e) => {
                   e.preventDefault();
-                  setFilterData(initialState);
+                  setFilterData(filter);
                   if (e.target.value === "") {
                     dispatch(getResources());
                   } else {
