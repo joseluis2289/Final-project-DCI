@@ -68,7 +68,7 @@ export default function Profile() {
         notify();
         setUpdateData({ ...response.data, password: updateData.password });
         dispatch(updateUser(response.data));
-        history.push("/home");
+        history.push("/");
       })
       .catch((err) => {
         notifyError();
@@ -81,7 +81,7 @@ export default function Profile() {
       url: `delete/${user._id}`,
     })
       .then((res) => {
-        history.push("/home");
+        history.push("/");
         dispatch(userLogout());
       })
       .catch((err) => console.log(err));

@@ -120,7 +120,7 @@ export default function Filter() {
     e.preventDefault();
     // console.log("Searching for...", filterData.search);
     dispatch(searchResources(filterData.search));
-    history.push("/");
+    history.push("/home");
   }
 
   return (
@@ -146,7 +146,7 @@ export default function Filter() {
                     dispatch(getResources());
                   } else {
                     dispatch(searchResources(e.target.value));
-                    history.push("/");
+                    history.push("/home");
                   }
                 }}
               />

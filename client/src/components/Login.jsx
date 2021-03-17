@@ -108,7 +108,7 @@ export default function Login() {
                     },
                   })
                     .then((response) => {
-                      history.push("/home");
+                      history.push("/");
                       if (response.status === 200) {
                         response.json().then((data) => {
                           dispatch(userLogin(data));

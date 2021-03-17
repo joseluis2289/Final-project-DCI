@@ -39,7 +39,7 @@ export default function Navbar() {
                 </span>
               </Dropdown.Item>
               <Dropdown.Item>
-                <Link to="/home">
+                <Link to="/">
                   <Icon name="home" />
                   Home
                 </Link>
@@ -51,7 +51,7 @@ export default function Navbar() {
                 </Link>
               </Dropdown.Item>
               <Dropdown.Item>
-                <Link to="/">
+                <Link to="/home">
                   <Icon name="book" />
                   Resources
                 </Link>
@@ -125,7 +125,7 @@ export default function Navbar() {
         >
           <Menu compact secondary>
             <Menu.Item>
-              <Link to="/home">
+              <Link to="/">
                 <Icon name="home" />
                 Home
               </Link>
@@ -137,7 +137,7 @@ export default function Navbar() {
               </Link>
             </Menu.Item>
             <Menu.Item>
-              <Link to="/">
+              <Link to="/home">
                 <Icon name="book" />
                 Resources
               </Link>
@@ -185,7 +185,7 @@ export default function Navbar() {
                       <Link
                         onClick={(e) => {
                           e.preventDefault();
-                          history.push("/home");
+                          history.push("/");
                           dispatch(userLogout());
                         }}
                       >
