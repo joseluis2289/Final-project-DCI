@@ -18,5 +18,16 @@ export default function ResourcePage() {
       })
       .catch((err) => console.log(err));
   }, []);
-  return <div>{!loading && <Resource data={resource} />}</div>;
+  return (
+    <div>
+      {!loading && (
+        <Resource
+          data={resource}
+          image={
+            "https://www.freecodecamp.org/news/content/images/2020/04/screely-1586183781361.png"
+          }
+        />
+      )}
+    </div>
+  );
 }

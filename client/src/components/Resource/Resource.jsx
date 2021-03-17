@@ -27,8 +27,11 @@ const Resource = (props) => {
   const update = useSelector((state) => state.update);
   const [makeCom, setMakeComm] = useState(false);
   const [displayCom, setDisplayComm] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState(
+  /* const [previewUrl, setPreviewUrl] = useState(
     "illustrations/road_to_knowledge.svg"
+  ); */
+  const [previewUrl, setPreviewUrl] = useState(
+    "illustrations/defaultImage2.png"
   );
   //create function to allow the child component "CreateComment" to change "displayCom" state
   function showMakeComm(newValue) {
@@ -128,7 +131,7 @@ const Resource = (props) => {
 
             <GridColumn>
               <Image
-                src={previewUrl}
+                src={props.image ? props.image : previewUrl}
                 alt="Illustration for Online Learning"
                 style={{
                   display: "flex",
