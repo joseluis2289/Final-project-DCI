@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import moment from "moment";
 import {
   Container,
   Grid,
@@ -13,6 +14,7 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import { getDashboardData, filterCategory } from "../redux/actions";
 import "./Home.css";
+import axios from "axios";
 
 const Home = ({ getDashboardData, dashboard }) => {
   const logIn = useSelector((state) => state.logIn);
@@ -20,6 +22,10 @@ const Home = ({ getDashboardData, dashboard }) => {
   const [firstDashboardLoad, setFirstDashboardLoad] = useState(true);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [comments, setComments] = useState([
+    { date: "10/06/09", username: "renata", resource: { title: "Node.js" } },
+    { date: "10/06/09", username: "renata", resource: { title: "Node.js" } },
+  ]);
 
   useEffect(() => {
     if (firstDashboardLoad) {
@@ -28,6 +34,20 @@ const Home = ({ getDashboardData, dashboard }) => {
       console.log("Dashboard Data:", dashboard);
     }
   }, [firstDashboardLoad, dashboard]);
+  //getting last comments
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "/comments",
+    })
+      .then((response) => {
+        console.log("comments", response.data);
+        /* setComments(response); */
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <Container fluid className="dashboard-container">
@@ -81,26 +101,22 @@ const Home = ({ getDashboardData, dashboard }) => {
               </Card.Content>
               <Card.Content>
                 <Feed>
-                  <Feed.Event>
-                    <Feed.Label image="./images/matthew.png" />
-                    <Feed.Content>
-                      <Feed.Date content="1 minute ago" />
-                      <Feed.Summary>
-                        José Luis added a comment to the{" "}
-                        <em>Express/Node introduction</em> resource.
-                      </Feed.Summary>
-                    </Feed.Content>
-                  </Feed.Event>
-
-                  <Feed.Event>
-                    <Feed.Label image="./images/molly.png" />
-                    <Feed.Content>
-                      <Feed.Date content="4 hours ago" />
-                      <Feed.Summary>
-                        Bel approved <em>Alice</em> as moderator.
-                      </Feed.Summary>
-                    </Feed.Content>
-                  </Feed.Event>
+                  {comments.map((comment) => {
+                    return (
+                      <Feed.Event>
+                        <Feed.Label image="./images/matthew.png" />
+                        <Feed.Content>
+                          <Feed.Date>
+                            {moment(comment.date).fromNow()}
+                          </Feed.Date>
+                          <Feed.Summary>
+                            José Luis added a comment to the{" "}
+                            <em>Express/Node introduction</em> resource.
+                          </Feed.Summary>
+                        </Feed.Content>
+                      </Feed.Event>
+                    );
+                  })}
                 </Feed>
               </Card.Content>
             </Card>
