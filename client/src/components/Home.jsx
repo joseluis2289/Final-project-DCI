@@ -15,7 +15,7 @@ import "./Home.css";
 
 const Home = ({ getDashboardData, dashboard }) => {
   const [firstDashboardLoad, setFirstDashboardLoad] = useState(true);
-
+  //const [resource, setResource]= useState({});
   useEffect(() => {
     if (firstDashboardLoad) {
       getDashboardData();
@@ -40,8 +40,10 @@ const Home = ({ getDashboardData, dashboard }) => {
                     <Feed.Content>
                       <Feed.Date content="1 hour ago" />
                       <Feed.Summary>
-                        Bel added <em>Semantic UI React 2.0.3</em> to the{" "}
-                        <em>Frontend</em> category.
+                        {/* <em>
+                          {dashboard[0].title ? dashboard[0].title : null}
+                        </em>{" "}
+                        {dashboard[0].category ? dashboard[0].category : null} */}
                       </Feed.Summary>
                     </Feed.Content>
                   </Feed.Event>
@@ -51,8 +53,9 @@ const Home = ({ getDashboardData, dashboard }) => {
                     <Feed.Content>
                       <Feed.Date content="3 hours ago" />
                       <Feed.Summary>
-                        José Luis added <em>Express/Node introduction</em> to
-                        the <em>Backend</em> category.
+                        {/* {dashboard[1].user ? dashboard[1].user : null}
+                        {dashboard[1].title ? dashboard[1].title : null}
+                        {dashboard[1].category ? dashboard[1].category : null} */}
                       </Feed.Summary>
                     </Feed.Content>
                   </Feed.Event>
@@ -62,8 +65,9 @@ const Home = ({ getDashboardData, dashboard }) => {
                     <Feed.Content>
                       <Feed.Date content="2 days ago" />
                       <Feed.Summary>
-                        Christian added <em>Figma in 40 Minutes</em> to the{" "}
-                        <em>General</em> category.
+                        {/* {dashboard[2].user ? dashboard[2].user : null}
+                        {dashboard[2].title ? dashboard[2].title : null}
+                        {dashboard[2].category ? dashboard[2].category : null} */}
                       </Feed.Summary>
                     </Feed.Content>
                   </Feed.Event>
