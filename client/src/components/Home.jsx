@@ -61,42 +61,24 @@ const Home = ({ getDashboardData, dashboard }) => {
               </Card.Content>
               <Card.Content>
                 <Feed>
-                  <Feed.Event>
-                    <Feed.Label image="./images/molly.png" />
-                    <Feed.Content>
-                      <Feed.Date content="1 hour ago" />
-                      <Feed.Summary>
-                        {/* <em>
-                          {dashboard[0].title ? dashboard[0].title : null}
-                        </em>{" "}
-                        {dashboard[0].category ? dashboard[0].category : null} */}
-                      </Feed.Summary>
-                    </Feed.Content>
-                  </Feed.Event>
-
-                  <Feed.Event>
-                    <Feed.Label image="./images/matthew.png" />
-                    <Feed.Content>
-                      <Feed.Date content="3 hours ago" />
-                      <Feed.Summary>
-                        {/* {dashboard[1].user ? dashboard[1].user : null}
-                        {dashboard[1].title ? dashboard[1].title : null}
-                        {dashboard[1].category ? dashboard[1].category : null} */}
-                      </Feed.Summary>
-                    </Feed.Content>
-                  </Feed.Event>
-
-                  <Feed.Event>
-                    <Feed.Label image="./images/elliot.jpg" />
-                    <Feed.Content>
-                      <Feed.Date content="2 days ago" />
-                      <Feed.Summary>
-                        {/* {dashboard[2].user ? dashboard[2].user : null}
-                        {dashboard[2].title ? dashboard[2].title : null}
-                        {dashboard[2].category ? dashboard[2].category : null} */}
-                      </Feed.Summary>
-                    </Feed.Content>
-                  </Feed.Event>
+                  {dashboard.map((activity) => {
+                    return (
+                      <Feed.Event>
+                        {/*  <Feed.Label image="./images/molly.png" /> */}
+                        <Feed.Content>
+                          <Feed.Date>
+                            {moment(activity.date).fromNow()}
+                          </Feed.Date>
+                          <Feed.Summary>
+                            {activity.user.userName[0].toUpperCase() +
+                              activity.user.userName.substring(1)}{" "}
+                            added <em>{activity.title} to the </em>
+                            {activity.category[0]} category
+                          </Feed.Summary>
+                        </Feed.Content>
+                      </Feed.Event>
+                    );
+                  })}
                 </Feed>
               </Card.Content>
             </Card>
@@ -199,15 +181,6 @@ const Home = ({ getDashboardData, dashboard }) => {
             </Grid>
           </Grid.Column>
           <Grid.Column width={4} className="dashboard-sidebar sidebar-right">
-            <Header as="h3">User with most resources</Header>
-            <Container>
-              <p>Bel (21)</p>
-            </Container>
-            <Header as="h3">User with most comments</Header>
-            <Container>
-              <p>Jóse Luis (5)</p>
-            </Container>
-
             <Container>
               <Button
                 style={{ width: "150px", margin: "1em" }}
