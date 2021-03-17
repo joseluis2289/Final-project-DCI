@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { updateData } from "../../redux/actions";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +14,8 @@ import {
   Grid,
   Image,
   Container,
+  Card,
+  Checkbox,
 } from "semantic-ui-react";
 
 import ModalBox from "../ModalBox";
@@ -20,10 +23,11 @@ import ModalBox from "../ModalBox";
 const UpdateResource = (props) => {
   const [resource, setResource] = useState(props.data);
   const update = useSelector((state) => state.update);
-  const [paid, setPaid] = useState(false);
+  const [paid, setPaid] = useState(props.data.paid);
   //modal to delete
   const [deleteModal, setDeleteModal] = useState(false);
   const dispatch = useDispatch();
+  let history = useHistory();
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
   );
@@ -69,7 +73,7 @@ const UpdateResource = (props) => {
 
   let updateResource = (e) => {
     e.preventDefault();
-    setResource({ ...resource, edited: true, date: Date.now() });
+    setResource({ ...resource, date: Date.now() });
     axios({
       method: "PUT",
       url: `/resources/${resource._id}`,
@@ -80,6 +84,7 @@ const UpdateResource = (props) => {
         dispatch(updateData(update));
         notify();
         console.log(response);
+        /* history.push(`/resources/resource/${response.data._id}`); */
       })
       .catch((err) => {
         notifyError();
@@ -152,81 +157,128 @@ const UpdateResource = (props) => {
             tablet={16}
             computer={7}
           >
-            <div className="update-resource">
-              <Form onSubmit={updateResource}>
-                <Form.Field>
-                  <label htmlFor="title">Title</label>
-                  <input
-                    type="text"
-                    name="title"
-                    value={resource.title}
-                    onChange={formHandler}
-                  />
-                </Form.Field>
-                <img
-                  src={previewUrl}
-                  alt="preview"
-                  style={{ width: "100px", height: "100px" }}
-                ></img>
-                <Form.Field>
-                  <label htmlFor="link">Link</label>
-                  <p>{resource.link}</p>
-                </Form.Field>
-                <Form.Group inline>
-                  <label>Category</label>
-                  {categories.map((item, index) => {
-                    let name = item[0].toUpperCase() + item.substring(1);
-                    return (
-                      <Form.Field
-                        label={name}
-                        key={index}
-                        type="checkbox"
+            <div style={{ width: "300px", margin: "auto", marginTop: "40px" }}>
+              <Card.Group>
+                <Form onSubmit={updateResource}>
+                  <Form.Field>
+                    <label htmlFor="title">Title</label>
+                    <input
+                      type="text"
+                      name="title"
+                      value={resource.title}
+                      onChange={formHandler}
+                    />
+                  </Form.Field>
+                  <img
+                    src={previewUrl}
+                    alt="preview"
+                    style={{ width: "100px", height: "100px" }}
+                  ></img>
+                  <Form.Field>
+                    <label htmlFor="link">Link</label>
+                    <p>{resource.link}</p>
+                  </Form.Field>
+                  <Form.Field label="Categories"></Form.Field>
+                  <Form.Group widths="equal">
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="general"
+                        value="general"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
                         control="input"
-                        value={item}
-                        checked={resource.category.indexOf(item) > -1}
+                        label="General"
+                        checked={resource.category.indexOf("general") > -1}
                       />
-                    );
-                  })}
-                </Form.Group>
-
-                <Form.Field>
-                  <Radio
+                    </Form.Field>
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="frontend"
+                        value="frontend"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        control="input"
+                        label="Frontend"
+                        checked={resource.category.indexOf("frontend") > -1}
+                      />
+                    </Form.Field>
+                  </Form.Group>
+                  <Form.Group widths="equal">
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="backend"
+                        value="backend"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        control="input"
+                        label="Backend"
+                        checked={resource.category.indexOf("backend") > -1}
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="database"
+                        value="database"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        label="Database"
+                        control="input"
+                        checked={resource.category.indexOf("database") > -1}
+                      />
+                    </Form.Field>
+                  </Form.Group>
+                  <Form.Field label="Paid"></Form.Field>
+                  <Checkbox
                     toggle
-                    label="Paid"
                     name="paid"
-                    value={paid}
-                    checked={paid === false}
+                    type="checkbox"
+                    control="input"
+                    checked={resource.paid}
                     onChange={(e) => {
-                      setPaid(!paid);
-                      setResource({ ...resource, paid: paid });
+                      setResource({ ...resource, paid: !resource.paid });
+                    }}
+                    style={{
+                      margin: "0.em 0",
                     }}
                   />
-                </Form.Field>
 
-                <Form.Field>
-                  <TextArea
-                    label="Description"
-                    name="description"
-                    value={resource.description}
-                    onChange={formHandler}
-                  />
-                </Form.Field>
+                  <Form.Field>
+                    <TextArea
+                      label="Description"
+                      name="description"
+                      value={resource.description}
+                      onChange={formHandler}
+                    />
+                  </Form.Field>
+                  <Button
+                    style={{ width: "130px", alignItems: "center" }}
+                    className="ui primary labeled icon button"
+                    type="submit"
+                  >
+                    <i className="edit icon"></i>Update
+                  </Button>
+                </Form>
                 <Button
-                  style={{ width: "130px", alignItems: "center" }}
-                  className="ui primary labeled icon button"
-                  type="submit"
+                  style={{
+                    width: "130px",
+                    marginTop: "1em",
+                    alignItems: "center",
+                    float: "right",
+                  }}
+                  className="ui red labeled icon button"
+                  onClick={() => setDeleteModal(true)}
                 >
-                  <i className="edit icon"></i>Update
+                  <i className="trash alternate outline icon"></i>Delete
                 </Button>
-              </Form>
-              <Button
-                style={{ width: "130px", alignItems: "center", float: "right" }}
-                className="ui red labeled icon button"
-                onClick={() => setDeleteModal(true)}
-              >
-                <i className="trash alternate outline icon"></i>Delete
-              </Button>
-
+              </Card.Group>
               <ModalBox
                 header="Delete Resource"
                 text="Would you like to delete this resource permanently? This action can

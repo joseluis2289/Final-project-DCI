@@ -202,7 +202,6 @@ export default function AddResource() {
                     value={resource.paid}
                     onChange={(e, { value }) => {
                       setResource({ ...resource, paid: !resource.paid });
-                      console.log("resource", resource.paid);
                     }}
                     style={{
                       margin: "0.em 0",
