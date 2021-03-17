@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout, filterCategory } from "../redux/actions";
@@ -78,22 +78,26 @@ export default function Navbar() {
                     <Icon name="user circle" />
                     Profile
                   </Dropdown.Item>
-                  <Dropdown.Item
-                    onClick={() => {
-                      history.push("/my_resources");
-                    }}
-                  >
-                    <Icon name="star" />
-                    My Resources
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    onClick={() => {
-                      history.push("/my_comments");
-                    }}
-                  >
-                    <Icon name="comments" />
-                    My Comments
-                  </Dropdown.Item>
+                  {user.resources !== [] && (
+                    <Dropdown.Item
+                      onClick={() => {
+                        history.push("/my_resources");
+                      }}
+                    >
+                      <Icon name="star" />
+                      My Resources
+                    </Dropdown.Item>
+                  )}
+                  {user.comments !== [] && (
+                    <Dropdown.Item
+                      onClick={() => {
+                        history.push("/my_comments");
+                      }}
+                    >
+                      <Icon name="comments" />
+                      My Comments
+                    </Dropdown.Item>
+                  )}
                   <Dropdown.Item
                     onClick={(e) => {
                       e.preventDefault();
@@ -201,22 +205,26 @@ export default function Navbar() {
                       <Icon name="user circle" />
                       Profile
                     </Dropdown.Item>
-                    <Dropdown.Item
-                      onClick={() => {
-                        history.push("/my_resources");
-                      }}
-                    >
-                      <Icon name="star" />
-                      My Resources
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      onClick={() => {
-                        history.push("/my_comments");
-                      }}
-                    >
-                      <Icon name="comments" />
-                      My Comments
-                    </Dropdown.Item>
+                    {user.resources === [] ? null : (
+                      <Dropdown.Item
+                        onClick={() => {
+                          history.push("/my_resources");
+                        }}
+                      >
+                        <Icon name="star" />
+                        My Resources
+                      </Dropdown.Item>
+                    )}
+                    {user.comments !== [] && (
+                      <Dropdown.Item
+                        onClick={() => {
+                          history.push("/my_comments");
+                        }}
+                      >
+                        <Icon name="comments" />
+                        My Comments
+                      </Dropdown.Item>
+                    )}
                     <Dropdown.Item
                       onClick={(e) => {
                         e.preventDefault();
