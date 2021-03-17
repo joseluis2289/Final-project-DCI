@@ -11,7 +11,7 @@ import {
   Button,
   Icon,
 } from "semantic-ui-react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getDashboardData, filterCategory } from "../redux/actions";
 import "./Home.css";
 import axios from "axios";
@@ -20,13 +20,11 @@ const Home = ({ getDashboardData, dashboard }) => {
   const logIn = useSelector((state) => state.logIn);
   const filter = useSelector((state) => state.filter);
   const [firstDashboardLoad, setFirstDashboardLoad] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [comments, setComments] = useState(true);
   //const [resource, setResource]= useState({});
   const dispatch = useDispatch();
   const history = useHistory();
-  const [comments, setComments] = useState([
-    { date: "10/06/09", username: "renata", resource: { title: "Node.js" } },
-    { date: "10/06/09", username: "renata", resource: { title: "Node.js" } },
-  ]);
 
   useEffect(() => {
     if (firstDashboardLoad) {
@@ -43,7 +41,8 @@ const Home = ({ getDashboardData, dashboard }) => {
     })
       .then((response) => {
         console.log("comments", response.data);
-        /* setComments(response); */
+        setComments(response.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -72,7 +71,17 @@ const Home = ({ getDashboardData, dashboard }) => {
                           <Feed.Summary>
                             {activity.user.userName[0].toUpperCase() +
                               activity.user.userName.substring(1)}{" "}
-                            added <em>{activity.title} to the </em>
+                            added{" "}
+                            <em
+                              style={{ cursor: "pointer" }}
+                              onClick={() => {
+                                history.push(
+                                  `/resources/resource/${activity._id}`
+                                );
+                              }}
+                            >
+                              {activity.title} to the{" "}
+                            </em>
                             {activity.category[0]} category
                           </Feed.Summary>
                         </Feed.Content>
@@ -87,24 +96,38 @@ const Home = ({ getDashboardData, dashboard }) => {
                 <Card.Header>Recent Activity</Card.Header>
               </Card.Content>
               <Card.Content>
-                <Feed>
-                  {comments.map((comment) => {
-                    return (
-                      <Feed.Event>
-                        <Feed.Label image="./images/matthew.png" />
-                        <Feed.Content>
-                          <Feed.Date>
-                            {moment(comment.date).fromNow()}
-                          </Feed.Date>
-                          <Feed.Summary>
-                            José Luis added a comment to the{" "}
-                            <em>Express/Node introduction</em> resource.
-                          </Feed.Summary>
-                        </Feed.Content>
-                      </Feed.Event>
-                    );
-                  })}
-                </Feed>
+                {!loading && (
+                  <Feed>
+                    {comments.map((comment) => {
+                      return (
+                        <Feed.Event>
+                          <Feed.Label image="./images/matthew.png" />
+                          <Feed.Content>
+                            <Feed.Date>
+                              {moment(comment.date).fromNow()}
+                            </Feed.Date>
+                            <Feed.Summary>
+                              {comment.user.userName[0].toUpperCase() +
+                                comment.user.userName.substring(1)}{" "}
+                              added a comment to the{" "}
+                              <em
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  history.push(
+                                    `/resources/resource/${comment.resource._id}`
+                                  );
+                                }}
+                              >
+                                {comment.resource.title}
+                              </em>{" "}
+                              resource.
+                            </Feed.Summary>
+                          </Feed.Content>
+                        </Feed.Event>
+                      );
+                    })}
+                  </Feed>
+                )}
               </Card.Content>
             </Card>
           </Grid.Column>

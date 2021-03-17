@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { userLogout } from "../redux/actions";
+import { userLogout, filterCategory } from "../redux/actions";
 import { Grid, Menu, Header, Icon, Dropdown } from "semantic-ui-react";
 import "./Navbar.css";
 
@@ -38,71 +38,91 @@ export default function Navbar() {
                   <Icon name="user" /> Hello, {user.name ? user.name : "Guest"}
                 </span>
               </Dropdown.Item>
-              <Dropdown.Item>
-                <Link to="/">
-                  <Icon name="home" />
-                  Home
-                </Link>
+              <Dropdown.Item
+                onClick={() => {
+                  history.push("/");
+                }}
+              >
+                <Icon name="home" />
+                Home
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => {
+                  history.push("/about");
+                }}
+              >
+                <Icon name="info circle" />
+                About
               </Dropdown.Item>
               <Dropdown.Item>
-                <Link to="/about">
-                  <Icon name="info circle" />
-                  About
-                </Link>
-              </Dropdown.Item>
-              <Dropdown.Item>
-                <Link to="/home">
+                <Menu.Item
+                  onClick={async () => {
+                    await dispatch(filterCategory("general", true));
+                    await dispatch(filterCategory("frontend", true));
+                    await dispatch(filterCategory("backend", true));
+                    await dispatch(filterCategory("database", true));
+                    history.push("/home");
+                  }}
+                >
                   <Icon name="book" />
                   Resources
-                </Link>
+                </Menu.Item>
               </Dropdown.Item>
               {logIn ? (
                 <React.Fragment>
-                  <Dropdown.Item>
-                    <Link to="/profile">
-                      <Icon name="user circle" />
-                      Profile
-                    </Link>
+                  <Dropdown.Item
+                    onClick={() => {
+                      history.push("/");
+                    }}
+                  >
+                    <Icon name="user circle" />
+                    Profile
                   </Dropdown.Item>
-                  <Dropdown.Item>
-                    <Link to="/my_resources">
-                      <Icon name="star" />
-                      My Resources
-                    </Link>
+                  <Dropdown.Item
+                    onClick={() => {
+                      history.push("/my_resources");
+                    }}
+                  >
+                    <Icon name="star" />
+                    My Resources
                   </Dropdown.Item>
-                  <Dropdown.Item>
-                    <Link to="/my_comments">
-                      <Icon name="comments" />
-                      My Comments
-                    </Link>
+                  <Dropdown.Item
+                    onClick={() => {
+                      history.push("/my_comments");
+                    }}
+                  >
+                    <Icon name="comments" />
+                    My Comments
                   </Dropdown.Item>
-                  <Dropdown.Item>
-                    <Link
-                      to="/logout"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        console.log("LOGOUT!");
-                        dispatch(userLogout());
-                      }}
-                    >
-                      <Icon name="logout" />
-                      Logout
-                    </Link>
+                  <Dropdown.Item
+                    onClick={(e) => {
+                      e.preventDefault();
+                      console.log("LOGOUT!");
+                      dispatch(userLogout());
+                      history.push("/");
+                    }}
+                  >
+                    <Icon name="logout" />
+                    Logout
                   </Dropdown.Item>
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  <Dropdown.Item>
-                    <Link to="/register">
-                      <Icon name="signup" />
-                      Register
-                    </Link>
+                  <Dropdown.Item
+                    onClick={() => {
+                      history.push("/register");
+                    }}
+                  >
+                    <Icon name="signup" />
+                    Register
                   </Dropdown.Item>
-                  <Dropdown.Item>
-                    <Link to="/login">
-                      <Icon name="sign-in" />
-                      Login
-                    </Link>
+                  <Dropdown.Item
+                    onClick={() => {
+                      history.push("/login");
+                    }}
+                  >
+                    <Icon name="sign-in" />
+                    Login
                   </Dropdown.Item>
                 </React.Fragment>
               )}
@@ -124,23 +144,33 @@ export default function Navbar() {
           only="tablet computer"
         >
           <Menu compact secondary>
-            <Menu.Item>
-              <Link to="/">
-                <Icon name="home" />
-                Home
-              </Link>
+            <Menu.Item
+              onClick={() => {
+                history.push("/");
+              }}
+            >
+              <Icon name="home" />
+              Home
             </Menu.Item>
-            <Menu.Item>
-              <Link to="/about">
-                <Icon name="info circle" />
-                About
-              </Link>
+            <Menu.Item
+              onClick={() => {
+                history.push("/about");
+              }}
+            >
+              <Icon name="info circle" />
+              About
             </Menu.Item>
-            <Menu.Item>
-              <Link to="/home">
-                <Icon name="book" />
-                Resources
-              </Link>
+            <Menu.Item
+              onClick={async () => {
+                await dispatch(filterCategory("general", true));
+                await dispatch(filterCategory("frontend", true));
+                await dispatch(filterCategory("backend", true));
+                await dispatch(filterCategory("database", true));
+                history.push("/home");
+              }}
+            >
+              <Icon name="book" />
+              Resources
             </Menu.Item>
             {logIn ? (
               <Menu.Item>
@@ -163,52 +193,61 @@ export default function Navbar() {
                         {user.name ? user.name : "Guest"}
                       </span>
                     </Dropdown.Item>
-                    <Dropdown.Item>
-                      <Link to="/profile">
-                        <Icon name="user circle" />
-                        Profile
-                      </Link>
+                    <Dropdown.Item
+                      onClick={() => {
+                        history.push("/");
+                      }}
+                    >
+                      <Icon name="user circle" />
+                      Profile
                     </Dropdown.Item>
-                    <Dropdown.Item>
-                      <Link to="/my_resources">
-                        <Icon name="star" />
-                        My Resources
-                      </Link>
+                    <Dropdown.Item
+                      onClick={() => {
+                        history.push("/my_resources");
+                      }}
+                    >
+                      <Icon name="star" />
+                      My Resources
                     </Dropdown.Item>
-                    <Dropdown.Item>
-                      <Link to="/my_comments">
-                        <Icon name="comments" />
-                        My Comments
-                      </Link>
+                    <Dropdown.Item
+                      onClick={() => {
+                        history.push("/my_comments");
+                      }}
+                    >
+                      <Icon name="comments" />
+                      My Comments
                     </Dropdown.Item>
-                    <Dropdown.Item>
-                      <Link
-                        onClick={(e) => {
-                          e.preventDefault();
-                          history.push("/");
-                          dispatch(userLogout());
-                        }}
-                      >
-                        <Icon name="logout" />
-                        Logout
-                      </Link>
+                    <Dropdown.Item
+                      onClick={(e) => {
+                        e.preventDefault();
+                        console.log("LOGOUT!");
+                        dispatch(userLogout());
+                        history.push("/");
+                      }}
+                    >
+                      <Icon name="logout" />
+                      Logout
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Menu.Item>
             ) : (
               <React.Fragment>
-                <Menu.Item>
-                  <Link to="/register">
-                    <Icon name="signup" />
-                    Register
-                  </Link>
+                <Menu.Item
+                  onClick={() => {
+                    history.push("/register");
+                  }}
+                >
+                  <Icon name="signup" />
+                  Register
                 </Menu.Item>
-                <Menu.Item>
-                  <Link to="/login">
-                    <Icon name="sign-in" />
-                    Login
-                  </Link>
+                <Menu.Item
+                  onClick={() => {
+                    history.push("/login");
+                  }}
+                >
+                  <Icon name="sign-in" />
+                  Login
                 </Menu.Item>
               </React.Fragment>
             )}

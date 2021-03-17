@@ -141,33 +141,61 @@ export default function AddResource() {
                     />
                   </Form.Field>
                   <Form.Field label="Categories"></Form.Field>
-                  <Form.Group
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      width: "250px",
-                      margin: "0.5em auto",
-                    }}
-                  >
-                    {categories.map((item, index) => {
-                      let name = item[0].toUpperCase() + item.substring(1);
-                      return (
-                        <Form.Field
-                          label={name}
-                          key={index}
-                          type="checkbox"
-                          control="input"
-                          value={item}
-                          onChange={(e) => {
-                            defineCategory(e);
-                          }}
-                        />
-                      );
-                    })}
+                  <Form.Group widths="equal">
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="general"
+                        value="general"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        control="input"
+                        label="General"
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="frontend"
+                        value="frontend"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        control="input"
+                        label="Frontend"
+                      />
+                    </Form.Field>
                   </Form.Group>
+                  <Form.Group widths="equal">
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="backend"
+                        value="backend"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        control="input"
+                        label="Backend"
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="database"
+                        value="database"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        label="Database"
+                        control="input"
+                      />
+                    </Form.Field>
+                  </Form.Group>
+                  <Form.Field label="Paid"></Form.Field>
                   <Checkbox
                     toggle
-                    label="Paid"
                     name="paid"
                     type="checkbox"
                     control="input"
@@ -179,7 +207,8 @@ export default function AddResource() {
                     style={{
                       margin: "0.em 0",
                     }}
-                  ></Checkbox>
+                  />
+
                   <Form.TextArea
                     label="Description"
                     placeholder="Enter your description..."
