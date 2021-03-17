@@ -188,15 +188,20 @@ const Home = ({ getDashboardData, dashboard }) => {
             </Container>
 
             <Container>
-              <Link to="/home">
-                <Button
-                  style={{ width: "150px", margin: "1em" }}
-                  content="See Resource"
-                  icon="linkify"
-                  labelPosition="left"
-                  secondary
-                />
-              </Link>
+              <Button
+                style={{ width: "150px", margin: "1em" }}
+                content="See Resource"
+                icon="linkify"
+                labelPosition="left"
+                secondary
+                onClick={async () => {
+                  await dispatch(filterCategory("general", true));
+                  await dispatch(filterCategory("frontend", true));
+                  await dispatch(filterCategory("backend", true));
+                  await dispatch(filterCategory("database", true));
+                  history.push("/home");
+                }}
+              />
             </Container>
             <Container>
               <Button
