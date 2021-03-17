@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
   Form,
-  Radio,
   TextArea,
   Header,
   Grid,
@@ -23,7 +22,6 @@ import ModalBox from "../ModalBox";
 const UpdateResource = (props) => {
   const [resource, setResource] = useState(props.data);
   const update = useSelector((state) => state.update);
-  const [paid, setPaid] = useState(props.data.paid);
   //modal to delete
   const [deleteModal, setDeleteModal] = useState(false);
   const dispatch = useDispatch();
@@ -31,12 +29,6 @@ const UpdateResource = (props) => {
   const [previewUrl, setPreviewUrl] = useState(
     "./illustrations/road_to_knowledge.svg"
   );
-  const [categories, setCategories] = useState([
-    "frontend",
-    "backend",
-    "database",
-    "general",
-  ]);
 
   //alert messages
   const notify = () => {
@@ -83,8 +75,7 @@ const UpdateResource = (props) => {
       .then(function (response) {
         dispatch(updateData(update));
         notify();
-        console.log(response);
-        /* history.push(`/resources/resource/${response.data._id}`); */
+        history.push(`/resources/resource/${response.data._id}`);
       })
       .catch((err) => {
         notifyError();
