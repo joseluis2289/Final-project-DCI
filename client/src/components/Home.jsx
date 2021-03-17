@@ -167,7 +167,7 @@ const Home = ({ getDashboardData, dashboard }) => {
             </Container>
 
             <Container>
-              <Link to="/">
+              <Link to="/home">
                 <Button
                   style={{ width: "150px", margin: "1em" }}
                   content="See Resource"
