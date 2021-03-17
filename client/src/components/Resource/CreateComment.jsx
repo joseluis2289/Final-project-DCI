@@ -58,7 +58,7 @@ export default function CreateComment({
             <span style={{ fontSize: "20px" }}>
               <i
                 style={{ margin: "5px", cursor: "pointer" }}
-                class="comment alternate outline icon"
+                className="comment alternate outline icon"
               ></i>
             </span>
           </div>

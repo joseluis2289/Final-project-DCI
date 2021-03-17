@@ -216,7 +216,7 @@ const UpdateResource = (props) => {
                   className="ui primary labeled icon button"
                   type="submit"
                 >
-                  <i class="edit icon"></i>Update
+                  <i className="edit icon"></i>Update
                 </Button>
               </Form>
               <Button
@@ -224,7 +224,7 @@ const UpdateResource = (props) => {
                 className="ui red labeled icon button"
                 onClick={() => setDeleteModal(true)}
               >
-                <i class="trash alternate outline icon"></i>Delete
+                <i className="trash alternate outline icon"></i>Delete
               </Button>
 
               <ModalBox
