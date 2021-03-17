@@ -7,7 +7,6 @@ import Options from "./Options";
 import {
   Card,
   CardContent,
-  CardHeader,
   Image,
   Grid,
   GridRow,
@@ -131,7 +130,13 @@ const Resource = (props) => {
 
             <GridColumn>
               <Image
-                src={props.image ? props.image : previewUrl}
+                src={
+                  props.data.previewImage
+                    ? props.data.previewImage
+                    : props.image
+                    ? props.image
+                    : previewUrl
+                }
                 alt="Illustration for Online Learning"
                 style={{
                   display: "flex",

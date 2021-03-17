@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -23,12 +23,6 @@ export default function AddResource() {
     num_ratings: 1,
     rating: 5,
   });
-  const [categories, setCategories] = useState([
-    "frontend",
-    "backend",
-    "database",
-    "general",
-  ]);
 
   let defineCategory = (e) => {
     let categories = resource.category;

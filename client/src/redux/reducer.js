@@ -8,7 +8,6 @@ const initialState = {
   filter: {
     free: true,
     paid: true,
-    rating: 1,
     general: true,
     frontend: true,
     backend: true,

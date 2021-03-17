@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import Resource from "./Resource/Resource";
 import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
 import { useHistory } from "react-router-dom";
 
-import {
-  Button,
-  Container,
-  // Icon,
-  // Pagination,
-  Header,
-  Grid,
-} from "semantic-ui-react";
+import { Button, Container, Grid } from "semantic-ui-react";
 import Filter from "./Filter";
 import NotFound from "./NotFound";
 import "./Content.css";
