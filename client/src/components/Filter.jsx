@@ -46,64 +46,28 @@ export default function Filter() {
   // FILTER -- RATING
   useEffect(() => {
     if (rating) dispatch(filterRating(rating));
-    return () => {
-      // cleanup
-    };
-  }, [rating, dispatch]);
-
-  // FILTER -- CATEGORY -- "general"
-  useEffect(() => {
+    // FILTER -- CATEGORY -- "general"
     if (filterData.general) dispatch(filterCategory("general", true));
     else dispatch(filterCategory("general", false));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.general, dispatch]);
-
-  // FILTER -- CATEGORY -- "frontend"
-  useEffect(() => {
+    // FILTER -- CATEGORY -- "frontend"
     if (filterData.frontend) dispatch(filterCategory("frontend", true));
     else dispatch(filterCategory("frontend", false));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.frontend, dispatch]);
-
-  // FILTER -- CATEGORY -- "backend"
-  useEffect(() => {
+    // FILTER -- CATEGORY -- "backend"
     if (filterData.backend) dispatch(filterCategory("backend", true));
     else dispatch(filterCategory("backend", false));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.backend, dispatch]);
-
-  // FILTER -- CATEGORY -- "database"
-  useEffect(() => {
+    // FILTER -- CATEGORY -- "database"
     if (filterData.database) dispatch(filterCategory("database", true));
     else dispatch(filterCategory("database", false));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.database, dispatch]);
-
-  // FILTER -- FREE RESOURCES
-  useEffect(() => {
+    // FILTER -- FREE RESOURCES
     if (filterData.free) dispatch(filterFree(true));
     else dispatch(filterFree(false));
-    return () => {
-      // cleanup
-    };
-  }, [filterData.free, dispatch]);
-
-  // FILTER -- PAID RESOURCES
-  useEffect(() => {
+    // FILTER -- PAID RESOURCES
     if (filterData.paid) dispatch(filterPaid(true));
     else dispatch(filterPaid(false));
     return () => {
       // cleanup
     };
-  }, [filterData.paid, dispatch]);
+  }, [rating, filterData, dispatch]);
 
   function handleCheckboxChange(e) {
     setFilterData({ ...filterData, [e.target.name]: e.target.checked });
