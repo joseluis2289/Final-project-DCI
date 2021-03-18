@@ -195,9 +195,10 @@ function About() {
                   <Icon name="linkedin" size="large" />
                 </Item>
               </Item>
+
               <Item>
                 <Image
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "cover", alignSelf: "center" }}
                   src="/images/christian.jpg"
                   size="small"
                   circular

@@ -13,8 +13,9 @@ export default function ResourcePage() {
       .get(`/resources/resource/${resourceId}`)
       .then(async (res) => {
         await setResource(res.data);
+        console.log("resource updated?", resource);
         setLoading(false);
-        console.log(res.data);
+        console.log("response", res.data);
       })
       .catch((err) => console.log(err));
   }, []);
