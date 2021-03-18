@@ -51,6 +51,7 @@ const Resource = (props) => {
           width: "600px",
           backgroundColor: "#706FCD",
           height: "fit-content",
+          margin: "auto",
         }}
       >
         <CardContent>
