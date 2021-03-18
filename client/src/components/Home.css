@@ -8,7 +8,7 @@
     rgba(112, 111, 211, 1) 100%
   );
   /* Browser window height - height of menu bar */
-  min-height: calc(100vh - 79px);
+  min-height: calc(90vh - 79px);
   padding: 0 10rem;
   display: grid !important;
 }
@@ -101,6 +101,7 @@
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
-.addedResources {
+/* .addedResources {
   margin-top: 40% !important;
 }
+ */

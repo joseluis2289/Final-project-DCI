@@ -16,7 +16,7 @@ function About() {
     <Spring
       from={{ opacity: 0 }}
       to={{ opacity: 1 }}
-      config={{ delay: 200, duration: 800 }}
+      config={{ delay: 80, duration: 800 }}
     >
       {(props) => (
         <div style={props} className="about">
@@ -25,8 +25,9 @@ function About() {
           </div>
           <Grid columns={2} divided>
             <Grid.Row>
-              <Grid.Column mobile={16} tablet={4} computer={4}>
+              <Grid.Column mobile={15} tablet={4} computer={6}>
                 <Image
+                  wrapped
                   style={{
                     height: "50vh",
                     margin: "auto",
@@ -38,7 +39,9 @@ function About() {
                 />
               </Grid.Column>
               <Grid.Column
-                width={7}
+                mobile={14}
+                tablet={12}
+                computer={8}
                 style={{
                   marginTop: "40px",
                   color: "whitesmoke",
@@ -48,6 +51,7 @@ function About() {
                 <Header style={{ textAlign: "center", color: "white" }}>
                   About
                 </Header>
+                <Divider hidden />
                 Studying and learning about Web Development can be difficult and
                 overwhelming, especially at the beginning. There is so much
                 information about web development out there and it can be
@@ -56,23 +60,30 @@ function About() {
                 that allows web development students to search, find and
                 exchange resources such as useful websites, tutorials, courses,
                 blogs, videos, new libraries, and much more about coding and
-                programming. We believe that everyone who starts coding and
-                programming should have access to a platform that provides
-                reliable guidance and allows you to find the resources that are
-                helpful for you.This is why we decided to build a new and unique
-                platform that gives the current and future students at the DCI
-                the tools to inform and educate themselves further according to
-                the curriculum of the DCI. At The Student Companion, we are
-                dedicated to making life easy for future web developers and our
-                goal is to change the way that students at the Digital Career
-                Institute exchange experiences, communicate, and collaborate
-                with each other.With the Student Companion as our final project,
-                we were given the opportunity to apply the skills we learned in
-                the last year and the possibility to give something back to the
-                DCI, something made by students for students.For the future, we
-                hope that our community will contribute to the Student Companion
-                to help us in our mission of becoming a platform where you can
-                find all the useful and helpful information in just one place.
+                programming.
+                <Divider hidden />
+                We believe that everyone who starts coding and programming
+                should have access to a platform that provides reliable guidance
+                and allows you to find the resources that are helpful for you.
+                This is why we decided to build a new and unique platform that
+                gives the current and future students at the DCI the tools to
+                inform and educate themselves further according to the
+                curriculum of the DCI.
+                <Divider hidden />
+                At The Student Companion, we are dedicated to making life easy
+                for future web developers and our goal is to change the way that
+                students at the Digital Career Institute exchange experiences,
+                communicate, and collaborate with each other. With the Student
+                Companion as our final project, we were given the opportunity to
+                apply the skills we learned in the last year and the possibility
+                to give something back to the DCI, something made by students
+                for students.
+                <Divider hidden />
+                For the future, we hope that our community will contribute to
+                the Student Companion to help us in our mission of becoming a
+                platform where you can find all the useful and helpful
+                information in just one place.
+                <Divider hidden />
                 <Divider style={{ color: "white" }} horizontal>
                   Technologies
                 </Divider>

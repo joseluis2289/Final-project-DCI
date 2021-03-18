@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { getResources } from "../redux/actions";
 import { useHistory } from "react-router-dom";
 
-import { Button, Container, Grid } from "semantic-ui-react";
+import { Button, Container, Grid, GridColumn } from "semantic-ui-react";
 import Filter from "./Filter";
 import NotFound from "./NotFound";
 import "./Content.css";
@@ -35,36 +35,38 @@ const Content = ({ getResources, resources, filter }) => {
         </p>
       </Container>
       {error === {} ? <NotFound /> : <Filter />}
-      <Grid doubling padded columns={2} className="references-container">
-        <Grid.Row>
-          <Grid.Column
-            style={{
-              marginTop: "1em",
-            }}
-          >
-            <Button
-              style={{
-                width: "200px",
-                height: "80px",
-                color: "var(--violett-dark)",
-                backgroundColor: "var(--yellow-light)",
-              }}
-              content="Add Resource"
-              icon="add circle"
-              labelPosition="left"
-              floated="right"
-              marginTop="2em !important"
-              onClick={() => {
-                logIn ? history.push("/add_resource") : history.push("/login");
-              }}
-            />
+      <Grid
+        centered
+        doubling
+        padded
+        columns={2}
+        className="references-container"
+      >
+        <Button
+          style={{
+            width: "200px",
+            height: "80px",
+            color: "var(--violett-dark)",
+            backgroundColor: "var(--yellow-light)",
+            marginTop: "1em",
+          }}
+          content="Add Resource"
+          icon="add circle"
+          labelPosition="left"
+          floated="right"
+          marginTop="2em !important"
+          onClick={() => {
+            logIn ? history.push("/add_resource") : history.push("/login");
+          }}
+        />
 
+        <Grid.Row>
+          <Grid.Column width={16}>
+            {" "}
             <section className="pagination">
               Found <strong>{resources.length}</strong> Entries
             </section>
           </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
           {searchedResources.map((item) => {
             let showByCategory = false;
             let showByRating = false;

@@ -36,7 +36,7 @@ router.get("/dashboard", (req, res, next) => {
       populate: { path: "user" },
     })
     .sort({ date: -1 })
-    .limit(3)
+    .limit(2)
     .then((resources) => res.json(resources))
     .catch((err) => res.send(err));
 });

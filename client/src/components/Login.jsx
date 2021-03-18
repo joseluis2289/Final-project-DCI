@@ -81,7 +81,7 @@ export default function Login() {
                       <Image
                         wrapped
                         src="./illustrations/login.svg"
-                        alt="man on computer"
+                        alt="authentication draw"
                         style={{
                           padding: "1.5rem",
                           margin: "0",

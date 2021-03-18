@@ -52,60 +52,15 @@ const Home = ({ getDashboardData, dashboard }) => {
 
   return (
     <Container fluid className="dashboard-container">
-      <Grid columns={3} padded className="dashboard-grid">
+      <Grid columns={2} padded className="dashboard-grid">
         <Grid.Row>
           <Grid.Column
             // className="dashboard-content"
             className="dashboard-sidebar sidebar-left"
             mobile={16}
             tablet={9}
-            computer={9}
+            computer={10}
           >
-            <Grid>
-              <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ delay: 400, duration: 400 }}
-              >
-                {(props) => (
-                  <Grid.Row centered style={props}>
-                    <Button
-                      style={{ width: "150px", margin: "1em" }}
-                      content="See Resource"
-                      icon="linkify"
-                      labelPosition="left"
-                      secondary
-                      onClick={async () => {
-                        await dispatch(filterCategory("general", true));
-                        await dispatch(filterCategory("frontend", true));
-                        await dispatch(filterCategory("backend", true));
-                        await dispatch(filterCategory("database", true));
-                        history.push("/home");
-                      }}
-                    />
-
-                    <Button
-                      style={{
-                        width: "150px",
-                        margin: "1em",
-                        color: "var(--violett-dark)",
-                      }}
-                      content="Add Resource"
-                      icon="add circle"
-                      labelPosition="left"
-                      primary
-                      onClick={() => {
-                        console.log(logIn);
-                        logIn
-                          ? history.push("/add_resource")
-                          : history.push("/login");
-                      }}
-                    />
-                  </Grid.Row>
-                )}
-              </Spring>
-            </Grid>
-
             <Spring
               from={{ opacity: 0 }}
               to={{ opacity: 1 }}
@@ -117,7 +72,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                     <Grid.Column width={16} className="dashboard-frontend">
                       <Header as="h3">Frontend</Header>
                       <Container>
-                        <p>{dashboard.length} resources</p>
                         <Button
                           style={{ margin: "10px" }}
                           onClick={async () => {
@@ -151,7 +105,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                         >
                           <Header as="h3">Backend</Header>
                           <Container>
-                            <p>12 resources</p>
                             <Button
                               onClick={async () => {
                                 await dispatch(
@@ -192,7 +145,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                         >
                           <Header as="h3">Database</Header>
                           <Container>
-                            <p>8 resources</p>
                             <img
                               src="./illustrations/database.svg"
                               alt="Database Illustration"
@@ -236,6 +188,50 @@ const Home = ({ getDashboardData, dashboard }) => {
             computer={4}
             className="dashboard-sidebar sidebar-right"
           >
+            <Spring
+              only="computer"
+              from={{ opacity: 0 }}
+              to={{ opacity: 1 }}
+              config={{ delay: 400, duration: 400 }}
+            >
+              {(props) => (
+                <Grid.Row centered style={props}>
+                  <Button
+                    style={{ width: "150px", margin: "1em" }}
+                    content="See Resource"
+                    icon="linkify"
+                    labelPosition="left"
+                    secondary
+                    onClick={async () => {
+                      await dispatch(filterCategory("general", true));
+                      await dispatch(filterCategory("frontend", true));
+                      await dispatch(filterCategory("backend", true));
+                      await dispatch(filterCategory("database", true));
+                      history.push("/home");
+                    }}
+                  />
+
+                  <Button
+                    style={{
+                      width: "150px",
+                      margin: "1em",
+                      color: "var(--violett-dark)",
+                      backgroundColor: "var(--yellow-light)",
+                    }}
+                    content="Add Resource"
+                    icon="add circle"
+                    labelPosition="left"
+                    onClick={() => {
+                      console.log(logIn);
+                      logIn
+                        ? history.push("/add_resource")
+                        : history.push("/login");
+                    }}
+                  />
+                </Grid.Row>
+              )}
+            </Spring>
+
             <Spring
               from={{ opacity: 0 }}
               to={{ opacity: 1 }}

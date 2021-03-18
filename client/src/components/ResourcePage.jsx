@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Resource from "./Resource/Resource";
+import { Container, Grid } from "semantic-ui-react";
 
 export default function ResourcePage() {
   const [resource, setResource] = useState({});
@@ -20,15 +21,17 @@ export default function ResourcePage() {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div>
-      {!loading && (
-        <Resource
-          data={resource}
-          image={
-            "https://www.freecodecamp.org/news/content/images/2020/04/screely-1586183781361.png"
-          }
-        />
-      )}
-    </div>
+    <Container style={{ marginTop: "2em" }}>
+      <Grid>
+        {!loading && (
+          <Resource
+            data={resource}
+            image={
+              "https://www.freecodecamp.org/news/content/images/2020/04/screely-1586183781361.png"
+            }
+          />
+        )}
+      </Grid>
+    </Container>
   );
 }
