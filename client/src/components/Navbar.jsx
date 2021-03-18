@@ -63,6 +63,7 @@ export default function Navbar() {
                     await dispatch(filterCategory("database", true));
                     history.push("/home");
                   }}
+                  style={{ color: "black" }}
                 >
                   <Icon name="book" />
                   Resources
@@ -133,7 +134,8 @@ export default function Navbar() {
             </Dropdown.Menu>
           </Dropdown>
         </Grid.Column>
-
+      </Grid.Row>
+      <Grid.Row columns={2}>
         <Grid.Column floated="left" width={7} only="tablet computer">
           <Link to="/">
             <Header as="h1">Student Companion</Header>
