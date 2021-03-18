@@ -117,7 +117,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                     <Grid.Column width={16} className="dashboard-frontend">
                       <Header as="h3">Frontend</Header>
                       <Container>
-                        <p>{dashboard.length} resources</p>
                         <Button
                           style={{ margin: "10px" }}
                           onClick={async () => {
@@ -151,7 +150,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                         >
                           <Header as="h3">Backend</Header>
                           <Container>
-                            <p>12 resources</p>
                             <Button
                               onClick={async () => {
                                 await dispatch(
@@ -192,7 +190,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                         >
                           <Header as="h3">Database</Header>
                           <Container>
-                            <p>8 resources</p>
                             <img
                               src="./illustrations/database.svg"
                               alt="Database Illustration"
