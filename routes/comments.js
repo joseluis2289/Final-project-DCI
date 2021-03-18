@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
    .populate("resource", "_id")
    .populate("resource", "title")
     .sort({ date: -1 })
-    .limit(1)
+    .limit(2)
     .then((resp) => res.json(resp))
     .catch((err) => res.send(err));
 

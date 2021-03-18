@@ -23,6 +23,9 @@
   font-size: 1.5rem !important;
   margin: 0 !important;
 }
+.dashboard-sidebar {
+ padding-top: 0 !important;
+}
 .dashboard-sidebar em {
   color: var(--violett-light);
   font-style: normal;
@@ -33,6 +36,7 @@
   padding-bottom: 3rem;
 }
 .sidebar-right {
+ padding-top: 86px !important;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   padding-top: 3rem;
