@@ -30,7 +30,8 @@ export default function ResourcePage() {
   });
   const [loading, setLoading] = useState(true);
 
-  useEffect(async () => {
+  useEffect(async (e) => {
+    e.preventDefault();
     let url = window.location.href.split("/");
     const resourceId = url[url.length - 1];
     axios
