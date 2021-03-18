@@ -8,7 +8,7 @@
     rgba(112, 111, 211, 1) 100%
   );
   /* Browser window height - height of menu bar */
-  min-height: calc(100vh - 79px);
+  min-height: calc(90vh - 79px);
   padding: 0 10rem;
   display: grid !important;
 }
@@ -23,6 +23,9 @@
   font-size: 1.5rem !important;
   margin: 0 !important;
 }
+.dashboard-sidebar {
+ padding-top: 0 !important;
+}
 .dashboard-sidebar em {
   color: var(--violett-light);
   font-style: normal;
@@ -33,6 +36,7 @@
   padding-bottom: 3rem;
 }
 .sidebar-right {
+ padding-top: 86px !important;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   padding-top: 3rem;
@@ -101,6 +105,7 @@
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
-.addedResources {
+/* .addedResources {
   margin-top: 40% !important;
 }
+ */

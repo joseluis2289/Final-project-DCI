@@ -190,7 +190,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                         >
                           <Header as="h3">Database</Header>
                           <Container>
-                            <p>8 resources</p>
                             <img
                               src="./illustrations/database.svg"
                               alt="Database Illustration"

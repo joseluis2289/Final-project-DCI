@@ -19,13 +19,13 @@ export default function Navbar() {
       as="header"
       className="app-header"
     >
-      <Grid.Row>
-        <Grid.Column width={14} only="mobile">
+      <Grid.Row only="mobile">
+        <Grid.Column width={14}>
           <Link to="/">
             <Header as="h1">Student Companion</Header>
           </Link>
         </Grid.Column>
-        <Grid.Column textAlign={"center"} width={2} only="mobile">
+        <Grid.Column textAlign={"center"} width={2}>
           <Dropdown item icon="bars" simple pointing="right">
             <Dropdown.Menu
               style={{
@@ -63,6 +63,7 @@ export default function Navbar() {
                     await dispatch(filterCategory("database", true));
                     history.push("/home");
                   }}
+                  style={{ color: "black" }}
                 >
                   <Icon name="book" />
                   Resources
@@ -72,7 +73,7 @@ export default function Navbar() {
                 <React.Fragment>
                   <Dropdown.Item
                     onClick={() => {
-                      history.push("/");
+                      history.push("/profile");
                     }}
                   >
                     <Icon name="user circle" />
@@ -133,20 +134,15 @@ export default function Navbar() {
             </Dropdown.Menu>
           </Dropdown>
         </Grid.Column>
-
-        <Grid.Column floated="left" width={7} only="tablet computer">
+      </Grid.Row>
+      <Grid.Row columns={2} only="tablet computer">
+        <Grid.Column floated="left" width={7}>
           <Link to="/">
             <Header as="h1">Student Companion</Header>
           </Link>
         </Grid.Column>
 
-        <Grid.Column
-          as="nav"
-          textAlign={"right"}
-          floated="right"
-          width={9}
-          only="tablet computer"
-        >
+        <Grid.Column as="nav" textAlign={"right"} floated="right" width={9}>
           <Menu compact secondary>
             <Menu.Item
               onClick={() => {
@@ -199,7 +195,7 @@ export default function Navbar() {
                     </Dropdown.Item>
                     <Dropdown.Item
                       onClick={() => {
-                        history.push("/");
+                        history.push("/profile");
                       }}
                     >
                       <Icon name="user circle" />
