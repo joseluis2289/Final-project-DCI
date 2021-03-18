@@ -58,23 +58,31 @@ app.use(
       secure: false, // for normal http connection if https is there we have to set it to true
     },
   })
-);
-app.use(cors());
-app.use(Logger("dev"));
-app.use(expValidator());
-app.use("/resources", require("./routes/resources"));
-app.use("/comments", require("./routes/comments"));
-app.use("/users", require("./routes/users"));
-//app.use("/posts", protectedRoutes);
-
-//deploying on Heroku
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
-
-// middleware to deploy on Heroku
-app.use(express.static(path.join(__dirname, "client", "build")));
-
+  );
+  app.use(cors());
+  app.use(Logger("dev"));
+  app.use(expValidator());
+  app.use("/resources", require("./routes/resources"));
+  app.use("/comments", require("./routes/comments"));
+  app.use("/users", require("./routes/users"));
+  //app.use("/posts", protectedRoutes);
+  
+  //deploying on Heroku
+  if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+  }
+  
+  // middleware to deploy on Heroku
+  app.use(express.static(path.join(__dirname, "client", "build")));
+  connectDB();
+      
+  //added to deploy on heroku
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+  
+  app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
+    
 
 ///All routes
 
@@ -230,12 +238,4 @@ app.put("/update", (req, res, next) => {
       .catch((err) => res.send(err));
     });
     
-    connectDB();
-    
-    //added to deploy on heroku
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-    });
-    
-        app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));
     
