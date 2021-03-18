@@ -229,8 +229,12 @@ export default function Profile() {
                     <span className="errorsMsg">Max length exceeded</span>
                   )}
                 <Button
-                  style={{ width: "130px", alignItems: "center" }}
-                  className="ui primary labeled icon button"
+                  style={{
+                    width: "130px",
+                    alignItems: "center",
+                    backgroundColor: "var(--yellow-light)",
+                  }}
+                  className="ui labeled icon button"
                   type="submit"
                 >
                   <i className="edit icon"></i>Update

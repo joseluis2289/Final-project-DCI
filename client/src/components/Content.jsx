@@ -47,11 +47,11 @@ const Content = ({ getResources, resources, filter }) => {
                 width: "200px",
                 height: "80px",
                 color: "var(--violett-dark)",
+                backgroundColor: "var(--yellow-light)",
               }}
               content="Add Resource"
               icon="add circle"
               labelPosition="left"
-              primary
               floated="right"
               marginTop="2em !important"
               onClick={() => {

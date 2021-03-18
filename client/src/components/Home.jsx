@@ -64,27 +64,29 @@ const Home = ({ getDashboardData, dashboard }) => {
                     return (
                       <Feed.Event>
                         {/*  <Feed.Label image="./images/molly.png" /> */}
-                        <Feed.Content>
-                          <Feed.Date>
-                            {moment(activity.date).fromNow()}
-                          </Feed.Date>
-                          <Feed.Summary>
-                            {activity.user.userName[0].toUpperCase() +
-                              activity.user.userName.substring(1)}{" "}
-                            added{" "}
-                            <em
-                              style={{ cursor: "pointer" }}
-                              onClick={() => {
-                                history.push(
-                                  `/resources/resource/${activity._id}`
-                                );
-                              }}
-                            >
-                              {activity.title} to the{" "}
-                            </em>
-                            {activity.category[0]} category
-                          </Feed.Summary>
-                        </Feed.Content>
+                        {activity && (
+                          <Feed.Content>
+                            <Feed.Date>
+                              {moment(activity.date).fromNow()}
+                            </Feed.Date>
+                            <Feed.Summary>
+                              {activity.user.userName[0].toUpperCase() +
+                                activity.user.userName.substring(1)}{" "}
+                              added{" "}
+                              <em
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  history.push(
+                                    `/resources/resource/${activity._id}`
+                                  );
+                                }}
+                              >
+                                {activity.title} to the{" "}
+                              </em>
+                              {activity.category[0]} category
+                            </Feed.Summary>
+                          </Feed.Content>
+                        )}
                       </Feed.Event>
                     );
                   })}
@@ -226,11 +228,11 @@ const Home = ({ getDashboardData, dashboard }) => {
                   width: "150px",
                   margin: "1em",
                   color: "var(--violett-dark)",
+                  backgroundColor: "var(--yellow-light)",
                 }}
                 content="Add Resource"
                 icon="add circle"
                 labelPosition="left"
-                primary
                 onClick={() => {
                   console.log(logIn);
                   logIn

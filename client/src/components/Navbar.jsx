@@ -19,13 +19,13 @@ export default function Navbar() {
       as="header"
       className="app-header"
     >
-      <Grid.Row>
-        <Grid.Column width={14} only="mobile">
+      <Grid.Row only="mobile">
+        <Grid.Column width={14}>
           <Link to="/">
             <Header as="h1">Student Companion</Header>
           </Link>
         </Grid.Column>
-        <Grid.Column textAlign={"center"} width={2} only="mobile">
+        <Grid.Column textAlign={"center"} width={2}>
           <Dropdown item icon="bars" simple pointing="right">
             <Dropdown.Menu
               style={{
@@ -135,20 +135,14 @@ export default function Navbar() {
           </Dropdown>
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row columns={2}>
-        <Grid.Column floated="left" width={7} only="tablet computer">
+      <Grid.Row columns={2} only="tablet computer">
+        <Grid.Column floated="left" width={7}>
           <Link to="/">
             <Header as="h1">Student Companion</Header>
           </Link>
         </Grid.Column>
 
-        <Grid.Column
-          as="nav"
-          textAlign={"right"}
-          floated="right"
-          width={9}
-          only="tablet computer"
-        >
+        <Grid.Column as="nav" textAlign={"right"} floated="right" width={9}>
           <Menu compact secondary>
             <Menu.Item
               onClick={() => {
