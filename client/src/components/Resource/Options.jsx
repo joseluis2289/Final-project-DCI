@@ -52,7 +52,7 @@ export default function Options({ resource }) {
       setDeleteModal(true);
     }
     if (value === "share") {
-      var url = `https://webdevelop-student-companion.herokuapp.com/resources/resource/${resource._id}`;
+      var url = `https://webdevelop-student-companion.herokuapp.com/resources/resource/:${resource._id}`;
       navigator.clipboard.writeText(url);
       notify("The link was copied!");
     }
