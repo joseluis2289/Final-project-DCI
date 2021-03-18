@@ -12,6 +12,7 @@ import {
   Container,
   Grid,
   Image,
+  Icon,
 } from "semantic-ui-react";
 
 toast.configure();
@@ -196,8 +197,28 @@ export default function Login() {
                   type="submit"
                 >
                   {" "}
-                  <i className="unlock alternate icon"></i>Login
+                  <Icon name="unlock alternate icon"></Icon>Login
                 </Button>
+                <Grid.Row style={{ marginTop: "2rem" }}>
+                  <Form.Field>
+                    <label>Are you not registered yet?</label>
+                  </Form.Field>
+                  <Button
+                    style={{
+                      width: "150px",
+                      marginBottom: "20px",
+                      backgroundColor: "#227093",
+                      color: "white",
+                    }}
+                    className="ui labeled icon button"
+                    onClick={() => {
+                      history.push("/register");
+                    }}
+                  >
+                    {" "}
+                    <Icon name="signup icon"></Icon>Register
+                  </Button>
+                </Grid.Row>
               </Form>
             </div>
           </Grid.Column>

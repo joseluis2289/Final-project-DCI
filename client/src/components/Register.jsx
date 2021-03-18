@@ -10,6 +10,7 @@ import {
   Grid,
   Image,
   Container,
+  Icon,
 } from "semantic-ui-react";
 
 export default function Register() {
@@ -258,6 +259,26 @@ export default function Register() {
                   <i className="address card icon"></i>
                   Register
                 </Button>
+                <Grid.Row style={{ marginTop: "2rem" }}>
+                  <Form.Field>
+                    <label>Are you already registered?</label>
+                  </Form.Field>
+                  <Button
+                    style={{
+                      width: "150px",
+                      marginBottom: "20px",
+                      backgroundColor: "#227093",
+                      color: "white",
+                    }}
+                    className="ui labeled icon button"
+                    onClick={() => {
+                      history.push("/login");
+                    }}
+                  >
+                    {" "}
+                    <Icon name="unlock alternate icon"></Icon>Login
+                  </Button>
+                </Grid.Row>
               </Form>
             </article>
           </Grid.Column>
