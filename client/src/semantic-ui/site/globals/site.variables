@@ -6,7 +6,7 @@
        Fonts
 --------------------*/
 
-@fontName           : 'Roboto';
+@fontName           : 'Roboto Mono';
 @fontSmoothing      : antialiased;
 
 @headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
