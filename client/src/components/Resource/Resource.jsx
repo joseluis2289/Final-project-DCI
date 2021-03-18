@@ -7,7 +7,6 @@ import Options from "./Options";
 import {
   Card,
   CardContent,
-  CardHeader,
   Image,
   Grid,
   GridRow,
@@ -49,6 +48,7 @@ const Resource = (props) => {
           width: "600px",
           backgroundColor: "#706FCD",
           height: "fit-content",
+          margin: "auto",
         }}
       >
         <CardContent>

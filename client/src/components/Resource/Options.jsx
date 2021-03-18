@@ -110,9 +110,10 @@ export default function Options({ resource }) {
         className="link item"
         style={{
           backgroundColor: "var(--yellow-light)",
-          padding: "0.6rem",
+          padding: "0.5rem",
           borderRadius: "10px",
-          marginRight: "0.3rem",
+          marginLeft: "15px",
+          marginTop: "20px",
         }}
       >
         {user._id !== resource.user._id ? (

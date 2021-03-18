@@ -95,7 +95,7 @@ export default function Comment(props) {
           {props.data.user && props.data.user._id === user._id && !edit && (
             <div style={{ display: "flex" }}>
               <Dropdown
-                text="..."
+                //text="..."
                 style={{
                   backgroundColor: "var(--yellow-light)",
                   color: "white",
@@ -128,7 +128,7 @@ export default function Comment(props) {
           )}
         </div>
       </Grid.Row>
-      {!edit && <p style={{ marginLeft: "15px" }}>{props.data.text}</p>}
+      {!edit && <p style={{ marginLeft: "35px" }}>{props.data.text}</p>}
 
       {edit && (
         <Form onSubmit={(e) => updateComment(e)}>
