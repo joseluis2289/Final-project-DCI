@@ -72,7 +72,7 @@ export default function Navbar() {
                 <React.Fragment>
                   <Dropdown.Item
                     onClick={() => {
-                      history.push("/");
+                      history.push("/profile");
                     }}
                   >
                     <Icon name="user circle" />
@@ -199,7 +199,7 @@ export default function Navbar() {
                     </Dropdown.Item>
                     <Dropdown.Item
                       onClick={() => {
-                        history.push("/");
+                        history.push("/profile");
                       }}
                     >
                       <Icon name="user circle" />

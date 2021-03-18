@@ -6,15 +6,18 @@ export default function ResourcePage() {
   const [resource, setResource] = useState({});
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  useEffect(async () => {
     let url = window.location.href.split("/");
     const resourceId = url[url.length - 1];
     axios
       .get(`/resources/resource/${resourceId}`)
       .then((res) => {
         setResource(res.data);
+        console.log(res.data);
+      })
+      .then(() => {
         setLoading(false);
-        console.log("response", res.data);
+        console.log("esperou?");
       })
       .catch((err) => console.log(err));
   }, []);
