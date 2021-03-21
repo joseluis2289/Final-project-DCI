@@ -41,7 +41,7 @@ export default function DisplayComments({ comments, displayCom, showComm }) {
           maxHeight: "180px",
           minWidth: "360px",
           scrollBehavior: "smooth",
-          marginTop: "15px",
+          marginTop: "20px",
         }}
       >
         {displayCom && (
