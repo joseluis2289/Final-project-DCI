@@ -39,8 +39,7 @@ export default function DisplayComments({ comments, displayCom, showComm }) {
         style={{
           overflow: "scroll",
           maxHeight: "180px",
-          minHeight: "100px",
-          width: "600px",
+          minWidth: "360px",
           scrollBehavior: "smooth",
           marginTop: "15px",
         }}
