@@ -52,14 +52,19 @@ const Home = ({ getDashboardData, dashboard }) => {
 
   return (
     <Container fluid className="dashboard-container">
-      <Grid columns={3} padded className="dashboard-grid">
-        <Grid.Row>
+      <Grid
+        columns={2}
+        padded
+        className="dashboard-grid"
+        style={{ border: "red solid 2px" }}
+      >
+        <Grid.Row centered>
           <Grid.Column
             // className="dashboard-content"
             className="dashboard-sidebar sidebar-left"
-            mobile={16}
-            tablet={9}
-            computer={9}
+            mobile={14}
+            tablet={8}
+            computer={12}
           >
             <Grid>
               <Spring
@@ -114,7 +119,12 @@ const Home = ({ getDashboardData, dashboard }) => {
               {(props) => (
                 <Grid style={props} columns={2} doubling padded>
                   <Grid.Row>
-                    <Grid.Column width={16} className="dashboard-frontend">
+                    <Grid.Column
+                      mobile={14}
+                      tablet={8}
+                      computer={14}
+                      className="dashboard-frontend"
+                    >
                       <Header as="h3">Frontend</Header>
                       <Container>
                         <Button
@@ -145,7 +155,9 @@ const Home = ({ getDashboardData, dashboard }) => {
                       {(props) => (
                         <Grid.Column
                           style={props}
-                          width={8}
+                          mobile={14}
+                          tablet={4}
+                          computer={7}
                           className="dashboard-backend"
                         >
                           <Header as="h3">Backend</Header>
@@ -185,7 +197,9 @@ const Home = ({ getDashboardData, dashboard }) => {
                       {(props) => (
                         <Grid.Column
                           style={props}
-                          width={8}
+                          mobile={14}
+                          tablet={4}
+                          computer={7}
                           className="dashboard-database"
                         >
                           <Header as="h3">Database</Header>
@@ -228,8 +242,8 @@ const Home = ({ getDashboardData, dashboard }) => {
           {/* <Grid.Column width={1} className="dashboard-content"></Grid.Column> */}
           <Grid.Column
             centered
-            mobile={16}
-            tablet={4}
+            mobile={14}
+            tablet={5}
             computer={4}
             className="dashboard-sidebar sidebar-right"
           >
