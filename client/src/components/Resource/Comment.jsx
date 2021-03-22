@@ -12,6 +12,7 @@ import {
   Input,
   Grid,
   Dropdown,
+  Item,
 } from "semantic-ui-react";
 
 export default function Comment(props) {
@@ -102,6 +103,7 @@ export default function Comment(props) {
                   fontSize: "1.4rem",
                   padding: "0.3rem",
                   borderRadius: "10px",
+                  marginRight: "10px",
                 }}
               >
                 <Dropdown.Menu>
@@ -128,7 +130,19 @@ export default function Comment(props) {
           )}
         </div>
       </Grid.Row>
-      {!edit && <p style={{ marginLeft: "35px" }}>{props.data.text}</p>}
+
+      {!edit && (
+        <Header
+          as="h4"
+          style={{
+            justifyContent: "start",
+            marginLeft: "30px",
+            marginTop: "-15px",
+          }}
+        >
+          {props.data.text}
+        </Header>
+      )}
 
       {edit && (
         <Form onSubmit={(e) => updateComment(e)}>
