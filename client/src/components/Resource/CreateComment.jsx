@@ -65,7 +65,7 @@ export default function CreateComment({
           {makeCom && (
             <Form onSubmit={(e) => addComment(e)}>
               {" "}
-              <Card>
+              <Card style={{ marginLeft: "-7px" }}>
                 <TextArea
                   name="text"
                   rows={2}

@@ -103,7 +103,7 @@ export default function Comment(props) {
                   fontSize: "1.4rem",
                   padding: "0.3rem",
                   borderRadius: "10px",
-                  marginRight: "28px",
+                  marginRight: "10px",
                 }}
               >
                 <Dropdown.Menu>

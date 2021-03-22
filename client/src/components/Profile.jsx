@@ -24,6 +24,13 @@ export default function Profile() {
   const [deleteModal, setDeleteModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [updateData, setUpdateData] = useState(user);
+
+  const notifyMatch = () => {
+    toast.error("Password need to match!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
   const notify = () => {
     toast.success(`Successfully Updated!`, {
       position: toast.POSITION.TOP_CENTER,
@@ -37,11 +44,13 @@ export default function Profile() {
     });
   };
   const { register, handleSubmit, errors } = useForm();
+
   const profileHandler = (e) => {
     //console.log(e);
     e.preventDefault();
     setUpdateData({ ...updateData, [e.target.name]: e.target.value });
   };
+
   //GET DATA TO DISPLAY
   useEffect(() => {
     fetch("/profile")
@@ -58,23 +67,28 @@ export default function Profile() {
       .catch((err) => console.log(err));
   }, []);
   const updateHandler = (e) => {
-    axios({
-      method: "PUT",
-      url: `/update`,
-      data: updateData,
-    })
-      .then((response) => {
-        console.log("what came?", response);
-        notify();
-        setUpdateData({ ...response.data, password: updateData.password });
-        dispatch(updateUser(response.data));
-        history.push("/");
+    if (updateData.password === updateData.confirmPassword) {
+      axios({
+        method: "PUT",
+        url: `/update`,
+        data: updateData,
       })
-      .catch((err) => {
-        notifyError();
-        console.error("Error to update", err);
-      });
+        .then((response) => {
+          console.log("what came?", response);
+          notify();
+          setUpdateData({ ...response.data, password: updateData.password });
+          dispatch(updateUser(response.data));
+          history.push("/");
+        })
+        .catch((err) => {
+          notifyError();
+          console.error("Error to update", err);
+        });
+    } else {
+      notifyMatch();
+    }
   };
+
   const delProfile = () => {
     axios({
       method: "DELETE",
@@ -189,6 +203,7 @@ export default function Profile() {
                     id="password"
                     //value={updateData.password}
                     onChange={profileHandler}
+                    //onChange={handlePassword}
                     ref={register({
                       required: true,
                       maxLength: 15,
@@ -211,6 +226,7 @@ export default function Profile() {
                     name="confirmPassword"
                     id="confirm-password"
                     onChange={profileHandler}
+                    //onChange={handleConfirmPass}
                     ref={register({
                       required: true,
                       maxLength: 15,

@@ -105,15 +105,15 @@ export default function Options({ resource }) {
   return (
     <div>
       <Dropdown
-        text="..."
+        //text="..."
         pointing="right"
         className="link item"
         style={{
-          backgroundColor: "var(--yellow-light)",
+          // backgroundColor: "var(--yellow-light)",
           padding: "0.5rem",
           borderRadius: "10px",
           marginLeft: "15px",
-          marginTop: "20px",
+          marginTop: "15px",
         }}
       >
         {user._id !== resource.user._id ? (

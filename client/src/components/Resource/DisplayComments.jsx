@@ -33,13 +33,15 @@ export default function DisplayComments({ comments, displayCom, showComm }) {
         }
       </span>
       <Container
+        centered
+        fluid
         mobile={16}
         tablet={9}
         computer={9}
         style={{
           overflow: "scroll",
           maxHeight: "180px",
-          minWidth: "360px",
+          minWidth: "240px",
           scrollBehavior: "smooth",
           marginTop: "20px",
         }}
