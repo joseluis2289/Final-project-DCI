@@ -8,7 +8,6 @@ const User = new Schema({
   // gitHubAccount: {type: }
   email: { type: String, required: true, unique: true },
   password: { type: String },
-  image: {type: String},
   resources: [
     {
       type: Schema.Types.ObjectId,

@@ -56,11 +56,7 @@ export default function Options({ resource }) {
       navigator.clipboard.writeText(url);
       notify("The link was copied!");
     }
-    if (value === "share2") {
-      var url = `https://webdevelop-student-companion.herokuapp.com/update_resources/${resource._id}`;
-      navigator.clipboard.writeText(url);
-      notify("The link was copied!");
-    }
+
     //updating property "reported" to true
     if (value === "report") {
       if (logIn) {
@@ -126,9 +122,7 @@ export default function Options({ resource }) {
             <Dropdown.Item onClick={(e) => handle(e, "share")}>
               <Icon name="share"></Icon>Copy link
             </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => handle(e, "share2")}>
-              <Icon name="share"></Icon>test
-            </Dropdown.Item>
+
             <Dropdown.Item onClick={(e) => handle(e, "report")}>
               {" "}
               <Icon name="attention"></Icon>Report
@@ -139,9 +133,7 @@ export default function Options({ resource }) {
             <Dropdown.Item onClick={(e) => handle(e, "share")}>
               <Icon name="share"></Icon>Copy link
             </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => handle(e, "share2")}>
-              <Icon name="share"></Icon>test
-            </Dropdown.Item>
+
             <Dropdown.Item onClick={(e) => handle(e, "report")}>
               {" "}
               <Icon name="attention"></Icon>Report
