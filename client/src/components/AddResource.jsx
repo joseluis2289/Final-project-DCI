@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -23,12 +23,6 @@ export default function AddResource() {
     num_ratings: 1,
     rating: 5,
   });
-  const [categories, setCategories] = useState([
-    "frontend",
-    "backend",
-    "database",
-    "general",
-  ]);
 
   let defineCategory = (e) => {
     let categories = resource.category;
@@ -141,45 +135,73 @@ export default function AddResource() {
                     />
                   </Form.Field>
                   <Form.Field label="Categories"></Form.Field>
-                  <Form.Group
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      width: "250px",
-                      margin: "0.5em auto",
-                    }}
-                  >
-                    {categories.map((item, index) => {
-                      let name = item[0].toUpperCase() + item.substring(1);
-                      return (
-                        <Form.Field
-                          label={name}
-                          key={index}
-                          type="checkbox"
-                          control="input"
-                          value={item}
-                          onChange={(e) => {
-                            defineCategory(e);
-                          }}
-                        />
-                      );
-                    })}
+                  <Form.Group widths="equal">
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="general"
+                        value="general"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        control="input"
+                        label="General"
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="frontend"
+                        value="frontend"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        control="input"
+                        label="Frontend"
+                      />
+                    </Form.Field>
                   </Form.Group>
+                  <Form.Group widths="equal">
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="backend"
+                        value="backend"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        control="input"
+                        label="Backend"
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Checkbox
+                        toggle
+                        id="database"
+                        value="database"
+                        onChange={(e) => {
+                          defineCategory(e);
+                        }}
+                        label="Database"
+                        control="input"
+                      />
+                    </Form.Field>
+                  </Form.Group>
+                  <Form.Field label="Paid"></Form.Field>
                   <Checkbox
                     toggle
-                    label="Paid"
                     name="paid"
                     type="checkbox"
                     control="input"
                     value={resource.paid}
                     onChange={(e, { value }) => {
                       setResource({ ...resource, paid: !resource.paid });
-                      console.log("resource", resource.paid);
                     }}
                     style={{
                       margin: "0.em 0",
                     }}
-                  ></Checkbox>
+                  />
+
                   <Form.TextArea
                     label="Description"
                     placeholder="Enter your description..."

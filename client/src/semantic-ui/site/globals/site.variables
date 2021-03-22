@@ -6,7 +6,7 @@
        Fonts
 --------------------*/
 
-@fontName           : 'Roboto';
+@fontName           : 'Roboto Mono';
 @fontSmoothing      : antialiased;
 
 @headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -50,7 +50,7 @@
     Brand Colors
 --------------------*/
 
-@primaryColor   : #ffda79;
+@primaryColor   : #34ace0;
 @secondaryColor : #474787;
 
 @lightPrimaryColor   : #33d9b2;

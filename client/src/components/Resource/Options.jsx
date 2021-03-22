@@ -56,6 +56,7 @@ export default function Options({ resource }) {
       navigator.clipboard.writeText(url);
       notify("The link was copied!");
     }
+
     //updating property "reported" to true
     if (value === "report") {
       if (logIn) {
@@ -121,6 +122,7 @@ export default function Options({ resource }) {
             <Dropdown.Item onClick={(e) => handle(e, "share")}>
               <Icon name="share"></Icon>Copy link
             </Dropdown.Item>
+
             <Dropdown.Item onClick={(e) => handle(e, "report")}>
               {" "}
               <Icon name="attention"></Icon>Report
@@ -131,6 +133,7 @@ export default function Options({ resource }) {
             <Dropdown.Item onClick={(e) => handle(e, "share")}>
               <Icon name="share"></Icon>Copy link
             </Dropdown.Item>
+
             <Dropdown.Item onClick={(e) => handle(e, "report")}>
               {" "}
               <Icon name="attention"></Icon>Report
@@ -211,7 +214,9 @@ export default function Options({ resource }) {
         </Modal.Actions>
 
         <Modal
-          onClose={() => setSecondOpen(false)}
+          onClose={() => {
+            setSecondOpen(false);
+          }}
           open={secondOpen}
           size="small"
         >
@@ -235,6 +240,7 @@ export default function Options({ resource }) {
                     dispatch(updateData(update));
                     setSecondOpen(false);
                     setFirstOpen(false);
+                    history.push("/home");
                   })
                   .catch((err) => {
                     console.log(err);

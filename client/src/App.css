@@ -111,10 +111,7 @@ body {
 }
 
 /****UPDATE RESOURCE****/
-.update-resource {
-  border: 1px solid var(--yellow-dark);
-  margin: 2rem;
-}
+
 .delete-button {
   align-self: flex-end;
   display: block;

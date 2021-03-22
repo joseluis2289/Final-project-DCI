@@ -12,6 +12,7 @@ import {
   Container,
   Grid,
   Image,
+  Icon,
 } from "semantic-ui-react";
 import { Spring } from "react-spring/renderprops";
 
@@ -48,7 +49,7 @@ export default function Login() {
       config={{ delay: 200, duration: 800 }}
     >
       {(props) => (
-        <Container style={props} fluid>
+        <Container fluid>
           <Grid divided="vertically">
             <Grid.Row columns={2}>
               <Grid.Column
@@ -80,7 +81,7 @@ export default function Login() {
                       <Image
                         wrapped
                         src="./illustrations/login.svg"
-                        alt="man on computer"
+                        alt="authentication draw"
                         style={{
                           padding: "1.5rem",
                           margin: "0",
@@ -216,8 +217,28 @@ export default function Login() {
                       type="submit"
                     >
                       {" "}
-                      <i className="unlock alternate icon"></i>Login
+                      <Icon name="unlock alternate icon"></Icon>Login
                     </Button>
+                    <Grid.Row style={{ marginTop: "2rem" }}>
+                      <Form.Field>
+                        <label>Are you not registered yet?</label>
+                      </Form.Field>
+                      <Button
+                        style={{
+                          width: "150px",
+                          marginBottom: "20px",
+                          backgroundColor: "#227093",
+                          color: "white",
+                        }}
+                        className="ui labeled icon button"
+                        onClick={() => {
+                          history.push("/register");
+                        }}
+                      >
+                        {" "}
+                        <Icon name="signup icon"></Icon>Register
+                      </Button>
+                    </Grid.Row>
                   </Form>
                 </div>
               </Grid.Column>

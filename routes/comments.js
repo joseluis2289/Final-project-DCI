@@ -14,10 +14,10 @@ const Comment = require("../Models/Comment");
 //home page
 //get last two comments 
 router.get("/", (req, res) => {
-  let comments = Comment.find()
-    .populate("user", "username") 
-   .populate("resource","title")
-    .populate("resource","_id") 
+   Comment.find()
+    .populate("user", "userName") 
+   .populate("resource", "_id")
+   .populate("resource", "title")
     .sort({ date: -1 })
     .limit(2)
     .then((resp) => res.json(resp))

@@ -136,6 +136,7 @@ router.use((req, res, next) => {
   }
 });
 
+
 router.post("/rating", (req, res, next) => {
   const rate = req.body.rate;
   const resourceId = req.body.resourceId;
@@ -318,7 +319,7 @@ router.get("/:resource_id", (req, res, next) => {
 // update one resource
 router.put("/:resource_id", (req, res, next) => {
   console.log("inside put router");
-  resourceUpdated = Resource.updateOne(
+  resourceUpdated = Resource.findByIdAndUpdate(
     { _id: req.params.resource_id },
     req.body
   )
