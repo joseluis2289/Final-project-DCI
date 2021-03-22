@@ -52,7 +52,7 @@ export default function Options({ resource }) {
       setDeleteModal(true);
     }
     if (value === "share") {
-      var url = `https://webdevelop-student-companion.herokuapp.com/resources/resource/${resource._id}`;
+      var url = `${resource.link}`;
       navigator.clipboard.writeText(url);
       notify("The link was copied!");
     }
@@ -110,7 +110,7 @@ export default function Options({ resource }) {
         pointing="right"
         className="link item"
         style={{
-          // backgroundColor: "var(--yellow-light)",
+          backgroundColor: "var(--yellow-light)",
           padding: "0.5rem",
           borderRadius: "10px",
           marginLeft: "15px",

@@ -101,7 +101,7 @@ function About() {
                     />
                     <Image
                       style={{ width: "90px" }}
-                      src="/images/express.png"
+                      src="/illustrations/express.png"
                     />
                     <Image style={{ width: "85px" }} src="/images/react.png" />
 
