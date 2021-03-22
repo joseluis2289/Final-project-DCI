@@ -3,11 +3,14 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import UpdateComment from "./UpdateComment";
+import { useHistory } from "react-router-dom";
+import { Container, List, Button, Header } from "semantic-ui-react";
 
 export default function MyComments() {
   const user = useSelector((state) => state.user);
   const update = useSelector((state) => state.update);
   const [userComments, setUserComments] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     axios
@@ -20,43 +23,49 @@ export default function MyComments() {
   }, [update, user._id]);
   return (
     <Fragment>
-      {userComments ? (
-        <Fragment>
-          {" "}
+      {userComments && (
+        <Container>
+          <Header
+            textAlign="center"
+            style={{ margin: "2rem", fontSize: "2rem" }}
+          >
+            Resources I commented on
+          </Header>
+          You can edit your comments on the resource page
           {userComments.map((comment) => {
             return (
-              comment.resource && (
-                <div key={comment._id} className="update-comment">
-                  <div>
-                    <h2>
-                      {comment.resource
-                        ? `${comment.resource.title}`
-                        : "This resource was deleted"}
-                    </h2>
-                    <img
-                      className="comment-image"
-                      src={
-                        comment.resource
-                          ? `${comment.resource.previewImage}`
-                          : "illustrations/road_to_knowledge.svg"
-                      }
-                      alt="preview"
-                    ></img>
-                  </div>
-                  <UpdateComment data={comment} />
-                  <Link to={`/resources/resource/${comment.resource._id}`}>
-                    Go to Resource{" "}
-                  </Link>
-                </div>
-              )
+              <List divided relaxed>
+                <List.Item
+                  style={{
+                    marginTop: "0.5em",
+                    padding: "1em",
+                    borderBottom: "solid 2px var(--violett-dark)",
+                  }}
+                >
+                  <List.Icon
+                    name="checkmark"
+                    size="large"
+                    verticalAlign="middle"
+                  />
+                  <List.Content>
+                    <List.Header as="a">{comment.resource.title}</List.Header>
+                    <List.Description as="a">
+                      <Button
+                        onClick={() => {
+                          history.push(
+                            `resources/resource/${comment.resource._id}`
+                          );
+                        }}
+                      >
+                        see{" "}
+                      </Button>
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+              </List>
             );
           })}
-        </Fragment>
-      ) : (
-        <Fragment>
-          <h1>Go to Login</h1>
-          <Link to="/login">here </Link>
-        </Fragment>
+        </Container>
       )}
     </Fragment>
   );

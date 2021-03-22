@@ -56,11 +56,7 @@ export default function Options({ resource }) {
       navigator.clipboard.writeText(url);
       notify("The link was copied!");
     }
-    if (value === "share2") {
-      var url = `https://webdevelop-student-companion.herokuapp.com/update_resources/${resource._id}`;
-      navigator.clipboard.writeText(url);
-      notify("The link was copied!");
-    }
+
     //updating property "reported" to true
     if (value === "report") {
       if (logIn) {
@@ -110,15 +106,15 @@ export default function Options({ resource }) {
   return (
     <div>
       <Dropdown
-        text="..."
+        //text="..."
         pointing="right"
         className="link item"
         style={{
-          backgroundColor: "var(--yellow-light)",
+          // backgroundColor: "var(--yellow-light)",
           padding: "0.5rem",
           borderRadius: "10px",
           marginLeft: "15px",
-          marginTop: "20px",
+          marginTop: "15px",
         }}
       >
         {user._id !== resource.user._id ? (
@@ -126,9 +122,7 @@ export default function Options({ resource }) {
             <Dropdown.Item onClick={(e) => handle(e, "share")}>
               <Icon name="share"></Icon>Copy link
             </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => handle(e, "share2")}>
-              <Icon name="share"></Icon>test
-            </Dropdown.Item>
+
             <Dropdown.Item onClick={(e) => handle(e, "report")}>
               {" "}
               <Icon name="attention"></Icon>Report
@@ -139,9 +133,7 @@ export default function Options({ resource }) {
             <Dropdown.Item onClick={(e) => handle(e, "share")}>
               <Icon name="share"></Icon>Copy link
             </Dropdown.Item>
-            <Dropdown.Item onClick={(e) => handle(e, "share2")}>
-              <Icon name="share"></Icon>test
-            </Dropdown.Item>
+
             <Dropdown.Item onClick={(e) => handle(e, "report")}>
               {" "}
               <Icon name="attention"></Icon>Report
@@ -222,7 +214,9 @@ export default function Options({ resource }) {
         </Modal.Actions>
 
         <Modal
-          onClose={() => setSecondOpen(false)}
+          onClose={() => {
+            setSecondOpen(false);
+          }}
           open={secondOpen}
           size="small"
         >
@@ -246,6 +240,7 @@ export default function Options({ resource }) {
                     dispatch(updateData(update));
                     setSecondOpen(false);
                     setFirstOpen(false);
+                    history.push("/home");
                   })
                   .catch((err) => {
                     console.log(err);

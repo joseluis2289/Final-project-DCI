@@ -8,7 +8,7 @@ function SvgStar(props) {
   return (
     //className="star-icon"
     <Rating
-      style={{ width: "40px", margin: "auto" }}
+      style={{ width: "30px", margin: "auto" }}
       icon="star"
       size="large"
       defaultRating={1}

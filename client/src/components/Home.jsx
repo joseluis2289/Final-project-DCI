@@ -52,14 +52,14 @@ const Home = ({ getDashboardData, dashboard }) => {
 
   return (
     <Container fluid className="dashboard-container">
-      <Grid columns={3} padded className="dashboard-grid">
-        <Grid.Row>
+      <Grid columns={2} padded className="dashboard-grid">
+        <Grid.Row centered>
           <Grid.Column
             // className="dashboard-content"
             className="dashboard-sidebar sidebar-left"
-            mobile={16}
-            tablet={9}
-            computer={9}
+            mobile={14}
+            tablet={8}
+            computer={12}
           >
             <Grid>
               <Spring
@@ -83,24 +83,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                         history.push("/home");
                       }}
                     />
-
-                    <Button
-                      style={{
-                        width: "150px",
-                        margin: "1em",
-                        color: "var(--violett-dark)",
-                        backgroundColor: "var(--yellow-light)",
-                      }}
-                      content="Add Resource"
-                      icon="add circle"
-                      labelPosition="left"
-                      onClick={() => {
-                        console.log(logIn);
-                        logIn
-                          ? history.push("/add_resource")
-                          : history.push("/login");
-                      }}
-                    />
                   </Grid.Row>
                 )}
               </Spring>
@@ -113,8 +95,13 @@ const Home = ({ getDashboardData, dashboard }) => {
             >
               {(props) => (
                 <Grid style={props} columns={2} doubling padded>
-                  <Grid.Row>
-                    <Grid.Column width={16} className="dashboard-frontend">
+                  <Grid.Row centered>
+                    <Grid.Column
+                      mobile={14}
+                      tablet={8}
+                      computer={12}
+                      className="dashboard-frontend"
+                    >
                       <Header as="h3">Frontend</Header>
                       <Container>
                         <Button
@@ -145,7 +132,9 @@ const Home = ({ getDashboardData, dashboard }) => {
                       {(props) => (
                         <Grid.Column
                           style={props}
-                          width={8}
+                          mobile={14}
+                          tablet={4}
+                          computer={6}
                           className="dashboard-backend"
                         >
                           <Header as="h3">Backend</Header>
@@ -185,7 +174,9 @@ const Home = ({ getDashboardData, dashboard }) => {
                       {(props) => (
                         <Grid.Column
                           style={props}
-                          width={8}
+                          mobile={14}
+                          tablet={4}
+                          computer={6}
                           className="dashboard-database"
                         >
                           <Header as="h3">Database</Header>
@@ -228,11 +219,41 @@ const Home = ({ getDashboardData, dashboard }) => {
           {/* <Grid.Column width={1} className="dashboard-content"></Grid.Column> */}
           <Grid.Column
             centered
-            mobile={16}
-            tablet={4}
+            mobile={14}
+            tablet={5}
             computer={4}
             className="dashboard-sidebar sidebar-right"
           >
+            {" "}
+            <Grid>
+              <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ delay: 400, duration: 400 }}
+              >
+                {(props) => (
+                  <Grid.Row centered style={props}>
+                    <Button
+                      style={{
+                        width: "150px",
+                        margin: "1em",
+                        color: "var(--violett-dark)",
+                        backgroundColor: "var(--yellow-light)",
+                      }}
+                      content="Add Resource"
+                      icon="add circle"
+                      labelPosition="left"
+                      onClick={() => {
+                        console.log(logIn);
+                        logIn
+                          ? history.push("/add_resource")
+                          : history.push("/login");
+                      }}
+                    />
+                  </Grid.Row>
+                )}
+              </Spring>
+            </Grid>
             <Spring
               from={{ opacity: 0 }}
               to={{ opacity: 1 }}
@@ -268,7 +289,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                 </Card>
               )}
             </Spring>
-
             <Spring
               from={{ opacity: 0 }}
               to={{ opacity: 1 }}
@@ -291,8 +311,10 @@ const Home = ({ getDashboardData, dashboard }) => {
                                   {moment(comment.date).fromNow()}
                                 </Feed.Date>
                                 <Feed.Summary>
-                                  {comment.user.userName[0].toUpperCase() +
-                                    comment.user.userName.substring(1)}{" "}
+                                  {!comment.user
+                                    ? "anonymous guest"
+                                    : comment.user.userName[0].toUpperCase() +
+                                      comment.user.userName.substring(1)}{" "}
                                   added a comment to the{" "}
                                   <em
                                     style={{ cursor: "pointer" }}

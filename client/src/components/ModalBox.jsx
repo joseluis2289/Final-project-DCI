@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import { useHistory } from "react-router-dom";
 
 export default function ModalBox({
   header,
@@ -8,6 +9,7 @@ export default function ModalBox({
   setDeleteModal,
   action,
 }) {
+  const history = useHistory();
   return (
     <div>
       <Modal
@@ -23,7 +25,10 @@ export default function ModalBox({
         <Modal.Actions>
           <Button
             style={{ backgroundColor: "var(--red-dark)", color: "white" }}
-            onClick={(e) => action(e)}
+            onClick={(e) => {
+              action(e);
+              history.push("/home");
+            }}
           >
             <Icon name="checkmark" /> Yes
           </Button>
