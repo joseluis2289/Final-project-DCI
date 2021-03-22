@@ -311,8 +311,10 @@ const Home = ({ getDashboardData, dashboard }) => {
                                   {moment(comment.date).fromNow()}
                                 </Feed.Date>
                                 <Feed.Summary>
-                                  {comment.user.userName[0].toUpperCase() +
-                                    comment.user.userName.substring(1)}{" "}
+                                  {!comment.user
+                                    ? "anonymous guest"
+                                    : comment.user.userName[0].toUpperCase() +
+                                      comment.user.userName.substring(1)}{" "}
                                   added a comment to the{" "}
                                   <em
                                     style={{ cursor: "pointer" }}
