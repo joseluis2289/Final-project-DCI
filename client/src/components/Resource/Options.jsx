@@ -222,7 +222,9 @@ export default function Options({ resource }) {
         </Modal.Actions>
 
         <Modal
-          onClose={() => setSecondOpen(false)}
+          onClose={() => {
+            setSecondOpen(false);
+          }}
           open={secondOpen}
           size="small"
         >
@@ -246,6 +248,7 @@ export default function Options({ resource }) {
                     dispatch(updateData(update));
                     setSecondOpen(false);
                     setFirstOpen(false);
+                    history.push("/home");
                   })
                   .catch((err) => {
                     console.log(err);

@@ -88,24 +88,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                         history.push("/home");
                       }}
                     />
-
-                    <Button
-                      style={{
-                        width: "150px",
-                        margin: "1em",
-                        color: "var(--violett-dark)",
-                        backgroundColor: "var(--yellow-light)",
-                      }}
-                      content="Add Resource"
-                      icon="add circle"
-                      labelPosition="left"
-                      onClick={() => {
-                        console.log(logIn);
-                        logIn
-                          ? history.push("/add_resource")
-                          : history.push("/login");
-                      }}
-                    />
                   </Grid.Row>
                 )}
               </Spring>
@@ -118,11 +100,11 @@ const Home = ({ getDashboardData, dashboard }) => {
             >
               {(props) => (
                 <Grid style={props} columns={2} doubling padded>
-                  <Grid.Row>
+                  <Grid.Row centered>
                     <Grid.Column
                       mobile={14}
                       tablet={8}
-                      computer={14}
+                      computer={12}
                       className="dashboard-frontend"
                     >
                       <Header as="h3">Frontend</Header>
@@ -157,7 +139,7 @@ const Home = ({ getDashboardData, dashboard }) => {
                           style={props}
                           mobile={14}
                           tablet={4}
-                          computer={7}
+                          computer={6}
                           className="dashboard-backend"
                         >
                           <Header as="h3">Backend</Header>
@@ -199,7 +181,7 @@ const Home = ({ getDashboardData, dashboard }) => {
                           style={props}
                           mobile={14}
                           tablet={4}
-                          computer={7}
+                          computer={6}
                           className="dashboard-database"
                         >
                           <Header as="h3">Database</Header>
@@ -247,6 +229,36 @@ const Home = ({ getDashboardData, dashboard }) => {
             computer={4}
             className="dashboard-sidebar sidebar-right"
           >
+            {" "}
+            <Grid>
+              <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ delay: 400, duration: 400 }}
+              >
+                {(props) => (
+                  <Grid.Row centered style={props}>
+                    <Button
+                      style={{
+                        width: "150px",
+                        margin: "1em",
+                        color: "var(--violett-dark)",
+                        backgroundColor: "var(--yellow-light)",
+                      }}
+                      content="Add Resource"
+                      icon="add circle"
+                      labelPosition="left"
+                      onClick={() => {
+                        console.log(logIn);
+                        logIn
+                          ? history.push("/add_resource")
+                          : history.push("/login");
+                      }}
+                    />
+                  </Grid.Row>
+                )}
+              </Spring>
+            </Grid>
             <Spring
               from={{ opacity: 0 }}
               to={{ opacity: 1 }}
@@ -282,7 +294,6 @@ const Home = ({ getDashboardData, dashboard }) => {
                 </Card>
               )}
             </Spring>
-
             <Spring
               from={{ opacity: 0 }}
               to={{ opacity: 1 }}

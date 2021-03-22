@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Form,
+  Radio,
+  Feed,
   Button,
   Header,
   Grid,
@@ -145,6 +147,21 @@ export default function Register() {
                         .catch((err) => console.log(err));
                     })}
                   >
+                    <Form.Field>
+                      <label htmlFor="username">Image</label>
+                    </Form.Field>
+                    <Form.Field>
+                      <Radio
+                        label="test"
+                        name="radioGroup"
+                        value="./images/matthew.png"
+                        /*  checked={this.state.value === "that"}
+                        onChange={this.handleChange} */
+                      >
+                        {" "}
+                        <Feed.Label image="./images/matthew.png" />
+                      </Radio>
+                    </Form.Field>
                     <Form.Field>
                       <label htmlFor="username">Name</label>
                       <input
