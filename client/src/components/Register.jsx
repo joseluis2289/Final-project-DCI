@@ -148,21 +148,6 @@ export default function Register() {
                     })}
                   >
                     <Form.Field>
-                      <label htmlFor="username">Image</label>
-                    </Form.Field>
-                    <Form.Field>
-                      <Radio
-                        label="test"
-                        name="radioGroup"
-                        value="./images/matthew.png"
-                        /*  checked={this.state.value === "that"}
-                        onChange={this.handleChange} */
-                      >
-                        {" "}
-                        <Feed.Label image="./images/matthew.png" />
-                      </Radio>
-                    </Form.Field>
-                    <Form.Field>
                       <label htmlFor="username">Name</label>
                       <input
                         type="text"

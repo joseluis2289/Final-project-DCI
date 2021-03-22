@@ -52,12 +52,7 @@ const Home = ({ getDashboardData, dashboard }) => {
 
   return (
     <Container fluid className="dashboard-container">
-      <Grid
-        columns={2}
-        padded
-        className="dashboard-grid"
-        style={{ border: "red solid 2px" }}
-      >
+      <Grid columns={2} padded className="dashboard-grid">
         <Grid.Row centered>
           <Grid.Column
             // className="dashboard-content"
